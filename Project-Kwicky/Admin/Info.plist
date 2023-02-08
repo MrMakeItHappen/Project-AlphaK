@@ -4,8 +4,6 @@
 <dict>
 	<key>UIAppFonts</key>
 	<array>
-		<string>Segoe-UI-Bold.ttf</string>
-		<string>Segoe-UI.ttf</string>
 		<string>Inter-Black.ttf</string>
 		<string>Inter-Bold.ttf</string>
 		<string>Inter-ExtraBold.ttf</string>
@@ -15,6 +13,9 @@
 		<string>Inter-Regular.ttf</string>
 		<string>Inter-SemiBold.ttf</string>
 		<string>Inter-Thin.ttf</string>
+		<string>segoeui.ttf</string>
+		<string>segoeui-bold.ttf</string>
+		<string>segoeui-semibold.ttf</string>
 	</array>
 	<key>UIApplicationSceneManifest</key>
 	<dict>

@@ -10,11 +10,15 @@ import UIKit
 //Segoe UI
 extension UIFont {
     static func segoeUIBold(size fontSize: CGFloat) -> UIFont {
-        return UIFont(name: "Segoe-UI-Bold", size: fontSize)!
+        return UIFont(name: "segoeui-bold", size: fontSize)!
     }
     
     static func segoeUIRegular(size fontSize: CGFloat) -> UIFont {
-        return UIFont(name: "Segoe-UI", size: fontSize)!
+        return UIFont(name: "segoeui", size: fontSize)!
+    }
+    
+    static func segoeUISemiBold(size fontSize: CGFloat) -> UIFont {
+        return UIFont(name: "segoeui-semibold", size: fontSize)!
     }
 }
 

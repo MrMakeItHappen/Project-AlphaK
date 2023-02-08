@@ -15,8 +15,6 @@
 		CAA90C98299419BE0013A654 /* TinyConstraints in Frameworks */ = {isa = PBXBuildFile; productRef = CAA90C97299419BE0013A654 /* TinyConstraints */; };
 		CAA90C9B29941ACD0013A654 /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA90C9A29941ACD0013A654 /* UIColor+Ext.swift */; };
 		CAA90C9D29941AEE0013A654 /* UIFont+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA90C9C29941AEE0013A654 /* UIFont+Ext.swift */; };
-		CAA90CA529941DB30013A654 /* Segoe-UI.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CAA90CA129941DB30013A654 /* Segoe-UI.ttf */; };
-		CAA90CA629941DB30013A654 /* Segoe-UI-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CAA90CA229941DB30013A654 /* Segoe-UI-Bold.ttf */; };
 		CAA90CB02994205B0013A654 /* Inter-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CAA90CA72994205B0013A654 /* Inter-SemiBold.ttf */; };
 		CAA90CB12994205B0013A654 /* Inter-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CAA90CA82994205B0013A654 /* Inter-ExtraLight.ttf */; };
 		CAA90CB22994205B0013A654 /* Inter-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CAA90CA92994205B0013A654 /* Inter-Thin.ttf */; };
@@ -26,6 +24,9 @@
 		CAA90CB62994205B0013A654 /* Inter-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CAA90CAD2994205B0013A654 /* Inter-Bold.ttf */; };
 		CAA90CB72994205B0013A654 /* Inter-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CAA90CAE2994205B0013A654 /* Inter-Light.ttf */; };
 		CAA90CB82994205B0013A654 /* Inter-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CAA90CAF2994205B0013A654 /* Inter-Medium.ttf */; };
+		CABAA2EE29942F9300C5EBC6 /* segoeui.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CABAA2ED29942F9300C5EBC6 /* segoeui.ttf */; };
+		CABAA2F029942FCD00C5EBC6 /* segoeui-bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CABAA2EF29942FCD00C5EBC6 /* segoeui-bold.ttf */; };
+		CABAA2F3299430DD00C5EBC6 /* segoeui-semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CABAA2F129942FF500C5EBC6 /* segoeui-semibold.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -38,8 +39,6 @@
 		CAA90C892994171E0013A654 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		CAA90C9A29941ACD0013A654 /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
 		CAA90C9C29941AEE0013A654 /* UIFont+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Ext.swift"; sourceTree = "<group>"; };
-		CAA90CA129941DB30013A654 /* Segoe-UI.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Segoe-UI.ttf"; sourceTree = "<group>"; };
-		CAA90CA229941DB30013A654 /* Segoe-UI-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Segoe-UI-Bold.ttf"; sourceTree = "<group>"; };
 		CAA90CA72994205B0013A654 /* Inter-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-SemiBold.ttf"; sourceTree = "<group>"; };
 		CAA90CA82994205B0013A654 /* Inter-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-ExtraLight.ttf"; sourceTree = "<group>"; };
 		CAA90CA92994205B0013A654 /* Inter-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Thin.ttf"; sourceTree = "<group>"; };
@@ -49,6 +48,9 @@
 		CAA90CAD2994205B0013A654 /* Inter-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Bold.ttf"; sourceTree = "<group>"; };
 		CAA90CAE2994205B0013A654 /* Inter-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Light.ttf"; sourceTree = "<group>"; };
 		CAA90CAF2994205B0013A654 /* Inter-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Medium.ttf"; sourceTree = "<group>"; };
+		CABAA2ED29942F9300C5EBC6 /* segoeui.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = segoeui.ttf; sourceTree = "<group>"; };
+		CABAA2EF29942FCD00C5EBC6 /* segoeui-bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "segoeui-bold.ttf"; sourceTree = "<group>"; };
+		CABAA2F129942FF500C5EBC6 /* segoeui-semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "segoeui-semibold.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -162,8 +164,9 @@
 		CAA90C9E29941DA40013A654 /* Fonts */ = {
 			isa = PBXGroup;
 			children = (
-				CAA90CA229941DB30013A654 /* Segoe-UI-Bold.ttf */,
-				CAA90CA129941DB30013A654 /* Segoe-UI.ttf */,
+				CABAA2ED29942F9300C5EBC6 /* segoeui.ttf */,
+				CABAA2EF29942FCD00C5EBC6 /* segoeui-bold.ttf */,
+				CABAA2F129942FF500C5EBC6 /* segoeui-semibold.ttf */,
 				CAA90CAA2994205B0013A654 /* Inter-Black.ttf */,
 				CAA90CAD2994205B0013A654 /* Inter-Bold.ttf */,
 				CAA90CAC2994205B0013A654 /* Inter-ExtraBold.ttf */,
@@ -242,15 +245,16 @@
 			buildActionMask = 2147483647;
 			files = (
 				CAA90C882994171E0013A654 /* LaunchScreen.storyboard in Resources */,
+				CABAA2F3299430DD00C5EBC6 /* segoeui-semibold.ttf in Resources */,
 				CAA90CB42994205B0013A654 /* Inter-Regular.ttf in Resources */,
 				CAA90CB62994205B0013A654 /* Inter-Bold.ttf in Resources */,
 				CAA90CB12994205B0013A654 /* Inter-ExtraLight.ttf in Resources */,
-				CAA90CA629941DB30013A654 /* Segoe-UI-Bold.ttf in Resources */,
-				CAA90CA529941DB30013A654 /* Segoe-UI.ttf in Resources */,
 				CAA90CB52994205B0013A654 /* Inter-ExtraBold.ttf in Resources */,
 				CAA90CB02994205B0013A654 /* Inter-SemiBold.ttf in Resources */,
 				CAA90C852994171E0013A654 /* Assets.xcassets in Resources */,
 				CAA90CB22994205B0013A654 /* Inter-Thin.ttf in Resources */,
+				CABAA2EE29942F9300C5EBC6 /* segoeui.ttf in Resources */,
+				CABAA2F029942FCD00C5EBC6 /* segoeui-bold.ttf in Resources */,
 				CAA90CB82994205B0013A654 /* Inter-Medium.ttf in Resources */,
 				CAA90CB72994205B0013A654 /* Inter-Light.ttf in Resources */,
 				CAA90CB32994205B0013A654 /* Inter-Black.ttf in Resources */,

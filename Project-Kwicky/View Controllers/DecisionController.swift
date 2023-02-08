@@ -13,6 +13,21 @@ final class DecisionController: UIViewController {
         return view
     }()
     
+    
+    
+    private let titleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Easy Way To Earn Cash"
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.backgroundColor = .clear
+        label.font = UIFont.segoeUISemiBold(size: 46)
+        label.numberOfLines = 1
+        label.adjustsFontSizeToFitWidth = true
+        label.textAlignment = .left
+        label.textColor = UIColor.white
+        return label
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.addGradientBackground()
@@ -42,6 +57,9 @@ extension DecisionController {
     }
     
     private func layoutUI() {
-        
+        self.view.addSubview(self.titleLabel)
+        self.titleLabel.centerInSuperview()
+        self.titleLabel.leftToSuperview(offset: 50)
+        self.titleLabel.rightToSuperview(offset: -50)
     }
 }

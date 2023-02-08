@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import TinyConstraints
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -13,10 +14,33 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
 
     func scene(_ scene: UIScene, willConnectTo session: UISceneSession, options connectionOptions: UIScene.ConnectionOptions) {
-        // Use this method to optionally configure and attach the UIWindow `window` to the provided UIWindowScene `scene`.
-        // If using a storyboard, the `window` property will automatically be initialized and attached to the scene.
-        // This delegate does not imply the connecting scene or session are new (see `application:configurationForConnectingSceneSession` instead).
-        guard let _ = (scene as? UIWindowScene) else { return }
+        guard let sceneWindow = (scene as? UIWindowScene) else { return }
+        
+        let window = UIWindow(windowScene: sceneWindow)
+        window.makeKeyAndVisible()
+        
+        let decisionController = DecisionController()
+        let navigationController = UINavigationController(rootViewController: decisionController)
+        
+//        navigationController.navigationBar.isHidden = true
+//        navigationController.modalPresentationStyle = .fullScreen
+//
+//        let appearance = UINavigationBarAppearance()
+//        appearance.configureWithOpaqueBackground()
+//        appearance.backgroundColor = .clear
+//        appearance.titleTextAttributes = [.foregroundColor: UIColor.black]
+//        appearance.titleTextAttributes = [.font : UIFont.figtreeMedium(size: 16)]
+//        appearance.shadowColor = .clear
+//
+//        UINavigationBar.appearance().standardAppearance = appearance
+//        UINavigationBar.appearance().scrollEdgeAppearance = appearance
+//        UINavigationBar.appearance().tintColor = .dsBlack
+//
+//        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor : UIColor.black], for: .normal)
+//        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor : UIColor.dsOrangeV2], for: .selected)
+        
+        window.rootViewController = navigationController
+        self.window = window
     }
 
     func sceneDidDisconnect(_ scene: UIScene) {

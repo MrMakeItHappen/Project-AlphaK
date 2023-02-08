@@ -9,21 +9,46 @@
 /* Begin PBXBuildFile section */
 		CAA90C7C2994171C0013A654 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA90C7B2994171C0013A654 /* AppDelegate.swift */; };
 		CAA90C7E2994171C0013A654 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA90C7D2994171C0013A654 /* SceneDelegate.swift */; };
-		CAA90C802994171C0013A654 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA90C7F2994171C0013A654 /* ViewController.swift */; };
-		CAA90C832994171C0013A654 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAA90C812994171C0013A654 /* Main.storyboard */; };
+		CAA90C802994171C0013A654 /* DecisionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA90C7F2994171C0013A654 /* DecisionController.swift */; };
 		CAA90C852994171E0013A654 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = CAA90C842994171E0013A654 /* Assets.xcassets */; };
 		CAA90C882994171E0013A654 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CAA90C862994171E0013A654 /* LaunchScreen.storyboard */; };
+		CAA90C98299419BE0013A654 /* TinyConstraints in Frameworks */ = {isa = PBXBuildFile; productRef = CAA90C97299419BE0013A654 /* TinyConstraints */; };
+		CAA90C9B29941ACD0013A654 /* UIColor+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA90C9A29941ACD0013A654 /* UIColor+Ext.swift */; };
+		CAA90C9D29941AEE0013A654 /* UIFont+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA90C9C29941AEE0013A654 /* UIFont+Ext.swift */; };
+		CAA90CA529941DB30013A654 /* Segoe-UI.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CAA90CA129941DB30013A654 /* Segoe-UI.ttf */; };
+		CAA90CA629941DB30013A654 /* Segoe-UI-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CAA90CA229941DB30013A654 /* Segoe-UI-Bold.ttf */; };
+		CAA90CB02994205B0013A654 /* Inter-SemiBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CAA90CA72994205B0013A654 /* Inter-SemiBold.ttf */; };
+		CAA90CB12994205B0013A654 /* Inter-ExtraLight.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CAA90CA82994205B0013A654 /* Inter-ExtraLight.ttf */; };
+		CAA90CB22994205B0013A654 /* Inter-Thin.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CAA90CA92994205B0013A654 /* Inter-Thin.ttf */; };
+		CAA90CB32994205B0013A654 /* Inter-Black.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CAA90CAA2994205B0013A654 /* Inter-Black.ttf */; };
+		CAA90CB42994205B0013A654 /* Inter-Regular.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CAA90CAB2994205B0013A654 /* Inter-Regular.ttf */; };
+		CAA90CB52994205B0013A654 /* Inter-ExtraBold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CAA90CAC2994205B0013A654 /* Inter-ExtraBold.ttf */; };
+		CAA90CB62994205B0013A654 /* Inter-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CAA90CAD2994205B0013A654 /* Inter-Bold.ttf */; };
+		CAA90CB72994205B0013A654 /* Inter-Light.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CAA90CAE2994205B0013A654 /* Inter-Light.ttf */; };
+		CAA90CB82994205B0013A654 /* Inter-Medium.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CAA90CAF2994205B0013A654 /* Inter-Medium.ttf */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
 		CAA90C782994171C0013A654 /* Project-Kwicky.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Project-Kwicky.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAA90C7B2994171C0013A654 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CAA90C7D2994171C0013A654 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
-		CAA90C7F2994171C0013A654 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
-		CAA90C822994171C0013A654 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		CAA90C7F2994171C0013A654 /* DecisionController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DecisionController.swift; sourceTree = "<group>"; };
 		CAA90C842994171E0013A654 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		CAA90C872994171E0013A654 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		CAA90C892994171E0013A654 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		CAA90C9A29941ACD0013A654 /* UIColor+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIColor+Ext.swift"; sourceTree = "<group>"; };
+		CAA90C9C29941AEE0013A654 /* UIFont+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIFont+Ext.swift"; sourceTree = "<group>"; };
+		CAA90CA129941DB30013A654 /* Segoe-UI.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Segoe-UI.ttf"; sourceTree = "<group>"; };
+		CAA90CA229941DB30013A654 /* Segoe-UI-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Segoe-UI-Bold.ttf"; sourceTree = "<group>"; };
+		CAA90CA72994205B0013A654 /* Inter-SemiBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-SemiBold.ttf"; sourceTree = "<group>"; };
+		CAA90CA82994205B0013A654 /* Inter-ExtraLight.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-ExtraLight.ttf"; sourceTree = "<group>"; };
+		CAA90CA92994205B0013A654 /* Inter-Thin.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Thin.ttf"; sourceTree = "<group>"; };
+		CAA90CAA2994205B0013A654 /* Inter-Black.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Black.ttf"; sourceTree = "<group>"; };
+		CAA90CAB2994205B0013A654 /* Inter-Regular.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Regular.ttf"; sourceTree = "<group>"; };
+		CAA90CAC2994205B0013A654 /* Inter-ExtraBold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-ExtraBold.ttf"; sourceTree = "<group>"; };
+		CAA90CAD2994205B0013A654 /* Inter-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Bold.ttf"; sourceTree = "<group>"; };
+		CAA90CAE2994205B0013A654 /* Inter-Light.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Light.ttf"; sourceTree = "<group>"; };
+		CAA90CAF2994205B0013A654 /* Inter-Medium.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Inter-Medium.ttf"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -31,6 +56,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CAA90C98299419BE0013A654 /* TinyConstraints in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -56,15 +82,99 @@
 		CAA90C7A2994171C0013A654 /* Project-Kwicky */ = {
 			isa = PBXGroup;
 			children = (
-				CAA90C7B2994171C0013A654 /* AppDelegate.swift */,
+				CAA90C99299419E30013A654 /* Helpers */,
+				CAA90C952994199A0013A654 /* Models */,
+				CAA90C94299419960013A654 /* Git */,
+				CAA90C932994198F0013A654 /* Extensions */,
+				CAA90C92299419890013A654 /* Assets */,
+				CAA90C91299419810013A654 /* Views */,
+				CAA90C902994197A0013A654 /* View Controllers */,
+				CAA90C8F299419720013A654 /* Admin */,
+			);
+			path = "Project-Kwicky";
+			sourceTree = "<group>";
+		};
+		CAA90C8F299419720013A654 /* Admin */ = {
+			isa = PBXGroup;
+			children = (
 				CAA90C7D2994171C0013A654 /* SceneDelegate.swift */,
-				CAA90C7F2994171C0013A654 /* ViewController.swift */,
-				CAA90C812994171C0013A654 /* Main.storyboard */,
-				CAA90C842994171E0013A654 /* Assets.xcassets */,
+				CAA90C7B2994171C0013A654 /* AppDelegate.swift */,
 				CAA90C862994171E0013A654 /* LaunchScreen.storyboard */,
 				CAA90C892994171E0013A654 /* Info.plist */,
 			);
-			path = "Project-Kwicky";
+			path = Admin;
+			sourceTree = "<group>";
+		};
+		CAA90C902994197A0013A654 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				CAA90C7F2994171C0013A654 /* DecisionController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		CAA90C91299419810013A654 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		CAA90C92299419890013A654 /* Assets */ = {
+			isa = PBXGroup;
+			children = (
+				CAA90C9E29941DA40013A654 /* Fonts */,
+				CAA90C842994171E0013A654 /* Assets.xcassets */,
+			);
+			path = Assets;
+			sourceTree = "<group>";
+		};
+		CAA90C932994198F0013A654 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				CAA90C9A29941ACD0013A654 /* UIColor+Ext.swift */,
+				CAA90C9C29941AEE0013A654 /* UIFont+Ext.swift */,
+			);
+			path = Extensions;
+			sourceTree = "<group>";
+		};
+		CAA90C94299419960013A654 /* Git */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Git;
+			sourceTree = "<group>";
+		};
+		CAA90C952994199A0013A654 /* Models */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		CAA90C99299419E30013A654 /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		CAA90C9E29941DA40013A654 /* Fonts */ = {
+			isa = PBXGroup;
+			children = (
+				CAA90CA229941DB30013A654 /* Segoe-UI-Bold.ttf */,
+				CAA90CA129941DB30013A654 /* Segoe-UI.ttf */,
+				CAA90CAA2994205B0013A654 /* Inter-Black.ttf */,
+				CAA90CAD2994205B0013A654 /* Inter-Bold.ttf */,
+				CAA90CAC2994205B0013A654 /* Inter-ExtraBold.ttf */,
+				CAA90CA82994205B0013A654 /* Inter-ExtraLight.ttf */,
+				CAA90CAE2994205B0013A654 /* Inter-Light.ttf */,
+				CAA90CAF2994205B0013A654 /* Inter-Medium.ttf */,
+				CAA90CAB2994205B0013A654 /* Inter-Regular.ttf */,
+				CAA90CA72994205B0013A654 /* Inter-SemiBold.ttf */,
+				CAA90CA92994205B0013A654 /* Inter-Thin.ttf */,
+			);
+			path = Fonts;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -83,6 +193,9 @@
 			dependencies = (
 			);
 			name = "Project-Kwicky";
+			packageProductDependencies = (
+				CAA90C97299419BE0013A654 /* TinyConstraints */,
+			);
 			productName = "Project-Kwicky";
 			productReference = CAA90C782994171C0013A654 /* Project-Kwicky.app */;
 			productType = "com.apple.product-type.application";
@@ -111,6 +224,9 @@
 				Base,
 			);
 			mainGroup = CAA90C6F2994171C0013A654;
+			packageReferences = (
+				CAA90C96299419BE0013A654 /* XCRemoteSwiftPackageReference "TinyConstraints" */,
+			);
 			productRefGroup = CAA90C792994171C0013A654 /* Products */;
 			projectDirPath = "";
 			projectRoot = "";
@@ -126,8 +242,18 @@
 			buildActionMask = 2147483647;
 			files = (
 				CAA90C882994171E0013A654 /* LaunchScreen.storyboard in Resources */,
+				CAA90CB42994205B0013A654 /* Inter-Regular.ttf in Resources */,
+				CAA90CB62994205B0013A654 /* Inter-Bold.ttf in Resources */,
+				CAA90CB12994205B0013A654 /* Inter-ExtraLight.ttf in Resources */,
+				CAA90CA629941DB30013A654 /* Segoe-UI-Bold.ttf in Resources */,
+				CAA90CA529941DB30013A654 /* Segoe-UI.ttf in Resources */,
+				CAA90CB52994205B0013A654 /* Inter-ExtraBold.ttf in Resources */,
+				CAA90CB02994205B0013A654 /* Inter-SemiBold.ttf in Resources */,
 				CAA90C852994171E0013A654 /* Assets.xcassets in Resources */,
-				CAA90C832994171C0013A654 /* Main.storyboard in Resources */,
+				CAA90CB22994205B0013A654 /* Inter-Thin.ttf in Resources */,
+				CAA90CB82994205B0013A654 /* Inter-Medium.ttf in Resources */,
+				CAA90CB72994205B0013A654 /* Inter-Light.ttf in Resources */,
+				CAA90CB32994205B0013A654 /* Inter-Black.ttf in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -138,23 +264,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CAA90C802994171C0013A654 /* ViewController.swift in Sources */,
+				CAA90C802994171C0013A654 /* DecisionController.swift in Sources */,
+				CAA90C9B29941ACD0013A654 /* UIColor+Ext.swift in Sources */,
 				CAA90C7C2994171C0013A654 /* AppDelegate.swift in Sources */,
 				CAA90C7E2994171C0013A654 /* SceneDelegate.swift in Sources */,
+				CAA90C9D29941AEE0013A654 /* UIFont+Ext.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		CAA90C812994171C0013A654 /* Main.storyboard */ = {
-			isa = PBXVariantGroup;
-			children = (
-				CAA90C822994171C0013A654 /* Base */,
-			);
-			name = Main.storyboard;
-			sourceTree = "<group>";
-		};
 		CAA90C862994171E0013A654 /* LaunchScreen.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
@@ -289,10 +409,9 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = F5J6ZLKCR8;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Project-Kwicky/Info.plist";
+				INFOPLIST_FILE = "/Users/smiller/Downloads/Project-Kwicky/Project-Kwicky/Admin/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -317,10 +436,9 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = F5J6ZLKCR8;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "Project-Kwicky/Info.plist";
+				INFOPLIST_FILE = "/Users/smiller/Downloads/Project-Kwicky/Project-Kwicky/Admin/Info.plist";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
-				INFOPLIST_KEY_UIMainStoryboardFile = Main;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPad = "UIInterfaceOrientationPortrait UIInterfaceOrientationPortraitUpsideDown UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				INFOPLIST_KEY_UISupportedInterfaceOrientations_iPhone = "UIInterfaceOrientationPortrait UIInterfaceOrientationLandscapeLeft UIInterfaceOrientationLandscapeRight";
 				LD_RUNPATH_SEARCH_PATHS = (
@@ -358,6 +476,25 @@
 			defaultConfigurationName = Release;
 		};
 /* End XCConfigurationList section */
+
+/* Begin XCRemoteSwiftPackageReference section */
+		CAA90C96299419BE0013A654 /* XCRemoteSwiftPackageReference "TinyConstraints" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/roberthein/TinyConstraints";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
+/* End XCRemoteSwiftPackageReference section */
+
+/* Begin XCSwiftPackageProductDependency section */
+		CAA90C97299419BE0013A654 /* TinyConstraints */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CAA90C96299419BE0013A654 /* XCRemoteSwiftPackageReference "TinyConstraints" */;
+			productName = TinyConstraints;
+		};
+/* End XCSwiftPackageProductDependency section */
 	};
 	rootObject = CAA90C702994171C0013A654 /* Project object */;
 }

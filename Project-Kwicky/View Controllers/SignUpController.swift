@@ -247,17 +247,17 @@ extension SignUpController {
         self.subTitleLabel.rightToSuperview(offset: -69)
         
         self.view.addSubview(self.loginContainerView)
-        self.loginContainerView.topToBottom(of: self.subTitleLabel, offset: 56)
+        self.loginContainerView.topToBottom(of: self.subTitleLabel, offset: 35)
         self.loginContainerView.leftToSuperview()
         self.loginContainerView.rightToSuperview()
         self.loginContainerView.bottomToSuperview()
         
         self.loginContainerView.addSubview(self.signUpLabel)
-        self.signUpLabel.topToSuperview(offset: 59)
+        self.signUpLabel.topToSuperview(offset: 45)
         self.signUpLabel.leftToSuperview(offset: 51)
         
         self.loginContainerView.addSubview(self.phoneButton)
-        self.phoneButton.topToBottom(of: self.signUpLabel, offset: 43)
+        self.phoneButton.topToBottom(of: self.signUpLabel, offset: 30)
         self.phoneButton.leftToSuperview(offset: 40)
         self.phoneButton.rightToSuperview(offset: -40)
         
@@ -307,6 +307,8 @@ extension SignUpController {
     }
     
     @objc func didTapLogin() {
-        print(#function)
+        let loginVC = LoginController()
+        loginVC.modalPresentationStyle = .popover
+        self.navigationController?.present(loginVC, animated: true)
     }
 }

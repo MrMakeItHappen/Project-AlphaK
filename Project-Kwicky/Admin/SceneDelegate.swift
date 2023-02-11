@@ -22,19 +22,19 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let decisionController = DecisionController()
         let navigationController = UINavigationController(rootViewController: decisionController)
         
-//        navigationController.navigationBar.isHidden = true
+        navigationController.navigationBar.isHidden = true
 //        navigationController.modalPresentationStyle = .fullScreen
 //
-//        let appearance = UINavigationBarAppearance()
-//        appearance.configureWithOpaqueBackground()
-//        appearance.backgroundColor = .clear
-//        appearance.titleTextAttributes = [.foregroundColor: UIColor.black]
-//        appearance.titleTextAttributes = [.font : UIFont.figtreeMedium(size: 16)]
-//        appearance.shadowColor = .clear
-//
-//        UINavigationBar.appearance().standardAppearance = appearance
-//        UINavigationBar.appearance().scrollEdgeAppearance = appearance
-//        UINavigationBar.appearance().tintColor = .dsBlack
+        let appearance = UINavigationBarAppearance()
+        appearance.configureWithOpaqueBackground()
+        appearance.backgroundColor = .clear
+        appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
+        appearance.titleTextAttributes = [.font : UIFont.interRegular(size: 16)]
+        appearance.shadowColor = .clear
+
+        UINavigationBar.appearance().standardAppearance = appearance
+        UINavigationBar.appearance().scrollEdgeAppearance = appearance
+        UINavigationBar.appearance().tintColor = .white
 //
 //        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor : UIColor.black], for: .normal)
 //        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor : UIColor.dsOrangeV2], for: .selected)

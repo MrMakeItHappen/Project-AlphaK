@@ -27,6 +27,8 @@
 		CABAA2EE29942F9300C5EBC6 /* segoeui.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CABAA2ED29942F9300C5EBC6 /* segoeui.ttf */; };
 		CABAA2F029942FCD00C5EBC6 /* segoeui-bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CABAA2EF29942FCD00C5EBC6 /* segoeui-bold.ttf */; };
 		CABAA2F3299430DD00C5EBC6 /* segoeui-semibold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = CABAA2F129942FF500C5EBC6 /* segoeui-semibold.ttf */; };
+		CABAA2F52994493200C5EBC6 /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABAA2F42994493200C5EBC6 /* SignUpController.swift */; };
+		CABAA2F929945D1C00C5EBC6 /* UIImage+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABAA2F829945D1C00C5EBC6 /* UIImage+Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -51,6 +53,8 @@
 		CABAA2ED29942F9300C5EBC6 /* segoeui.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = segoeui.ttf; sourceTree = "<group>"; };
 		CABAA2EF29942FCD00C5EBC6 /* segoeui-bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "segoeui-bold.ttf"; sourceTree = "<group>"; };
 		CABAA2F129942FF500C5EBC6 /* segoeui-semibold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "segoeui-semibold.ttf"; sourceTree = "<group>"; };
+		CABAA2F42994493200C5EBC6 /* SignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
+		CABAA2F829945D1C00C5EBC6 /* UIImage+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +115,7 @@
 			isa = PBXGroup;
 			children = (
 				CAA90C7F2994171C0013A654 /* DecisionController.swift */,
+				CABAA2F42994493200C5EBC6 /* SignUpController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -136,6 +141,7 @@
 			children = (
 				CAA90C9A29941ACD0013A654 /* UIColor+Ext.swift */,
 				CAA90C9C29941AEE0013A654 /* UIFont+Ext.swift */,
+				CABAA2F829945D1C00C5EBC6 /* UIImage+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -268,11 +274,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				CABAA2F929945D1C00C5EBC6 /* UIImage+Ext.swift in Sources */,
 				CAA90C802994171C0013A654 /* DecisionController.swift in Sources */,
 				CAA90C9B29941ACD0013A654 /* UIColor+Ext.swift in Sources */,
 				CAA90C7C2994171C0013A654 /* AppDelegate.swift in Sources */,
 				CAA90C7E2994171C0013A654 /* SceneDelegate.swift in Sources */,
 				CAA90C9D29941AEE0013A654 /* UIFont+Ext.swift in Sources */,
+				CABAA2F52994493200C5EBC6 /* SignUpController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

@@ -135,9 +135,9 @@ final class DecisionController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.backButtonTitle = ""
         self.addGradientBackground()
         self.layoutUI()
-        self.addHoverAnimation()
     }
     
 }
@@ -211,6 +211,7 @@ extension DecisionController {
 //MARK: - @objc
 extension DecisionController {
     @objc func didTapNext() {
-        print(#function)
+        let signUpVC = SignUpController()
+        self.navigationController?.pushViewController(signUpVC, animated: true)
     }
 }

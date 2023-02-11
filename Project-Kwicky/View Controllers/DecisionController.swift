@@ -138,6 +138,7 @@ final class DecisionController: UIViewController {
         self.navigationItem.backButtonTitle = ""
         self.addGradientBackground()
         self.layoutUI()
+        self.addHoverAnimation()
     }
     
 }

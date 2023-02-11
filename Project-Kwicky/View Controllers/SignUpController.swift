@@ -295,7 +295,8 @@ extension SignUpController {
 //MARK: - @objc
 extension SignUpController {
     @objc func didTapPhone() {
-        print(#function)
+        let signUpDetailVC = SignUpDetailController()
+        self.navigationController?.pushViewController(signUpDetailVC, animated: true)
     }
     
     @objc func didTapFacebook() {

@@ -31,6 +31,7 @@
 		CABAA2F929945D1C00C5EBC6 /* UIImage+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABAA2F829945D1C00C5EBC6 /* UIImage+Ext.swift */; };
 		CABAA2FB299805F600C5EBC6 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABAA2FA299805F600C5EBC6 /* LoginController.swift */; };
 		CABAA2FD2998107A00C5EBC6 /* TextField+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABAA2FC2998107A00C5EBC6 /* TextField+Ext.swift */; };
+		CABAA2FF2998340800C5EBC6 /* SignUpDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABAA2FE2998340800C5EBC6 /* SignUpDetailController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -59,6 +60,7 @@
 		CABAA2F829945D1C00C5EBC6 /* UIImage+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Ext.swift"; sourceTree = "<group>"; };
 		CABAA2FA299805F600C5EBC6 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
 		CABAA2FC2998107A00C5EBC6 /* TextField+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "TextField+Ext.swift"; path = "../../../../Desktop/Delete Later/TextField+Ext.swift"; sourceTree = "<group>"; };
+		CABAA2FE2998340800C5EBC6 /* SignUpDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpDetailController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -121,6 +123,7 @@
 				CAA90C7F2994171C0013A654 /* DecisionController.swift */,
 				CABAA2F42994493200C5EBC6 /* SignUpController.swift */,
 				CABAA2FA299805F600C5EBC6 /* LoginController.swift */,
+				CABAA2FE2998340800C5EBC6 /* SignUpDetailController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -282,6 +285,7 @@
 			files = (
 				CABAA2F929945D1C00C5EBC6 /* UIImage+Ext.swift in Sources */,
 				CAA90C802994171C0013A654 /* DecisionController.swift in Sources */,
+				CABAA2FF2998340800C5EBC6 /* SignUpDetailController.swift in Sources */,
 				CAA90C9B29941ACD0013A654 /* UIColor+Ext.swift in Sources */,
 				CAA90C7C2994171C0013A654 /* AppDelegate.swift in Sources */,
 				CAA90C7E2994171C0013A654 /* SceneDelegate.swift in Sources */,

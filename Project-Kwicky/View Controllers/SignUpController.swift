@@ -296,7 +296,9 @@ extension SignUpController {
 extension SignUpController {
     @objc func didTapPhone() {
         let signUpDetailVC = SignUpDetailController()
-        self.navigationController?.pushViewController(signUpDetailVC, animated: true)
+        let navVC = UINavigationController(rootViewController: signUpDetailVC)
+        navVC.modalPresentationStyle = .popover
+        self.navigationController?.present(navVC, animated: true)
     }
     
     @objc func didTapFacebook() {
@@ -309,7 +311,8 @@ extension SignUpController {
     
     @objc func didTapLogin() {
         let loginVC = LoginController()
-        loginVC.modalPresentationStyle = .popover
-        self.navigationController?.present(loginVC, animated: true)
+        let navVC = UINavigationController(rootViewController: loginVC)
+        navVC.modalPresentationStyle = .popover
+        self.navigationController?.present(navVC, animated: true)
     }
 }

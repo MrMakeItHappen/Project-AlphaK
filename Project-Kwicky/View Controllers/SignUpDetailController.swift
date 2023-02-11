@@ -107,6 +107,8 @@ final class SignUpDetailController: UIViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.navigationItem.backButtonTitle = ""
+        self.navigationController?.navigationBar.isHidden = false
         self.addGradientBackground()
         self.layoutUI()
     }
@@ -135,7 +137,7 @@ extension SignUpDetailController {
 extension SignUpDetailController {
     private func layoutUI() {
         self.view.addSubview(self.titleLabel)
-        self.titleLabel.topToSuperview(offset: 60)
+        self.titleLabel.topToSuperview(usingSafeArea: true)
         self.titleLabel.leftToSuperview(offset: 40)
         self.titleLabel.rightToSuperview(offset: -40)
         

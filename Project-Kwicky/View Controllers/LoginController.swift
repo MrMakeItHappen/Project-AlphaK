@@ -7,7 +7,9 @@
 
 import UIKit
 
-final class LoginController: UIViewController, UITextFieldDelegate {
+final class LoginController: UIViewController {
+    var isPathFromSignUpDetails = false
+    
     private let background: UIView = {
         let view = UIView(frame: .zero)
         return view
@@ -88,6 +90,7 @@ final class LoginController: UIViewController, UITextFieldDelegate {
         textField.layer.masksToBounds = true
         textField.height(50)
         textField.setLeftPaddingPoints(30)
+        textField.tag = 0
         return textField
     }()
     
@@ -116,7 +119,7 @@ final class LoginController: UIViewController, UITextFieldDelegate {
         textField.autocorrectionType = .no
         textField.delegate = self
         textField.backgroundColor = .clear
-        textField.returnKeyType = .next
+        textField.returnKeyType = .done
         textField.keyboardType = .emailAddress
         textField.layer.masksToBounds = true
         textField.layer.cornerRadius = 10
@@ -128,6 +131,7 @@ final class LoginController: UIViewController, UITextFieldDelegate {
         textField.isSecureTextEntry = true
         textField.height(50)
         textField.setLeftPaddingPoints(30)
+        textField.tag = 1
         return textField
     }()
     
@@ -274,8 +278,7 @@ final class LoginController: UIViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.backButtonTitle = ""
-        self.navigationController?.navigationBar.isHidden = false
+        self.configure()
         self.addGradientBackground()
         self.layoutUI()
     }
@@ -283,6 +286,19 @@ final class LoginController: UIViewController, UITextFieldDelegate {
 }
 //MARK: - Configure Controller
 extension LoginController {
+    private func configure() {
+        self.navigationItem.backButtonTitle = ""
+        self.navigationController?.navigationBar.isHidden = false
+        
+        if isPathFromSignUpDetails {
+            self.bottomLabel.layer.opacity = 0
+            self.registerNowButton.layer.opacity = 0
+        } else {
+            self.bottomLabel.layer.opacity = 1
+            self.registerNowButton.layer.opacity = 1
+        }
+    }
+    
     private func addGradientBackground() {
         let gradientLayer = CAGradientLayer()
         gradientLayer.colors = [
@@ -398,11 +414,27 @@ extension LoginController {
     }
     
     @objc func didTapRegisterNow() {
-        print(#function)
+        let signUpDetails = SignUpDetailController()
+        signUpDetails.isPathFromLogin = true
+        self.navigationController?.pushViewController(signUpDetails, animated: true)
     }
     
     @objc func didTapForgotPassword() {
         //Present Forgot Password pop-up or reset options.
         print(#function)
+    }
+}
+//MARK: - UITextField Delegate
+extension LoginController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        let nextTag = textField.tag + 1
+
+        if let nextResponder = textField.superview?.viewWithTag(nextTag) {
+            nextResponder.becomeFirstResponder()
+        } else {
+            textField.resignFirstResponder()
+        }
+
+        return true
     }
 }

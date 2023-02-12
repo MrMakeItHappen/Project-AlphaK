@@ -7,7 +7,9 @@
 
 import UIKit
 
-final class SignUpDetailController: UIViewController, UITextFieldDelegate {
+final class SignUpDetailController: UIViewController {
+    var isPathFromLogin = false
+    
     private let background: UIView = {
         let view = UIView(frame: .zero)
         return view
@@ -49,7 +51,7 @@ final class SignUpDetailController: UIViewController, UITextFieldDelegate {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.clipsToBounds = true
         view.backgroundColor = .white
-        view.layer.cornerRadius = 30
+        view.roundCorners(corners: [.topLeft, .topRight], radius: 30)
         return view
     }()
     
@@ -74,6 +76,7 @@ final class SignUpDetailController: UIViewController, UITextFieldDelegate {
         scrollView.clipsToBounds = true
         scrollView.showsVerticalScrollIndicator = false
         scrollView.showsHorizontalScrollIndicator = false
+        scrollView.keyboardDismissMode = .onDrag
         return scrollView
     }()
     
@@ -108,6 +111,7 @@ final class SignUpDetailController: UIViewController, UITextFieldDelegate {
         textField.layer.masksToBounds = true
         textField.height(50)
         textField.setLeftPaddingPoints(30)
+        textField.tag = 0
         return textField
     }()
     
@@ -147,6 +151,7 @@ final class SignUpDetailController: UIViewController, UITextFieldDelegate {
         textField.layer.masksToBounds = true
         textField.height(50)
         textField.setLeftPaddingPoints(30)
+        textField.tag = 1
         return textField
     }()
     
@@ -175,7 +180,7 @@ final class SignUpDetailController: UIViewController, UITextFieldDelegate {
         textField.autocorrectionType = .no
         textField.delegate = self
         textField.backgroundColor = .clear
-        textField.returnKeyType = .next
+        textField.returnKeyType = .done
         textField.keyboardType = .emailAddress
         textField.layer.masksToBounds = true
         textField.layer.cornerRadius = 10
@@ -187,6 +192,7 @@ final class SignUpDetailController: UIViewController, UITextFieldDelegate {
         textField.isSecureTextEntry = true
         textField.height(50)
         textField.setLeftPaddingPoints(30)
+        textField.tag = 2
         return textField
     }()
     
@@ -276,6 +282,7 @@ final class SignUpDetailController: UIViewController, UITextFieldDelegate {
         button.height(50)
         return button
     }()
+    
     private let bottomLabel: UILabel = {
         let label = UILabel()
         label.text = "I'm already a member,"
@@ -309,8 +316,7 @@ final class SignUpDetailController: UIViewController, UITextFieldDelegate {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.navigationItem.backButtonTitle = ""
-        self.navigationController?.navigationBar.isHidden = false
+        self.configure()
         self.addGradientBackground()
         self.layoutUI()
     }
@@ -318,6 +324,19 @@ final class SignUpDetailController: UIViewController, UITextFieldDelegate {
 }
 //MARK: - Configure Controller
 extension SignUpDetailController {
+    private func configure() {
+        self.navigationItem.backButtonTitle = ""
+        self.navigationController?.navigationBar.isHidden = false
+        
+        if isPathFromLogin {
+            self.bottomLabel.layer.opacity = 0
+            self.signInButton.layer.opacity = 0
+        } else {
+            self.bottomLabel.layer.opacity = 1
+            self.signInButton.layer.opacity = 1
+        }
+    }
+    
     private func addGradientBackground() {
         let gradientLayer = CAGradientLayer()
         gradientLayer.colors = [
@@ -360,19 +379,18 @@ extension SignUpDetailController {
         
         self.loginContainerView.addSubview(self.scrollView)
         self.scrollView.topToBottom(of: self.detailsLabel, offset: 34)
-        self.scrollView.leftToSuperview(offset: 40)
-        self.scrollView.rightToSuperview(offset: -40)
-        self.scrollView.bottomToSuperview(offset: -20)
+        self.scrollView.leftToSuperview(offset: 20)
+        self.scrollView.rightToSuperview(offset: -20)
+        self.scrollView.bottom(to: self.view, self.view.keyboardLayoutGuide.topAnchor)
         
         self.scrollView.addSubview(self.scrollViewContentView)
         self.scrollViewContentView.edgesToSuperview()
         self.scrollViewContentView.width(to: self.scrollView)
-//        self.scrollViewContentView.height(1000)
         
         self.scrollViewContentView.addSubview(self.fullNameTextField)
         self.fullNameTextField.topToSuperview(offset: 10)
-        self.fullNameTextField.leftToSuperview()
-        self.fullNameTextField.rightToSuperview()
+        self.fullNameTextField.leftToSuperview(offset: 20)
+        self.fullNameTextField.rightToSuperview(offset: -20)
 
         self.scrollViewContentView.addSubview(self.fullNameLabel)
         self.fullNameLabel.top(to: self.fullNameTextField, offset: -8)
@@ -415,8 +433,8 @@ extension SignUpDetailController {
         self.signUpButton.right(to: self.fullNameTextField)
         
         self.scrollViewContentView.addSubview(self.bottomLabel)
-        self.bottomLabel.topToBottom(of: self.signUpButton, offset: 43)
-        self.bottomLabel.centerXToSuperview(offset: -45)
+        self.bottomLabel.topToBottom(of: self.signUpButton, offset: 26)
+        self.bottomLabel.centerXToSuperview(offset: -26)
         
         self.scrollViewContentView.addSubview(self.signInButton)
         self.signInButton.top(to: self.bottomLabel)
@@ -433,7 +451,9 @@ extension SignUpDetailController {
     }
     
     @objc func didTapSignIn() {
-        print(#function)
+        let loginVC = LoginController()
+        loginVC.isPathFromSignUpDetails = true
+        self.navigationController?.pushViewController(loginVC, animated: true)
     }
     
     @objc func handleDateSelection() {
@@ -443,5 +463,19 @@ extension SignUpDetailController {
         
         self.birthdateTextField.text = dateFormatter.string(from: self.datePicker.date)
         self.view.endEditing(true)
+    }
+}
+//MARK: - UITextField Delegate
+extension SignUpDetailController: UITextFieldDelegate {
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        let nextTag = textField.tag + 1
+
+        if let nextResponder = textField.superview?.viewWithTag(nextTag) {
+            nextResponder.becomeFirstResponder()
+        } else {
+            textField.resignFirstResponder()
+        }
+
+        return true
     }
 }

@@ -33,6 +33,7 @@
 		CABAA2FD2998107A00C5EBC6 /* TextField+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABAA2FC2998107A00C5EBC6 /* TextField+Ext.swift */; };
 		CABAA2FF2998340800C5EBC6 /* SignUpDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABAA2FE2998340800C5EBC6 /* SignUpDetailController.swift */; };
 		CABAA3032999609200C5EBC6 /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABAA3022999609200C5EBC6 /* UIView+Ext.swift */; };
+		CABAA305299BCEE100C5EBC6 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABAA304299BCEE100C5EBC6 /* String+Ext.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -63,6 +64,7 @@
 		CABAA2FC2998107A00C5EBC6 /* TextField+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "TextField+Ext.swift"; path = "../../../../Desktop/Delete Later/TextField+Ext.swift"; sourceTree = "<group>"; };
 		CABAA2FE2998340800C5EBC6 /* SignUpDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpDetailController.swift; sourceTree = "<group>"; };
 		CABAA3022999609200C5EBC6 /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
+		CABAA304299BCEE100C5EBC6 /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -154,6 +156,7 @@
 				CABAA2F829945D1C00C5EBC6 /* UIImage+Ext.swift */,
 				CABAA2FC2998107A00C5EBC6 /* TextField+Ext.swift */,
 				CABAA3022999609200C5EBC6 /* UIView+Ext.swift */,
+				CABAA304299BCEE100C5EBC6 /* String+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -292,6 +295,7 @@
 				CAA90C9B29941ACD0013A654 /* UIColor+Ext.swift in Sources */,
 				CAA90C7C2994171C0013A654 /* AppDelegate.swift in Sources */,
 				CAA90C7E2994171C0013A654 /* SceneDelegate.swift in Sources */,
+				CABAA305299BCEE100C5EBC6 /* String+Ext.swift in Sources */,
 				CAA90C9D29941AEE0013A654 /* UIFont+Ext.swift in Sources */,
 				CABAA3032999609200C5EBC6 /* UIView+Ext.swift in Sources */,
 				CABAA2FD2998107A00C5EBC6 /* TextField+Ext.swift in Sources */,

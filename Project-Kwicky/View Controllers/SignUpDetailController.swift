@@ -98,6 +98,7 @@ final class SignUpDetailController: UIViewController {
         textField.font = UIFont.interRegular(size: 18)
         textField.allowsEditingTextAttributes = false
         textField.autocorrectionType = .no
+        textField.autocapitalizationType = .words
         textField.delegate = self
         textField.backgroundColor = .clear
         textField.returnKeyType = .next
@@ -138,6 +139,7 @@ final class SignUpDetailController: UIViewController {
         textField.font = UIFont.interRegular(size: 18)
         textField.allowsEditingTextAttributes = false
         textField.autocorrectionType = .no
+        textField.autocapitalizationType = .none
         textField.delegate = self
         textField.backgroundColor = .clear
         textField.returnKeyType = .next
@@ -178,6 +180,7 @@ final class SignUpDetailController: UIViewController {
         textField.font = UIFont.interRegular(size: 18)
         textField.allowsEditingTextAttributes = false
         textField.autocorrectionType = .no
+        textField.autocapitalizationType = .none
         textField.delegate = self
         textField.backgroundColor = .clear
         textField.returnKeyType = .done
@@ -280,6 +283,7 @@ final class SignUpDetailController: UIViewController {
         button.tintColor = .black
         button.layer.cornerRadius = 25
         button.height(50)
+        button.isEnabled = false
         return button
     }()
     
@@ -447,6 +451,7 @@ extension SignUpDetailController {
 //MARK: - @objc
 extension SignUpDetailController {
     @objc func didTapSignUp() {
+        //Check if all fields are valid before submitting to backend.
         print(#function)
     }
     
@@ -462,6 +467,17 @@ extension SignUpDetailController {
         dateFormatter.dateFormat = "MM/dd/yyyy"
         
         self.birthdateTextField.text = dateFormatter.string(from: self.datePicker.date)
+        
+        guard let emailText = self.emailTextField.text, let passwordText = self.passwordTextField.text, let fullNameText = self.fullNameTextField.text else { return }
+        
+        if !emailText.isEmpty && !passwordText.isEmpty && !fullNameText.isEmpty {
+            self.signUpButton.backgroundColor = .kwiksGreen
+            self.signUpButton.isEnabled = true
+        } else {
+            self.signUpButton.backgroundColor = #colorLiteral(red: 0.7764705882, green: 0.7764705882, blue: 0.7764705882, alpha: 1)
+            self.signUpButton.isEnabled = false
+        }
+        
         self.view.endEditing(true)
     }
 }
@@ -476,6 +492,21 @@ extension SignUpDetailController: UITextFieldDelegate {
             textField.resignFirstResponder()
         }
 
+        return true
+    }
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+        
+        if let text = textField.text {
+            
+            let maxLength = 20
+            let currentString: NSString = textField.text! as NSString
+            let newString: NSString = currentString.replacingCharacters(in: range, with: string) as NSString
+            
+            textField.text = text
+            return newString.length <= maxLength
+        }
+        
         return true
     }
 }

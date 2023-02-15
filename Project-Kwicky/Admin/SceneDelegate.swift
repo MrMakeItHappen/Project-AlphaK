@@ -20,6 +20,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window.makeKeyAndVisible()
         
         let decisionController = DecisionController()
+//        let decisionController = PinNumberController()
         let navigationController = UINavigationController(rootViewController: decisionController)
         
         navigationController.navigationBar.isHidden = true
@@ -40,6 +41,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor : UIColor.dsOrangeV2], for: .selected)
         
         window.rootViewController = navigationController
+//        window.rootViewController = decisionController
         self.window = window
     }
 

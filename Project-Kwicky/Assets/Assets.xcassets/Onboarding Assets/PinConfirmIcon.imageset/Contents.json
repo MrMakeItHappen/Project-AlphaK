@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "PinConfirmIcon.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

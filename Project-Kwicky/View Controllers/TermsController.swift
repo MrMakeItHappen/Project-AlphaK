@@ -376,6 +376,7 @@ extension TermsController {
             }, completion: nil)
         }
         
-        //Handle user agreed to terms here.
+        self.acceptButton.isEnabled = true
+        self.acceptButton.backgroundColor = .kwiksGreen
     }
 }

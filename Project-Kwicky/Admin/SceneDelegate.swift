@@ -19,8 +19,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let window = UIWindow(windowScene: sceneWindow)
         window.makeKeyAndVisible()
         
-        let decisionController = DecisionController()
-//        let decisionController = PinNumberController()
+//        let decisionController = DecisionController()
+        let decisionController = TermsController()
         let navigationController = UINavigationController(rootViewController: decisionController)
         
         navigationController.navigationBar.isHidden = true
@@ -40,8 +40,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor : UIColor.black], for: .normal)
 //        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor : UIColor.dsOrangeV2], for: .selected)
         
-        window.rootViewController = navigationController
-//        window.rootViewController = decisionController
+//        window.rootViewController = navigationController
+        window.rootViewController = decisionController
         self.window = window
     }
 

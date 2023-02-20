@@ -17,31 +17,30 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         guard let sceneWindow = (scene as? UIWindowScene) else { return }
         
         let window = UIWindow(windowScene: sceneWindow)
-        window.makeKeyAndVisible()
         
 //        let decisionController = DecisionController()
-        let decisionController = TermsController()
-        let navigationController = UINavigationController(rootViewController: decisionController)
-        
-        navigationController.navigationBar.isHidden = true
+        let decisionController = TabViewController()
+//        let navigationController = UINavigationController(rootViewController: decisionController)
+//        navigationController.navigationBar.isHidden = true
 //        navigationController.modalPresentationStyle = .fullScreen
-//
+
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
         appearance.backgroundColor = .clear
         appearance.titleTextAttributes = [.foregroundColor: UIColor.white]
-        appearance.titleTextAttributes = [.font : UIFont.interRegular(size: 16)]
+        appearance.titleTextAttributes = [.font : UIFont.segoeUISemiBold(size: 12)]
         appearance.shadowColor = .clear
 
         UINavigationBar.appearance().standardAppearance = appearance
         UINavigationBar.appearance().scrollEdgeAppearance = appearance
         UINavigationBar.appearance().tintColor = .white
-//
-//        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor : UIColor.black], for: .normal)
-//        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor : UIColor.dsOrangeV2], for: .selected)
+
+        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor : UIColor.tabBarGrey], for: .normal)
+        UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor : UIColor.black], for: .selected)
         
 //        window.rootViewController = navigationController
         window.rootViewController = decisionController
+        window.makeKeyAndVisible()
         self.window = window
     }
 

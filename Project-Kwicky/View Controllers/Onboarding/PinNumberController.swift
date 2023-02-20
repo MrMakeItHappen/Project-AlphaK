@@ -305,7 +305,11 @@ extension PinNumberController {
 //MARK: - @objc
 extension PinNumberController {
     @objc func didTapConfirm() {
-        print(#function)
+        let selectUsernameVC = SelectUsernameController()
+        selectUsernameVC.modalPresentationStyle = .fullScreen
+        selectUsernameVC.navigationController?.navigationBar.isHidden = true
+        
+        self.present(selectUsernameVC, animated: true)
     }
     
     @objc func didTapResend() {

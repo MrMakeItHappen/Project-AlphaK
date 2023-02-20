@@ -37,6 +37,15 @@
 		CABAA307299D34AA00C5EBC6 /* PinNumberController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABAA306299D34A900C5EBC6 /* PinNumberController.swift */; };
 		CABAA30929A1941600C5EBC6 /* TermsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABAA30829A1941600C5EBC6 /* TermsController.swift */; };
 		CABAA30B29A19EB900C5EBC6 /* UIButton+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABAA30A29A19EB900C5EBC6 /* UIButton+Ext.swift */; };
+		CABAA30D29A2AED600C5EBC6 /* SelectUsernameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABAA30C29A2AED600C5EBC6 /* SelectUsernameController.swift */; };
+		CABAA30F29A2C8EE00C5EBC6 /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABAA30E29A2C8EE00C5EBC6 /* TabViewController.swift */; };
+		CABAA31229A2C95A00C5EBC6 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABAA31129A2C95A00C5EBC6 /* HomeController.swift */; };
+		CABAA31429A2C9B500C5EBC6 /* FriendsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABAA31329A2C9B500C5EBC6 /* FriendsController.swift */; };
+		CABAA31629A2C9C300C5EBC6 /* InboxController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABAA31529A2C9C300C5EBC6 /* InboxController.swift */; };
+		CABAA31829A2C9D000C5EBC6 /* WalletController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABAA31729A2C9D000C5EBC6 /* WalletController.swift */; };
+		CABAA31A29A2CB8000C5EBC6 /* VideoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABAA31929A2CB8000C5EBC6 /* VideoController.swift */; };
+		CABAA31C29A3104100C5EBC6 /* SettingsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABAA31B29A3104100C5EBC6 /* SettingsCollectionViewCell.swift */; };
+		CABAA31E29A311AC00C5EBC6 /* SettingsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABAA31D29A311AC00C5EBC6 /* SettingsItem.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -71,6 +80,15 @@
 		CABAA306299D34A900C5EBC6 /* PinNumberController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PinNumberController.swift; sourceTree = "<group>"; };
 		CABAA30829A1941600C5EBC6 /* TermsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TermsController.swift; sourceTree = "<group>"; };
 		CABAA30A29A19EB900C5EBC6 /* UIButton+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIButton+Ext.swift"; sourceTree = "<group>"; };
+		CABAA30C29A2AED600C5EBC6 /* SelectUsernameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectUsernameController.swift; sourceTree = "<group>"; };
+		CABAA30E29A2C8EE00C5EBC6 /* TabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
+		CABAA31129A2C95A00C5EBC6 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
+		CABAA31329A2C9B500C5EBC6 /* FriendsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsController.swift; sourceTree = "<group>"; };
+		CABAA31529A2C9C300C5EBC6 /* InboxController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxController.swift; sourceTree = "<group>"; };
+		CABAA31729A2C9D000C5EBC6 /* WalletController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletController.swift; sourceTree = "<group>"; };
+		CABAA31929A2CB8000C5EBC6 /* VideoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoController.swift; sourceTree = "<group>"; };
+		CABAA31B29A3104100C5EBC6 /* SettingsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsCollectionViewCell.swift; sourceTree = "<group>"; };
+		CABAA31D29A311AC00C5EBC6 /* SettingsItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsItem.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -130,12 +148,14 @@
 		CAA90C902994197A0013A654 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				CABAA31029A2C92000C5EBC6 /* Onboarding */,
 				CAA90C7F2994171C0013A654 /* DecisionController.swift */,
-				CABAA2F42994493200C5EBC6 /* SignUpController.swift */,
-				CABAA2FA299805F600C5EBC6 /* LoginController.swift */,
-				CABAA2FE2998340800C5EBC6 /* SignUpDetailController.swift */,
-				CABAA306299D34A900C5EBC6 /* PinNumberController.swift */,
-				CABAA30829A1941600C5EBC6 /* TermsController.swift */,
+				CABAA30E29A2C8EE00C5EBC6 /* TabViewController.swift */,
+				CABAA31129A2C95A00C5EBC6 /* HomeController.swift */,
+				CABAA31329A2C9B500C5EBC6 /* FriendsController.swift */,
+				CABAA31529A2C9C300C5EBC6 /* InboxController.swift */,
+				CABAA31729A2C9D000C5EBC6 /* WalletController.swift */,
+				CABAA31929A2CB8000C5EBC6 /* VideoController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -143,6 +163,7 @@
 		CAA90C91299419810013A654 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				CABAA31B29A3104100C5EBC6 /* SettingsCollectionViewCell.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -180,6 +201,7 @@
 		CAA90C952994199A0013A654 /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				CABAA31D29A311AC00C5EBC6 /* SettingsItem.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -208,6 +230,19 @@
 				CAA90CA92994205B0013A654 /* Inter-Thin.ttf */,
 			);
 			path = Fonts;
+			sourceTree = "<group>";
+		};
+		CABAA31029A2C92000C5EBC6 /* Onboarding */ = {
+			isa = PBXGroup;
+			children = (
+				CABAA2FA299805F600C5EBC6 /* LoginController.swift */,
+				CABAA306299D34A900C5EBC6 /* PinNumberController.swift */,
+				CABAA30C29A2AED600C5EBC6 /* SelectUsernameController.swift */,
+				CABAA2F42994493200C5EBC6 /* SignUpController.swift */,
+				CABAA2FE2998340800C5EBC6 /* SignUpDetailController.swift */,
+				CABAA30829A1941600C5EBC6 /* TermsController.swift */,
+			);
+			path = Onboarding;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -299,9 +334,11 @@
 			buildActionMask = 2147483647;
 			files = (
 				CABAA307299D34AA00C5EBC6 /* PinNumberController.swift in Sources */,
+				CABAA31429A2C9B500C5EBC6 /* FriendsController.swift in Sources */,
 				CABAA2F929945D1C00C5EBC6 /* UIImage+Ext.swift in Sources */,
 				CAA90C802994171C0013A654 /* DecisionController.swift in Sources */,
 				CABAA2FF2998340800C5EBC6 /* SignUpDetailController.swift in Sources */,
+				CABAA31E29A311AC00C5EBC6 /* SettingsItem.swift in Sources */,
 				CAA90C9B29941ACD0013A654 /* UIColor+Ext.swift in Sources */,
 				CABAA30B29A19EB900C5EBC6 /* UIButton+Ext.swift in Sources */,
 				CAA90C7C2994171C0013A654 /* AppDelegate.swift in Sources */,
@@ -309,9 +346,16 @@
 				CABAA305299BCEE100C5EBC6 /* String+Ext.swift in Sources */,
 				CAA90C9D29941AEE0013A654 /* UIFont+Ext.swift in Sources */,
 				CABAA30929A1941600C5EBC6 /* TermsController.swift in Sources */,
+				CABAA31629A2C9C300C5EBC6 /* InboxController.swift in Sources */,
 				CABAA3032999609200C5EBC6 /* UIView+Ext.swift in Sources */,
+				CABAA30F29A2C8EE00C5EBC6 /* TabViewController.swift in Sources */,
+				CABAA31A29A2CB8000C5EBC6 /* VideoController.swift in Sources */,
 				CABAA2FD2998107A00C5EBC6 /* TextField+Ext.swift in Sources */,
+				CABAA31229A2C95A00C5EBC6 /* HomeController.swift in Sources */,
+				CABAA30D29A2AED600C5EBC6 /* SelectUsernameController.swift in Sources */,
+				CABAA31829A2C9D000C5EBC6 /* WalletController.swift in Sources */,
 				CABAA2FB299805F600C5EBC6 /* LoginController.swift in Sources */,
+				CABAA31C29A3104100C5EBC6 /* SettingsCollectionViewCell.swift in Sources */,
 				CABAA2F52994493200C5EBC6 /* SignUpController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

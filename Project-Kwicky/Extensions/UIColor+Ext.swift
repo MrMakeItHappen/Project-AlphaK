@@ -13,4 +13,7 @@ extension UIColor {
     
     /// Hex #9AE769
     static let kwiksGreen = #colorLiteral(red: 0.6039215686, green: 0.9058823529, blue: 0.4117647059, alpha: 1)
+    
+    /// Hex #BCBCBC
+    static let tabBarGrey = #colorLiteral(red: 0.737254902, green: 0.737254902, blue: 0.737254902, alpha: 1)
 }

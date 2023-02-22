@@ -202,7 +202,6 @@ extension VideoController: UICollectionViewDelegate, UICollectionViewDataSource 
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch indexPath.item {
         case 0:
-            print("Follow Tapped")
             let followInviteVC = FollowInviteFriendsController()
             self.navigationController?.pushViewController(followInviteVC, animated: true)
             
@@ -228,7 +227,8 @@ extension VideoController: UICollectionViewDelegate, UICollectionViewDataSource 
             print("Ads Tapped")
             
         case 8:
-            print("Account Tapped")
+            let accountVC = AccountController()
+            self.navigationController?.pushViewController(accountVC, animated: true)
             
         case 9:
             print("Help Tapped")

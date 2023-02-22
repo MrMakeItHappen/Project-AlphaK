@@ -203,6 +203,8 @@ extension VideoController: UICollectionViewDelegate, UICollectionViewDataSource 
         switch indexPath.item {
         case 0:
             print("Follow Tapped")
+            let followInviteVC = FollowInviteFriendsController()
+            self.navigationController?.pushViewController(followInviteVC, animated: true)
             
         case 1:
             print("Notifications Tapped")

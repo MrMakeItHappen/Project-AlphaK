@@ -56,10 +56,10 @@ final class FollowInviteFriendsController: UIViewController {
     private lazy var otherOptionLabel = self.createLabel(with: "Invite Friends By...")
     
     private lazy var hiddenFollowButton = self.createHiddenButton(with: #selector(didTapFollowContacts))
-//    private lazy var hiddenWhatsAppButton = self.createHiddenButton(with: #selector(didTapFollowContacts))
-//    private lazy var hiddenEmailButton = self.createHiddenButton(with: #selector(didTapFollowContacts))
-//    private lazy var hiddenSMSButton = self.createHiddenButton(with: #selector(didTapFollowContacts))
-//    private lazy var hiddenOtherOptionButton = self.createHiddenButton(with: #selector(didTapFollowContacts))
+    private lazy var hiddenWhatsAppButton = self.createHiddenButton(with: #selector(didTapWhatsApp))
+    private lazy var hiddenEmailButton = self.createHiddenButton(with: #selector(didTapEmail))
+    private lazy var hiddenSMSButton = self.createHiddenButton(with: #selector(didTapSMS))
+    private lazy var hiddenOtherOptionButton = self.createHiddenButton(with: #selector(didTapOtherOption))
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -98,6 +98,66 @@ extension FollowInviteFriendsController {
         self.hiddenFollowButton.left(to: self.followContactsImageView)
         self.hiddenFollowButton.bottom(to: self.followContactsLabel, offset: 4)
         self.hiddenFollowButton.rightToSuperview(offset: -4)
+        
+        self.containerView.addSubview(self.whatsAppImageView)
+        self.whatsAppImageView.topToBottom(of: self.followContactsImageView, offset: 50)
+        self.whatsAppImageView.left(to: self.followContactsImageView)
+        
+        self.containerView.addSubview(self.whatsAppLabel)
+        self.whatsAppLabel.centerY(to: self.whatsAppImageView)
+        self.whatsAppLabel.leftToRight(of: self.whatsAppImageView, offset: 31)
+        self.whatsAppLabel.right(to: self.followContactsLabel)
+        
+        self.containerView.addSubview(self.hiddenWhatsAppButton)
+        self.hiddenWhatsAppButton.top(to: self.whatsAppLabel, offset: -4)
+        self.hiddenWhatsAppButton.left(to: self.whatsAppImageView)
+        self.hiddenWhatsAppButton.bottom(to: self.whatsAppLabel, offset: 4)
+        self.hiddenWhatsAppButton.right(to: self.hiddenFollowButton)
+        
+        self.containerView.addSubview(self.inviteByEmailImageView)
+        self.inviteByEmailImageView.topToBottom(of: self.whatsAppImageView, offset: 50)
+        self.inviteByEmailImageView.left(to: self.whatsAppImageView)
+        
+        self.containerView.addSubview(self.emailLabel)
+        self.emailLabel.centerY(to: self.inviteByEmailImageView)
+        self.emailLabel.leftToRight(of: self.inviteByEmailImageView, offset: 31)
+        self.emailLabel.right(to: self.followContactsLabel)
+        
+        self.containerView.addSubview(self.hiddenEmailButton)
+        self.hiddenEmailButton.top(to: self.emailLabel, offset: -4)
+        self.hiddenEmailButton.left(to: self.inviteByEmailImageView)
+        self.hiddenEmailButton.bottom(to: self.emailLabel, offset: 4)
+        self.hiddenEmailButton.right(to: self.hiddenFollowButton)
+        
+        self.containerView.addSubview(self.inviteBySMSImageView)
+        self.inviteBySMSImageView.topToBottom(of: self.inviteByEmailImageView, offset: 50)
+        self.inviteBySMSImageView.left(to: self.whatsAppImageView)
+        
+        self.containerView.addSubview(self.smsLabel)
+        self.smsLabel.centerY(to: self.inviteBySMSImageView)
+        self.smsLabel.leftToRight(of: self.inviteBySMSImageView, offset: 31)
+        self.smsLabel.right(to: self.followContactsLabel)
+        
+        self.containerView.addSubview(self.hiddenSMSButton)
+        self.hiddenSMSButton.top(to: self.smsLabel, offset: -4)
+        self.hiddenSMSButton.left(to: self.inviteBySMSImageView)
+        self.hiddenSMSButton.bottom(to: self.smsLabel, offset: 4)
+        self.hiddenSMSButton.right(to: self.hiddenFollowButton)
+        
+        self.containerView.addSubview(self.inviteOtherOptionImageView)
+        self.inviteOtherOptionImageView.topToBottom(of: self.inviteBySMSImageView, offset: 50)
+        self.inviteOtherOptionImageView.left(to: self.whatsAppImageView)
+        
+        self.containerView.addSubview(self.otherOptionLabel)
+        self.otherOptionLabel.centerY(to: self.inviteOtherOptionImageView)
+        self.otherOptionLabel.leftToRight(of: self.inviteOtherOptionImageView, offset: 31)
+        self.otherOptionLabel.right(to: self.followContactsLabel)
+        
+        self.containerView.addSubview(self.hiddenOtherOptionButton)
+        self.hiddenOtherOptionButton.top(to: self.otherOptionLabel, offset: -4)
+        self.hiddenOtherOptionButton.left(to: self.inviteOtherOptionImageView)
+        self.hiddenOtherOptionButton.bottom(to: self.otherOptionLabel, offset: 4)
+        self.hiddenOtherOptionButton.right(to: self.hiddenFollowButton)
     }
 }
 //MARK: - Helpers

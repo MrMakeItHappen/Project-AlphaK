@@ -43,17 +43,17 @@ final class AccountController: UIViewController {
         return view
     }()
     
-    private lazy var accountInfoLabel = self.createTitleLabel(with: "Account Information")
-    private lazy var passwordLabel = self.createTitleLabel(with: "Password")
-    private lazy var switchLabel = self.createTitleLabel(with: "Switch To Business Account")
-    private lazy var downloadLabel = self.createTitleLabel(with: "Download Your Data")
-    private lazy var deactivateLabel = self.createTitleLabel(with: "Deactivate Or Delete Account")
+    private let accountInfoLabel = UILabel.createSettingsLabel(with: "Account Information")
+    private let passwordLabel = UILabel.createSettingsLabel(with: "Password")
+    private let switchLabel = UILabel.createSettingsLabel(with: "Switch To Business Account")
+    private let downloadLabel = UILabel.createSettingsLabel(with: "Download Your Data")
+    private let deactivateLabel = UILabel.createSettingsLabel(with: "Deactivate Or Delete Account")
     
-    private lazy var accountChevron = self.createChevron()
-    private lazy var passwordChevron = self.createChevron()
-    private lazy var switchChevron = self.createChevron()
-    private lazy var downloadChevron = self.createChevron()
-    private lazy var deactivateChevron = self.createChevron()
+    private lazy var accountChevron = UIImageView.createChevron()
+    private lazy var passwordChevron = UIImageView.createChevron()
+    private lazy var switchChevron = UIImageView.createChevron()
+    private lazy var downloadChevron = UIImageView.createChevron()
+    private lazy var deactivateChevron = UIImageView.createChevron()
     
     private lazy var hiddenAccountButton = self.createHiddenButton(with: #selector(didTapAccountInfo))
     private lazy var hiddenPasswordButton = self.createHiddenButton(with: #selector(didTapPassword))
@@ -157,19 +157,6 @@ extension AccountController {
 }
 //MARK: - Helpers
 extension AccountController {
-    private func createTitleLabel(with name: String) -> UILabel {
-        let label = UILabel()
-        label.text = name
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.backgroundColor = .clear
-        label.font = UIFont.segoeUISemiBold(size: 19)
-        label.numberOfLines = 1
-        label.adjustsFontSizeToFitWidth = true
-        label.textAlignment = .left
-        label.textColor = UIColor.black
-        return label
-    }
-    
     private func createHiddenButton(with selector: Selector) -> UIButton {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -178,22 +165,6 @@ extension AccountController {
         button.backgroundColor = UIColor.clear
         button.addTarget(self, action: selector, for: .touchUpInside)
         return button
-    }
-    
-    private func createChevron() -> UIImageView {
-        let imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.backgroundColor = .clear
-        imageView.contentMode = .scaleAspectFit
-        imageView.isUserInteractionEnabled = false
-        imageView.backgroundColor = .clear
-        imageView.layer.masksToBounds = true
-        imageView.height(12)
-        imageView.width(12)
-        
-        let image = UIImage(named: "GreyNextIcon")
-        imageView.image = image
-        return imageView
     }
 }
 //MARK: - @objc

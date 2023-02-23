@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="48px" height="26px" viewBox="0 0 48 26" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 64 (93537) - https://sketch.com -->
+    <title>IsOffIcon</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Test-Labs" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="Artboard" transform="translate(-199.000000, -126.000000)" fill-rule="nonzero">
+            <g id="IsOffIcon" transform="translate(199.000000, 126.000000)">
+                <g id="Rectangle-127" transform="translate(0.000000, 4.000000)" fill="#C5C5C5">
+                    <rect id="Rectangle" x="0" y="0" width="48" height="18" rx="9"></rect>
+                </g>
+                <g id="Ellipse-44" transform="translate(1.000000, 0.000000)" fill="#7E7E7E">
+                    <circle id="Oval" cx="12" cy="13" r="13"></circle>
+                </g>
+            </g>
+        </g>
+    </g>
+</svg>

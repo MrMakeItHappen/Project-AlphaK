@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="48px" height="26px" viewBox="0 0 48 26" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+    <!-- Generator: Sketch 64 (93537) - https://sketch.com -->
+    <title>IsOnIcon</title>
+    <desc>Created with Sketch.</desc>
+    <g id="Test-Labs" stroke="none" stroke-width="1" fill="none" fill-rule="evenodd">
+        <g id="IsOnIcon" fill-rule="nonzero">
+            <g id="Rectangle-119" transform="translate(0.000000, 4.000000)" fill="#9AE769">
+                <rect id="Rectangle" x="0" y="0" width="48" height="18" rx="9"></rect>
+            </g>
+            <g id="Ellipse-37" transform="translate(22.000000, 0.000000)" fill="#87BF64">
+                <circle id="Oval" cx="13" cy="13" r="13"></circle>
+            </g>
+        </g>
+    </g>
+</svg>

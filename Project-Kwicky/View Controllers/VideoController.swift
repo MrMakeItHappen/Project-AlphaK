@@ -206,7 +206,8 @@ extension VideoController: UICollectionViewDelegate, UICollectionViewDataSource 
             self.navigationController?.pushViewController(followInviteVC, animated: true)
             
         case 1:
-            print("Notifications Tapped")
+            let notificationsVC = NotificationsController()
+            self.navigationController?.pushViewController(notificationsVC, animated: true)
             
         case 2:
             print("Creator Tapped")

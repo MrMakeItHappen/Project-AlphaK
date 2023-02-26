@@ -14,6 +14,7 @@
 		CA55DF2429A7E8CF00C54B35 /* UILabel+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA55DF2329A7E8CF00C54B35 /* UILabel+Ext.swift */; };
 		CA55DF2829AA94EF00C54B35 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA55DF2729AA94EF00C54B35 /* SettingsController.swift */; };
 		CA55DF2A29AA966A00C54B35 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA55DF2929AA966A00C54B35 /* ProfileController.swift */; };
+		CA55DF2E29AC06F600C54B35 /* UploadImageController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA55DF2D29AC06F600C54B35 /* UploadImageController.swift */; };
 		CAA90C7C2994171C0013A654 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA90C7B2994171C0013A654 /* AppDelegate.swift */; };
 		CAA90C7E2994171C0013A654 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA90C7D2994171C0013A654 /* SceneDelegate.swift */; };
 		CAA90C802994171C0013A654 /* DecisionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA90C7F2994171C0013A654 /* DecisionController.swift */; };
@@ -63,6 +64,7 @@
 		CA55DF2329A7E8CF00C54B35 /* UILabel+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Ext.swift"; sourceTree = "<group>"; };
 		CA55DF2729AA94EF00C54B35 /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
 		CA55DF2929AA966A00C54B35 /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
+		CA55DF2D29AC06F600C54B35 /* UploadImageController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UploadImageController.swift; sourceTree = "<group>"; };
 		CAA90C782994171C0013A654 /* Project-Kwicky.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Project-Kwicky.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAA90C7B2994171C0013A654 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CAA90C7D2994171C0013A654 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -175,6 +177,7 @@
 				CA55DF1F29A7D32100C54B35 /* NotificationsController.swift */,
 				CA55DF2729AA94EF00C54B35 /* SettingsController.swift */,
 				CA55DF2929AA966A00C54B35 /* ProfileController.swift */,
+				CA55DF2D29AC06F600C54B35 /* UploadImageController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -373,6 +376,7 @@
 				CABAA31629A2C9C300C5EBC6 /* InboxController.swift in Sources */,
 				CA55DF1C29A674F000C54B35 /* FollowInviteFriendsController.swift in Sources */,
 				CA55DF2429A7E8CF00C54B35 /* UILabel+Ext.swift in Sources */,
+				CA55DF2E29AC06F600C54B35 /* UploadImageController.swift in Sources */,
 				CABAA3032999609200C5EBC6 /* UIView+Ext.swift in Sources */,
 				CABAA30F29A2C8EE00C5EBC6 /* TabViewController.swift in Sources */,
 				CABAA31A29A2CB8000C5EBC6 /* VideoController.swift in Sources */,

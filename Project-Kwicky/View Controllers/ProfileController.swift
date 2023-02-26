@@ -124,6 +124,23 @@ final class ProfileController: UIViewController {
         return imageView
     }()
     
+    private lazy var editButton: UIButton = {
+        let button = UIButton(type: .custom)
+        let buttonSize: CGFloat = 32
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.layer.cornerRadius = buttonSize / 2
+        button.layer.masksToBounds = true
+        button.layer.borderWidth = 2
+        button.layer.borderColor = UIColor.white.cgColor
+        button.clipsToBounds = true
+        button.backgroundColor = .kwiksGrey
+        button.addTarget(self, action: #selector(didTapEdit), for: .touchUpInside)
+        button.setImage(UIImage(named: "EditIcon"), for: .normal)
+        button.height(buttonSize)
+        button.width(buttonSize)
+        return button
+    }()
+    
     //TODO: Pass in @username
     private let usernameLabel: UILabel = {
         let label = UILabel()
@@ -270,6 +287,10 @@ extension ProfileController {
         self.view.addSubview(self.profileImageView)
         self.profileImageView.rightToSuperview(offset: -42)
         self.profileImageView.centerYToSuperview(self.headerBackgroundImageView.bottomAnchor)
+        
+        self.view.addSubview(self.editButton)
+        self.editButton.right(to: self.profileImageView, offset: -8)
+        self.editButton.bottom(to: self.profileImageView, offset: -2)
         
         self.view.addSubview(self.usernameLabel)
         self.usernameLabel.topToBottom(of: self.headerBackgroundImageView, offset: 10)
@@ -428,6 +449,12 @@ extension ProfileController {
 extension ProfileController {
     @objc func didTapBack() {
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    @objc func didTapEdit() {
+        let imageVC = UploadImageController()
+        imageVC.modalPresentationStyle = .overFullScreen
+        self.navigationController?.present(imageVC, animated: true)
     }
     
     @objc func tapGesture(_ sender: UITapGestureRecognizer) {

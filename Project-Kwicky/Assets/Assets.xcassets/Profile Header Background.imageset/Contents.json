@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "Profile Header Background.png",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

@@ -12,6 +12,8 @@
 		CA55DF2029A7D32100C54B35 /* NotificationsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA55DF1F29A7D32100C54B35 /* NotificationsController.swift */; };
 		CA55DF2229A7E87C00C54B35 /* UIImageView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA55DF2129A7E87C00C54B35 /* UIImageView+Ext.swift */; };
 		CA55DF2429A7E8CF00C54B35 /* UILabel+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA55DF2329A7E8CF00C54B35 /* UILabel+Ext.swift */; };
+		CA55DF2829AA94EF00C54B35 /* SettingsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA55DF2729AA94EF00C54B35 /* SettingsController.swift */; };
+		CA55DF2A29AA966A00C54B35 /* ProfileController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA55DF2929AA966A00C54B35 /* ProfileController.swift */; };
 		CAA90C7C2994171C0013A654 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA90C7B2994171C0013A654 /* AppDelegate.swift */; };
 		CAA90C7E2994171C0013A654 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA90C7D2994171C0013A654 /* SceneDelegate.swift */; };
 		CAA90C802994171C0013A654 /* DecisionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA90C7F2994171C0013A654 /* DecisionController.swift */; };
@@ -59,6 +61,8 @@
 		CA55DF1F29A7D32100C54B35 /* NotificationsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsController.swift; sourceTree = "<group>"; };
 		CA55DF2129A7E87C00C54B35 /* UIImageView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImageView+Ext.swift"; sourceTree = "<group>"; };
 		CA55DF2329A7E8CF00C54B35 /* UILabel+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UILabel+Ext.swift"; sourceTree = "<group>"; };
+		CA55DF2729AA94EF00C54B35 /* SettingsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsController.swift; sourceTree = "<group>"; };
+		CA55DF2929AA966A00C54B35 /* ProfileController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileController.swift; sourceTree = "<group>"; };
 		CAA90C782994171C0013A654 /* Project-Kwicky.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Project-Kwicky.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAA90C7B2994171C0013A654 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CAA90C7D2994171C0013A654 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -169,6 +173,8 @@
 				CA55DF1B29A674F000C54B35 /* FollowInviteFriendsController.swift */,
 				CA55DF1D29A6CBCA00C54B35 /* AccountController.swift */,
 				CA55DF1F29A7D32100C54B35 /* NotificationsController.swift */,
+				CA55DF2729AA94EF00C54B35 /* SettingsController.swift */,
+				CA55DF2929AA966A00C54B35 /* ProfileController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -354,6 +360,8 @@
 				CAA90C802994171C0013A654 /* DecisionController.swift in Sources */,
 				CABAA2FF2998340800C5EBC6 /* SignUpDetailController.swift in Sources */,
 				CABAA31E29A311AC00C5EBC6 /* SettingsItem.swift in Sources */,
+				CA55DF2A29AA966A00C54B35 /* ProfileController.swift in Sources */,
+				CA55DF2829AA94EF00C54B35 /* SettingsController.swift in Sources */,
 				CAA90C9B29941ACD0013A654 /* UIColor+Ext.swift in Sources */,
 				CABAA30B29A19EB900C5EBC6 /* UIButton+Ext.swift in Sources */,
 				CAA90C7C2994171C0013A654 /* AppDelegate.swift in Sources */,

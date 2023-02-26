@@ -219,11 +219,21 @@ final class ProfileController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        self.view.backgroundColor = .white
+        self.configure()
         self.layoutTopUI()
         self.layoutBottomUI()
     }
 
+}
+//MARK: - Configure View Controller
+extension ProfileController {
+    private func configure() {
+        self.view.backgroundColor = .white
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapGesture))
+        self.editLabel.isUserInteractionEnabled = true
+        self.editLabel.addGestureRecognizer(tapGesture)
+    }
 }
 //MARK: - Layout UI
 extension ProfileController {
@@ -374,11 +384,6 @@ extension ProfileController {
         self.birthDateLabel.centerY(to: self.birthDateHeaderLabel)
         self.birthDateLabel.right(to: self.nameLabel)
         
-        self.scrollViewContentView.addSubview(self.birthDateDividerView)
-        self.birthDateDividerView.topToBottom(of: self.birthDateLabel, offset: 11)
-        self.birthDateDividerView.left(to: self.nameHeaderLabel)
-        self.birthDateDividerView.right(to: self.nameLabel)
-        
         self.scrollViewContentView.bottom(to: self.birthDateLabel, offset: 40)
     }
 }
@@ -425,8 +430,14 @@ extension ProfileController {
         self.navigationController?.popViewController(animated: true)
     }
     
+    @objc func tapGesture(_ sender: UITapGestureRecognizer) {
+        self.navigationController?.popViewController(animated: true)
+    }
+    
     @objc func didTapSettings() {
-        print(#function)
+        let settingsVC = SettingsController()
+        settingsVC.modalPresentationStyle = .popover
+        self.navigationController?.present(settingsVC, animated: true)
     }
     
     @objc func didTapFacebook() {

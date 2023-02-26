@@ -453,6 +453,7 @@ extension ProfileController {
     
     @objc func didTapEdit() {
         let imageVC = UploadImageController()
+        imageVC.presentingController = self
         imageVC.modalPresentationStyle = .overFullScreen
         self.navigationController?.present(imageVC, animated: true)
     }

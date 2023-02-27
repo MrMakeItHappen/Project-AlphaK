@@ -104,7 +104,7 @@ final class ProfileController: UIViewController {
         return button
     }()
     
-    private let profileImageView: UIImageView = {
+    var profileImageView: UIImageView = {
         let imageView = UIImageView()
         let imageSize: CGFloat = 144
         

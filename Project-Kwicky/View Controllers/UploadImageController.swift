@@ -6,6 +6,9 @@
 //
 
 import UIKit
+import Photos
+import AVFoundation
+import MobileCoreServices
 
 final class UploadImageController: UIViewController {
     var presentingController: ProfileController?
@@ -208,6 +211,31 @@ extension UploadImageController {
         button.addTarget(self, action: selector, for: .touchUpInside)
         return button
     }
+    
+    private func openImageGallery() {
+        
+        DispatchQueue.main.async {
+            let imagePicker = UIImagePickerController()
+            imagePicker.allowsEditing = true
+            imagePicker.sourceType = .photoLibrary
+            imagePicker.delegate = self
+            imagePicker.mediaTypes = ["public.image", "public.movie"]
+            
+            self.present(imagePicker, animated: true)
+        }
+    }
+    
+    private func openCamera() {
+        DispatchQueue.main.async {
+            let imagePicker = UIImagePickerController()
+            imagePicker.allowsEditing = true
+            imagePicker.sourceType = .camera
+            imagePicker.delegate = self
+            imagePicker.mediaTypes = ["public.image", "public.movie"]
+            
+            self.present(imagePicker, animated: true)
+        }
+    }
 }
 //MARK: - @objc
 extension UploadImageController {
@@ -216,11 +244,66 @@ extension UploadImageController {
     }
     
     @objc func didTapPicture() {
-        print(#function)
+        let photoAuthorizationStatus = PHPhotoLibrary.authorizationStatus()
+        switch photoAuthorizationStatus {
+            
+        case .authorized:
+            self.openCamera()
+            
+        case .notDetermined:
+            PHPhotoLibrary.requestAuthorization({
+                (newStatus) in
+                
+                if newStatus ==  PHAuthorizationStatus.authorized {
+                    self.openCamera()
+                }
+            })
+            
+        case .restricted:
+            //TODO: Present PopUp
+            break
+            
+            
+        case .denied:
+            //TODO: Present PopUp
+            break
+            
+        default:
+            //TODO: Present PopUp
+            break
+        }
     }
     
     @objc func didTapPhoto() {
-        print(#function)
+        let photoAuthorizationStatus = PHPhotoLibrary.authorizationStatus()
+        switch photoAuthorizationStatus {
+            
+        case .authorized:
+            self.openImageGallery()
+            
+        case .notDetermined:
+            PHPhotoLibrary.requestAuthorization({
+                (newStatus) in
+                
+                if newStatus ==  PHAuthorizationStatus.authorized {
+                    self.openImageGallery()
+                }
+            })
+            
+        case .restricted:
+            //TODO: Present PopUp
+            break
+            
+            
+        case .denied:
+            //TODO: Present PopUp
+            break
+            
+        default:
+            //TODO: Present PopUp
+            break
+        }
+
     }
     
     @objc func didTapAvatar() {
@@ -228,6 +311,29 @@ extension UploadImageController {
     }
     
     @objc func didTapRemove() {
-        print(#function)
+        let placeholderImage = UIImage(named: "TempProfilePlaceholder")!
+        self.presentingController?.profileImageView.image = placeholderImage
+        self.dismiss(animated: true)
+    }
+}
+//MARK: - UIImagerPicker Delegate
+extension UploadImageController: UIImagePickerControllerDelegate, UINavigationControllerDelegate {
+    func imagePickerControllerDidCancel(_ picker: UIImagePickerController) {
+        picker.dismiss(animated: true) {
+            print("Dismissed the image picker or camera")
+        }
+    }
+    
+    func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [UIImagePickerController.InfoKey : Any]) {
+        
+        picker.dismiss(animated: true) {
+            guard let image = info[.editedImage] as? UIImage else {
+                return
+            }
+            
+            self.presentingController?.profileImageView.image = image
+        }
+        
+        self.dismiss(animated: true)
     }
 }

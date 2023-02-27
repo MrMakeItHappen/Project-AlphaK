@@ -41,13 +41,14 @@ final class HomeController: UIViewController {
     private let searchBar: UISearchBar = {
         let searchBar = UISearchBar(frame: .zero)
         searchBar.barStyle = .default
-        searchBar.placeholder = "Search"
         searchBar.isTranslucent = true
-        searchBar.backgroundColor = .clear
-        searchBar.barTintColor = .kwiksGrey
+        searchBar.backgroundColor = .white
+        searchBar.barTintColor = .white
         searchBar.backgroundImage = UIImage()
         searchBar.height(50)
         searchBar.layer.cornerRadius = 25
+        searchBar.searchTextField.backgroundColor = UIColor.kwiksGrey.withAlphaComponent(0.5)
+        searchBar.searchTextField.attributedPlaceholder = NSAttributedString(string: "Search", attributes: [.foregroundColor : UIColor.white])
         return searchBar
     }()
 
@@ -55,6 +56,11 @@ final class HomeController: UIViewController {
         super.viewDidLoad()
         self.view.backgroundColor = .white
         self.layoutUI()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        self.modifySearchbarIcon()
     }
 }
 //MARK: - Layout UI
@@ -74,6 +80,15 @@ extension HomeController {
         self.profileButton.left(to: self.userProfileImageView)
         self.profileButton.right(to: self.userProfileImageView)
         self.profileButton.bottom(to: self.userProfileImageView)
+    }
+}
+//MARK: - Helpers
+extension HomeController {
+    private func modifySearchbarIcon() {
+        if let searchIconImageView = self.searchBar.searchTextField.leftView as? UIImageView {
+            searchIconImageView.image = searchIconImageView.image?.withRenderingMode(.alwaysTemplate)
+            searchIconImageView.tintColor = UIColor.white
+        }
     }
 }
 //MARK: - @objc

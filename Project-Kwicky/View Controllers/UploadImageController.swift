@@ -185,7 +185,7 @@ extension UploadImageController {
         label.numberOfLines = 1
         label.adjustsFontSizeToFitWidth = true
         label.textAlignment = .left
-        label.textColor = UIColor.kwiksBlack
+        label.textColor = UIColor.kwiksTextBlack
         return label
     }
     

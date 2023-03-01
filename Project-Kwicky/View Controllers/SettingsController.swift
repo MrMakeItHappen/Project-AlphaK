@@ -54,7 +54,7 @@ final class SettingsController: UIViewController {
         label.numberOfLines = 1
         label.adjustsFontSizeToFitWidth = true
         label.textAlignment = .left
-        label.textColor = UIColor.kwiksBlack
+        label.textColor = UIColor.kwiksTextBlack
         return label
     }()
     
@@ -202,6 +202,7 @@ extension SettingsController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch indexPath.item {
         case 0:
+            print(#function)
             let followInviteVC = FollowInviteFriendsController()
             self.navigationController?.pushViewController(followInviteVC, animated: true)
             

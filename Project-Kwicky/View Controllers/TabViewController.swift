@@ -24,7 +24,7 @@ final class TabViewController: UITabBarController {
 //MARK: - Configure
 extension TabViewController {
     private func configure() {
-        self.tabBar.backgroundColor = .white
+        self.tabBar.backgroundColor = .kwiksBackgroundBlack
         self.tabBar.backgroundImage = UIImage()
         self.tabBar.shadowImage = UIImage()
     }

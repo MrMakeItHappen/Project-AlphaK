@@ -30,7 +30,7 @@ final class ProfileController: UIViewController {
         label.numberOfLines = 1
         label.adjustsFontSizeToFitWidth = true
         label.textAlignment = .left
-        label.textColor = UIColor.kwiksBlack
+        label.textColor = UIColor.kwiksTextBlack
         return label
     }()
     
@@ -152,7 +152,7 @@ final class ProfileController: UIViewController {
         label.numberOfLines = 1
         label.adjustsFontSizeToFitWidth = true
         label.textAlignment = .left
-        label.textColor = UIColor.kwiksBlack
+        label.textColor = UIColor.kwiksTextBlack
         return label
     }()
     
@@ -420,7 +420,7 @@ extension ProfileController {
         label.numberOfLines = 1
         label.adjustsFontSizeToFitWidth = false
         label.textAlignment = .left
-        label.textColor = UIColor.kwiksBlack
+        label.textColor = UIColor.kwiksTextBlack
         return label
     }
     
@@ -464,8 +464,10 @@ extension ProfileController {
     
     @objc func didTapSettings() {
         let settingsVC = SettingsController()
-        settingsVC.modalPresentationStyle = .popover
-        self.navigationController?.present(settingsVC, animated: true)
+        let navVC = UINavigationController(rootViewController: settingsVC)
+        navVC.modalPresentationStyle = .popover
+        navVC.isNavigationBarHidden = true
+        self.navigationController?.present(navVC, animated: true)
     }
     
     @objc func didTapFacebook() {

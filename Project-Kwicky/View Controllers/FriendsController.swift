@@ -34,7 +34,7 @@ final class FriendsController: UIViewController {
         label.numberOfLines = 1
         label.adjustsFontSizeToFitWidth = true
         label.textAlignment = .left
-        label.textColor = UIColor.black
+        label.textColor = .kwiksTextBlack
         return label
     }()
 

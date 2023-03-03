@@ -8,6 +8,8 @@
 import UIKit
 
 final class HomeController: UIViewController {
+    private let exampleVideos: [KwiksVideo] = KwiksVideo.allExampleVideos
+    
     private let tabBarExtension: UIView = {
         let view = UIView(frame: .zero)
         view.isUserInteractionEnabled = false
@@ -25,7 +27,7 @@ final class HomeController: UIViewController {
         imageView.backgroundColor = .clear
         imageView.layer.masksToBounds = true
         
-        let image = UIImage(named: "HomePlaceholder")
+        let image = UIImage(named: "PlaceholderVideoImage05")
         imageView.image = image
         return imageView
     }()
@@ -141,11 +143,41 @@ final class HomeController: UIViewController {
         searchBar.searchTextField.attributedPlaceholder = NSAttributedString(string: "Search", attributes: [.foregroundColor : UIColor.white])
         return searchBar
     }()
+    
+    private lazy var forYouCollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        layout.itemSize = CGSize(width: 165, height: 231)
+        layout.minimumInteritemSpacing = 15
+        layout.minimumLineSpacing = 15
+        
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.backgroundColor = .clear
+        collectionView.isScrollEnabled = true
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.register(ForYouCollectionViewCell.self, forCellWithReuseIdentifier: ForYouCollectionViewCell.identifier)
+        collectionView.height(272)
+        
+        return collectionView
+    }()
+    
+    private let seperatorLineView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.clipsToBounds = true
+        view.backgroundColor = .black
+        view.height(1.5)
+        return view
+    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
-        self.layoutUI()
+        self.layoutTopSectionUI()
+        self.layoutBottomSectionUI()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -155,7 +187,7 @@ final class HomeController: UIViewController {
 }
 //MARK: - Layout UI
 extension HomeController {
-    private func layoutUI() {
+    private func layoutTopSectionUI() {
         self.view.addSubview(self.placeholderImageView)
         self.placeholderImageView.edgesToSuperview(usingSafeArea: false)
         
@@ -202,6 +234,18 @@ extension HomeController {
         self.profileButton.right(to: self.userProfileImageView)
         self.profileButton.bottom(to: self.userProfileImageView)
     }
+    
+    private func layoutBottomSectionUI() {
+        self.view.addSubview(self.forYouCollectionView)
+        self.forYouCollectionView.bottomToSuperview(usingSafeArea: true)
+        self.forYouCollectionView.leftToSuperview(offset: 20)
+        self.forYouCollectionView.rightToSuperview()
+        
+        self.view.addSubview(self.seperatorLineView)
+        self.seperatorLineView.leftToSuperview(offset: 26)
+        self.seperatorLineView.rightToSuperview(offset: -24)
+        self.seperatorLineView.bottomToTop(of: self.forYouCollectionView)
+    }
 }
 //MARK: - Helpers
 extension HomeController {
@@ -224,4 +268,19 @@ extension HomeController {
     @objc func didTapEarnedAmount() {
         print(#function)
     }
+}
+//MARK: - CollectionView DataSource & Delegate
+extension HomeController: UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.exampleVideos.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ForYouCollectionViewCell.identifier, for: indexPath) as! ForYouCollectionViewCell
+        let video = self.exampleVideos[indexPath.item]
+        cell.configure(with: video)
+        return cell
+    }
+    
+    
 }

@@ -22,6 +22,8 @@
 		CA55DF3A29AF9E9100C54B35 /* KwiksNotification.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA55DF3929AF9E9100C54B35 /* KwiksNotification.swift */; };
 		CA55DF3C29AF9FBF00C54B35 /* SocialMediaLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA55DF3B29AF9FBF00C54B35 /* SocialMediaLink.swift */; };
 		CA55DF3E29AFA13100C54B35 /* KwiksUserAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA55DF3D29AFA13100C54B35 /* KwiksUserAnalytics.swift */; };
+		CA55DF4029B16A1400C54B35 /* ForYouCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA55DF3F29B16A1400C54B35 /* ForYouCollectionViewCell.swift */; };
+		CA55DF4329B17FAA00C54B35 /* UITextField+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA55DF4229B17FAA00C54B35 /* UITextField+Ext.swift */; };
 		CAA90C7C2994171C0013A654 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA90C7B2994171C0013A654 /* AppDelegate.swift */; };
 		CAA90C7E2994171C0013A654 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA90C7D2994171C0013A654 /* SceneDelegate.swift */; };
 		CAA90C802994171C0013A654 /* DecisionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA90C7F2994171C0013A654 /* DecisionController.swift */; };
@@ -45,7 +47,6 @@
 		CABAA2F52994493200C5EBC6 /* SignUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABAA2F42994493200C5EBC6 /* SignUpController.swift */; };
 		CABAA2F929945D1C00C5EBC6 /* UIImage+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABAA2F829945D1C00C5EBC6 /* UIImage+Ext.swift */; };
 		CABAA2FB299805F600C5EBC6 /* LoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABAA2FA299805F600C5EBC6 /* LoginController.swift */; };
-		CABAA2FD2998107A00C5EBC6 /* TextField+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABAA2FC2998107A00C5EBC6 /* TextField+Ext.swift */; };
 		CABAA2FF2998340800C5EBC6 /* SignUpDetailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABAA2FE2998340800C5EBC6 /* SignUpDetailController.swift */; };
 		CABAA3032999609200C5EBC6 /* UIView+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABAA3022999609200C5EBC6 /* UIView+Ext.swift */; };
 		CABAA305299BCEE100C5EBC6 /* String+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABAA304299BCEE100C5EBC6 /* String+Ext.swift */; };
@@ -79,6 +80,8 @@
 		CA55DF3929AF9E9100C54B35 /* KwiksNotification.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KwiksNotification.swift; sourceTree = "<group>"; };
 		CA55DF3B29AF9FBF00C54B35 /* SocialMediaLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialMediaLink.swift; sourceTree = "<group>"; };
 		CA55DF3D29AFA13100C54B35 /* KwiksUserAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KwiksUserAnalytics.swift; sourceTree = "<group>"; };
+		CA55DF3F29B16A1400C54B35 /* ForYouCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForYouCollectionViewCell.swift; sourceTree = "<group>"; };
+		CA55DF4229B17FAA00C54B35 /* UITextField+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Ext.swift"; sourceTree = "<group>"; };
 		CAA90C782994171C0013A654 /* Project-Kwicky.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Project-Kwicky.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAA90C7B2994171C0013A654 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CAA90C7D2994171C0013A654 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -103,7 +106,6 @@
 		CABAA2F42994493200C5EBC6 /* SignUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpController.swift; sourceTree = "<group>"; };
 		CABAA2F829945D1C00C5EBC6 /* UIImage+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIImage+Ext.swift"; sourceTree = "<group>"; };
 		CABAA2FA299805F600C5EBC6 /* LoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginController.swift; sourceTree = "<group>"; };
-		CABAA2FC2998107A00C5EBC6 /* TextField+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = "TextField+Ext.swift"; path = "../../../../Desktop/Delete Later/TextField+Ext.swift"; sourceTree = "<group>"; };
 		CABAA2FE2998340800C5EBC6 /* SignUpDetailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpDetailController.swift; sourceTree = "<group>"; };
 		CABAA3022999609200C5EBC6 /* UIView+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIView+Ext.swift"; sourceTree = "<group>"; };
 		CABAA304299BCEE100C5EBC6 /* String+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Ext.swift"; sourceTree = "<group>"; };
@@ -133,6 +135,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		CA55DF4129B16A3100C54B35 /* Collection View Cells */ = {
+			isa = PBXGroup;
+			children = (
+				CABAA31B29A3104100C5EBC6 /* SettingsCollectionViewCell.swift */,
+				CA55DF3F29B16A1400C54B35 /* ForYouCollectionViewCell.swift */,
+			);
+			path = "Collection View Cells";
+			sourceTree = "<group>";
+		};
 		CAA90C6F2994171C0013A654 = {
 			isa = PBXGroup;
 			children = (
@@ -199,7 +210,7 @@
 		CAA90C91299419810013A654 /* Views */ = {
 			isa = PBXGroup;
 			children = (
-				CABAA31B29A3104100C5EBC6 /* SettingsCollectionViewCell.swift */,
+				CA55DF4129B16A3100C54B35 /* Collection View Cells */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -219,12 +230,12 @@
 				CAA90C9A29941ACD0013A654 /* UIColor+Ext.swift */,
 				CAA90C9C29941AEE0013A654 /* UIFont+Ext.swift */,
 				CABAA2F829945D1C00C5EBC6 /* UIImage+Ext.swift */,
-				CABAA2FC2998107A00C5EBC6 /* TextField+Ext.swift */,
 				CABAA3022999609200C5EBC6 /* UIView+Ext.swift */,
 				CABAA304299BCEE100C5EBC6 /* String+Ext.swift */,
 				CABAA30A29A19EB900C5EBC6 /* UIButton+Ext.swift */,
 				CA55DF2129A7E87C00C54B35 /* UIImageView+Ext.swift */,
 				CA55DF2329A7E8CF00C54B35 /* UILabel+Ext.swift */,
+				CA55DF4229B17FAA00C54B35 /* UITextField+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -389,6 +400,7 @@
 				CA55DF2829AA94EF00C54B35 /* SettingsController.swift in Sources */,
 				CAA90C9B29941ACD0013A654 /* UIColor+Ext.swift in Sources */,
 				CA55DF3E29AFA13100C54B35 /* KwiksUserAnalytics.swift in Sources */,
+				CA55DF4329B17FAA00C54B35 /* UITextField+Ext.swift in Sources */,
 				CABAA30B29A19EB900C5EBC6 /* UIButton+Ext.swift in Sources */,
 				CAA90C7C2994171C0013A654 /* AppDelegate.swift in Sources */,
 				CAA90C7E2994171C0013A654 /* SceneDelegate.swift in Sources */,
@@ -398,6 +410,7 @@
 				CAA90C9D29941AEE0013A654 /* UIFont+Ext.swift in Sources */,
 				CA55DF3429AF9B0500C54B35 /* KwiksVideo.swift in Sources */,
 				CABAA30929A1941600C5EBC6 /* TermsController.swift in Sources */,
+				CA55DF4029B16A1400C54B35 /* ForYouCollectionViewCell.swift in Sources */,
 				CABAA31629A2C9C300C5EBC6 /* InboxController.swift in Sources */,
 				CA55DF1C29A674F000C54B35 /* FollowInviteFriendsController.swift in Sources */,
 				CA55DF2429A7E8CF00C54B35 /* UILabel+Ext.swift in Sources */,
@@ -405,7 +418,6 @@
 				CABAA3032999609200C5EBC6 /* UIView+Ext.swift in Sources */,
 				CABAA30F29A2C8EE00C5EBC6 /* TabViewController.swift in Sources */,
 				CABAA31A29A2CB8000C5EBC6 /* VideoController.swift in Sources */,
-				CABAA2FD2998107A00C5EBC6 /* TextField+Ext.swift in Sources */,
 				CA55DF3829AF9DB700C54B35 /* KwiksVideoAnalytics.swift in Sources */,
 				CA55DF2229A7E87C00C54B35 /* UIImageView+Ext.swift in Sources */,
 				CABAA31229A2C95A00C5EBC6 /* HomeController.swift in Sources */,

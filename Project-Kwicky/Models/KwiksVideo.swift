@@ -30,5 +30,8 @@ struct KwiksVideo {
     static let videoExampleFour = KwiksVideo(title: "Destiny 2 Lightfall Secret Missions. Heavy Spoilers!", uploadedFrom: User.exampleUserFour, viewers: 9999, deleteLaterImage: UIImage(named: "PlaceholderVideoImage06"))
     static let videoExampleFive = KwiksVideo(title: "Inside The Last of Us - Season Finale Discussion", uploadedFrom: User.exampleUserFive, viewers: 9999, deleteLaterImage: UIImage(named: "PlaceholderVideoImage07"))
     
-    static let allExampleVideos = [videoExampleOne, videoExampleTwo, videoExampleThree, videoExampleFour, videoExampleFive]
+    static let forYouExampleVideos = [videoExampleOne, videoExampleTwo, videoExampleThree, videoExampleFour, videoExampleFive]
+    static let followingExampleVideos = [videoExampleFive, videoExampleFour, videoExampleThree, videoExampleTwo, videoExampleOne]
+    static let popularExampleVideos = [videoExampleThree, videoExampleTwo, videoExampleOne, videoExampleFive, videoExampleFour]
+    static let liveExampleVideos = [videoExampleFour, videoExampleThree, videoExampleOne, videoExampleFive, videoExampleTwo]
 }

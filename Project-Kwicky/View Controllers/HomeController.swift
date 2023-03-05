@@ -7,8 +7,20 @@
 
 import UIKit
 
+enum FeedType: String, CaseIterable {
+    case forYou
+    case following
+    case popular
+    case live
+}
+
 final class HomeController: UIViewController {
-    private let exampleVideos: [KwiksVideo] = KwiksVideo.allExampleVideos
+    private let forYouExampleVideos: [KwiksVideo] = KwiksVideo.forYouExampleVideos
+    private let followingExampleVideos: [KwiksVideo] = KwiksVideo.followingExampleVideos
+    private let popularExampleVideos: [KwiksVideo] = KwiksVideo.popularExampleVideos
+    private let liveExampleVideos: [KwiksVideo] = KwiksVideo.liveExampleVideos
+    
+    private var feedType: FeedType = .forYou
     
     private let tabBarExtension: UIView = {
         let view = UIView(frame: .zero)
@@ -397,13 +409,13 @@ final class HomeController: UIViewController {
         button.setImage(UIImage(named: "KwiksPlayButton"), for: .normal)
         return button
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configure()
         self.layoutUI()
         
-//        self.standupFilter()
+        //        self.standupFilter()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -631,6 +643,10 @@ extension HomeController {
             self.liveLabel.textColor = .white
             self.liveLineView.alpha = 0
         }
+        
+        self.feedType = .forYou
+        self.forYouCollectionView.reloadData()
+        self.forYouCollectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .left, animated: true)
     }
     
     @objc func didTapFollowing() {
@@ -647,6 +663,10 @@ extension HomeController {
             self.liveLabel.textColor = .white
             self.liveLineView.alpha = 0
         }
+        
+        self.feedType = .following
+        self.forYouCollectionView.reloadData()
+        self.forYouCollectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .left, animated: true)
     }
     
     @objc func didTapPopular() {
@@ -663,9 +683,14 @@ extension HomeController {
             self.liveLabel.textColor = .white
             self.liveLineView.alpha = 0
         }
+        
+        self.feedType = .popular
+        self.forYouCollectionView.reloadData()
+        self.forYouCollectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .left, animated: true)
     }
     
     @objc func didTapLive() {
+        
         UIView.animate(withDuration: 0.50, delay: 0, options: .curveEaseInOut) {
             self.liveLabel.textColor = .kwiksGreen
             self.liveLineView.alpha = 1
@@ -679,18 +704,51 @@ extension HomeController {
             self.forYouLabel.textColor = .white
             self.forYouLineView.alpha = 0
         }
+        
+        self.feedType = .live
+        self.forYouCollectionView.reloadData()
+        self.forYouCollectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .left, animated: true)
     }
 }
 //MARK: - CollectionView DataSource & Delegate
 extension HomeController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.exampleVideos.count
+        switch self.feedType {
+        case .forYou:
+            return self.forYouExampleVideos.count
+            
+        case .following:
+            return self.followingExampleVideos.count
+            
+        case .popular:
+            return self.popularExampleVideos.count
+            
+        case .live:
+            return self.liveExampleVideos.count
+        }
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ForYouCollectionViewCell.identifier, for: indexPath) as! ForYouCollectionViewCell
-        let video = self.exampleVideos[indexPath.item]
-        cell.configure(with: video)
+        
+        switch self.feedType {
+            
+        case .forYou:
+            let video = self.forYouExampleVideos[indexPath.item]
+            cell.configure(with: video)
+            
+        case .following:
+            let video = self.followingExampleVideos[indexPath.item]
+            cell.configure(with: video)
+            
+        case .popular:
+            let video = self.popularExampleVideos[indexPath.item]
+            cell.configure(with: video)
+            
+        case .live:
+            let video = self.liveExampleVideos[indexPath.item]
+            cell.configure(with: video)
+        }
         return cell
     }
     

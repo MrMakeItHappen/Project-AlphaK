@@ -23,7 +23,8 @@ final class ServiceProvider: NSObject {
         var url : URL = URL(string: "nil")!
         
         ///Create global url variable for changes.
-        //        url = URL(string: "\(globalBackendDomain)/\(endpoint)")!
+        let globalBackendDomain = "Change this later"
+        url = URL(string: "\(globalBackendDomain)/\(endpoint)")!
         
         let session = URLSession.shared
         var request = URLRequest(url: url)

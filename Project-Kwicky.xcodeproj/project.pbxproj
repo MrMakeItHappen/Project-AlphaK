@@ -24,6 +24,7 @@
 		CA55DF3E29AFA13100C54B35 /* KwiksUserAnalytics.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA55DF3D29AFA13100C54B35 /* KwiksUserAnalytics.swift */; };
 		CA55DF4029B16A1400C54B35 /* ForYouCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA55DF3F29B16A1400C54B35 /* ForYouCollectionViewCell.swift */; };
 		CA55DF4329B17FAA00C54B35 /* UITextField+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA55DF4229B17FAA00C54B35 /* UITextField+Ext.swift */; };
+		CA55DF4529B27CAC00C54B35 /* ServiceSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA55DF4429B27CAC00C54B35 /* ServiceSingleton.swift */; };
 		CAA90C7C2994171C0013A654 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA90C7B2994171C0013A654 /* AppDelegate.swift */; };
 		CAA90C7E2994171C0013A654 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA90C7D2994171C0013A654 /* SceneDelegate.swift */; };
 		CAA90C802994171C0013A654 /* DecisionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA90C7F2994171C0013A654 /* DecisionController.swift */; };
@@ -82,6 +83,7 @@
 		CA55DF3D29AFA13100C54B35 /* KwiksUserAnalytics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KwiksUserAnalytics.swift; sourceTree = "<group>"; };
 		CA55DF3F29B16A1400C54B35 /* ForYouCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ForYouCollectionViewCell.swift; sourceTree = "<group>"; };
 		CA55DF4229B17FAA00C54B35 /* UITextField+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITextField+Ext.swift"; sourceTree = "<group>"; };
+		CA55DF4429B27CAC00C54B35 /* ServiceSingleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceSingleton.swift; sourceTree = "<group>"; };
 		CAA90C782994171C0013A654 /* Project-Kwicky.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Project-Kwicky.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAA90C7B2994171C0013A654 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CAA90C7D2994171C0013A654 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -236,6 +238,7 @@
 				CA55DF2129A7E87C00C54B35 /* UIImageView+Ext.swift */,
 				CA55DF2329A7E8CF00C54B35 /* UILabel+Ext.swift */,
 				CA55DF4229B17FAA00C54B35 /* UITextField+Ext.swift */,
+				CA55DF4429B27CAC00C54B35 /* ServiceSingleton.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -427,6 +430,7 @@
 				CABAA2FB299805F600C5EBC6 /* LoginController.swift in Sources */,
 				CABAA31C29A3104100C5EBC6 /* SettingsCollectionViewCell.swift in Sources */,
 				CABAA2F52994493200C5EBC6 /* SignUpController.swift in Sources */,
+				CA55DF4529B27CAC00C54B35 /* ServiceSingleton.swift in Sources */,
 				CA55DF3229AF9A9B00C54B35 /* User.swift in Sources */,
 				CA55DF3C29AF9FBF00C54B35 /* SocialMediaLink.swift in Sources */,
 			);

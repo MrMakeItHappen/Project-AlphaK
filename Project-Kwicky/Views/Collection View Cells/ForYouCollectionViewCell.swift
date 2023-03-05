@@ -94,3 +94,4 @@ final class ForYouCollectionViewCell: UICollectionViewCell {
         self.titleLabel.rightToSuperview(offset: -14)
     }
 }
+#warning("Work here. Need to add view count to cell. Then other icons on Home Controller. Dueces")

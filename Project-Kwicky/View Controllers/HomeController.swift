@@ -414,8 +414,6 @@ final class HomeController: UIViewController {
         super.viewDidLoad()
         self.configure()
         self.layoutUI()
-        
-        //        self.standupFilter()
     }
     
     override func viewDidAppear(_ animated: Bool) {
@@ -425,21 +423,6 @@ final class HomeController: UIViewController {
 }
 //MARK: - Layout UI
 extension HomeController {
-    private func standupFilter() {
-        let deleteLaterView = UIView()
-        deleteLaterView.translatesAutoresizingMaskIntoConstraints = false
-        deleteLaterView.clipsToBounds = true
-        deleteLaterView.backgroundColor = .white
-        
-        self.view.addSubview(deleteLaterView)
-        deleteLaterView.edgesToSuperview()
-        
-        self.view.addSubview(self.tabBarExtension)
-        self.tabBarExtension.bottomToSuperview(usingSafeArea: true)
-        self.tabBarExtension.leftToSuperview()
-        self.tabBarExtension.rightToSuperview()
-    }
-    
     private func layoutUI() {
         self.view.addSubview(self.placeholderImageView)
         self.placeholderImageView.edgesToSuperview(usingSafeArea: false)
@@ -615,8 +598,6 @@ extension HomeController {
 //MARK: - @objc
 extension HomeController {
     @objc func didTapProfile() {
-        print(#function)
-        
         let profileVC = ProfileController()
         self.navigationController?.pushViewController(profileVC, animated: true)
     }
@@ -747,10 +728,34 @@ extension HomeController: UICollectionViewDelegate, UICollectionViewDataSource {
             
         case .live:
             let video = self.liveExampleVideos[indexPath.item]
-            cell.configure(with: video)
+            cell.configureLive(with: video)
         }
         return cell
     }
     
-    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let videoPlayerVC = KwiksVideoPlayerController()
+        
+        switch self.feedType {
+            
+        case .forYou:
+            let video = self.forYouExampleVideos[indexPath.item]
+            videoPlayerVC.kwiksVideo = video
+            
+        case .following:
+            let video = self.followingExampleVideos[indexPath.item]
+            videoPlayerVC.kwiksVideo = video
+            
+        case .popular:
+            let video = self.popularExampleVideos[indexPath.item]
+            videoPlayerVC.kwiksVideo = video
+            
+        case .live:
+            let video = self.liveExampleVideos[indexPath.item]
+            videoPlayerVC.kwiksVideo = video
+        }
+        
+        videoPlayerVC.modalPresentationStyle = .overCurrentContext
+        self.present(videoPlayerVC, animated: true)
+    }
 }

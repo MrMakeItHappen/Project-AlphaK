@@ -59,7 +59,7 @@
 		CABAA30D29A2AED600C5EBC6 /* SelectUsernameController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABAA30C29A2AED600C5EBC6 /* SelectUsernameController.swift */; };
 		CABAA30F29A2C8EE00C5EBC6 /* TabViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABAA30E29A2C8EE00C5EBC6 /* TabViewController.swift */; };
 		CABAA31229A2C95A00C5EBC6 /* HomeController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABAA31129A2C95A00C5EBC6 /* HomeController.swift */; };
-		CABAA31429A2C9B500C5EBC6 /* FriendsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABAA31329A2C9B500C5EBC6 /* FriendsController.swift */; };
+		CABAA31429A2C9B500C5EBC6 /* SearchController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABAA31329A2C9B500C5EBC6 /* SearchController.swift */; };
 		CABAA31629A2C9C300C5EBC6 /* InboxController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABAA31529A2C9C300C5EBC6 /* InboxController.swift */; };
 		CABAA31829A2C9D000C5EBC6 /* WalletController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABAA31729A2C9D000C5EBC6 /* WalletController.swift */; };
 		CABAA31A29A2CB8000C5EBC6 /* VideoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABAA31929A2CB8000C5EBC6 /* VideoController.swift */; };
@@ -121,7 +121,7 @@
 		CABAA30C29A2AED600C5EBC6 /* SelectUsernameController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectUsernameController.swift; sourceTree = "<group>"; };
 		CABAA30E29A2C8EE00C5EBC6 /* TabViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabViewController.swift; sourceTree = "<group>"; };
 		CABAA31129A2C95A00C5EBC6 /* HomeController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeController.swift; sourceTree = "<group>"; };
-		CABAA31329A2C9B500C5EBC6 /* FriendsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FriendsController.swift; sourceTree = "<group>"; };
+		CABAA31329A2C9B500C5EBC6 /* SearchController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SearchController.swift; sourceTree = "<group>"; };
 		CABAA31529A2C9C300C5EBC6 /* InboxController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InboxController.swift; sourceTree = "<group>"; };
 		CABAA31729A2C9D000C5EBC6 /* WalletController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletController.swift; sourceTree = "<group>"; };
 		CABAA31929A2CB8000C5EBC6 /* VideoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoController.swift; sourceTree = "<group>"; };
@@ -199,7 +199,7 @@
 				CAA90C7F2994171C0013A654 /* DecisionController.swift */,
 				CABAA30E29A2C8EE00C5EBC6 /* TabViewController.swift */,
 				CABAA31129A2C95A00C5EBC6 /* HomeController.swift */,
-				CABAA31329A2C9B500C5EBC6 /* FriendsController.swift */,
+				CABAA31329A2C9B500C5EBC6 /* SearchController.swift */,
 				CABAA31529A2C9C300C5EBC6 /* InboxController.swift */,
 				CABAA31729A2C9D000C5EBC6 /* WalletController.swift */,
 				CABAA31929A2CB8000C5EBC6 /* VideoController.swift */,
@@ -399,7 +399,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				CABAA307299D34AA00C5EBC6 /* PinNumberController.swift in Sources */,
-				CABAA31429A2C9B500C5EBC6 /* FriendsController.swift in Sources */,
+				CABAA31429A2C9B500C5EBC6 /* SearchController.swift in Sources */,
 				CABAA2F929945D1C00C5EBC6 /* UIImage+Ext.swift in Sources */,
 				CAA90C802994171C0013A654 /* DecisionController.swift in Sources */,
 				CABAA2FF2998340800C5EBC6 /* SignUpDetailController.swift in Sources */,

@@ -37,7 +37,7 @@ struct KwiksVideo {
     static let liveExampleFive = KwiksVideo(title: "Inside The Last of Us - Season Finale Discussion", uploadedFrom: User.exampleUserFive, isLive: true, viewers: 9999, deleteLaterImage: UIImage(named: "PlaceholderVideoImage07"))
     
     static let forYouExampleVideos = [videoExampleOne, videoExampleTwo, videoExampleThree, videoExampleFour, videoExampleFive]
-    static let followingExampleVideos = [videoExampleFive, videoExampleFour, videoExampleThree, videoExampleTwo, videoExampleOne]
+    static let friendsExampleVideos = [videoExampleFive, videoExampleFour, videoExampleThree, videoExampleTwo, videoExampleOne]
     static let popularExampleVideos = [videoExampleThree, videoExampleTwo, videoExampleOne, videoExampleFive, videoExampleFour]
     static let liveExampleVideos = [liveExampleFour, liveExampleThree, liveExampleOne, liveExampleFive, liveExampleTwo]
 }

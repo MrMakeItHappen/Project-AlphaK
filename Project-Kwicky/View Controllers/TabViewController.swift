@@ -10,7 +10,7 @@ import UIKit
 final class TabViewController: UITabBarController {
     private let homeController = HomeController()
     private let videoController = VideoController()
-    private let friendsController = FriendsController()
+    private let searchController = SearchController()
     private let inboxController = InboxController()
     private let walletController = WalletController()
 
@@ -42,13 +42,13 @@ extension TabViewController {
         tabOne.tabBarItem.imageInsets = UIEdgeInsets(top: 6, left: 0, bottom: 0, right: 0)
 
         //Second Tab
-        let tabTwoIcon = UIImage(named: "FriendTabBarIcon")?.resized(to: adjustedImageSize).withTintColor(.tabBarGrey).withRenderingMode(.alwaysOriginal)
-        let tabTwoFillIcon = UIImage(named: "FriendTabBarIcon")?.resized(to: adjustedImageSize).withTintColor(.kwiksGreen).withRenderingMode(.alwaysOriginal)
+        let tabTwoIcon = UIImage(named: "SearchIcon")?.resized(to: CGSize(width: 30, height: 30)).withTintColor(.tabBarGrey).withRenderingMode(.alwaysOriginal)
+        let tabTwoFillIcon = UIImage(named: "SearchIcon")?.resized(to: CGSize(width: 30, height: 30)).withTintColor(.kwiksGreen).withRenderingMode(.alwaysOriginal)
 
-        let tabTwo = UINavigationController(rootViewController: friendsController)
+        let tabTwo = UINavigationController(rootViewController: searchController)
         tabTwo.navigationBar.isHidden = true
-        tabTwo.tabBarItem = UITabBarItem(title: "Friends", image: tabTwoIcon, selectedImage: tabTwoFillIcon)
-        tabTwo.tabBarItem.imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        tabTwo.tabBarItem = UITabBarItem(title: "Search", image: tabTwoIcon, selectedImage: tabTwoFillIcon)
+        tabTwo.tabBarItem.imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 2, right: 4)
 
         //Third Tab
         let tabThreeIcon = UIImage(named: "VideoTabBarIcon")?.resized(to: CGSize(width: 60, height: 60)).withTintColor(.tabBarGrey).withRenderingMode(.alwaysOriginal)

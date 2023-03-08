@@ -9,14 +9,14 @@ import UIKit
 
 enum FeedType: String, CaseIterable {
     case forYou
-    case following
+    case friends
     case popular
     case live
 }
 
 final class HomeController: UIViewController {
     private let forYouExampleVideos: [KwiksVideo] = KwiksVideo.forYouExampleVideos
-    private let followingExampleVideos: [KwiksVideo] = KwiksVideo.followingExampleVideos
+    private let followingExampleVideos: [KwiksVideo] = KwiksVideo.friendsExampleVideos
     private let popularExampleVideos: [KwiksVideo] = KwiksVideo.popularExampleVideos
     private let liveExampleVideos: [KwiksVideo] = KwiksVideo.liveExampleVideos
     
@@ -231,7 +231,7 @@ final class HomeController: UIViewController {
     
     private let followingLabel: UILabel = {
         let label = UILabel()
-        label.text = "Following"
+        label.text = "Friends"
         label.translatesAutoresizingMaskIntoConstraints = false
         label.backgroundColor = .clear
         label.font = UIFont.segoeUISemiBold(size: 15)
@@ -645,7 +645,7 @@ extension HomeController {
             self.liveLineView.alpha = 0
         }
         
-        self.feedType = .following
+        self.feedType = .friends
         self.forYouCollectionView.reloadData()
         self.forYouCollectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .left, animated: true)
     }
@@ -698,7 +698,7 @@ extension HomeController: UICollectionViewDelegate, UICollectionViewDataSource {
         case .forYou:
             return self.forYouExampleVideos.count
             
-        case .following:
+        case .friends:
             return self.followingExampleVideos.count
             
         case .popular:
@@ -718,7 +718,7 @@ extension HomeController: UICollectionViewDelegate, UICollectionViewDataSource {
             let video = self.forYouExampleVideos[indexPath.item]
             cell.configure(with: video)
             
-        case .following:
+        case .friends:
             let video = self.followingExampleVideos[indexPath.item]
             cell.configure(with: video)
             
@@ -742,7 +742,7 @@ extension HomeController: UICollectionViewDelegate, UICollectionViewDataSource {
             let video = self.forYouExampleVideos[indexPath.item]
             videoPlayerVC.kwiksVideo = video
             
-        case .following:
+        case .friends:
             let video = self.followingExampleVideos[indexPath.item]
             videoPlayerVC.kwiksVideo = video
             

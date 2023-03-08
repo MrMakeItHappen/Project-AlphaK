@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class FriendsController: UIViewController {
+final class SearchController: UIViewController {
 
     private let tempImageView: UIImageView = {
         let imageView = UIImageView()

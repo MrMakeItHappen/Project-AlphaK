@@ -340,11 +340,120 @@ final class KwiksVideoPlayerController: UIViewController {
         return button
     }()
     
+    private let currentMusicImageViewIcon: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.backgroundColor = .clear
+        imageView.contentMode = .scaleAspectFit
+        imageView.isUserInteractionEnabled = false
+        imageView.backgroundColor = .clear
+        imageView.layer.masksToBounds = true
+        imageView.height(14)
+        imageView.width(14)
+        
+        let image = UIImage(named: "CurrentPlayingMusicIcon")
+        imageView.image = image
+        return imageView
+    }()
+    
+    private let currentMusicLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Let's Dance - Magic Mountain - music hip-hop low-fi relaxing"
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.backgroundColor = .clear
+        label.font = UIFont.segoeUIRegular(size: 10)
+        label.numberOfLines = 1
+        label.textAlignment = .left
+        label.textColor = UIColor.white
+        label.width(192)
+        return label
+    }()
+    
+    private let videoTitleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Good morining every one #goodmorning"
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.backgroundColor = .clear
+        label.font = UIFont.segoeUIRegular(size: 12)
+        label.numberOfLines = 2
+        label.textAlignment = .left
+        label.textColor = UIColor.white
+        return label
+    }()
+    
+    private let usernameLabel: UILabel = {
+        let label = UILabel()
+        label.text = "@Galactus44"
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.backgroundColor = .clear
+        label.font = UIFont.segoeUIBold(size: 18)
+        label.numberOfLines = 1
+        label.textAlignment = .left
+        label.textColor = UIColor.white
+        return label
+    }()
+    
+    private let followContainerView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.clipsToBounds = true
+        view.backgroundColor = UIColor.clear
+        view.layer.borderWidth = 1
+        view.layer.borderColor = UIColor.white.cgColor
+        view.layer.cornerRadius = 12
+        view.height(26)
+        view.width(60)
+        return view
+    }()
+    
+    private let followLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Follow"
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.backgroundColor = .clear
+        label.font = UIFont.segoeUISemiBold(size: 12)
+        label.numberOfLines = 1
+        label.textAlignment = .left
+        label.textColor = UIColor.white
+        return label
+    }()
+    
+    private let hiddenFollowButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.layer.masksToBounds = true
+        button.tintColor = UIColor.clear
+        button.backgroundColor = UIColor.clear
+        return button
+    }()
+    
+    private let uploadedByProfileImageView: UIImageView = {
+        let imageView = UIImageView()
+        let imageSize: CGFloat = 40
+        
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.backgroundColor = .clear
+        imageView.contentMode = .scaleAspectFill
+        imageView.isUserInteractionEnabled = false
+        imageView.backgroundColor = .clear
+        imageView.height(imageSize)
+        imageView.width(imageSize)
+        imageView.layer.masksToBounds = true
+        imageView.layer.cornerRadius = imageSize / 2
+        imageView.layer.borderColor = UIColor.white.cgColor
+        imageView.layer.borderWidth = 1.5
+        
+        let image = UIImage(named: "MalePlaceholder")
+        imageView.image = image
+        return imageView
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configure()
         self.configureVideo()
-        self.layoutUI()
+        self.layoutTopUI()
+        self.layoutBottomUI()
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -368,6 +477,7 @@ extension KwiksVideoPlayerController {
         self.hiddenShareButton.addTarget(self, action: #selector(didTapShare), for: .touchDown)
         self.hiddenCommentButton.addTarget(self, action: #selector(didTapComment), for: .touchDown)
         self.hiddenLikeButton.addTarget(self, action: #selector(didTapLike), for: .touchDown)
+        self.hiddenFollowButton.addTarget(self, action: #selector(didTapFollow), for: .touchDown)
         
         guard let viewers = self.kwiksVideo.viewers else {
             self.viewCountLabel.text = "🔥🔥🔥"
@@ -379,7 +489,7 @@ extension KwiksVideoPlayerController {
 }
 //MARK: - Layout UI
 extension KwiksVideoPlayerController {
-    private func layoutUI() {
+    private func layoutTopUI() {
         self.view.addSubview(self.tabBarExtension)
         self.tabBarExtension.bottomToSuperview(usingSafeArea: true)
         self.tabBarExtension.leftToSuperview()
@@ -448,7 +558,9 @@ extension KwiksVideoPlayerController {
         self.hiddenStatsButton.right(to: self.statsContainerView, offset: 2)
         self.hiddenStatsButton.left(to: self.statsContainerView, offset: -2)
         self.hiddenStatsButton.bottom(to: self.statsContainerView, offset: 2)
-        
+    }
+    
+    private func layoutBottomUI() {
         self.view.addSubview(self.progressView)
         self.progressView.bottom(to: self.tabBarExtension, offset: -20)
         self.progressView.leftToSuperview(offset: 30)
@@ -501,6 +613,40 @@ extension KwiksVideoPlayerController {
         self.hiddenLikeButton.right(to: self.likeImageView, offset: 2)
         self.hiddenLikeButton.left(to: self.likeImageView, offset: -2)
         self.hiddenLikeButton.bottom(to: self.likeCountLabel, offset: 2)
+        
+        self.view.addSubview(self.currentMusicImageViewIcon)
+        self.currentMusicImageViewIcon.bottomToTop(of: self.progressView, offset: -23)
+        self.currentMusicImageViewIcon.leftToSuperview(offset: 31)
+        
+        self.view.addSubview(self.currentMusicLabel)
+        self.currentMusicLabel.leftToRight(of: self.currentMusicImageViewIcon, offset: 6)
+        self.currentMusicLabel.centerY(to: self.currentMusicImageViewIcon)
+        
+        self.view.addSubview(self.videoTitleLabel)
+        self.videoTitleLabel.bottomToTop(of: self.currentMusicImageViewIcon, offset: -15)
+        self.videoTitleLabel.left(to: self.currentMusicImageViewIcon)
+        self.videoTitleLabel.right(to: self.currentMusicLabel)
+        
+        self.view.addSubview(self.usernameLabel)
+        self.usernameLabel.bottomToTop(of: self.videoTitleLabel, offset: -13)
+        self.usernameLabel.left(to: self.currentMusicImageViewIcon)
+        
+        self.view.addSubview(self.followContainerView)
+        self.followContainerView.centerY(to: self.usernameLabel)
+        self.followContainerView.leftToRight(of: self.usernameLabel, offset: 10)
+        
+        self.followContainerView.addSubview(self.followLabel)
+        self.followLabel.centerInSuperview()
+        
+        self.view.addSubview(self.hiddenFollowButton)
+        self.hiddenFollowButton.top(to: self.followContainerView, offset: -2)
+        self.hiddenFollowButton.right(to: self.followContainerView, offset: 2)
+        self.hiddenFollowButton.left(to: self.followContainerView, offset: -2)
+        self.hiddenFollowButton.bottom(to: self.followContainerView, offset: 2)
+        
+        self.view.addSubview(self.uploadedByProfileImageView)
+        self.uploadedByProfileImageView.bottomToTop(of: self.usernameLabel, offset: -13)
+        self.uploadedByProfileImageView.left(to: self.currentMusicImageViewIcon)
     }
 }
 //MARK: - Helpers
@@ -542,7 +688,6 @@ extension KwiksVideoPlayerController {
             
             let progress = totalProgress / totalDuraiton
             self.progressView.progress = progress
-            
         })
         
         self.playerDidFinishObserver = NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime, object: player.currentItem, queue: .main, using: { [weak player] _ in

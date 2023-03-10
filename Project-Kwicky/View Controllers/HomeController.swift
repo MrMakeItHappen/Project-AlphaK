@@ -492,7 +492,7 @@ extension HomeController {
         self.mainVideoPlayButton.addTarget(self, action: #selector(didTapMainVideoPlay), for: .touchUpInside)
         
         self.hiddenForYouButton.addTarget(self, action: #selector(didTapForYou), for: .touchUpInside)
-        self.hiddenFollowingButton.addTarget(self, action: #selector(didTapFollowing), for: .touchUpInside)
+        self.hiddenFollowingButton.addTarget(self, action: #selector(didTapFriends), for: .touchUpInside)
         self.hiddenPopularButton.addTarget(self, action: #selector(didTapPopular), for: .touchUpInside)
         self.hiddenLiveButton.addTarget(self, action: #selector(didTapLive), for: .touchUpInside)
     }
@@ -539,7 +539,7 @@ extension HomeController {
         self.forYouCollectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .left, animated: true)
     }
     
-    @objc func didTapFollowing() {
+    @objc func didTapFriends() {
         UIView.animate(withDuration: 0.50, delay: 0, options: .curveEaseInOut) {
             self.followingLabel.textColor = .kwiksGreen
             self.followingLineView.alpha = 1

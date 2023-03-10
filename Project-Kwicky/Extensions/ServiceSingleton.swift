@@ -9,7 +9,6 @@ public enum TypeOfRequest {
 
 final class ServiceProvider: NSObject {
     
-    //MARK: - SINGLETON FOR SHARED SERVICES
     static let shared = ServiceProvider()
     
     func serviceRequest(typeOfRequest: TypeOfRequest, passedParameters : [String : Any]?, endpoint: String, completion: @escaping ([String: Any]?, Error?) -> Void) {
@@ -18,13 +17,14 @@ final class ServiceProvider: NSObject {
         
         if passedParameters != nil {
             parameters = passedParameters!
+        } else {
+            print(Statics.invalidParameters)
+            return
         }
         
         var url : URL = URL(string: "nil")!
-        
-        ///Create global url variable for changes.
-        let globalBackendDomain = "Change this later"
-        url = URL(string: "\(globalBackendDomain)/\(endpoint)")!
+        url = URL(string: "\(Statics.sandboxDomain)\(endpoint)")!
+//        print("ENDPOINT URL - ", url)
         
         let session = URLSession.shared
         var request = URLRequest(url: url)
@@ -36,7 +36,6 @@ final class ServiceProvider: NSObject {
             request.httpMethod = "GET"
         }
         
-        //Only for POST requests.
         if typeOfRequest == .POST {
             do {
                 request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
@@ -47,7 +46,6 @@ final class ServiceProvider: NSObject {
             }
         }
         
-        ///Heroku Headers
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         request.addValue("application/json", forHTTPHeaderField: "Accept")
         
@@ -64,27 +62,121 @@ final class ServiceProvider: NSObject {
             }
             
             do {
-                guard let json = try JSONSerialization.jsonObject(with: data, options: .mutableContainers) as? [String: Any] else {
+                guard let json = try JSONSerialization.jsonObject(with: data, options: .allowFragments) as? [String: Any] else {
                     completion(nil, NSError(domain: "invalidJSONTypeError", code: -100009, userInfo: nil))
                     return
                 }
                 
-                let responseJSON = try? JSONSerialization.jsonObject(with: data, options: [])
-                if let responseJSON = responseJSON as? [String: Any] {
-                    print("Response is: ", responseJSON)
-                }
-                
-                print("success on the return")
-                
-                //Success completion for a level 200 status code.
                 completion(json, nil)
                 
             } catch let error {
-                print("error - 4: \(error)")
                 print(error.localizedDescription)
                 completion(nil, error)
             }
         })
         task.resume()
+    }
+}
+
+extension ServiceProvider {
+    func serverSignUp(with values: [String : Any]) {
+        
+//        Key/Value Example
+//        ["email" : "me@cryptobyte.com"]
+        
+        ServiceProvider.shared.serviceRequest(typeOfRequest: .POST, passedParameters: values, endpoint: Statics.signUpEndpoint) { JSON, error in
+            
+            if error != nil {
+                if let error = error {
+                    print(error.localizedDescription)
+                }
+                return
+            }
+            
+            if let JSON = JSON {
+                let errors = JSON["errors"] as? [String] ?? ["nil"]
+                let returnedData = JSON["data"] as? String ?? "This is a hard NULL from the server"
+                
+                if errors != [] {
+                    guard let error = errors.first else { return }
+                    print("ERROR - ", error)
+                    return
+                }
+                
+                print("SUCCESSFUL SIGN UP!")
+                print("JSON Response - ", returnedData)
+                
+            } else {
+                print(Statics.JSONFailedToLoad)
+            }
+        }
+    }
+    
+    func serverSignIn(with values: [String : Any]) {
+        
+//        Key/Value Example
+//        ["email" : "me@cryptobyte.dev"]
+        
+        ServiceProvider.shared.serviceRequest(typeOfRequest: .POST, passedParameters: values, endpoint: Statics.signInEndpoint) { JSON, error in
+            
+            if error != nil {
+                if let error = error {
+                    print(error.localizedDescription)
+                }
+                return
+            }
+            
+            if let JSON = JSON {
+                let errors = JSON["errors"] as? [String] ?? ["nil"]
+                let returnedData = JSON["data"] as? String ?? "This is a hard NULL from the server"
+                
+                if errors != [] {
+                    print(Statics.unknownError)
+                    return
+                }
+                
+                print(returnedData)
+                
+                
+            } else {
+                print(Statics.JSONFailedToLoad)
+            }
+        }
+    }
+    
+    func checkUsernameAvailability(for values: [String : Any]) {
+        
+//        Key/Value Example
+//        ["username" : "Cryptobyte"]
+        
+        ServiceProvider.shared.serviceRequest(typeOfRequest: .GET, passedParameters: values, endpoint: Statics.userNameAvailability) { JSON, error in
+            
+            if error != nil {
+                if let error = error {
+                    print(error.localizedDescription)
+                }
+                
+                return
+            }
+            
+            if let JSON = JSON {
+                let errors = JSON["errors"] as? [String] ?? ["nil"]
+                let returnedData = JSON["data"] as? Bool ?? false
+                
+                if errors != [] {
+                    print(Statics.unknownError)
+                    return
+                }
+                
+                if returnedData == true {
+                    print("Username is available")
+                } else {
+                    print("Username is unavailable")
+                }
+                
+            } else {
+                print(Statics.JSONFailedToLoad)
+            }
+        }
     }
 }

@@ -27,6 +27,8 @@
 		CA55DF4529B27CAC00C54B35 /* ServiceSingleton.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA55DF4429B27CAC00C54B35 /* ServiceSingleton.swift */; };
 		CA55DF4729B8DE3A00C54B35 /* KwiksVideoPlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA55DF4629B8DE3A00C54B35 /* KwiksVideoPlayerController.swift */; };
 		CA55DF4929B8DE4A00C54B35 /* KwiksLiveVideoPlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA55DF4829B8DE4A00C54B35 /* KwiksLiveVideoPlayerController.swift */; };
+		CA55DF4B29BA268100C54B35 /* Statics.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA55DF4A29BA268000C54B35 /* Statics.swift */; };
+		CA55DF4D29BAC9A000C54B35 /* KwiksTestVideo.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CA55DF4C29BAC9A000C54B35 /* KwiksTestVideo.mp4 */; };
 		CAA90C7C2994171C0013A654 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA90C7B2994171C0013A654 /* AppDelegate.swift */; };
 		CAA90C7E2994171C0013A654 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA90C7D2994171C0013A654 /* SceneDelegate.swift */; };
 		CAA90C802994171C0013A654 /* DecisionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA90C7F2994171C0013A654 /* DecisionController.swift */; };
@@ -88,6 +90,8 @@
 		CA55DF4429B27CAC00C54B35 /* ServiceSingleton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServiceSingleton.swift; sourceTree = "<group>"; };
 		CA55DF4629B8DE3A00C54B35 /* KwiksVideoPlayerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KwiksVideoPlayerController.swift; sourceTree = "<group>"; };
 		CA55DF4829B8DE4A00C54B35 /* KwiksLiveVideoPlayerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KwiksLiveVideoPlayerController.swift; sourceTree = "<group>"; };
+		CA55DF4A29BA268000C54B35 /* Statics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Statics.swift; sourceTree = "<group>"; };
+		CA55DF4C29BAC9A000C54B35 /* KwiksTestVideo.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = KwiksTestVideo.mp4; sourceTree = "<group>"; };
 		CAA90C782994171C0013A654 /* Project-Kwicky.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Project-Kwicky.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAA90C7B2994171C0013A654 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CAA90C7D2994171C0013A654 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -226,6 +230,7 @@
 		CAA90C92299419890013A654 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				CA55DF4C29BAC9A000C54B35 /* KwiksTestVideo.mp4 */,
 				CAA90C9E29941DA40013A654 /* Fonts */,
 				CAA90C842994171E0013A654 /* Assets.xcassets */,
 			);
@@ -245,6 +250,7 @@
 				CA55DF2329A7E8CF00C54B35 /* UILabel+Ext.swift */,
 				CA55DF4229B17FAA00C54B35 /* UITextField+Ext.swift */,
 				CA55DF4429B27CAC00C54B35 /* ServiceSingleton.swift */,
+				CA55DF4A29BA268000C54B35 /* Statics.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -384,6 +390,7 @@
 				CAA90C852994171E0013A654 /* Assets.xcassets in Resources */,
 				CAA90CB22994205B0013A654 /* Inter-Thin.ttf in Resources */,
 				CABAA2EE29942F9300C5EBC6 /* segoeui.ttf in Resources */,
+				CA55DF4D29BAC9A000C54B35 /* KwiksTestVideo.mp4 in Resources */,
 				CABAA2F029942FCD00C5EBC6 /* segoeui-bold.ttf in Resources */,
 				CAA90CB82994205B0013A654 /* Inter-Medium.ttf in Resources */,
 				CAA90CB72994205B0013A654 /* Inter-Light.ttf in Resources */,
@@ -413,6 +420,7 @@
 				CA55DF4329B17FAA00C54B35 /* UITextField+Ext.swift in Sources */,
 				CABAA30B29A19EB900C5EBC6 /* UIButton+Ext.swift in Sources */,
 				CAA90C7C2994171C0013A654 /* AppDelegate.swift in Sources */,
+				CA55DF4B29BA268100C54B35 /* Statics.swift in Sources */,
 				CAA90C7E2994171C0013A654 /* SceneDelegate.swift in Sources */,
 				CABAA305299BCEE100C5EBC6 /* String+Ext.swift in Sources */,
 				CA55DF3629AF9D7E00C54B35 /* KwiksWallet.swift in Sources */,

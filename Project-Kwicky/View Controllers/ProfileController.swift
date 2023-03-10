@@ -448,6 +448,7 @@ extension ProfileController {
 //MARK: - @objc
 extension ProfileController {
     @objc func didTapBack() {
+        self.dismiss(animated: true)
         self.navigationController?.popViewController(animated: true)
     }
     

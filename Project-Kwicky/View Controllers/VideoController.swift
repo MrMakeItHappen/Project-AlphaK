@@ -8,45 +8,26 @@
 import UIKit
 
 final class VideoController: UIViewController {
-    private let tempImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .scaleAspectFit
-        imageView.isUserInteractionEnabled = false
-        imageView.backgroundColor = .white
-        imageView.layer.masksToBounds = true
-        imageView.layer.cornerRadius = 0
-        imageView.height(30)
-        imageView.width(30)
-        
-        let image = UIImage(named: "TempLogoIcon")?.withTintColor(.kwiksGreen)
-        imageView.image = image
-        return imageView
+    private let tabBarExtension: UIView = {
+        let view = UIView(frame: .zero)
+        view.isUserInteractionEnabled = false
+        view.backgroundColor = UIColor(red: 0.090, green: 0.090, blue: 0.090, alpha: 1)
+        view.height(6)
+        return view
     }()
     
-    private let tempLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Coming Soon"
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.backgroundColor = .clear
-        label.font = UIFont.segoeUIRegular(size: 16)
-        label.numberOfLines = 1
-        label.adjustsFontSizeToFitWidth = true
-        label.textAlignment = .left
-        label.textColor = UIColor.kwiksTextBlack
-        return label
-    }()
-
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
-        
-        self.view.addSubview(self.tempImageView)
-        self.tempImageView.centerXToSuperview()
-        self.tempImageView.centerYToSuperview(offset: -10)
-        
-        self.view.addSubview(self.tempLabel)
-        self.tempLabel.topToBottom(of: self.tempImageView, offset: 10)
-        self.tempLabel.centerX(to: self.tempImageView)
+        self.layoutUI()
+    }
+}
+//MARK: - Layout UI
+extension VideoController {
+    private func layoutUI() {
+        self.view.addSubview(self.tabBarExtension)
+        self.tabBarExtension.bottomToSuperview(usingSafeArea: true)
+        self.tabBarExtension.leftToSuperview()
+        self.tabBarExtension.rightToSuperview()
     }
 }

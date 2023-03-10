@@ -456,6 +456,7 @@ extension ProfileController {
         let imageVC = UploadImageController()
         imageVC.presentingController = self
         imageVC.modalPresentationStyle = .overFullScreen
+        
         self.navigationController?.present(imageVC, animated: true)
     }
     
@@ -468,6 +469,7 @@ extension ProfileController {
         let navVC = UINavigationController(rootViewController: settingsVC)
         navVC.modalPresentationStyle = .popover
         navVC.isNavigationBarHidden = true
+        
         self.navigationController?.present(navVC, animated: true)
     }
     

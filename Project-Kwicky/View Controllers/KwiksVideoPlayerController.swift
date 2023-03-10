@@ -10,8 +10,7 @@ import AVFoundation
 
 final class KwiksVideoPlayerController: UIViewController {
     var kwiksVideo: KwiksVideo!
-    var player: AVPlayer?
-    
+    private var player: AVPlayer?
     private var playerDidFinishObserver: NSObjectProtocol?
     
     private lazy var customBackButton: UIButton = {
@@ -212,6 +211,135 @@ final class KwiksVideoPlayerController: UIViewController {
         return progressView
     }()
     
+    private let videoBackgroundMusicImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.backgroundColor = .clear
+        imageView.contentMode = .scaleAspectFill
+        imageView.isUserInteractionEnabled = false
+        imageView.backgroundColor = .clear
+        imageView.layer.masksToBounds = true
+        imageView.layer.cornerRadius = 7
+        imageView.layer.borderColor = UIColor.white.cgColor
+        imageView.layer.borderWidth = 2
+        imageView.height(33)
+        imageView.width(33)
+        
+        let image = UIImage(named: "VideoSoundPlaceholderImage")
+        imageView.image = image
+        return imageView
+    }()
+    
+    private let hiddenMusicButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.layer.masksToBounds = true
+        button.tintColor = UIColor.clear
+        button.backgroundColor = UIColor.clear
+        return button
+    }()
+    
+    private let shareVideoImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.backgroundColor = .clear
+        imageView.contentMode = .scaleAspectFit
+        imageView.isUserInteractionEnabled = false
+        imageView.backgroundColor = .clear
+        imageView.layer.masksToBounds = true
+        imageView.height(33)
+        imageView.width(33)
+        
+        let image = UIImage(named: "ShareIcon")
+        imageView.image = image
+        return imageView
+    }()
+    
+    private let hiddenShareButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.layer.masksToBounds = true
+        button.tintColor = UIColor.clear
+        button.backgroundColor = UIColor.clear
+        return button
+    }()
+    
+    private let commentCountLabel: UILabel = {
+        let label = UILabel()
+        label.text = "999K"
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.backgroundColor = .clear
+        label.font = UIFont.segoeUISemiBold(size: 13)
+        label.numberOfLines = 1
+        label.adjustsFontSizeToFitWidth = true
+        label.textAlignment = .left
+        label.textColor = UIColor.white
+        return label
+    }()
+    
+    private let commentImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.backgroundColor = .clear
+        imageView.contentMode = .scaleAspectFit
+        imageView.isUserInteractionEnabled = false
+        imageView.backgroundColor = .clear
+        imageView.layer.masksToBounds = true
+        imageView.height(33)
+        imageView.width(33)
+        
+        let image = UIImage(named: "CommentIcon")
+        imageView.image = image
+        return imageView
+    }()
+    
+    private let hiddenCommentButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.layer.masksToBounds = true
+        button.tintColor = UIColor.clear
+        button.backgroundColor = UIColor.clear
+        return button
+    }()
+    
+    private let likeCountLabel: UILabel = {
+        let label = UILabel()
+        label.text = "999M"
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.backgroundColor = .clear
+        label.font = UIFont.segoeUISemiBold(size: 13)
+        label.numberOfLines = 1
+        label.adjustsFontSizeToFitWidth = true
+        label.textAlignment = .left
+        label.textColor = UIColor.white
+        return label
+    }()
+    
+    private let likeImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.backgroundColor = .clear
+        imageView.contentMode = .scaleAspectFit
+        imageView.isUserInteractionEnabled = false
+        imageView.backgroundColor = .clear
+        imageView.layer.masksToBounds = true
+        imageView.height(33)
+        imageView.width(33)
+        
+        let image = UIImage(named: "LikeIcon")
+        imageView.image = image
+        return imageView
+    }()
+    
+    private let hiddenLikeButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.layer.masksToBounds = true
+        button.tintColor = UIColor.clear
+        button.backgroundColor = UIColor.clear
+        return button
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configure()
@@ -232,8 +360,14 @@ extension KwiksVideoPlayerController {
         self.progressView.progress = 0.0
         
         self.profileButton.addTarget(self, action: #selector(didTapProfile), for: .touchDown)
+        
         self.hiddenEarnedAmountButton.addTarget(self, action: #selector(didTapEarnedAmount), for: .touchDown)
         self.hiddenStatsButton.addTarget(self, action: #selector(didTapStats), for: .touchDown)
+        
+        self.hiddenMusicButton.addTarget(self, action: #selector(didTapBackgroundMusic), for: .touchDown)
+        self.hiddenShareButton.addTarget(self, action: #selector(didTapShare), for: .touchDown)
+        self.hiddenCommentButton.addTarget(self, action: #selector(didTapComment), for: .touchDown)
+        self.hiddenLikeButton.addTarget(self, action: #selector(didTapLike), for: .touchDown)
         
         guard let viewers = self.kwiksVideo.viewers else {
             self.viewCountLabel.text = "🔥🔥🔥"
@@ -319,6 +453,54 @@ extension KwiksVideoPlayerController {
         self.progressView.bottom(to: self.tabBarExtension, offset: -20)
         self.progressView.leftToSuperview(offset: 30)
         self.progressView.rightToSuperview(offset: -30)
+        
+        self.view.addSubview(self.videoBackgroundMusicImageView)
+        self.videoBackgroundMusicImageView.bottomToTop(of: self.progressView, offset: -25)
+        self.videoBackgroundMusicImageView.rightToSuperview(offset: -36)
+        
+        self.view.addSubview(self.hiddenMusicButton)
+        self.hiddenMusicButton.top(to: self.videoBackgroundMusicImageView, offset: -2)
+        self.hiddenMusicButton.right(to: self.videoBackgroundMusicImageView, offset: 2)
+        self.hiddenMusicButton.left(to: self.videoBackgroundMusicImageView, offset: -2)
+        self.hiddenMusicButton.bottom(to: self.videoBackgroundMusicImageView, offset: 2)
+        
+        self.view.addSubview(self.shareVideoImageView)
+        self.shareVideoImageView.bottomToTop(of: self.videoBackgroundMusicImageView, offset: -30)
+        self.shareVideoImageView.centerX(to: self.videoBackgroundMusicImageView)
+        
+        self.view.addSubview(self.hiddenShareButton)
+        self.hiddenShareButton.top(to: self.shareVideoImageView, offset: -2)
+        self.hiddenShareButton.right(to: self.shareVideoImageView, offset: 2)
+        self.hiddenShareButton.left(to: self.shareVideoImageView, offset: -2)
+        self.hiddenShareButton.bottom(to: self.shareVideoImageView, offset: 2)
+        
+        self.view.addSubview(self.commentCountLabel)
+        self.commentCountLabel.bottomToTop(of: self.shareVideoImageView, offset: -30)
+        self.commentCountLabel.centerX(to: self.videoBackgroundMusicImageView)
+        
+        self.view.addSubview(self.commentImageView)
+        self.commentImageView.bottomToTop(of: self.commentCountLabel, offset: -8)
+        self.commentImageView.centerX(to: self.videoBackgroundMusicImageView)
+        
+        self.view.addSubview(self.hiddenCommentButton)
+        self.hiddenCommentButton.top(to: self.commentImageView, offset: -2)
+        self.hiddenCommentButton.right(to: self.commentImageView, offset: 2)
+        self.hiddenCommentButton.left(to: self.commentImageView, offset: -2)
+        self.hiddenCommentButton.bottom(to: self.commentCountLabel, offset: 2)
+        
+        self.view.addSubview(self.likeCountLabel)
+        self.likeCountLabel.bottomToTop(of: self.commentImageView, offset: -30)
+        self.likeCountLabel.centerX(to: self.videoBackgroundMusicImageView)
+        
+        self.view.addSubview(self.likeImageView)
+        self.likeImageView.bottomToTop(of: self.likeCountLabel, offset: -8)
+        self.likeImageView.centerX(to: self.videoBackgroundMusicImageView)
+        
+        self.view.addSubview(self.hiddenLikeButton)
+        self.hiddenLikeButton.top(to: self.likeImageView, offset: -2)
+        self.hiddenLikeButton.right(to: self.likeImageView, offset: 2)
+        self.hiddenLikeButton.left(to: self.likeImageView, offset: -2)
+        self.hiddenLikeButton.bottom(to: self.likeCountLabel, offset: 2)
     }
 }
 //MARK: - Helpers
@@ -392,6 +574,26 @@ extension KwiksVideoPlayerController {
     }
     
     @objc func didTapStats() {
+        print(#function)
+    }
+    
+    @objc func didTapBackgroundMusic() {
+        print(#function)
+    }
+    
+    @objc func didTapShare() {
+        print(#function)
+    }
+    
+    @objc func didTapComment() {
+        print(#function)
+    }
+    
+    @objc func didTapLike() {
+        print(#function)
+    }
+    
+    @objc func didTapFollow() {
         print(#function)
     }
 }

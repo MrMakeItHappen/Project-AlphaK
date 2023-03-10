@@ -19,6 +19,7 @@ struct KwiksVideo {
     var songTitle: String?
     var duration: Int?
     var isLive: Bool?
+    var isLikedByCurrentUser: Bool?
     var viewers: Int?
     var hashtags: [String]?
     var analytics: KwiksVideoAnalytics?

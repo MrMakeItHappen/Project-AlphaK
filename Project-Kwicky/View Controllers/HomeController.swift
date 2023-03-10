@@ -648,20 +648,20 @@ extension HomeController: UICollectionViewDelegate, UICollectionViewDataSource {
         switch self.feedType {
             
         case .forYou:
-            let video = self.forYouExampleVideos[indexPath.item]
-            videoPlayerVC.kwiksVideo = video
+            let forYouVideo = self.forYouExampleVideos[indexPath.item]
+            videoPlayerVC.kwiksVideo = forYouVideo
             
         case .friends:
-            let video = self.followingExampleVideos[indexPath.item]
-            videoPlayerVC.kwiksVideo = video
+            let friendVideo = self.followingExampleVideos[indexPath.item]
+            videoPlayerVC.kwiksVideo = friendVideo
             
         case .popular:
-            let video = self.popularExampleVideos[indexPath.item]
-            videoPlayerVC.kwiksVideo = video
+            let popularVideo = self.popularExampleVideos[indexPath.item]
+            videoPlayerVC.kwiksVideo = popularVideo
             
         case .live:
-            let video = self.liveExampleVideos[indexPath.item]
-            videoPlayerVC.kwiksVideo = video
+            let liveVideo = self.liveExampleVideos[indexPath.item]
+            videoPlayerVC.kwiksVideo = liveVideo
         }
         
         videoPlayerVC.modalPresentationStyle = .overCurrentContext

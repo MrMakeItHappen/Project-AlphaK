@@ -486,6 +486,7 @@ extension HomeController {
 extension HomeController {
     private func configure() {
         self.view.backgroundColor = .white
+        self.tabBarController?.delegate = UIApplication.shared.delegate as? UITabBarControllerDelegate
         
 //        self.hiddenEarnedAmountButton.addTarget(self, action: #selector(didTapEarnedAmount), for: .touchUpInside)
         self.profileButton.addTarget(self, action: #selector(didTapProfile), for: .touchUpInside)

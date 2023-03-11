@@ -8,6 +8,20 @@
 import UIKit
 
 final class VideoController: UIViewController {
+    private let effectsExamples = Effect.effectExamples
+    
+    var isShowingOptions = false
+    var mainContainerBottomConstraint: NSLayoutConstraint?
+    
+    private let containerView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.clipsToBounds = true
+        view.backgroundColor = UIColor.black
+        view.roundCorners(corners: [.bottomLeft, .bottomRight], radius: 40)
+        return view
+    }()
+    
     private let closeButton: UIButton = {
         let button = UIButton(type: .system)
         button.backgroundColor = .clear
@@ -116,6 +130,15 @@ final class VideoController: UIViewController {
         label.textAlignment = .left
         label.textColor = UIColor(hexString: "#4F4F4F", alpha: 1)
         return label
+    }()
+    
+    private let hiddenTemplatesButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.layer.masksToBounds = true
+        button.tintColor = UIColor.clear
+        button.backgroundColor = UIColor.clear
+        return button
     }()
     
     private let recordIconImageView: UIImageView = {
@@ -407,6 +430,26 @@ final class VideoController: UIViewController {
         return button
     }()
     
+    private lazy var effectsCollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        layout.itemSize = CGSize(width: 60, height: 60)
+        layout.minimumInteritemSpacing = 12
+        layout.minimumLineSpacing = 12
+        
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.backgroundColor = .clear
+        collectionView.isScrollEnabled = true
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.register(EffectsCollectionViewCell.self, forCellWithReuseIdentifier: EffectsCollectionViewCell.identifier)
+        collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 25)
+        
+        return collectionView
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configure()
@@ -418,12 +461,15 @@ final class VideoController: UIViewController {
 //MARK: - Configure View Controller
 extension VideoController {
     private func configure() {
-        self.view.backgroundColor = .black
+        self.view.backgroundColor = UIColor(hexString: "#202020")
+        
         self.closeButton.addTarget(self, action: #selector(didTapClose), for: .touchUpInside)
         self.cameraLightButton.addTarget(self, action: #selector(didTapCameraLight), for: .touchDown)
         
         self.hiddenAddMusicButton.addTarget(self, action: #selector(didTapAddMusic), for: .touchDown)
         self.hiddenRecordButton.addTarget(self, action: #selector(didTapRecord), for: .touchDown)
+        
+        self.hiddenTemplatesButton.addTarget(self, action: #selector(didTapTemplates), for: .touchDown)
         
         self.hiddenUnknownShapeButton.addTarget(self, action: #selector(didTapUnknown), for: .touchDown)
         self.hiddenShapeButton.addTarget(self, action: #selector(didTapShapes), for: .touchDown)
@@ -438,7 +484,21 @@ extension VideoController {
 //MARK: - Layout UI
 extension VideoController {
     private func layoutTopUI() {
-        self.view.addSubview(self.addMusicContainerView)
+        self.view.addSubview(self.containerView)
+        self.containerView.topToSuperview()
+        self.containerView.leftToSuperview()
+        self.containerView.rightToSuperview()
+        self.mainContainerBottomConstraint = self.containerView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 0)
+        self.mainContainerBottomConstraint?.isActive = true
+        
+        self.view.addSubview(self.effectsCollectionView)
+        self.view.sendSubviewToBack(self.effectsCollectionView)
+        self.effectsCollectionView.topToBottom(of: self.containerView, offset: 10)
+        self.effectsCollectionView.leftToSuperview(offset: 25)
+        self.effectsCollectionView.rightToSuperview()
+        self.effectsCollectionView.bottomToSuperview(usingSafeArea: true)
+        
+        self.containerView.addSubview(self.addMusicContainerView)
         self.addMusicContainerView.topToSuperview(usingSafeArea: true)
         self.addMusicContainerView.centerXToSuperview()
         
@@ -450,139 +510,145 @@ extension VideoController {
         self.addMusicLabel.centerYToSuperview()
         self.addMusicLabel.leftToRight(of: self.addMusicIconImageView, offset: 12)
         
-        self.view.addSubview(self.hiddenAddMusicButton)
+        self.containerView.addSubview(self.hiddenAddMusicButton)
         self.hiddenAddMusicButton.top(to: self.addMusicContainerView)
         self.hiddenAddMusicButton.bottom(to: self.addMusicContainerView)
         self.hiddenAddMusicButton.left(to: self.addMusicContainerView)
         self.hiddenAddMusicButton.right(to: self.addMusicContainerView)
         
-        self.view.addSubview(self.closeButton)
+        self.containerView.addSubview(self.closeButton)
         self.closeButton.centerY(to: self.addMusicContainerView)
         self.closeButton.rightToLeft(of: self.addMusicContainerView, offset: -80)
         
-        self.view.addSubview(self.cameraLightButton)
+        self.containerView.addSubview(self.cameraLightButton)
         self.cameraLightButton.centerY(to: self.addMusicContainerView)
         self.cameraLightButton.leftToRight(of: self.addMusicContainerView, offset: 80)
     }
     
     private func layoutBottomUI() {
-        self.view.addSubview(self.cameraSelectionView)
-        self.cameraSelectionView.bottomToSuperview(usingSafeArea: true)
+        self.containerView.addSubview(self.cameraSelectionView)
+        self.cameraSelectionView.bottomToSuperview(offset: -26)
         self.cameraSelectionView.centerXToSuperview()
         
-        self.view.addSubview(self.cameraLabel)
+        self.containerView.addSubview(self.cameraLabel)
         self.cameraLabel.centerXToSuperview()
         self.cameraLabel.bottomToTop(of: self.cameraSelectionView, offset: -10)
         
-        self.view.addSubview(self.templatesLabel)
+        self.containerView.addSubview(self.templatesLabel)
         self.templatesLabel.leftToRight(of: self.cameraLabel, offset: 22)
         self.templatesLabel.centerY(to: self.cameraLabel)
         
-        self.view.addSubview(self.recordIconImageView)
+        self.containerView.addSubview(self.hiddenTemplatesButton)
+        self.hiddenTemplatesButton.top(to: self.templatesLabel, offset: -2)
+        self.hiddenTemplatesButton.right(to: self.templatesLabel, offset: 2)
+        self.hiddenTemplatesButton.left(to: self.templatesLabel, offset: -2)
+        self.hiddenTemplatesButton.bottom(to: self.templatesLabel, offset: 2)
+        
+        self.containerView.addSubview(self.recordIconImageView)
         self.recordIconImageView.centerXToSuperview()
         self.recordIconImageView.bottomToTop(of: self.cameraLabel, offset: -20)
         
-        self.view.addSubview(self.hiddenRecordButton)
+        self.containerView.addSubview(self.hiddenRecordButton)
         self.hiddenRecordButton.top(to: self.recordIconImageView, offset: -2)
         self.hiddenRecordButton.right(to: self.recordIconImageView, offset: 2)
         self.hiddenRecordButton.left(to: self.recordIconImageView, offset: -2)
         self.hiddenRecordButton.bottom(to: self.recordIconImageView, offset: 2)
         
-        self.view.addSubview(self.effectsIconImageView)
+        self.containerView.addSubview(self.effectsIconImageView)
         self.effectsIconImageView.centerY(to: self.recordIconImageView)
         self.effectsIconImageView.rightToLeft(of: self.recordIconImageView, offset: -50)
         
-        self.view.addSubview(self.effectsButton)
+        self.containerView.addSubview(self.effectsButton)
         self.effectsButton.top(to: self.effectsIconImageView, offset: -15)
         self.effectsButton.right(to: self.effectsIconImageView, offset: 15)
         self.effectsButton.left(to: self.effectsIconImageView, offset: -15)
         self.effectsButton.bottom(to: self.effectsIconImageView, offset: 15)
         
-        self.view.addSubview(self.effectsLabel)
+        self.containerView.addSubview(self.effectsLabel)
         self.effectsLabel.centerX(to: self.effectsIconImageView)
         self.effectsLabel.topToBottom(of: self.effectsButton, offset: 5)
         
-        self.view.addSubview(self.uploadIconImageView)
+        self.containerView.addSubview(self.uploadIconImageView)
         self.uploadIconImageView.centerY(to: self.recordIconImageView)
         self.uploadIconImageView.leftToRight(of: self.recordIconImageView, offset: 50)
         
-        self.view.addSubview(self.uploadVideoButton)
+        self.containerView.addSubview(self.uploadVideoButton)
         self.uploadVideoButton.top(to: self.uploadIconImageView, offset: -15)
         self.uploadVideoButton.right(to: self.uploadIconImageView, offset: 15)
         self.uploadVideoButton.left(to: self.uploadIconImageView, offset: -15)
         self.uploadVideoButton.bottom(to: self.uploadIconImageView, offset: 15)
         
-        self.view.addSubview(self.uploadLabel)
+        self.containerView.addSubview(self.uploadLabel)
         self.uploadLabel.centerX(to: self.uploadIconImageView)
         self.uploadLabel.topToBottom(of: self.uploadVideoButton, offset: 5)
     }
     
     private func layoutLeadingUI() {
-        self.view.addSubview(self.unknownShapeLabel)
+        self.containerView.addSubview(self.unknownShapeLabel)
         self.unknownShapeLabel.leftToSuperview(offset: 23)
         self.unknownShapeLabel.bottomToTop(of: self.hiddenRecordButton, offset: -55)
         
-        self.view.addSubview(self.unknownShapeIconImageView)
+        self.containerView.addSubview(self.unknownShapeIconImageView)
         self.unknownShapeIconImageView.bottomToTop(of: self.unknownShapeLabel, offset: -8)
         self.unknownShapeIconImageView.centerX(to: self.unknownShapeLabel)
         
-        self.view.addSubview(self.hiddenUnknownShapeButton)
+        self.containerView.addSubview(self.hiddenUnknownShapeButton)
         self.hiddenUnknownShapeButton.top(to: self.unknownShapeIconImageView, offset: -2)
         self.hiddenUnknownShapeButton.right(to: self.unknownShapeLabel, offset: 2)
         self.hiddenUnknownShapeButton.left(to: self.unknownShapeLabel, offset: -2)
         self.hiddenUnknownShapeButton.bottom(to: self.unknownShapeLabel, offset: 2)
         
-        self.view.addSubview(self.shapeLabel)
+        self.containerView.addSubview(self.shapeLabel)
         self.shapeLabel.left(to: self.unknownShapeLabel)
         self.shapeLabel.bottomToTop(of: self.unknownShapeIconImageView, offset: -28)
         
-        self.view.addSubview(self.shapeIconImageView)
+        self.containerView.addSubview(self.shapeIconImageView)
         self.shapeIconImageView.bottomToTop(of: self.shapeLabel, offset: -8)
         self.shapeIconImageView.centerX(to: self.unknownShapeLabel)
         
-        self.view.addSubview(self.hiddenShapeButton)
+        self.containerView.addSubview(self.hiddenShapeButton)
         self.hiddenShapeButton.top(to: self.shapeIconImageView, offset: -2)
         self.hiddenShapeButton.right(to: self.shapeLabel, offset: 2)
         self.hiddenShapeButton.left(to: self.shapeLabel, offset: -2)
         self.hiddenShapeButton.bottom(to: self.shapeLabel, offset: 2)
         
-        self.view.addSubview(self.beautifyLabel)
+        self.containerView.addSubview(self.beautifyLabel)
         self.beautifyLabel.centerX(to: self.unknownShapeLabel)
         self.beautifyLabel.bottomToTop(of: self.shapeIconImageView, offset: -28)
         
-        self.view.addSubview(self.beautifyIconImageView)
+        self.containerView.addSubview(self.beautifyIconImageView)
         self.beautifyIconImageView.bottomToTop(of: self.beautifyLabel, offset: -8)
         self.beautifyIconImageView.centerX(to: self.unknownShapeLabel)
         
-        self.view.addSubview(self.hiddenBeautifyButton)
+        self.containerView.addSubview(self.hiddenBeautifyButton)
         self.hiddenBeautifyButton.top(to: self.beautifyIconImageView, offset: -2)
         self.hiddenBeautifyButton.right(to: self.beautifyLabel, offset: 2)
         self.hiddenBeautifyButton.left(to: self.beautifyLabel, offset: -2)
         self.hiddenBeautifyButton.bottom(to: self.beautifyLabel, offset: 2)
         
-        self.view.addSubview(self.timerLabel)
+        self.containerView.addSubview(self.timerLabel)
         self.timerLabel.centerX(to: self.unknownShapeLabel)
         self.timerLabel.bottomToTop(of: self.beautifyIconImageView, offset: -28)
         
-        self.view.addSubview(self.timerIconImageView)
+        self.containerView.addSubview(self.timerIconImageView)
         self.timerIconImageView.bottomToTop(of: self.timerLabel, offset: -8)
         self.timerIconImageView.centerX(to: self.unknownShapeLabel)
         
-        self.view.addSubview(self.hiddenTimerButton)
+        self.containerView.addSubview(self.hiddenTimerButton)
         self.hiddenTimerButton.top(to: self.timerIconImageView, offset: -2)
         self.hiddenTimerButton.right(to: self.timerLabel, offset: 2)
         self.hiddenTimerButton.left(to: self.timerLabel, offset: -2)
         self.hiddenTimerButton.bottom(to: self.timerLabel, offset: 2)
         
-        self.view.addSubview(self.flipLabel)
+        self.containerView.addSubview(self.flipLabel)
         self.flipLabel.centerX(to: self.unknownShapeLabel)
         self.flipLabel.bottomToTop(of: self.timerIconImageView, offset: -28)
         
-        self.view.addSubview(self.flipIconImageView)
+        self.containerView.addSubview(self.flipIconImageView)
         self.flipIconImageView.bottomToTop(of: self.flipLabel, offset: -8)
         self.flipIconImageView.centerX(to: self.unknownShapeLabel)
         
-        self.view.addSubview(self.hiddenFlipButton)
+        self.containerView.addSubview(self.hiddenFlipButton)
         self.hiddenFlipButton.top(to: self.flipIconImageView, offset: -2)
         self.hiddenFlipButton.right(to: self.flipLabel, offset: 2)
         self.hiddenFlipButton.left(to: self.flipLabel, offset: -2)
@@ -624,7 +690,59 @@ extension VideoController {
     }
     
     @objc func didTapEffects() {
-        print(#function)
+        isShowingOptions.toggle()
+        
+        if isShowingOptions == true {
+            self.closeButton.alpha = 0
+            self.cameraLightButton.alpha = 0
+            self.addMusicContainerView.alpha = 0
+            
+            self.closeButton.isUserInteractionEnabled = false
+            self.cameraLightButton.isUserInteractionEnabled = false
+            self.hiddenAddMusicButton.isUserInteractionEnabled = false
+            
+            self.containerView.layoutIfNeeded()
+            self.mainContainerBottomConstraint?.constant = -126
+            
+            UIView.animate(withDuration: 0.33) {
+                self.containerView.layoutIfNeeded()
+            }
+            
+            UIView.animate(withDuration: 0.15, delay: 0.1, options: .curveLinear, animations: {
+                self.effectsIconImageView.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
+                
+            }) { (success) in
+                UIView.animate(withDuration: 0.15, delay: 0, options: .curveLinear, animations: {
+                    self.effectsIconImageView.transform = .identity
+                    self.effectsIconImageView.image = UIImage(named: "SelectedEffectsIcon")
+                    self.effectsButton.backgroundColor = UIColor(red: 0.604, green: 0.906, blue: 0.412, alpha: 0.21)
+                }, completion: nil)
+            }
+            
+        } else {
+            self.closeButton.isUserInteractionEnabled = true
+            self.cameraLightButton.isUserInteractionEnabled = true
+            self.hiddenAddMusicButton.isUserInteractionEnabled = true
+            
+            UIView.animate(withDuration: 0.15, delay: 0.1, options: .curveLinear, animations: {
+                self.effectsIconImageView.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
+                
+            }) { (success) in
+                UIView.animate(withDuration: 0.15, delay: 0, options: .curveLinear, animations: {
+                    self.effectsIconImageView.transform = .identity
+                    self.effectsIconImageView.image = UIImage(named: "EffectsIcon")
+                    self.effectsButton.backgroundColor = UIColor.clear
+                }, completion: { _ in
+                    UIView.animate(withDuration: 0.33) {
+                        self.closeButton.alpha = 1
+                        self.cameraLightButton.alpha = 1
+                        self.addMusicContainerView.alpha = 1
+                        
+                        self.mainContainerBottomConstraint?.constant = 0
+                    }
+                })
+            }
+        }
     }
     
     @objc func didTapUpload() {
@@ -641,5 +759,18 @@ extension VideoController {
     
     @objc func didTapTemplates() {
         print(#function)
+    }
+}
+//MARK: - Collectionview DataSource & Delegate
+extension VideoController: UICollectionViewDataSource, UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.effectsExamples.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EffectsCollectionViewCell.identifier, for: indexPath) as! EffectsCollectionViewCell
+        let effect = self.effectsExamples[indexPath.item]
+        cell.configure(with: effect)
+        return cell
     }
 }

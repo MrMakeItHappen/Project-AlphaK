@@ -29,6 +29,8 @@
 		CA55DF4929B8DE4A00C54B35 /* KwiksLiveVideoPlayerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA55DF4829B8DE4A00C54B35 /* KwiksLiveVideoPlayerController.swift */; };
 		CA55DF4B29BA268100C54B35 /* Statics.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA55DF4A29BA268000C54B35 /* Statics.swift */; };
 		CA55DF4D29BAC9A000C54B35 /* KwiksTestVideo.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CA55DF4C29BAC9A000C54B35 /* KwiksTestVideo.mp4 */; };
+		CA55DF4F29BCF7F100C54B35 /* EffectsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA55DF4E29BCF7F100C54B35 /* EffectsCollectionViewCell.swift */; };
+		CA55DF5129BCFA7900C54B35 /* Effect.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA55DF5029BCFA7900C54B35 /* Effect.swift */; };
 		CAA90C7C2994171C0013A654 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA90C7B2994171C0013A654 /* AppDelegate.swift */; };
 		CAA90C7E2994171C0013A654 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA90C7D2994171C0013A654 /* SceneDelegate.swift */; };
 		CAA90C802994171C0013A654 /* DecisionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA90C7F2994171C0013A654 /* DecisionController.swift */; };
@@ -92,6 +94,8 @@
 		CA55DF4829B8DE4A00C54B35 /* KwiksLiveVideoPlayerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KwiksLiveVideoPlayerController.swift; sourceTree = "<group>"; };
 		CA55DF4A29BA268000C54B35 /* Statics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Statics.swift; sourceTree = "<group>"; };
 		CA55DF4C29BAC9A000C54B35 /* KwiksTestVideo.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = KwiksTestVideo.mp4; sourceTree = "<group>"; };
+		CA55DF4E29BCF7F100C54B35 /* EffectsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EffectsCollectionViewCell.swift; sourceTree = "<group>"; };
+		CA55DF5029BCFA7900C54B35 /* Effect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Effect.swift; sourceTree = "<group>"; };
 		CAA90C782994171C0013A654 /* Project-Kwicky.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Project-Kwicky.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAA90C7B2994171C0013A654 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CAA90C7D2994171C0013A654 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -150,6 +154,7 @@
 			children = (
 				CABAA31B29A3104100C5EBC6 /* SettingsCollectionViewCell.swift */,
 				CA55DF3F29B16A1400C54B35 /* ForYouCollectionViewCell.swift */,
+				CA55DF4E29BCF7F100C54B35 /* EffectsCollectionViewCell.swift */,
 			);
 			path = "Collection View Cells";
 			sourceTree = "<group>";
@@ -273,6 +278,7 @@
 				CA55DF3929AF9E9100C54B35 /* KwiksNotification.swift */,
 				CA55DF3B29AF9FBF00C54B35 /* SocialMediaLink.swift */,
 				CA55DF3D29AFA13100C54B35 /* KwiksUserAnalytics.swift */,
+				CA55DF5029BCFA7900C54B35 /* Effect.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -407,10 +413,12 @@
 			files = (
 				CABAA307299D34AA00C5EBC6 /* PinNumberController.swift in Sources */,
 				CABAA31429A2C9B500C5EBC6 /* SearchController.swift in Sources */,
+				CA55DF5129BCFA7900C54B35 /* Effect.swift in Sources */,
 				CABAA2F929945D1C00C5EBC6 /* UIImage+Ext.swift in Sources */,
 				CAA90C802994171C0013A654 /* DecisionController.swift in Sources */,
 				CABAA2FF2998340800C5EBC6 /* SignUpDetailController.swift in Sources */,
 				CABAA31E29A311AC00C5EBC6 /* SettingsItem.swift in Sources */,
+				CA55DF4F29BCF7F100C54B35 /* EffectsCollectionViewCell.swift in Sources */,
 				CA55DF4729B8DE3A00C54B35 /* KwiksVideoPlayerController.swift in Sources */,
 				CA55DF2A29AA966A00C54B35 /* ProfileController.swift in Sources */,
 				CA55DF3A29AF9E9100C54B35 /* KwiksNotification.swift in Sources */,

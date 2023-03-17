@@ -31,6 +31,8 @@
 		CA55DF4D29BAC9A000C54B35 /* KwiksTestVideo.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CA55DF4C29BAC9A000C54B35 /* KwiksTestVideo.mp4 */; };
 		CA55DF4F29BCF7F100C54B35 /* EffectsCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA55DF4E29BCF7F100C54B35 /* EffectsCollectionViewCell.swift */; };
 		CA55DF5129BCFA7900C54B35 /* Effect.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA55DF5029BCFA7900C54B35 /* Effect.swift */; };
+		CA55DF5329BD2AFE00C54B35 /* KwikyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA55DF5229BD2AFE00C54B35 /* KwikyController.swift */; };
+		CA55DF5529C3C54E00C54B35 /* VideoFileSaveController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA55DF5429C3C54E00C54B35 /* VideoFileSaveController.swift */; };
 		CAA90C7C2994171C0013A654 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA90C7B2994171C0013A654 /* AppDelegate.swift */; };
 		CAA90C7E2994171C0013A654 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA90C7D2994171C0013A654 /* SceneDelegate.swift */; };
 		CAA90C802994171C0013A654 /* DecisionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA90C7F2994171C0013A654 /* DecisionController.swift */; };
@@ -96,6 +98,8 @@
 		CA55DF4C29BAC9A000C54B35 /* KwiksTestVideo.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = KwiksTestVideo.mp4; sourceTree = "<group>"; };
 		CA55DF4E29BCF7F100C54B35 /* EffectsCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EffectsCollectionViewCell.swift; sourceTree = "<group>"; };
 		CA55DF5029BCFA7900C54B35 /* Effect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Effect.swift; sourceTree = "<group>"; };
+		CA55DF5229BD2AFE00C54B35 /* KwikyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KwikyController.swift; sourceTree = "<group>"; };
+		CA55DF5429C3C54E00C54B35 /* VideoFileSaveController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoFileSaveController.swift; sourceTree = "<group>"; };
 		CAA90C782994171C0013A654 /* Project-Kwicky.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Project-Kwicky.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAA90C7B2994171C0013A654 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CAA90C7D2994171C0013A654 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -220,6 +224,8 @@
 				CA55DF2D29AC06F600C54B35 /* UploadImageController.swift */,
 				CA55DF4629B8DE3A00C54B35 /* KwiksVideoPlayerController.swift */,
 				CA55DF4829B8DE4A00C54B35 /* KwiksLiveVideoPlayerController.swift */,
+				CA55DF5229BD2AFE00C54B35 /* KwikyController.swift */,
+				CA55DF5429C3C54E00C54B35 /* VideoFileSaveController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -429,6 +435,7 @@
 				CABAA30B29A19EB900C5EBC6 /* UIButton+Ext.swift in Sources */,
 				CAA90C7C2994171C0013A654 /* AppDelegate.swift in Sources */,
 				CA55DF4B29BA268100C54B35 /* Statics.swift in Sources */,
+				CA55DF5529C3C54E00C54B35 /* VideoFileSaveController.swift in Sources */,
 				CAA90C7E2994171C0013A654 /* SceneDelegate.swift in Sources */,
 				CABAA305299BCEE100C5EBC6 /* String+Ext.swift in Sources */,
 				CA55DF3629AF9D7E00C54B35 /* KwiksWallet.swift in Sources */,
@@ -439,6 +446,7 @@
 				CA55DF4029B16A1400C54B35 /* ForYouCollectionViewCell.swift in Sources */,
 				CABAA31629A2C9C300C5EBC6 /* InboxController.swift in Sources */,
 				CA55DF1C29A674F000C54B35 /* FollowInviteFriendsController.swift in Sources */,
+				CA55DF5329BD2AFE00C54B35 /* KwikyController.swift in Sources */,
 				CA55DF2429A7E8CF00C54B35 /* UILabel+Ext.swift in Sources */,
 				CA55DF2E29AC06F600C54B35 /* UploadImageController.swift in Sources */,
 				CABAA3032999609200C5EBC6 /* UIView+Ext.swift in Sources */,

@@ -12,6 +12,7 @@ final class VideoController: UIViewController {
     
     var isShowingOptions = false
     var mainContainerBottomConstraint: NSLayoutConstraint?
+    var userCreatedVideo: KwiksVideo?
     
     private let containerView: UIView = {
         let view = UIView()
@@ -747,6 +748,9 @@ extension VideoController {
     
     @objc func didTapUpload() {
         print(#function)
+        let fileSaveVC = VideoFileSaveController()
+        fileSaveVC.userCreatedVideo = self.userCreatedVideo
+        self.navigationController?.pushViewController(fileSaveVC, animated: true)
     }
     
     @objc func didTapRecord() {

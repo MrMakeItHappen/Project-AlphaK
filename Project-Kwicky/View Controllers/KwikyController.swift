@@ -1,14 +1,14 @@
 //
-//  KwiksVideoPlayerController.swift
+//  KwikyController.swift
 //  Project-Kwicky
 //
-//  Created by Stanley Miller on 3/8/23.
+//  Created by Stanley Miller on 3/11/23.
 //
 
 import UIKit
 import AVFoundation
 
-final class KwiksVideoPlayerController: UIViewController {
+final class KwikyController: UIViewController {
     var kwiksVideo: KwiksVideo!
     private var player: AVPlayer?
     private var playerDidFinishObserver: NSObjectProtocol?
@@ -463,24 +463,6 @@ final class KwiksVideoPlayerController: UIViewController {
         self.configureVideo()
         self.layoutTopUI()
         self.layoutBottomUI()
-        
-//        self.view.addSubview(self.verticalScrollView)
-//        self.verticalScrollView.edgesToSuperview()
-//
-//        self.verticalScrollView.contentSize = CGSize(width: view.width, height: view.height)
-//
-//        let viewController = UIViewController()
-//        viewController.view.backgroundColor = .systemMint
-//
-//        let pagingController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .vertical, options: [:])
-//        pagingController.setViewControllers([viewController], direction: .forward, animated: false)
-//        pagingController.dataSource = self
-//        pagingController.delegate = self
-//
-//        self.verticalScrollView.addSubview(pagingController.view)
-//        pagingController.view.frame = view.bounds
-//        addChild(pagingController)
-//        pagingController.didMove(toParent: self)
     }
     
     override func viewDidDisappear(_ animated: Bool) {
@@ -490,7 +472,7 @@ final class KwiksVideoPlayerController: UIViewController {
     }
 }
 //MARK: - Configure View Controller
-extension KwiksVideoPlayerController {
+extension KwikyController {
     private func configure() {
         self.view.backgroundColor = .white
         self.progressView.progress = 0.0
@@ -515,7 +497,7 @@ extension KwiksVideoPlayerController {
     }
 }
 //MARK: - Layout UI
-extension KwiksVideoPlayerController {
+extension KwikyController {
     private func layoutTopUI() {
         self.view.addSubview(self.tabBarExtension)
         self.tabBarExtension.bottomToSuperview(usingSafeArea: true)
@@ -677,7 +659,7 @@ extension KwiksVideoPlayerController {
     }
 }
 //MARK: - Helpers
-extension KwiksVideoPlayerController {
+extension KwikyController {
     private func configureVideo() {
         guard let path = Bundle.main.path(forResource: "KwiksTestVideo", ofType: "mp4") else {
             return
@@ -726,7 +708,7 @@ extension KwiksVideoPlayerController {
     }
 }
 //MARK: - @objc
-extension KwiksVideoPlayerController {
+extension KwikyController {
     @objc func didTapBack() {
         self.dismiss(animated: true)
     }
@@ -767,18 +749,5 @@ extension KwiksVideoPlayerController {
     
     @objc func didTapFollow() {
         print(#function)
-    }
-}
-//MARK: - Paging Controller Data Source & Delegate
-extension KwiksVideoPlayerController: UIPageViewControllerDelegate, UIPageViewControllerDataSource {
-    func pageViewController(_ pageViewController: UIPageViewController, viewControllerBefore viewController: UIViewController) -> UIViewController? {
-        return nil
-    }
-    
-    func pageViewController(_ pageViewController: UIPageViewController, viewControllerAfter viewController: UIViewController) -> UIViewController? {
-        
-        let vc = UIViewController()
-        vc.view.backgroundColor = [UIColor.systemMint, UIColor.systemCyan, UIColor.systemRed, UIColor.systemPink, UIColor.systemTeal].randomElement()
-        return vc
     }
 }

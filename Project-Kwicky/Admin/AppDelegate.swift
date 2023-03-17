@@ -33,8 +33,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
         if let nav = viewController as? UINavigationController {
             if nav.viewControllers.first is VideoController {
                 let videoVC = VideoController()
-                videoVC.modalPresentationStyle = .fullScreen
-                nav.present(videoVC, animated: true)
+                let navVC = UINavigationController(rootViewController: videoVC)
+                navVC.modalPresentationStyle = .fullScreen
+                navVC.navigationBar.isHidden = true
+
+                nav.present(navVC, animated: true)
                 return false
             }
         }

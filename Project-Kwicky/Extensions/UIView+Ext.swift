@@ -25,4 +25,12 @@ extension UIView {
             corners.contains(.bottomLeft) ? .layerMinXMaxYCorner:.init(),
         ]
     }
+    
+    var width: CGFloat {
+        return frame.size.width
+    }
+    
+    var height: CGFloat {
+        return frame.size.height
+    }
 }

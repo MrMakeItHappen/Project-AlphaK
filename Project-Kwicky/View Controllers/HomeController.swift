@@ -488,7 +488,6 @@ extension HomeController {
         self.view.backgroundColor = .white
         self.tabBarController?.delegate = UIApplication.shared.delegate as? UITabBarControllerDelegate
         
-//        self.hiddenEarnedAmountButton.addTarget(self, action: #selector(didTapEarnedAmount), for: .touchUpInside)
         self.profileButton.addTarget(self, action: #selector(didTapProfile), for: .touchUpInside)
         self.mainVideoPlayButton.addTarget(self, action: #selector(didTapMainVideoPlay), for: .touchUpInside)
         

@@ -13,6 +13,7 @@ struct Statics {
     
     static let signUpEndpoint = "/user/signup"
     static let signInEndpoint = "/user/signin"
+    static let currentUserEndpoint = "/user"
     
     static let userNameAvailability = "/user/available/:username"
     

@@ -644,6 +644,7 @@ extension HomeController: UICollectionViewDelegate, UICollectionViewDataSource {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let videoPlayerVC = KwiksVideoPlayerController()
+        videoPlayerVC.modalPresentationStyle = .overCurrentContext
         
         switch self.feedType {
             
@@ -661,10 +662,15 @@ extension HomeController: UICollectionViewDelegate, UICollectionViewDataSource {
             
         case .live:
             let liveVideo = self.liveExampleVideos[indexPath.item]
-            videoPlayerVC.kwiksVideo = liveVideo
+            let goLiveVC = GoLiveVideoController()
+            
+            goLiveVC.modalPresentationStyle = .overCurrentContext
+            goLiveVC.currentLiveVideo = liveVideo
+            
+            self.present(goLiveVC, animated: true)
+            return
         }
         
-        videoPlayerVC.modalPresentationStyle = .overCurrentContext
         self.present(videoPlayerVC, animated: true)
     }
 }

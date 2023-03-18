@@ -33,6 +33,7 @@
 		CA55DF5129BCFA7900C54B35 /* Effect.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA55DF5029BCFA7900C54B35 /* Effect.swift */; };
 		CA55DF5329BD2AFE00C54B35 /* KwikyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA55DF5229BD2AFE00C54B35 /* KwikyController.swift */; };
 		CA55DF5529C3C54E00C54B35 /* VideoFileSaveController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA55DF5429C3C54E00C54B35 /* VideoFileSaveController.swift */; };
+		CA55DF5729C4D59800C54B35 /* GoLiveVideoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA55DF5629C4D59800C54B35 /* GoLiveVideoController.swift */; };
 		CAA90C7C2994171C0013A654 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA90C7B2994171C0013A654 /* AppDelegate.swift */; };
 		CAA90C7E2994171C0013A654 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA90C7D2994171C0013A654 /* SceneDelegate.swift */; };
 		CAA90C802994171C0013A654 /* DecisionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA90C7F2994171C0013A654 /* DecisionController.swift */; };
@@ -100,6 +101,7 @@
 		CA55DF5029BCFA7900C54B35 /* Effect.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Effect.swift; sourceTree = "<group>"; };
 		CA55DF5229BD2AFE00C54B35 /* KwikyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KwikyController.swift; sourceTree = "<group>"; };
 		CA55DF5429C3C54E00C54B35 /* VideoFileSaveController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VideoFileSaveController.swift; sourceTree = "<group>"; };
+		CA55DF5629C4D59800C54B35 /* GoLiveVideoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoLiveVideoController.swift; sourceTree = "<group>"; };
 		CAA90C782994171C0013A654 /* Project-Kwicky.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Project-Kwicky.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAA90C7B2994171C0013A654 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CAA90C7D2994171C0013A654 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -226,6 +228,7 @@
 				CA55DF4829B8DE4A00C54B35 /* KwiksLiveVideoPlayerController.swift */,
 				CA55DF5229BD2AFE00C54B35 /* KwikyController.swift */,
 				CA55DF5429C3C54E00C54B35 /* VideoFileSaveController.swift */,
+				CA55DF5629C4D59800C54B35 /* GoLiveVideoController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -458,6 +461,7 @@
 				CABAA31229A2C95A00C5EBC6 /* HomeController.swift in Sources */,
 				CA55DF2029A7D32100C54B35 /* NotificationsController.swift in Sources */,
 				CABAA30D29A2AED600C5EBC6 /* SelectUsernameController.swift in Sources */,
+				CA55DF5729C4D59800C54B35 /* GoLiveVideoController.swift in Sources */,
 				CABAA31829A2C9D000C5EBC6 /* WalletController.swift in Sources */,
 				CABAA2FB299805F600C5EBC6 /* LoginController.swift in Sources */,
 				CABAA31C29A3104100C5EBC6 /* SettingsCollectionViewCell.swift in Sources */,

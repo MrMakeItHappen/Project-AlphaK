@@ -169,6 +169,8 @@ final class VideoFileSaveController: UIViewController {
         return uiswitch
     }()
     
+    private lazy var commentHiddenButton = self.createHiddenButton(with: #selector(didChangeUISwitch))
+    
     private let addMusicLabel: UILabel = {
         let label = UILabel()
         label.text = "Add Music"
@@ -265,6 +267,7 @@ extension VideoFileSaveController {
         self.scrollView.addSubview(self.scrollViewContentView)
         self.scrollViewContentView.edgesToSuperview()
         self.scrollViewContentView.width(to: self.scrollView)
+        
         self.scrollViewContentView.addSubview(self.adjustLabel)
         self.adjustLabel.topToSuperview()
         self.adjustLabel.leftToSuperview()
@@ -300,6 +303,12 @@ extension VideoFileSaveController {
         self.scrollViewContentView.addSubview(self.commentSwitch)
         self.commentSwitch.centerY(to: self.commentsLabel)
         self.commentSwitch.right(to: self.adjustChevronImageView, offset: 6)
+        
+        self.scrollViewContentView.addSubview(self.commentHiddenButton)
+        self.commentHiddenButton.top(to: self.commentsLabel, offset: 6)
+        self.commentHiddenButton.left(to: self.commentsLabel)
+        self.commentHiddenButton.right(to: self.commentsLabel)
+        self.commentHiddenButton.bottom(to: self.commentsLabel, offset: -6)
         
         self.scrollViewContentView.addSubview(self.addMusicLabel)
         self.addMusicLabel.topToBottom(of: self.commentsLabel, offset: 15)

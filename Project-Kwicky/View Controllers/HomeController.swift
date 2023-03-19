@@ -664,7 +664,7 @@ extension HomeController: UICollectionViewDelegate, UICollectionViewDataSource {
             let liveVideo = self.liveExampleVideos[indexPath.item]
             let goLiveVC = GoLiveVideoController()
             
-            goLiveVC.modalPresentationStyle = .overCurrentContext
+            goLiveVC.modalPresentationStyle = .fullScreen
             goLiveVC.currentLiveVideo = liveVideo
             
             self.present(goLiveVC, animated: true)

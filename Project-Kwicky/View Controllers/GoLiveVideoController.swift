@@ -10,6 +10,16 @@ import UIKit
 final class GoLiveVideoController: UIViewController {
     var currentLiveVideo: KwiksVideo?
     
+    private var testStrings: [String] = [
+        "Testing spacing and other things. Will this truncate or will it go to the next line. Stay tuned. Testing spacing and other things. 0",
+        "Testing spacing and other things. Testing spacing and other things. 1",
+        "Will this truncate or will it go to the next line. Stay tuned. Testing spacing and other things 2",
+        "Stay tuned. 3",
+        "Stay tuned. Testing spacing and other things. 4",
+        "Testing spacing and other things. Will this truncate or will it go to the next line. Stay tuned. Testing spacing and other things. 5",
+        "Testing spacing and other things. Will this truncate or will it go to the next line. Testing spacing and other things. 6"
+    ]
+    
     private let closeButton: UIButton = {
         let button = UIButton(type: .custom)
         button.backgroundColor = .clear
@@ -348,7 +358,7 @@ final class GoLiveVideoController: UIViewController {
     private lazy var commentCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        layout.itemSize = CGSize(width: 292, height: 46)
+        layout.estimatedItemSize = UICollectionViewFlowLayout.automaticSize
         layout.minimumInteritemSpacing = 5
         layout.minimumLineSpacing = 5
         
@@ -366,32 +376,12 @@ final class GoLiveVideoController: UIViewController {
         return collectionView
     }()
     
-//    private lazy var commentTextField: UITextField = {
-//        let textField = UITextField(frame: .zero)
-//        let placeholder = "Say Something..."
-//        let imageView = UIImageView(frame: CGRect(x: 0, y: 0, width: 20, height: 20))
-//        imageView.image = UIImage(named: "CommentTextFieldIcon")
-//
-//        textField.placeholder = placeholder
-//        textField.textAlignment = .left
-//        textField.textColor = .white
-//        textField.leftViewMode = .always
-//        textField.leftView = imageView
-//        textField.font = UIFont.interRegular(size: 18)
-//        textField.allowsEditingTextAttributes = false
-//        textField.autocorrectionType = .no
-//        textField.autocapitalizationType = .none
-//        textField.delegate = self
-//        textField.backgroundColor = UIColor(hexString: "#585757", alpha: 1)
-//        textField.returnKeyType = .done
-//        textField.clipsToBounds = true
-//        textField.layer.masksToBounds = true
-//        textField.layer.cornerRadius = 25
-//        textField.height(50)
-//        textField.width(258)
-//        textField.setLeftPaddingPoints(30)
-//        return textField
-//    }()
+    private lazy var commentTextField: UITextField = {
+        let textField = UITextField(frame: .zero)
+        textField.delegate = self
+        textField.tag = 0
+        return textField
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -399,16 +389,40 @@ final class GoLiveVideoController: UIViewController {
         self.layoutTopUI()
         self.layoutBottomUI()
     }
+    
+    private lazy var accesoryTextField: UITextField = {
+        let textField = UITextField()
+        textField.delegate = self
+        textField.translatesAutoresizingMaskIntoConstraints = false
+        textField.placeholder = "Say Something..."
+        textField.textAlignment = .left
+        textField.textColor = .white
+        textField.font = .segoeUISemiBold(size: 14)
+        textField.backgroundColor = UIColor.black.withAlphaComponent(0.75)
+        textField.layer.cornerRadius = 45 / 2
+        textField.layer.masksToBounds = true
+        textField.height(45)
+        textField.setLeftPaddingPoints(30)
+        textField.tag = 99
+        return textField
+    }()
 }
 //MARK: - Configure View Controller
 extension GoLiveVideoController {
     private func configure() {
-        self.view.backgroundColor = .black
         self.view.backgroundColor = .white
+        self.addToolbarInputAccessoryView()
+        self.registerForKeyboardNotifications()
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapGesture))
+        tapGesture.numberOfTapsRequired = 1
+        self.view.isUserInteractionEnabled = true
+        self.view.addGestureRecognizer(tapGesture)
         
         self.closeButton.addTarget(self, action: #selector(didTapClose), for: .touchDown)
-        self.hiddenEarnedAmountButton.addTarget(self, action: #selector(didTapEarnedAmount), for: .touchDown)
         self.sendMoneyButton.addTarget(self, action: #selector(didTapSendMoney), for: .touchDown)
+        
+        self.hiddenEarnedAmountButton.addTarget(self, action: #selector(didTapEarnedAmount), for: .touchDown)
         self.hiddenSendCommentButton.addTarget(self, action: #selector(didTapSendComment), for: .touchDown)
     }
 }
@@ -520,10 +534,69 @@ extension GoLiveVideoController {
         self.commentLabel.leftToRight(of: self.commentImageView, offset: 11)
         self.commentLabel.centerYToSuperview()
         
+        self.commentContainerView.addSubview(self.commentTextField)
+        self.commentTextField.edgesToSuperview()
+        
         self.view.addSubview(self.commentCollectionView)
-        self.commentCollectionView.bottomToTop(of: self.commentContainerView, offset: -20)
+        self.commentCollectionView.bottomToTop(of: self.commentContainerView, offset: -10)
         self.commentCollectionView.leftToSuperview(offset: 22)
         self.commentCollectionView.right(to: self.sendCommentContainerView, offset: -10)
+    }
+}
+//MARK: - Helpers
+extension GoLiveVideoController {
+    private func addToolbarInputAccessoryView() {
+        let screenWidth = UIScreen.main.bounds.width
+        
+        // Create Main Container View
+        let mainContainerView = UIView()
+        mainContainerView.backgroundColor = .white
+        mainContainerView.frame = CGRect(x: 0, y: 0, width: screenWidth, height: 80)
+        
+        mainContainerView.addSubview(self.accesoryTextField)
+        self.accesoryTextField.leftToSuperview(offset: 22)
+        self.accesoryTextField.centerYToSuperview()
+        
+        let sendMoneybutton = UIButton(type: .custom)
+        sendMoneybutton.backgroundColor = .clear
+        sendMoneybutton.contentMode = .scaleAspectFit
+        sendMoneybutton.clipsToBounds = true
+        sendMoneybutton.setImage(UIImage(named: "SendMoneyIcon"), for: .normal)
+        sendMoneybutton.width(45)
+        sendMoneybutton.height(45)
+        sendMoneybutton.addTarget(self, action: #selector(didTapSendMoney), for: .touchDown)
+        
+        mainContainerView.addSubview(sendMoneybutton)
+        sendMoneybutton.rightToSuperview(offset: -22)
+        sendMoneybutton.centerYToSuperview()
+        
+        let commentButton = UIButton(type: .custom)
+        commentButton.backgroundColor = UIColor.black.withAlphaComponent(0.75)
+        commentButton.contentMode = .scaleAspectFit
+        commentButton.clipsToBounds = true
+        commentButton.setImage(UIImage(named: "SendCommentIcon"), for: .normal)
+        commentButton.width(45)
+        commentButton.height(45)
+        commentButton.layer.cornerRadius = 45 / 2
+        commentButton.addTarget(self, action: #selector(didTapSendComment), for: .touchDown)
+        
+        mainContainerView.addSubview(commentButton)
+        commentButton.rightToLeft(of: sendMoneybutton, offset: -10)
+        commentButton.centerYToSuperview()
+        
+        self.accesoryTextField.rightToLeft(of: commentButton, offset: -16)
+        
+        self.commentTextField.inputAccessoryView = mainContainerView
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            self.accesoryTextField.becomeFirstResponder()
+        }
+    }
+    
+    private func registerForKeyboardNotifications() {
+        NotificationCenter.default.addObserver(self, selector:#selector(keyboardWillBeShown(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeHidden(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
 }
 //MARK: - @objc
@@ -534,30 +607,81 @@ extension GoLiveVideoController {
     
     @objc func didTapEarnedAmount() {
         print(#function)
+        let newString = "lorum ipsum"
+        self.testStrings.insert(newString, at: 0)
+        self.commentCollectionView.reloadData()
+        
+        DispatchQueue.main.async {
+            guard !self.testStrings.isEmpty else { return }
+            
+            let lastIndex = self.testStrings.count - 1
+            
+            self.commentCollectionView.scrollToItem(at: IndexPath(item: lastIndex, section: 0), at: .centeredVertically, animated: true)
+        }
     }
     
     @objc func didTapSendComment() {
         print(#function)
+        guard let comment = self.accesoryTextField.text else {
+            print("Nothing here")
+            return
+        }
+        
+        self.testStrings.insert(comment, at: 0)
+        
+        DispatchQueue.main.async {
+            self.commentCollectionView.reloadData()
+            
+            guard !self.testStrings.isEmpty else { return }
+            
+            let lastIndex = self.testStrings.count - 1
+            
+            self.commentCollectionView.scrollToItem(at: IndexPath(item: lastIndex, section: 0), at: .centeredVertically, animated: true)
+            
+            self.view.endEditing(true)
+        }
+        
+        self.view.endEditing(true)
     }
     
     @objc func didTapSendMoney() {
         print(#function)
     }
+    
+    @objc func tapGesture(_ sender: UITapGestureRecognizer) {
+        self.view.endEditing(true)
+    }
+    
+    @objc func keyboardWillBeShown(_ notificiation: NSNotification) {
+        //
+    }
+    
+    @objc func keyboardWillBeHidden(_ notification: NSNotification) {
+        self.view.endEditing(true)
+    }
 }
 //MARK: - CollectionView DataSource & Delegate
 extension GoLiveVideoController: UICollectionViewDelegate, UICollectionViewDataSource {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 10
+        return self.testStrings.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: GoLiveCommentCollectionViewCell.identifier, for: indexPath) as! GoLiveCommentCollectionViewCell
         
+        let reverseStrings = Array(self.testStrings.reversed())
+        
+        let testString = reverseStrings[indexPath.item]
+        cell.configure(with: testString)
         return cell
     }
     
 }
 //MARK: - UITextField Delegate
 extension GoLiveVideoController: UITextFieldDelegate {
-    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+//        if textField.tag == 99 {
+//            self.addToolbarInputAccessoryView()
+//        }
+    }
 }

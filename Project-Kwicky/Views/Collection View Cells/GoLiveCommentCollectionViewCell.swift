@@ -10,6 +10,14 @@ import UIKit
 final class GoLiveCommentCollectionViewCell: UICollectionViewCell {
     static let identifier = "GoLiveCommentCollectionViewCell"
     
+    private let commentContainerView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.clipsToBounds = true
+        view.backgroundColor = UIColor.clear
+        return view
+    }()
+    
     private let userProfileImageView: UIImageView = {
         let imageView = UIImageView()
         let size: CGFloat = 32
@@ -44,7 +52,6 @@ final class GoLiveCommentCollectionViewCell: UICollectionViewCell {
     
     private let commentLabel: UILabel = {
         let label = UILabel()
-        label.text = "Testing spacing and other things. Will this truncate or will it go to the next line. Stay tuned."
         label.translatesAutoresizingMaskIntoConstraints = false
         label.backgroundColor = .clear
         label.font = UIFont.segoeUISemiBold(size: 12)
@@ -52,13 +59,13 @@ final class GoLiveCommentCollectionViewCell: UICollectionViewCell {
         label.lineBreakMode = .byWordWrapping
         label.adjustsFontSizeToFitWidth = false
         label.textAlignment = .left
-        label.textColor = UIColor.white
+        label.textColor = UIColor.black
         return label
     }()
     
     override init(frame: CGRect) {
         super.init(frame: frame)
-        self.backgroundColor = .black.withAlphaComponent(0.80)
+        self.backgroundColor = .clear
         self.addViews()
     }
     
@@ -67,21 +74,26 @@ final class GoLiveCommentCollectionViewCell: UICollectionViewCell {
     }
     
     private func addViews() {
-        self.addSubview(self.userProfileImageView)
+        self.addSubview(self.commentContainerView)
+        self.commentContainerView.width(270)
+        self.commentContainerView.edgesToSuperview()
+        
+        self.commentContainerView.addSubview(self.userProfileImageView)
         self.userProfileImageView.topToSuperview(offset: 8)
         self.userProfileImageView.leftToSuperview(offset: 8)
         
-        self.addSubview(self.userNameLabel)
+        self.commentContainerView.addSubview(self.userNameLabel)
         self.userNameLabel.topToSuperview(offset: 0)
         self.userNameLabel.leftToRight(of: self.userProfileImageView, offset: 13)
         
-        self.addSubview(self.commentLabel)
+        self.commentContainerView.addSubview(self.commentLabel)
         self.commentLabel.topToBottom(of: self.userNameLabel)
         self.commentLabel.left(to: self.userNameLabel)
-        self.commentLabel.rightToSuperview(offset: -13)
+        self.commentLabel.rightToSuperview()
+        self.commentLabel.bottomToSuperview(offset: -10)
     }
     
     func configure(with comment: String) {
-        
+        self.commentLabel.text = comment
     }
 }

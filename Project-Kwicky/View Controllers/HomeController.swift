@@ -319,7 +319,7 @@ final class HomeController: UIViewController {
     
     private let mainVideoTitleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Marvel Studio’s Doctor Strange In The Multiverse Of Madness"
+        label.text = "Guardians of the Galaxy: No Place Like Home"
         label.translatesAutoresizingMaskIntoConstraints = false
         label.backgroundColor = .clear
         label.font = UIFont.segoeUISemiBold(size: 18)

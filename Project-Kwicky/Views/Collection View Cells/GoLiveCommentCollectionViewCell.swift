@@ -89,7 +89,7 @@ final class GoLiveCommentCollectionViewCell: UICollectionViewCell {
         self.commentContainerView.addSubview(self.commentLabel)
         self.commentLabel.topToBottom(of: self.userNameLabel)
         self.commentLabel.left(to: self.userNameLabel)
-        self.commentLabel.rightToSuperview()
+        self.commentLabel.rightToSuperview(offset: -10)
         self.commentLabel.bottomToSuperview(offset: -10)
     }
     

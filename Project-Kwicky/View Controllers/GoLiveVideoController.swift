@@ -10,15 +10,7 @@ import UIKit
 final class GoLiveVideoController: UIViewController {
     var currentLiveVideo: KwiksVideo?
     
-    private var testStrings: [String] = [
-        "Testing spacing and other things. Will this truncate or will it go to the next line. Stay tuned. Testing spacing and other things. 0",
-        "Testing spacing and other things. Testing spacing and other things. 1",
-        "Will this truncate or will it go to the next line. Stay tuned. Testing spacing and other things 2",
-        "Stay tuned. 3",
-        "Stay tuned. Testing spacing and other things. 4",
-        "Testing spacing and other things. Will this truncate or will it go to the next line. Stay tuned. Testing spacing and other things. 5",
-        "Testing spacing and other things. Will this truncate or will it go to the next line. Testing spacing and other things. 6"
-    ]
+    private var testStrings: [String] = []
     
     private let closeButton: UIButton = {
         let button = UIButton(type: .custom)
@@ -365,7 +357,8 @@ final class GoLiveVideoController: UIViewController {
         textField.layer.cornerRadius = 45 / 2
         textField.layer.masksToBounds = true
         textField.height(45)
-        textField.setLeftPaddingPoints(30)
+        textField.setLeftPaddingPoints(15)
+        textField.setRightPaddingPoints(15)
         textField.tag = 99
         return textField
     }()
@@ -547,6 +540,12 @@ extension GoLiveVideoController {
         
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeHidden(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
+    
+    private func forceKeyboardToDismiss() {
+        self.commentTextField.endEditing(true)
+        self.accesoryTextField.endEditing(true)
+        self.view.endEditing(true)
+    }
 }
 //MARK: - @objc
 extension GoLiveVideoController {
@@ -556,25 +555,11 @@ extension GoLiveVideoController {
     
     @objc func didTapEarnedAmount() {
         print(#function)
-        let newString = "lorum ipsum"
-        self.testStrings.insert(newString, at: 0)
-        self.commentCollectionView.reloadData()
-        
-        DispatchQueue.main.async {
-            guard !self.testStrings.isEmpty else { return }
-            
-            let lastIndex = self.testStrings.count - 1
-            
-            self.commentCollectionView.scrollToItem(at: IndexPath(item: lastIndex, section: 0), at: .centeredVertically, animated: true)
-        }
     }
     
     @objc func didTapSendComment() {
-        print(#function)
         guard self.accesoryTextField.text != "", let comment = self.accesoryTextField.text else {
-            self.commentTextField.endEditing(true)
-            self.accesoryTextField.endEditing(true)
-            self.view.endEditing(true)
+            self.forceKeyboardToDismiss()
             return
         }
         
@@ -592,18 +577,14 @@ extension GoLiveVideoController {
             self.commentTextField.text = ""
             self.accesoryTextField.text = ""
             
-            self.commentTextField.endEditing(true)
-            self.accesoryTextField.endEditing(true)
-            self.view.endEditing(true)
+            self.forceKeyboardToDismiss()
             
             self.commentTextField.endEditing(true)
             self.accesoryTextField.endEditing(true)
             self.view.endEditing(true)
         }
         
-        self.commentTextField.endEditing(true)
-        self.accesoryTextField.endEditing(true)
-        self.view.endEditing(true)
+        self.forceKeyboardToDismiss()
     }
     
     @objc func didTapSendMoney() {
@@ -611,9 +592,7 @@ extension GoLiveVideoController {
     }
     
     @objc func tapGesture(_ sender: UITapGestureRecognizer) {
-        self.commentTextField.endEditing(true)
-        self.accesoryTextField.endEditing(true)
-        self.view.endEditing(true)
+        self.forceKeyboardToDismiss()
     }
     
     @objc func keyboardWillBeShown(_ notificiation: NSNotification) {
@@ -625,9 +604,7 @@ extension GoLiveVideoController {
     }
     
     @objc func keyboardWillBeHidden(_ notification: NSNotification) {
-        self.commentTextField.endEditing(true)
-        self.accesoryTextField.endEditing(true)
-        self.view.endEditing(true)
+        self.forceKeyboardToDismiss()
     }
 }
 //MARK: - CollectionView DataSource & Delegate

@@ -246,9 +246,9 @@ final class VideoController: UIViewController {
         return label
     }()
     
-    private let unknownShapeLabel: UILabel = {
+    private let stickersLabel: UILabel = {
         let label = UILabel()
-        label.text = "Shapes"
+        label.text = "Stickers"
         label.translatesAutoresizingMaskIntoConstraints = false
         label.backgroundColor = .clear
         label.font = UIFont.segoeUISemiBold(size: 12)
@@ -259,7 +259,7 @@ final class VideoController: UIViewController {
         return label
     }()
     
-    private let unknownShapeIconImageView: UIImageView = {
+    private let stickersIconImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
@@ -269,7 +269,7 @@ final class VideoController: UIViewController {
         imageView.height(28)
         imageView.width(28)
         
-        let image = UIImage(named: "UnknownIcon")
+        let image = UIImage(named: "StickersIcon")
         imageView.image = image
         return imageView
     }()
@@ -283,20 +283,20 @@ final class VideoController: UIViewController {
         return button
     }()
     
-    private let shapeLabel: UILabel = {
+    private let cropLabel: UILabel = {
         let label = UILabel()
-        label.text = "Shapes"
+        label.text = "Crop"
         label.translatesAutoresizingMaskIntoConstraints = false
         label.backgroundColor = .clear
         label.font = UIFont.segoeUISemiBold(size: 12)
         label.numberOfLines = 1
         label.adjustsFontSizeToFitWidth = false
-        label.textAlignment = .left
+        label.textAlignment = .center
         label.textColor = UIColor.white
         return label
     }()
     
-    private let shapeIconImageView: UIImageView = {
+    private let cropIconImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
@@ -306,7 +306,7 @@ final class VideoController: UIViewController {
         imageView.height(28)
         imageView.width(28)
         
-        let image = UIImage(named: "ShapesIcon")
+        let image = UIImage(named: "CropIcon")
         imageView.image = image
         return imageView
     }()
@@ -585,41 +585,41 @@ extension VideoController {
     }
     
     private func layoutLeadingUI() {
-        self.containerView.addSubview(self.unknownShapeLabel)
-        self.unknownShapeLabel.leftToSuperview(offset: 23)
-        self.unknownShapeLabel.bottomToTop(of: self.hiddenRecordButton, offset: -55)
+        self.containerView.addSubview(self.stickersLabel)
+        self.stickersLabel.leftToSuperview(offset: 23)
+        self.stickersLabel.bottomToTop(of: self.hiddenRecordButton, offset: -55)
         
-        self.containerView.addSubview(self.unknownShapeIconImageView)
-        self.unknownShapeIconImageView.bottomToTop(of: self.unknownShapeLabel, offset: -8)
-        self.unknownShapeIconImageView.centerX(to: self.unknownShapeLabel)
+        self.containerView.addSubview(self.stickersIconImageView)
+        self.stickersIconImageView.bottomToTop(of: self.stickersLabel, offset: -8)
+        self.stickersIconImageView.centerX(to: self.stickersLabel)
         
         self.containerView.addSubview(self.hiddenUnknownShapeButton)
-        self.hiddenUnknownShapeButton.top(to: self.unknownShapeIconImageView, offset: -2)
-        self.hiddenUnknownShapeButton.right(to: self.unknownShapeLabel, offset: 2)
-        self.hiddenUnknownShapeButton.left(to: self.unknownShapeLabel, offset: -2)
-        self.hiddenUnknownShapeButton.bottom(to: self.unknownShapeLabel, offset: 2)
+        self.hiddenUnknownShapeButton.top(to: self.stickersIconImageView, offset: -2)
+        self.hiddenUnknownShapeButton.right(to: self.stickersLabel, offset: 2)
+        self.hiddenUnknownShapeButton.left(to: self.stickersLabel, offset: -2)
+        self.hiddenUnknownShapeButton.bottom(to: self.stickersLabel, offset: 2)
         
-        self.containerView.addSubview(self.shapeLabel)
-        self.shapeLabel.left(to: self.unknownShapeLabel)
-        self.shapeLabel.bottomToTop(of: self.unknownShapeIconImageView, offset: -28)
+        self.containerView.addSubview(self.cropLabel)
+        self.cropLabel.centerX(to: self.stickersLabel)
+        self.cropLabel.bottomToTop(of: self.stickersIconImageView, offset: -28)
         
-        self.containerView.addSubview(self.shapeIconImageView)
-        self.shapeIconImageView.bottomToTop(of: self.shapeLabel, offset: -8)
-        self.shapeIconImageView.centerX(to: self.unknownShapeLabel)
+        self.containerView.addSubview(self.cropIconImageView)
+        self.cropIconImageView.bottomToTop(of: self.cropLabel, offset: -8)
+        self.cropIconImageView.centerX(to: self.stickersLabel)
         
         self.containerView.addSubview(self.hiddenShapeButton)
-        self.hiddenShapeButton.top(to: self.shapeIconImageView, offset: -2)
-        self.hiddenShapeButton.right(to: self.shapeLabel, offset: 2)
-        self.hiddenShapeButton.left(to: self.shapeLabel, offset: -2)
-        self.hiddenShapeButton.bottom(to: self.shapeLabel, offset: 2)
+        self.hiddenShapeButton.top(to: self.cropIconImageView, offset: -2)
+        self.hiddenShapeButton.right(to: self.cropLabel, offset: 2)
+        self.hiddenShapeButton.left(to: self.cropLabel, offset: -2)
+        self.hiddenShapeButton.bottom(to: self.cropLabel, offset: 2)
         
         self.containerView.addSubview(self.beautifyLabel)
-        self.beautifyLabel.centerX(to: self.unknownShapeLabel)
-        self.beautifyLabel.bottomToTop(of: self.shapeIconImageView, offset: -28)
+        self.beautifyLabel.centerX(to: self.stickersLabel)
+        self.beautifyLabel.bottomToTop(of: self.cropIconImageView, offset: -28)
         
         self.containerView.addSubview(self.beautifyIconImageView)
         self.beautifyIconImageView.bottomToTop(of: self.beautifyLabel, offset: -8)
-        self.beautifyIconImageView.centerX(to: self.unknownShapeLabel)
+        self.beautifyIconImageView.centerX(to: self.stickersLabel)
         
         self.containerView.addSubview(self.hiddenBeautifyButton)
         self.hiddenBeautifyButton.top(to: self.beautifyIconImageView, offset: -2)
@@ -628,12 +628,12 @@ extension VideoController {
         self.hiddenBeautifyButton.bottom(to: self.beautifyLabel, offset: 2)
         
         self.containerView.addSubview(self.timerLabel)
-        self.timerLabel.centerX(to: self.unknownShapeLabel)
+        self.timerLabel.centerX(to: self.stickersLabel)
         self.timerLabel.bottomToTop(of: self.beautifyIconImageView, offset: -28)
         
         self.containerView.addSubview(self.timerIconImageView)
         self.timerIconImageView.bottomToTop(of: self.timerLabel, offset: -8)
-        self.timerIconImageView.centerX(to: self.unknownShapeLabel)
+        self.timerIconImageView.centerX(to: self.stickersLabel)
         
         self.containerView.addSubview(self.hiddenTimerButton)
         self.hiddenTimerButton.top(to: self.timerIconImageView, offset: -2)
@@ -642,12 +642,12 @@ extension VideoController {
         self.hiddenTimerButton.bottom(to: self.timerLabel, offset: 2)
         
         self.containerView.addSubview(self.flipLabel)
-        self.flipLabel.centerX(to: self.unknownShapeLabel)
+        self.flipLabel.centerX(to: self.stickersLabel)
         self.flipLabel.bottomToTop(of: self.timerIconImageView, offset: -28)
         
         self.containerView.addSubview(self.flipIconImageView)
         self.flipIconImageView.bottomToTop(of: self.flipLabel, offset: -8)
-        self.flipIconImageView.centerX(to: self.unknownShapeLabel)
+        self.flipIconImageView.centerX(to: self.stickersLabel)
         
         self.containerView.addSubview(self.hiddenFlipButton)
         self.hiddenFlipButton.top(to: self.flipIconImageView, offset: -2)

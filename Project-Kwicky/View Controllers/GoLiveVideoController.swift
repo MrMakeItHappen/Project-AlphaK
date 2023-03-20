@@ -6,9 +6,12 @@
 //
 
 import UIKit
+import AVFoundation
 
 final class GoLiveVideoController: UIViewController {
     var currentLiveVideo: KwiksVideo?
+    private var player: AVPlayer?
+    private var playerDidFinishObserver: NSObjectProtocol?
     
     private var testStrings: [String] = []
     
@@ -338,13 +341,6 @@ final class GoLiveVideoController: UIViewController {
         return textField
     }()
     
-    override func viewDidLoad() {
-        super.viewDidLoad()
-        self.configure()
-        self.layoutTopUI()
-        self.layoutBottomUI()
-    }
-    
     private lazy var accesoryTextField: UITextField = {
         let textField = UITextField()
         textField.delegate = self
@@ -362,6 +358,20 @@ final class GoLiveVideoController: UIViewController {
         textField.tag = 99
         return textField
     }()
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        self.configure()
+//        self.configureVideo()
+        self.layoutTopUI()
+        self.layoutBottomUI()
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        super.viewDidDisappear(animated)
+        self.view.removeFromSuperview()
+        self.player?.replaceCurrentItem(with: nil)
+    }
 }
 //MARK: - Configure View Controller
 extension GoLiveVideoController {
@@ -545,6 +555,38 @@ extension GoLiveVideoController {
         self.commentTextField.endEditing(true)
         self.accesoryTextField.endEditing(true)
         self.view.endEditing(true)
+    }
+    
+    private func configureVideo() {
+        guard let path = Bundle.main.path(forResource: "KwiksLiveTestVideo", ofType: "mp4") else {
+            return
+        }
+        
+        let url = URL(filePath: path)
+        self.player = AVPlayer(url: url)
+        
+        guard let player = self.player else {
+            print("Error Loading Video Player!")
+            return
+        }
+        
+        player.volume = 1.0
+        
+        let playerLayer = AVPlayerLayer(player: self.player)
+        playerLayer.frame = view.bounds
+        playerLayer.videoGravity = .resizeAspectFill
+        
+        self.view.layer.addSublayer(playerLayer)
+        player.play()
+        
+        let interval = CMTime(value: 1, timescale: 1000)
+        
+        self.playerDidFinishObserver = NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime, object: player.currentItem, queue: .main, using: { [weak player] _ in
+            
+            player?.seek(to: .zero)
+            player?.play()
+            
+        })
     }
 }
 //MARK: - @objc

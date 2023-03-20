@@ -319,7 +319,7 @@ final class HomeController: UIViewController {
     
     private let mainVideoTitleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Guardians of the Galaxy: No Place Like Home"
+        label.text = "Tron Legacy Returns. New Details. Plus...Tron Roller Coaster?"
         label.translatesAutoresizingMaskIntoConstraints = false
         label.backgroundColor = .clear
         label.font = UIFont.segoeUISemiBold(size: 18)

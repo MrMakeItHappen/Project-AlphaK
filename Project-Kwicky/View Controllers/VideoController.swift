@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import KwiksSystemsPopups
 
 //TODO: Fetch any available music here. Can be process in the background while user makes video adjustments.
 
@@ -15,6 +16,7 @@ final class VideoController: UIViewController {
     var isShowingOptions = false
     var mainContainerBottomConstraint: NSLayoutConstraint?
     var userCreatedVideo: KwiksVideo?
+    var popUpAlert = KwiksSystemPopups()
     
     private let containerView: UIView = {
         let view = UIView()
@@ -758,7 +760,10 @@ extension VideoController {
     
     @objc func didTapRecord() {
         print(#function)
+        self.popUpAlert = KwiksSystemPopups(presentingViewController: self, popupType: .UpdateKwiks)
+        self.popUpAlert.engagePopup()
     }
+
     
     @objc func didTapCamera() {
         print(#function)

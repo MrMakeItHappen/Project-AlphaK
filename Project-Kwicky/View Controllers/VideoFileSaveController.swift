@@ -8,7 +8,6 @@
 import UIKit
 
 final class VideoFileSaveController: UIViewController {
-    var userCreatedVideo: KwiksVideo?
     
     private lazy var customBackButton: UIButton = {
         let button = UIButton(type: .system)
@@ -116,9 +115,9 @@ final class VideoFileSaveController: UIViewController {
         return textView
     }()
     
-    private let adjustLabel: UILabel = {
+    private let selectCoverLabel: UILabel = {
         let label = UILabel()
-        label.text = "Adjust Thumbnails"
+        label.text = "Select Cover"
         label.translatesAutoresizingMaskIntoConstraints = false
         label.backgroundColor = .clear
         label.font = UIFont.segoeUIRegular(size: 18)
@@ -129,8 +128,8 @@ final class VideoFileSaveController: UIViewController {
         return label
     }()
     
-    private let adjustChevronImageView = UIImageView.createChevron()
-    private lazy var adjustHiddenButton = self.createHiddenButton(with: #selector(didTapAdjust))
+    private let selectCoverChevronImageView = UIImageView.createChevron()
+    private lazy var selectCoverHiddenButton = self.createHiddenButton(with: #selector(didTapSelectCover))
     
     private let tagLabel: UILabel = {
         let label = UILabel()
@@ -187,9 +186,9 @@ final class VideoFileSaveController: UIViewController {
     private let addMusicChevronImageView = UIImageView.createChevron()
     private lazy var addMusicHiddenButton = self.createHiddenButton(with: #selector(didTapAddMusic))
     
-    private let advancedLabel: UILabel = {
+    private let kwikLabel: UILabel = {
         let label = UILabel()
-        label.text = "Advanced Settings"
+        label.text = "Kwik"
         label.translatesAutoresizingMaskIntoConstraints = false
         label.backgroundColor = .clear
         label.font = UIFont.segoeUIRegular(size: 18)
@@ -200,8 +199,21 @@ final class VideoFileSaveController: UIViewController {
         return label
     }()
     
-    private let advancedChevronImageView = UIImageView.createChevron()
-    private lazy var advancedHiddenButton = self.createHiddenButton(with: #selector(didTapAdvanced))
+    private let saleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Sale"
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.backgroundColor = .clear
+        label.font = UIFont.segoeUIRegular(size: 18)
+        label.numberOfLines = 1
+        label.adjustsFontSizeToFitWidth = true
+        label.textAlignment = .left
+        label.textColor = UIColor.kwiksGreen
+        return label
+    }()
+    
+    private let saleChevronImageView = UIImageView.createChevron()
+    private lazy var saleHiddenButton = self.createHiddenButton(with: #selector(didTapSale))
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -268,27 +280,27 @@ extension VideoFileSaveController {
         self.scrollViewContentView.edgesToSuperview()
         self.scrollViewContentView.width(to: self.scrollView)
         
-        self.scrollViewContentView.addSubview(self.adjustLabel)
-        self.adjustLabel.topToSuperview()
-        self.adjustLabel.leftToSuperview()
+        self.scrollViewContentView.addSubview(self.selectCoverLabel)
+        self.selectCoverLabel.topToSuperview()
+        self.selectCoverLabel.leftToSuperview()
 
-        self.scrollViewContentView.addSubview(self.adjustChevronImageView)
-        self.adjustChevronImageView.centerY(to: self.adjustLabel)
-        self.adjustChevronImageView.rightToSuperview()
+        self.scrollViewContentView.addSubview(self.selectCoverChevronImageView)
+        self.selectCoverChevronImageView.centerY(to: self.selectCoverLabel)
+        self.selectCoverChevronImageView.rightToSuperview()
 
-        self.scrollViewContentView.addSubview(self.adjustHiddenButton)
-        self.adjustHiddenButton.top(to: self.adjustLabel, offset: 6)
-        self.adjustHiddenButton.left(to: self.adjustLabel)
-        self.adjustHiddenButton.right(to: self.adjustChevronImageView)
-        self.adjustHiddenButton.bottom(to: self.adjustLabel, offset: -6)
+        self.scrollViewContentView.addSubview(self.selectCoverHiddenButton)
+        self.selectCoverHiddenButton.top(to: self.selectCoverLabel, offset: 6)
+        self.selectCoverHiddenButton.left(to: self.selectCoverLabel)
+        self.selectCoverHiddenButton.right(to: self.selectCoverChevronImageView)
+        self.selectCoverHiddenButton.bottom(to: self.selectCoverLabel, offset: -6)
 
         self.scrollViewContentView.addSubview(self.tagLabel)
-        self.tagLabel.topToBottom(of: self.adjustLabel, offset: 15)
-        self.tagLabel.left(to: self.adjustLabel)
+        self.tagLabel.topToBottom(of: self.selectCoverLabel, offset: 15)
+        self.tagLabel.left(to: self.selectCoverLabel)
 
         self.scrollViewContentView.addSubview(self.tagChevronImageView)
         self.tagChevronImageView.centerY(to: self.tagLabel)
-        self.tagChevronImageView.right(to: self.adjustChevronImageView)
+        self.tagChevronImageView.right(to: self.selectCoverChevronImageView)
 
         self.scrollViewContentView.addSubview(self.tagHiddenButton)
         self.tagHiddenButton.top(to: self.tagLabel, offset: 6)
@@ -298,11 +310,11 @@ extension VideoFileSaveController {
         
         self.scrollViewContentView.addSubview(self.commentsLabel)
         self.commentsLabel.topToBottom(of: self.tagLabel, offset: 15)
-        self.commentsLabel.left(to: self.adjustLabel)
+        self.commentsLabel.left(to: self.selectCoverLabel)
 
         self.scrollViewContentView.addSubview(self.commentSwitch)
         self.commentSwitch.centerY(to: self.commentsLabel)
-        self.commentSwitch.right(to: self.adjustChevronImageView, offset: 6)
+        self.commentSwitch.right(to: self.selectCoverChevronImageView, offset: 6)
         
         self.scrollViewContentView.addSubview(self.commentHiddenButton)
         self.commentHiddenButton.top(to: self.commentsLabel, offset: 6)
@@ -312,11 +324,11 @@ extension VideoFileSaveController {
         
         self.scrollViewContentView.addSubview(self.addMusicLabel)
         self.addMusicLabel.topToBottom(of: self.commentsLabel, offset: 15)
-        self.addMusicLabel.left(to: self.adjustLabel)
+        self.addMusicLabel.left(to: self.selectCoverLabel)
 
         self.scrollViewContentView.addSubview(self.addMusicChevronImageView)
         self.addMusicChevronImageView.centerY(to: self.addMusicLabel)
-        self.addMusicChevronImageView.right(to: self.adjustChevronImageView)
+        self.addMusicChevronImageView.right(to: self.selectCoverChevronImageView)
 
         self.scrollViewContentView.addSubview(self.addMusicHiddenButton)
         self.addMusicHiddenButton.top(to: self.addMusicLabel, offset: 6)
@@ -324,21 +336,25 @@ extension VideoFileSaveController {
         self.addMusicHiddenButton.right(to: self.addMusicChevronImageView)
         self.addMusicHiddenButton.bottom(to: self.addMusicLabel, offset: -6)
         
-        self.scrollViewContentView.addSubview(self.advancedLabel)
-        self.advancedLabel.topToBottom(of: self.addMusicLabel, offset: 15)
-        self.advancedLabel.left(to: self.adjustLabel)
-
-        self.scrollViewContentView.addSubview(self.advancedChevronImageView)
-        self.advancedChevronImageView.centerY(to: self.advancedLabel)
-        self.advancedChevronImageView.right(to: self.adjustChevronImageView)
-
-        self.scrollViewContentView.addSubview(self.advancedHiddenButton)
-        self.advancedHiddenButton.top(to: self.advancedLabel, offset: 6)
-        self.advancedHiddenButton.left(to: self.advancedLabel)
-        self.advancedHiddenButton.right(to: self.advancedChevronImageView)
-        self.advancedHiddenButton.bottom(to: self.advancedLabel, offset: -6)
+        self.scrollViewContentView.addSubview(self.kwikLabel)
+        self.kwikLabel.topToBottom(of: self.addMusicLabel, offset: 15)
+        self.kwikLabel.left(to: self.selectCoverLabel)
         
-        self.scrollViewContentView.bottom(to: self.advancedHiddenButton, offset: 20)
+        self.scrollViewContentView.addSubview(self.saleLabel)
+        self.saleLabel.leftToRight(of: self.kwikLabel)
+        self.saleLabel.centerY(to: self.kwikLabel)
+
+        self.scrollViewContentView.addSubview(self.saleChevronImageView)
+        self.saleChevronImageView.centerY(to: self.kwikLabel)
+        self.saleChevronImageView.right(to: self.selectCoverChevronImageView)
+
+        self.scrollViewContentView.addSubview(self.saleHiddenButton)
+        self.saleHiddenButton.top(to: self.kwikLabel, offset: 6)
+        self.saleHiddenButton.left(to: self.kwikLabel)
+        self.saleHiddenButton.right(to: self.saleChevronImageView)
+        self.saleHiddenButton.bottom(to: self.kwikLabel, offset: -6)
+        
+        self.scrollViewContentView.bottom(to: self.saleHiddenButton, offset: 20)
     }
 }
 //MARK: - Helpers
@@ -367,7 +383,7 @@ extension VideoFileSaveController {
         print(#function)
     }
     
-    @objc func didTapAdjust() {
+    @objc func didTapSelectCover() {
         print(#function)
     }
     
@@ -386,10 +402,11 @@ extension VideoFileSaveController {
     }
     
     @objc func didTapAddMusic() {
-        print(#function)
+        let addMusicVC = AddMusicToVideoViewController()
+        self.navigationController?.pushViewController(addMusicVC, animated: true)
     }
     
-    @objc func didTapAdvanced() {
+    @objc func didTapSale() {
         print(#function)
     }
     

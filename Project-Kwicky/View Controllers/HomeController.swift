@@ -87,19 +87,6 @@ final class HomeController: UIViewController {
         return button
     }()
     
-    private let searchBar: UISearchBar = {
-        let searchBar = UISearchBar(frame: .zero)
-        searchBar.barStyle = .default
-        searchBar.isTranslucent = true
-        searchBar.backgroundColor = .clear
-        searchBar.barTintColor = .white
-        searchBar.backgroundImage = UIImage()
-        searchBar.height(50)
-        searchBar.searchTextField.backgroundColor = UIColor.kwiksGrey.withAlphaComponent(0.5)
-        searchBar.searchTextField.attributedPlaceholder = NSAttributedString(string: "Search", attributes: [.foregroundColor : UIColor.white])
-        return searchBar
-    }()
-    
     private lazy var forYouCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .horizontal
@@ -276,7 +263,7 @@ final class HomeController: UIViewController {
     
     private let viewCountLabel: UILabel = {
         let label = UILabel()
-        label.text = "999 M"
+        label.text = "341 M"
         label.translatesAutoresizingMaskIntoConstraints = false
         label.backgroundColor = .clear
         label.font = UIFont.segoeUISemiBold(size: 13)
@@ -306,7 +293,7 @@ final class HomeController: UIViewController {
     
     private let uploadTimeLabel: UILabel = {
         let label = UILabel()
-        label.text = "5 Min Ago"
+        label.text = "11 Min Ago"
         label.translatesAutoresizingMaskIntoConstraints = false
         label.backgroundColor = .clear
         label.font = UIFont.segoeUISemiBold(size: 13)
@@ -319,7 +306,7 @@ final class HomeController: UIViewController {
     
     private let mainVideoTitleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Tron Legacy Returns. New Details. Plus...Tron Roller Coaster?"
+        label.text = "Our Trip to Tuscany. Hidden Gems Explored. Did we eat the best ice cream in the world?"
         label.translatesAutoresizingMaskIntoConstraints = false
         label.backgroundColor = .clear
         label.font = UIFont.segoeUISemiBold(size: 18)
@@ -347,11 +334,6 @@ final class HomeController: UIViewController {
         self.configure()
         self.layoutUI()
     }
-    
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(animated)
-        self.modifySearchbarIcon()
-    }
 }
 //MARK: - Layout UI
 extension HomeController {
@@ -370,11 +352,6 @@ extension HomeController {
         self.view.addSubview(self.userProfileImageView)
         self.userProfileImageView.topToSuperview(offset: 20, usingSafeArea: true)
         self.userProfileImageView.rightToSuperview(offset: -20)
-        
-        self.view.addSubview(self.searchBar)
-        self.searchBar.topToSuperview(offset: 20, usingSafeArea: true)
-        self.searchBar.leftToSuperview(offset: 20)
-        self.searchBar.rightToLeft(of: self.userProfileImageView, offset: -10)
         
         self.view.addSubview(self.profileButton)
         self.profileButton.top(to: self.userProfileImageView)
@@ -495,13 +472,6 @@ extension HomeController {
         self.hiddenFollowingButton.addTarget(self, action: #selector(didTapFriends), for: .touchUpInside)
         self.hiddenPopularButton.addTarget(self, action: #selector(didTapPopular), for: .touchUpInside)
         self.hiddenLiveButton.addTarget(self, action: #selector(didTapLive), for: .touchUpInside)
-    }
-    
-    private func modifySearchbarIcon() {
-        if let searchIconImageView = self.searchBar.searchTextField.leftView as? UIImageView {
-            searchIconImageView.image = searchIconImageView.image?.withRenderingMode(.alwaysTemplate)
-            searchIconImageView.tintColor = UIColor.white
-        }
     }
 }
 //MARK: - @objc

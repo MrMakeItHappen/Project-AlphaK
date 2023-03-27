@@ -59,7 +59,7 @@ final class GoLiveCommentCollectionViewCell: UICollectionViewCell {
         label.lineBreakMode = .byWordWrapping
         label.adjustsFontSizeToFitWidth = false
         label.textAlignment = .left
-        label.textColor = UIColor.black
+        label.textColor = UIColor.white
         return label
     }()
     

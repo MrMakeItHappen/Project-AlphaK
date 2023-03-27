@@ -239,6 +239,17 @@ final class KwikyController: UIViewController {
         return button
     }()
     
+    private let sendMoneyButton: UIButton = {
+        let button = UIButton(type: .custom)
+        button.backgroundColor = .clear
+        button.contentMode = .scaleAspectFit
+        button.clipsToBounds = true
+        button.setImage(UIImage(named: "SendMoneyIcon"), for: .normal)
+        button.width(33)
+        button.height(33)
+        return button
+    }()
+    
     private let shareVideoImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -448,6 +459,20 @@ final class KwikyController: UIViewController {
         return imageView
     }()
     
+    private lazy var followButton: UIButton = {
+        let button = UIButton(type: .custom)
+        let size: CGFloat = 17
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.layer.masksToBounds = true
+        button.backgroundColor = UIColor.white
+        button.addTarget(self, action: #selector(didTapFollow), for: .touchUpInside)
+        button.height(size)
+        button.width(size)
+        button.layer.cornerRadius = size / 2
+        button.setImage(UIImage(named: "FollowIcon"), for: .normal)
+        return button
+    }()
+    
     private let verticalScrollView: UIScrollView = {
         let scrollView = UIScrollView(frame: .zero)
         scrollView.bounces = false
@@ -459,6 +484,14 @@ final class KwikyController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.configure()
+        self.configureVideo()
+        self.layoutTopUI()
+        self.layoutBottomUI()
+    }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
         self.configure()
         self.configureVideo()
         self.layoutTopUI()
@@ -477,23 +510,17 @@ extension KwikyController {
         self.view.backgroundColor = .white
         self.progressView.progress = 0.0
         
-        self.profileButton.addTarget(self, action: #selector(didTapProfile), for: .touchDown)
+        self.profileButton.addTarget(self, action: #selector(didTapProfile), for: .touchUpInside)
+        self.followButton.addTarget(self, action: #selector(didTapFollow), for: .touchUpInside)
+        self.sendMoneyButton.addTarget(self, action: #selector(didTapSendMoney), for: .touchUpInside)
         
-        self.hiddenEarnedAmountButton.addTarget(self, action: #selector(didTapEarnedAmount), for: .touchDown)
-        self.hiddenStatsButton.addTarget(self, action: #selector(didTapStats), for: .touchDown)
+        self.hiddenEarnedAmountButton.addTarget(self, action: #selector(didTapEarnedAmount), for: .touchUpInside)
+        self.hiddenStatsButton.addTarget(self, action: #selector(didTapStats), for: .touchUpInside)
         
-        self.hiddenMusicButton.addTarget(self, action: #selector(didTapBackgroundMusic), for: .touchDown)
-        self.hiddenShareButton.addTarget(self, action: #selector(didTapShare), for: .touchDown)
-        self.hiddenCommentButton.addTarget(self, action: #selector(didTapComment), for: .touchDown)
+        self.hiddenMusicButton.addTarget(self, action: #selector(didTapBackgroundMusic), for: .touchUpInside)
+        self.hiddenShareButton.addTarget(self, action: #selector(didTapShare), for: .touchUpInside)
+        self.hiddenCommentButton.addTarget(self, action: #selector(didTapComment), for: .touchUpInside)
         self.hiddenLikeButton.addTarget(self, action: #selector(didTapLike), for: .touchDown)
-        self.hiddenFollowButton.addTarget(self, action: #selector(didTapFollow), for: .touchDown)
-        
-        guard let viewers = self.kwiksVideo.viewers else {
-            self.viewCountLabel.text = "🔥🔥🔥"
-            return
-        }
-        
-        self.viewCountLabel.text = "\(viewers)"
     }
 }
 //MARK: - Layout UI
@@ -518,22 +545,9 @@ extension KwikyController {
         self.customBackButton.centerY(to: self.userProfileImageView)
         self.customBackButton.leftToSuperview(offset: 22)
         
-        self.view.addSubview(self.viewCountContainerView)
-        self.viewCountContainerView.centerY(to: self.userProfileImageView)
-        self.viewCountContainerView.leftToRight(of: self.customBackButton, offset: 10)
-        
-        self.viewCountContainerView.addSubview(self.viewCountIconImageView)
-        self.viewCountIconImageView.leftToSuperview(offset: 7)
-        self.viewCountIconImageView.centerYToSuperview()
-        
-        self.viewCountContainerView.addSubview(self.viewCountLabel)
-        self.viewCountLabel.centerYToSuperview(offset: -1)
-        self.viewCountLabel.leftToRight(of: self.viewCountIconImageView, offset: 4)
-        self.viewCountLabel.rightToSuperview(offset: -7)
-        
         self.view.addSubview(self.earnedAmountView)
         self.earnedAmountView.centerY(to: self.userProfileImageView)
-        self.earnedAmountView.leftToRight(of: self.viewCountContainerView, offset: 8)
+        self.earnedAmountView.leftToRight(of: self.customBackButton, offset: 10)
         
         self.earnedAmountView.addSubview(self.moneySignImageView)
         self.moneySignImageView.leftToSuperview(offset: 9)
@@ -584,6 +598,10 @@ extension KwikyController {
         self.hiddenMusicButton.right(to: self.videoBackgroundMusicImageView, offset: 2)
         self.hiddenMusicButton.left(to: self.videoBackgroundMusicImageView, offset: -2)
         self.hiddenMusicButton.bottom(to: self.videoBackgroundMusicImageView, offset: 2)
+        
+        self.view.addSubview(self.sendMoneyButton)
+        self.sendMoneyButton.rightToLeft(of: self.videoBackgroundMusicImageView, offset: -18)
+        self.sendMoneyButton.centerY(to: self.videoBackgroundMusicImageView)
         
         self.view.addSubview(self.shareVideoImageView)
         self.shareVideoImageView.bottomToTop(of: self.videoBackgroundMusicImageView, offset: -30)
@@ -640,22 +658,13 @@ extension KwikyController {
         self.usernameLabel.bottomToTop(of: self.videoTitleLabel, offset: -13)
         self.usernameLabel.left(to: self.currentMusicImageViewIcon)
         
-        self.view.addSubview(self.followContainerView)
-        self.followContainerView.centerY(to: self.usernameLabel)
-        self.followContainerView.leftToRight(of: self.usernameLabel, offset: 10)
-        
-        self.followContainerView.addSubview(self.followLabel)
-        self.followLabel.centerInSuperview()
-        
-        self.view.addSubview(self.hiddenFollowButton)
-        self.hiddenFollowButton.top(to: self.followContainerView, offset: -2)
-        self.hiddenFollowButton.right(to: self.followContainerView, offset: 2)
-        self.hiddenFollowButton.left(to: self.followContainerView, offset: -2)
-        self.hiddenFollowButton.bottom(to: self.followContainerView, offset: 2)
-        
         self.view.addSubview(self.uploadedByProfileImageView)
         self.uploadedByProfileImageView.bottomToTop(of: self.usernameLabel, offset: -13)
         self.uploadedByProfileImageView.left(to: self.currentMusicImageViewIcon)
+        
+        self.view.addSubview(self.followButton)
+        self.followButton.right(to: self.uploadedByProfileImageView, offset: 4)
+        self.followButton.bottom(to: self.uploadedByProfileImageView, offset: 4)
     }
 }
 //MARK: - Helpers
@@ -748,6 +757,10 @@ extension KwikyController {
     }
     
     @objc func didTapFollow() {
+        print(#function)
+    }
+    
+    @objc func didTapSendMoney() {
         print(#function)
     }
 }

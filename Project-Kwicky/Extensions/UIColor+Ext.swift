@@ -8,23 +8,26 @@
 import UIKit
 
 extension UIColor {
-    /// Hex #E1E1E1
+    /// #E1E1E1
     static let borderGrey = #colorLiteral(red: 0.8823529412, green: 0.8823529412, blue: 0.8823529412, alpha: 1)
     
-    /// Hex #9AE769
+    /// #9AE769
     static let kwiksGreen = #colorLiteral(red: 0.6039215686, green: 0.9058823529, blue: 0.4117647059, alpha: 1)
     
-    /// Hex #BCBCBC
+    /// #BCBCBC
     static let tabBarGrey = #colorLiteral(red: 0.737254902, green: 0.737254902, blue: 0.737254902, alpha: 1)
     
-    /// Hex #D9D9D9
+    /// #D9D9D9
     static let kwiksGrey = #colorLiteral(red: 0.8509803922, green: 0.8509803922, blue: 0.8509803922, alpha: 1)
     
-    /// Hex #3A3A3A
+    /// #3A3A3A
     static let kwiksTextBlack = #colorLiteral(red: 0.2274509804, green: 0.2274509804, blue: 0.2274509804, alpha: 1)
     
-    ///Hex #171717
+    /// #171717
     static let kwiksBackgroundBlack = #colorLiteral(red: 0.09019607843, green: 0.09019607843, blue: 0.09019607843, alpha: 1)
+    
+    /// #A6A6A6
+    static let musicTextColor = #colorLiteral(red: 0.6509803922, green: 0.6509803922, blue: 0.6509803922, alpha: 1)
 }
 
 //Convert Hex Color to UIColor

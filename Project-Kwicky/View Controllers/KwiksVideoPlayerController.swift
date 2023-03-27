@@ -413,6 +413,15 @@ final class KwiksVideoPlayerController: UIViewController {
         return scrollView
     }()
     
+    private let verticalScrollViewContentView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .white
+        view.layer.cornerRadius = 0
+        view.clipsToBounds = true
+        return view
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configure()
@@ -423,9 +432,14 @@ final class KwiksVideoPlayerController: UIViewController {
 //        self.view.addSubview(self.verticalScrollView)
 //        self.verticalScrollView.edgesToSuperview()
 //
-//        self.verticalScrollView.contentSize = CGSize(width: view.width, height: view.height)
+//        self.verticalScrollView.addSubview(self.verticalScrollViewContentView)
+//        self.verticalScrollViewContentView.edgesToSuperview(usingSafeArea: true)
+//        self.verticalScrollViewContentView.width(to: self.verticalScrollView)
 //
-//        let viewController = UIViewController()
+//        self.verticalScrollView.contentSize = CGSize(width: view.width - 100, height: view.height - 100)
+//
+//        let viewController = KwikyController()
+//        viewController.kwiksVideo = self.kwiksVideo
 //        viewController.view.backgroundColor = .systemMint
 //
 //        let pagingController = UIPageViewController(transitionStyle: .scroll, navigationOrientation: .vertical, options: [:])
@@ -433,7 +447,8 @@ final class KwiksVideoPlayerController: UIViewController {
 //        pagingController.dataSource = self
 //        pagingController.delegate = self
 //
-//        self.verticalScrollView.addSubview(pagingController.view)
+//        self.verticalScrollViewContentView.addSubview(pagingController.view)
+//        pagingController.view.edgesToSuperview(usingSafeArea: true)
 //        pagingController.view.frame = view.bounds
 //        addChild(pagingController)
 //        pagingController.didMove(toParent: self)

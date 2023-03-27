@@ -9,6 +9,7 @@ import Foundation
 import UIKit
 
 struct KwiksVideo {
+    var uuid: UUID?
     var title: String?
     var uploadDate: String?
     var viewCount: Int?

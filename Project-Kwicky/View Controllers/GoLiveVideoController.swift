@@ -362,7 +362,7 @@ final class GoLiveVideoController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configure()
-//        self.configureVideo()
+        self.configureVideo()
         self.layoutTopUI()
         self.layoutBottomUI()
     }
@@ -579,13 +579,10 @@ extension GoLiveVideoController {
         self.view.layer.addSublayer(playerLayer)
         player.play()
         
-        let interval = CMTime(value: 1, timescale: 1000)
-        
         self.playerDidFinishObserver = NotificationCenter.default.addObserver(forName: .AVPlayerItemDidPlayToEndTime, object: player.currentItem, queue: .main, using: { [weak player] _ in
             
             player?.seek(to: .zero)
             player?.play()
-            
         })
     }
 }
@@ -641,7 +638,7 @@ extension GoLiveVideoController {
         
         DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
             self.commentTextField.text = ""
-            self.accesoryTextField.becomeFirstResponder()
+//            self.accesoryTextField.becomeFirstResponder()
         }
     }
     

@@ -7,6 +7,8 @@
 
 import UIKit
 
+//TODO: Fetch any available music here. Can be process in the background while user makes video adjustments.
+
 final class VideoController: UIViewController {
     private let effectsExamples = Effect.effectExamples
     
@@ -457,6 +459,8 @@ final class VideoController: UIViewController {
         self.layoutTopUI()
         self.layoutBottomUI()
         self.layoutLeadingUI()
+        
+        _allAvailableVideoMusic = AvailableMusic.allTempSongs
     }
 }
 //MARK: - Configure View Controller
@@ -667,7 +671,8 @@ extension VideoController {
     }
     
     @objc func didTapAddMusic() {
-        print(#function)
+        let addMusicVC = AddMusicToVideoViewController()
+        self.navigationController?.pushViewController(addMusicVC, animated: true)
     }
     
     @objc func didTapFlipCamera() {
@@ -748,7 +753,6 @@ extension VideoController {
     
     @objc func didTapUpload() {
         let fileSaveVC = VideoFileSaveController()
-        fileSaveVC.userCreatedVideo = self.userCreatedVideo
         self.navigationController?.pushViewController(fileSaveVC, animated: true)
     }
     

@@ -18,8 +18,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let window = UIWindow(windowScene: sceneWindow)
         
-//        let decisionController = DecisionController()
         let decisionController = TabViewController()
+//        let decisionController = AddMusicToVideoViewController()
 //        let navigationController = UINavigationController(rootViewController: decisionController)
 //        navigationController.navigationBar.isHidden = true
 //        navigationController.modalPresentationStyle = .fullScreen
@@ -46,6 +46,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window.rootViewController = decisionController
         window.makeKeyAndVisible()
         self.window = window
+        
+        // iPhone Dimensions
+//        let height = UIScreen.main.bounds.height
+//        let width = UIScreen.main.bounds.width
+//        
+//        print("-Simulator Device Dimensions-\nDevice Height - \(height)\nDevice Width - \(width)")
     }
 
     func sceneDidDisconnect(_ scene: UIScene) { }

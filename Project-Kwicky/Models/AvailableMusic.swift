@@ -21,5 +21,5 @@ struct AvailableMusic {
     static let tempSongFour = AvailableMusic(songTitle: "Secret Sunshine", artistName: "Unique", duration: "01:00", numberOfVideosFeaturingSong: "2")
     static let tempSongFive = AvailableMusic(songTitle: "Mi Casa", artistName: "Hector & Juan", duration: "01:00", numberOfVideosFeaturingSong: "0")
     
-    static let allTempSongs: [AvailableMusic] = [tempSongOne, tempSongTwo, tempSongThree, tempSongFour, tempSongFive, tempSongOne, tempSongTwo, tempSongThree, tempSongFour, tempSongFive]
+    static let allTempSongs: [AvailableMusic] = [tempSongOne, tempSongTwo, tempSongThree, tempSongFour, tempSongFive]
 }

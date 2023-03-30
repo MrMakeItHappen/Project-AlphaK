@@ -9,7 +9,8 @@ import UIKit
 
 final class AvailableMusicTableViewCell: UITableViewCell {
     static let identifier = "AvailableMusicTableViewCell"
-    var buttonTapCallback: () -> () = {}
+    var playMusicCallback: () -> () = {}
+    var showVideosCallback: () -> () = {}
     
     private let songArtworkContainerView: UIView = {
         let view = UIView()
@@ -37,9 +38,10 @@ final class AvailableMusicTableViewCell: UITableViewCell {
         return imageView
     }()
     
-    private let viewVideosContainingSongButton: UIButton = {
-        let button = UIButton(type: .system)
+    let viewVideosContainingSongButton: UIButton = {
+        let button = UIButton(type: .custom)
         let size: CGFloat = 30
+        button.isUserInteractionEnabled = true
         button.translatesAutoresizingMaskIntoConstraints = false
         button.layer.masksToBounds = true
         button.tintColor = UIColor.white
@@ -51,9 +53,10 @@ final class AvailableMusicTableViewCell: UITableViewCell {
         return button
     }()
     
-    private let playSongButton: UIButton = {
-        let button = UIButton(type: .system)
+    let playSongButton: UIButton = {
+        let button = UIButton(type: .custom)
         let size: CGFloat = 30
+        button.isUserInteractionEnabled = true
         button.translatesAutoresizingMaskIntoConstraints = false
         button.layer.masksToBounds = true
         button.tintColor = UIColor.white
@@ -75,16 +78,6 @@ final class AvailableMusicTableViewCell: UITableViewCell {
         label.textAlignment = .left
         label.textColor = UIColor.white
         return label
-    }()
-    
-    private let marqueeButton: UIButton = {
-        let button = UIButton(type: .system)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.layer.masksToBounds = true
-        button.tintColor = UIColor.musicTextColor
-        button.backgroundColor = UIColor.kwiksGreen
-        button.height(16)
-        return button
     }()
     
     private let artistNameLabel: UILabel = {
@@ -155,8 +148,13 @@ final class AvailableMusicTableViewCell: UITableViewCell {
     }
     
     private func configure() {
+        self.contentView.isUserInteractionEnabled = false
+        self.selectionStyle = .none
         self.clipsToBounds = true
         self.backgroundColor = .clear
+        
+        self.playSongButton.addTarget(self, action: #selector(didTapPlay), for: .touchUpInside)
+        self.viewVideosContainingSongButton.addTarget(self, action: #selector(didTapView), for: .touchUpInside)
     }
     
     private func layoutUI() {
@@ -176,12 +174,6 @@ final class AvailableMusicTableViewCell: UITableViewCell {
         self.songTitleLabel.leftToRight(of: self.songArtworkContainerView, offset: 10)
         self.songTitleLabel.rightToLeft(of: self.playSongButton, offset: -10)
         self.songTitleLabel.top(to: self.songArtworkContainerView, offset: 1)
-        
-//        self.addSubview(self.marqueeButton)
-//        self.marqueeButton.leftToRight(of: self.songArtworkContainerView, offset: 10)
-//        self.marqueeButton.rightToLeft(of: self.playSongButton, offset: -10)
-//        self.marqueeButton.topToBottom(of: self.songTitleLabel, offset: 2)
-//        self.marqueeButton.bottom(to: self.songArtworkContainerView, offset: -2)
 
         self.addSubview(self.artistNameLabel)
         self.artistNameLabel.left(to: self.songTitleLabel)
@@ -207,10 +199,23 @@ final class AvailableMusicTableViewCell: UITableViewCell {
     
     func configure(with music: AvailableMusic) {
         self.songTitleLabel.text = music.songTitle ?? "Searching..."
-        self.artistNameLabel.text = music.artistName ?? "Artist"
         self.durationLabel.text = music.duration ?? "01:00"
         self.numberOfVideosFeaturingSong.text = "\(music.numberOfVideosFeaturingSong ?? "0") Videos"
         
+        guard let artistName = music.artistName else {
+            //Artist Name Unavailable
+            self.artistNameLabel.text = "Artist"
+            return
+        }
         
+        self.artistNameLabel.text = "\(artistName.prefix(12))"
+    }
+    
+    @objc func didTapPlay() {
+        playMusicCallback()
+    }
+
+    @objc func didTapView() {
+        showVideosCallback()
     }
 }

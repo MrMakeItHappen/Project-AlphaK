@@ -8,7 +8,7 @@
 import UIKit
 import KwiksSystemsPopups
 
-//TODO: Fetch any available music here. Can be process in the background while user makes video adjustments.
+//TODO: Fetch any available music here. Can be processed in the background while user makes video adjustments.
 
 final class VideoController: UIViewController {
     private let effectsExamples = Effect.effectExamples

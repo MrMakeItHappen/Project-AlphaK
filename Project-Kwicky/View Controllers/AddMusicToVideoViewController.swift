@@ -7,8 +7,9 @@
 
 import UIKit
 
-//TODO: Send music selection from this controller to VideoFileSaveController
 final class AddMusicToVideoViewController: UIViewController {
+    private var filteredSongs: [AvailableMusic] = []
+    private var searchCategories: String?
 
     private lazy var customBackButton: UIButton = {
         let button = UIButton(type: .system)
@@ -36,10 +37,11 @@ final class AddMusicToVideoViewController: UIViewController {
         return label
     }()
     
-    private let searchBar: UISearchBar = {
+    private lazy var searchBar: UISearchBar = {
         let searchBar = UISearchBar(frame: .zero)
         searchBar.barStyle = .default
         searchBar.isTranslucent = true
+        searchBar.delegate = self
         searchBar.backgroundColor = UIColor.clear
         searchBar.barTintColor = .black
         searchBar.backgroundImage = UIImage()
@@ -82,9 +84,7 @@ final class AddMusicToVideoViewController: UIViewController {
         super.viewDidLoad()
         self.configure()
         self.layoutUI()
-        
-        _allAvailableVideoMusic = AvailableMusic.allTempSongs
-        self.availableMusicTableView.reloadData()
+        self.downloadAvailableMusic() //Should be on the Video Upload/Edit Screen
     }
 
     override func viewDidAppear(_ animated: Bool) {
@@ -136,6 +136,12 @@ extension AddMusicToVideoViewController {
             searchIconImageView.tintColor = UIColor.black
         }
     }
+    
+    private func downloadAvailableMusic() {
+        _allAvailableVideoMusic = AvailableMusic.allTempSongs
+        self.filteredSongs = _allAvailableVideoMusic
+        self.availableMusicTableView.reloadData()
+    }
 }
 //MARK: - @objc
 extension AddMusicToVideoViewController {
@@ -151,12 +157,7 @@ extension AddMusicToVideoViewController {
 //MARK: - UITableView DataSource & Delegate
 extension AddMusicToVideoViewController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        guard !_allAvailableVideoMusic.isEmpty else {
-            //No music downloaded or available. Present Pop-up Alert.
-            return 0
-        }
-        
-        return _allAvailableVideoMusic.count
+        return self.filteredSongs.count
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -164,13 +165,46 @@ extension AddMusicToVideoViewController: UITableViewDelegate, UITableViewDataSou
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = self.availableMusicTableView.dequeueReusableCell(withIdentifier: AvailableMusicTableViewCell.identifier, for: indexPath) as! AvailableMusicTableViewCell
-        let selectedSong = _allAvailableVideoMusic[indexPath.item]
+        let cell = tableView.dequeueReusableCell(withIdentifier: AvailableMusicTableViewCell.identifier, for: indexPath) as! AvailableMusicTableViewCell
+        let selectedSong = self.filteredSongs[indexPath.item]
         cell.configure(with: selectedSong)
+        
+        cell.playMusicCallback = {
+            print("Play This Song - ", selectedSong.songTitle ?? "Error")
+        }
+        
+        cell.showVideosCallback = {
+            print("Show Kwiks Containing This Song - ")
+        }
+        
         return cell
     }
     
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-//        let selectedSong = _allAvailableVideoMusic[indexPath.item]
+        let selectedSong = self.filteredSongs[indexPath.item]
+        let songTitle = selectedSong.songTitle
+        print(songTitle ?? "Error")
+    }
+}
+//MARK: - UISearchBar Delegate
+extension AddMusicToVideoViewController: UISearchBarDelegate {
+    func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
+        
+        if searchText != "" {
+            self.filteredSongs = (_allAvailableVideoMusic.filter { song in
+                
+                let songTitle = song.songTitle ?? ""
+                let artistName = song.artistName ?? ""
+                
+                self.searchCategories = songTitle + " " + artistName
+                return searchCategories!.contains(searchText)
+            })
+            
+            self.availableMusicTableView.reloadData()
+            
+        } else {
+            self.filteredSongs = _allAvailableVideoMusic
+            self.availableMusicTableView.reloadData()
+        }
     }
 }

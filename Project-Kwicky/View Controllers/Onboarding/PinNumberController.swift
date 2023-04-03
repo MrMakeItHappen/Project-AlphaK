@@ -8,23 +8,6 @@
 import UIKit
 
 final class PinNumberController: UIViewController {
-    private let confirmImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.backgroundColor = .clear
-        imageView.contentMode = .scaleAspectFill
-        imageView.isUserInteractionEnabled = false
-        imageView.backgroundColor = .clear
-        imageView.layer.masksToBounds = true
-        imageView.layer.cornerRadius = 0
-        imageView.height(81)
-        imageView.width(81)
-        
-        let image = UIImage(named: "PinConfirmIcon")
-        imageView.image = image
-        return imageView
-    }()
-    
     private let mainTitleLabel: UILabel = {
         let label = UILabel()
         label.text = "Confirmation\nLink Sent"
@@ -66,7 +49,7 @@ final class PinNumberController: UIViewController {
         textField.returnKeyType = .next
         textField.keyboardType = .numberPad
         textField.layer.masksToBounds = true
-        textField.layer.cornerRadius = 12
+        textField.layer.cornerRadius = 40
         textField.leftViewMode = .always
         textField.layer.borderColor = UIColor.borderGrey.cgColor
         textField.layer.borderWidth = 1
@@ -95,7 +78,7 @@ final class PinNumberController: UIViewController {
         textField.returnKeyType = .next
         textField.keyboardType = .numberPad
         textField.layer.masksToBounds = true
-        textField.layer.cornerRadius = 12
+        textField.layer.cornerRadius = 40
         textField.leftViewMode = .always
         textField.layer.borderColor = UIColor.borderGrey.cgColor
         textField.layer.borderWidth = 1
@@ -124,7 +107,7 @@ final class PinNumberController: UIViewController {
         textField.returnKeyType = .next
         textField.keyboardType = .numberPad
         textField.layer.masksToBounds = true
-        textField.layer.cornerRadius = 12
+        textField.layer.cornerRadius = 40
         textField.leftViewMode = .always
         textField.layer.borderColor = UIColor.borderGrey.cgColor
         textField.layer.borderWidth = 1
@@ -153,7 +136,7 @@ final class PinNumberController: UIViewController {
         textField.returnKeyType = .next
         textField.keyboardType = .numberPad
         textField.layer.masksToBounds = true
-        textField.layer.cornerRadius = 12
+        textField.layer.cornerRadius = 40
         textField.leftViewMode = .always
         textField.layer.borderColor = UIColor.borderGrey.cgColor
         textField.layer.borderWidth = 1
@@ -262,18 +245,14 @@ extension PinNumberController {
 //MARK: - Layout UI
 extension PinNumberController {
     private func layoutUI() {
-        self.view.addSubview(self.confirmImageView)
-        self.confirmImageView.topToSuperview(offset: 86)
-        self.confirmImageView.leftToSuperview(offset: 40)
-        
         self.view.addSubview(self.mainTitleLabel)
-        self.mainTitleLabel.topToBottom(of: self.confirmImageView, offset: 23)
-        self.mainTitleLabel.left(to: self.confirmImageView)
-        self.mainTitleLabel.right(to: self.view, offset: -40)
+        self.mainTitleLabel.topToSuperview(offset: 40)
+        self.mainTitleLabel.leftToSuperview(offset: 40)
+        self.mainTitleLabel.rightToSuperview(offset: -40)
         
         self.view.addSubview(self.subTitleLabel)
         self.subTitleLabel.topToBottom(of: self.mainTitleLabel, offset: 12)
-        self.subTitleLabel.left(to: self.confirmImageView)
+        self.subTitleLabel.left(to: self.mainTitleLabel)
         self.subTitleLabel.right(to: self.mainTitleLabel)
         
         self.pinStackView.addArrangedSubview(self.digitOneTextField)
@@ -287,8 +266,8 @@ extension PinNumberController {
         
         self.view.addSubview(self.confirmButton)
         self.confirmButton.topToBottom(of: self.pinStackView, offset: 114)
-        self.confirmButton.leftToSuperview(offset: 40)
-        self.confirmButton.rightToSuperview(offset: -40)
+        self.confirmButton.left(to: self.mainTitleLabel)
+        self.confirmButton.right(to: self.mainTitleLabel)
         
         self.bottomStackView.addArrangedSubview(self.bottomLabel)
         self.bottomStackView.addArrangedSubview(self.resendButton)
@@ -374,5 +353,13 @@ extension PinNumberController: UITextFieldDelegate {
         }
         
         return true
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        textField.layer.borderColor = UIColor.borderGrey.cgColor
+    }
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        textField.layer.borderColor = UIColor.kwiksGreen.cgColor
     }
 }

@@ -15,6 +15,22 @@ final class SignUpDetailController: UIViewController {
         return view
     }()
     
+    private let backgroundArrowImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.backgroundColor = .clear
+        imageView.contentMode = .scaleAspectFit
+        imageView.isUserInteractionEnabled = false
+        imageView.backgroundColor = .clear
+        imageView.layer.masksToBounds = true
+        imageView.height(344)
+        imageView.width(226)
+        
+        let image = UIImage(named: "SignUpBackgroundArrow")
+        imageView.image = image
+        return imageView
+    }()
+    
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -130,6 +146,20 @@ final class SignUpDetailController: UIViewController {
         return label
     }()
     
+    private let fullNameErrorLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Please enter your full name."
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.backgroundColor = .clear
+        label.font = UIFont.interRegular(size: 10)
+        label.numberOfLines = 1
+        label.adjustsFontSizeToFitWidth = true
+        label.textAlignment = .right
+        label.textColor = .systemRed
+        label.isHidden = true
+        return label
+    }()
+    
     private lazy var emailTextField: UITextField = {
         let textField = UITextField(frame: .zero)
         let placeholder = "ex. kwiks@kwiks.com"
@@ -168,6 +198,20 @@ final class SignUpDetailController: UIViewController {
         label.textAlignment = .center
         label.textColor = #colorLiteral(red: 0.6392156863, green: 0.6392156863, blue: 0.6392156863, alpha: 1)
         label.width(78)
+        return label
+    }()
+    
+    private let emailErrorLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Please enter a valid email."
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.backgroundColor = .clear
+        label.font = UIFont.interRegular(size: 10)
+        label.numberOfLines = 1
+        label.adjustsFontSizeToFitWidth = true
+        label.textAlignment = .right
+        label.textColor = .systemRed
+        label.isHidden = true
         return label
     }()
     
@@ -213,6 +257,20 @@ final class SignUpDetailController: UIViewController {
         return label
     }()
     
+    private let passwordErrorLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Please enter a password."
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.backgroundColor = .clear
+        label.font = UIFont.interRegular(size: 10)
+        label.numberOfLines = 1
+        label.adjustsFontSizeToFitWidth = true
+        label.textAlignment = .right
+        label.textColor = .systemRed
+        label.isHidden = true
+        return label
+    }()
+    
     private lazy var birthdateTextField: UITextField = {
         let textField = UITextField(frame: .zero)
         let placeholder = "ex. 01/21/2001"
@@ -253,6 +311,20 @@ final class SignUpDetailController: UIViewController {
         return label
     }()
     
+    private let birthdateErrorLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Please select your birthdate."
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.backgroundColor = .clear
+        label.font = UIFont.interRegular(size: 10)
+        label.numberOfLines = 1
+        label.adjustsFontSizeToFitWidth = true
+        label.textAlignment = .right
+        label.textColor = .systemRed
+        label.isHidden = true
+        return label
+    }()
+    
     private lazy var datePicker: UIDatePicker = {
         let datePicker = UIDatePicker(frame: .zero)
         datePicker.preferredDatePickerStyle = .compact
@@ -266,13 +338,14 @@ final class SignUpDetailController: UIViewController {
         let icon = UIImage(named: "LoginIcon")
         var attributeContainer = AttributeContainer()
         attributeContainer.font = .interRegular(size: 16)
+        attributeContainer.foregroundColor = .black
         
         var configuration = UIButton.Configuration.plain()
         configuration.cornerStyle = .capsule
         configuration.image = icon
         configuration.imagePlacement = .trailing
         configuration.imagePadding = 10
-        configuration.attributedTitle = AttributedString("Sign Up", attributes: attributeContainer)
+        configuration.attributedTitle = AttributedString("Sign up", attributes: attributeContainer)
         
         let button = UIButton(configuration: configuration, primaryAction: UIAction(handler: { _ in
             self.didTapSignUp()
@@ -280,16 +353,14 @@ final class SignUpDetailController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.layer.masksToBounds = true
         button.backgroundColor = #colorLiteral(red: 0.7764705882, green: 0.7764705882, blue: 0.7764705882, alpha: 1)
-        button.tintColor = .black
         button.layer.cornerRadius = 25
         button.height(50)
-        button.isEnabled = false
         return button
     }()
     
     private let bottomLabel: UILabel = {
         let label = UILabel()
-        label.text = "I'm already a member,"
+        label.text = "Already a member?"
         label.translatesAutoresizingMaskIntoConstraints = false
         label.backgroundColor = .clear
         label.font = UIFont.interRegular(size: 13)
@@ -339,6 +410,10 @@ extension SignUpDetailController {
             self.bottomLabel.layer.opacity = 1
             self.signInButton.layer.opacity = 1
         }
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapGesture))
+        self.view.isUserInteractionEnabled = true
+        self.view.addGestureRecognizer(tapGesture)
     }
     
     private func addGradientBackground() {
@@ -365,6 +440,10 @@ extension SignUpDetailController {
         self.titleLabel.topToSuperview(usingSafeArea: true)
         self.titleLabel.leftToSuperview(offset: 40)
         self.titleLabel.rightToSuperview(offset: -40)
+        
+        self.view.addSubview(self.backgroundArrowImageView)
+        self.backgroundArrowImageView.top(to: self.titleLabel, offset: -16)
+        self.backgroundArrowImageView.rightToSuperview(offset: 6)
         
         self.view.addSubview(self.subTitleLabel)
         self.subTitleLabel.topToBottom(of: self.titleLabel, offset: 18)
@@ -399,6 +478,11 @@ extension SignUpDetailController {
         self.scrollViewContentView.addSubview(self.fullNameLabel)
         self.fullNameLabel.top(to: self.fullNameTextField, offset: -8)
         self.fullNameLabel.left(to: self.fullNameTextField, offset: 22)
+        
+        self.scrollViewContentView.addSubview(self.fullNameErrorLabel)
+        self.fullNameErrorLabel.topToBottom(of: self.fullNameTextField, offset: 4)
+        self.fullNameErrorLabel.left(to: self.fullNameTextField)
+        self.fullNameErrorLabel.right(to: self.fullNameTextField, offset: -6)
 
         self.scrollViewContentView.addSubview(self.emailTextField)
         self.emailTextField.topToBottom(of: self.fullNameTextField, offset: 30)
@@ -408,6 +492,11 @@ extension SignUpDetailController {
         self.scrollViewContentView.addSubview(self.emailLabel)
         self.emailLabel.top(to: self.emailTextField, offset: -8)
         self.emailLabel.left(to: self.emailTextField, offset: 18)
+        
+        self.scrollViewContentView.addSubview(self.emailErrorLabel)
+        self.emailErrorLabel.topToBottom(of: self.emailTextField, offset: 4)
+        self.emailErrorLabel.left(to: self.emailTextField)
+        self.emailErrorLabel.right(to: self.emailTextField, offset: -6)
 
         self.scrollViewContentView.addSubview(self.passwordTextField)
         self.passwordTextField.topToBottom(of: self.emailTextField, offset: 30)
@@ -417,6 +506,11 @@ extension SignUpDetailController {
         self.scrollViewContentView.addSubview(self.passwordLabel)
         self.passwordLabel.top(to: self.passwordTextField, offset: -8)
         self.passwordLabel.left(to: self.passwordTextField, offset: 22)
+        
+        self.scrollViewContentView.addSubview(self.passwordErrorLabel)
+        self.passwordErrorLabel.topToBottom(of: self.passwordTextField, offset: 4)
+        self.passwordErrorLabel.left(to: self.passwordTextField)
+        self.passwordErrorLabel.right(to: self.passwordTextField, offset: -6)
 
         self.scrollViewContentView.addSubview(self.birthdateTextField)
         self.birthdateTextField.topToBottom(of: self.passwordTextField, offset: 30)
@@ -426,6 +520,11 @@ extension SignUpDetailController {
         self.scrollViewContentView.addSubview(self.birthdateLabel)
         self.birthdateLabel.top(to: self.birthdateTextField, offset: -8)
         self.birthdateLabel.left(to: self.birthdateTextField, offset: 22)
+        
+        self.scrollViewContentView.addSubview(self.birthdateErrorLabel)
+        self.birthdateErrorLabel.topToBottom(of: self.birthdateTextField, offset: 4)
+        self.birthdateErrorLabel.left(to: self.birthdateTextField)
+        self.birthdateErrorLabel.right(to: self.birthdateTextField, offset: -6)
         
         self.scrollViewContentView.addSubview(self.datePicker)
         self.datePicker.right(to: self.birthdateTextField, offset: -10)
@@ -448,11 +547,59 @@ extension SignUpDetailController {
         self.scrollViewContentView.bottom(to: self.bottomLabel, offset: 4)
     }
 }
+//MARK: - Helpers
+extension SignUpDetailController {
+    private func removeTextFieldErrors() {
+        self.fullNameTextField.layer.borderColor = UIColor.borderGrey.cgColor
+        self.fullNameErrorLabel.isHidden = true
+        
+        self.emailTextField.layer.borderColor = UIColor.borderGrey.cgColor
+        self.emailErrorLabel.isHidden = true
+        
+        self.passwordTextField.layer.borderColor = UIColor.borderGrey.cgColor
+        self.passwordErrorLabel.isHidden = true
+        
+        self.birthdateTextField.layer.borderColor = UIColor.borderGrey.cgColor
+        self.birthdateErrorLabel.isHidden = true
+    }
+}
 //MARK: - @objc
 extension SignUpDetailController {
+    @objc func tapGesture(_ sender: UITapGestureRecognizer) {
+        self.view.endEditing(true)
+    }
+    
     @objc func didTapSignUp() {
         //Check if all fields are valid before submitting to backend.
+        //TODO: If missing fields, change border color
         print(#function)
+        
+        guard let emailText = self.emailTextField.text, let passwordText = self.passwordTextField.text, let fullNameText = self.fullNameTextField.text, let dateText = self.birthdateTextField.text else { return }
+        
+        if fullNameText.isEmpty {
+            self.fullNameTextField.layer.borderColor = UIColor.systemRed.cgColor
+            self.fullNameErrorLabel.isHidden = false
+        }
+        
+        if emailText.isEmpty {
+            self.emailTextField.layer.borderColor = UIColor.systemRed.cgColor
+            self.emailErrorLabel.isHidden = false
+        }
+        
+        if passwordText.isEmpty {
+            self.passwordTextField.layer.borderColor = UIColor.systemRed.cgColor
+            self.passwordErrorLabel.isHidden = false
+        }
+        
+        if dateText.isEmpty {
+            self.birthdateTextField.layer.borderColor = UIColor.systemRed.cgColor
+            self.birthdateErrorLabel.isHidden = false
+        }
+        
+        if !fullNameText.isEmpty && !emailText.isEmpty && !passwordText.isEmpty && !dateText.isEmpty {
+            let pinVC = PinNumberController()
+            self.navigationController?.pushViewController(pinVC, animated: true)
+        }
     }
     
     @objc func didTapSignIn() {
@@ -467,16 +614,6 @@ extension SignUpDetailController {
         dateFormatter.dateFormat = "MM/dd/yyyy"
         
         self.birthdateTextField.text = dateFormatter.string(from: self.datePicker.date)
-        
-        guard let emailText = self.emailTextField.text, let passwordText = self.passwordTextField.text, let fullNameText = self.fullNameTextField.text else { return }
-        
-        if !emailText.isEmpty && !passwordText.isEmpty && !fullNameText.isEmpty {
-            self.signUpButton.backgroundColor = .kwiksGreen
-            self.signUpButton.isEnabled = true
-        } else {
-            self.signUpButton.backgroundColor = #colorLiteral(red: 0.7764705882, green: 0.7764705882, blue: 0.7764705882, alpha: 1)
-            self.signUpButton.isEnabled = false
-        }
         
         self.view.endEditing(true)
     }
@@ -508,5 +645,17 @@ extension SignUpDetailController: UITextFieldDelegate {
         }
         
         return true
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        self.removeTextFieldErrors()
+        
+        guard let emailText = self.emailTextField.text, let passwordText = self.passwordTextField.text, let fullNameText = self.fullNameTextField.text, let dateText = self.birthdateTextField.text else { return }
+        
+        if !emailText.isEmpty && !passwordText.isEmpty && !fullNameText.isEmpty && !dateText.isEmpty {
+            self.signUpButton.backgroundColor = .kwiksGreen
+        } else {
+            self.signUpButton.backgroundColor = #colorLiteral(red: 0.7764705882, green: 0.7764705882, blue: 0.7764705882, alpha: 1)
+        }
     }
 }

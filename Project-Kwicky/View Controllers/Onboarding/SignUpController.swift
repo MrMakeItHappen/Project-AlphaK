@@ -13,6 +13,22 @@ final class SignUpController: UIViewController {
         return view
     }()
     
+    private let backgroundArrowImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.backgroundColor = .clear
+        imageView.contentMode = .scaleAspectFit
+        imageView.isUserInteractionEnabled = false
+        imageView.backgroundColor = .clear
+        imageView.layer.masksToBounds = true
+        imageView.height(344)
+        imageView.width(226)
+        
+        let image = UIImage(named: "SignUpBackgroundArrow")
+        imageView.image = image
+        return imageView
+    }()
+    
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -94,7 +110,7 @@ final class SignUpController: UIViewController {
     }()
     
     private lazy var facebookButton: UIButton = {
-        let mailIcon = UIImage(named: "FacebookIcon")?.resized(to: CGSize(width: 20, height: 20))
+        let mailIcon = UIImage(named: "FacebookOnboardIcon")?.resized(to: CGSize(width: 20, height: 20))
         var attributeContainer = AttributeContainer()
         attributeContainer.font = .interRegular(size: 16)
         
@@ -121,7 +137,7 @@ final class SignUpController: UIViewController {
     }()
     
     private lazy var appleButton: UIButton = {
-        let mailIcon = UIImage(named: "AppleIcon")?.resized(to: CGSize(width: 20, height: 20))
+        let mailIcon = UIImage(named: "AppleOnboardIcon")?.resized(to: CGSize(width: 20, height: 20))
         var attributeContainer = AttributeContainer()
         attributeContainer.font = .interRegular(size: 16)
         
@@ -148,7 +164,7 @@ final class SignUpController: UIViewController {
     }()
     
     private lazy var googleButton: UIButton = {
-        let mailIcon = UIImage(named: "GoogleIcon")?.resized(to: CGSize(width: 20, height: 20))
+        let mailIcon = UIImage(named: "GoogleOnboardIcon")?.resized(to: CGSize(width: 20, height: 20))
         var attributeContainer = AttributeContainer()
         attributeContainer.font = .interRegular(size: 16)
         
@@ -240,6 +256,10 @@ extension SignUpController {
         self.titleLabel.topToSuperview(offset: 79)
         self.titleLabel.leftToSuperview(offset: 40)
         self.titleLabel.rightToSuperview(offset: -40)
+        
+        self.view.addSubview(self.backgroundArrowImageView)
+        self.backgroundArrowImageView.top(to: self.titleLabel, offset: -16)
+        self.backgroundArrowImageView.rightToSuperview(offset: 6)
         
         self.view.addSubview(self.subTitleLabel)
         self.subTitleLabel.topToBottom(of: self.titleLabel, offset: 18)

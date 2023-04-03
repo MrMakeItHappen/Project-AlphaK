@@ -18,12 +18,12 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let window = UIWindow(windowScene: sceneWindow)
         
-        let decisionController = TabViewController()
-//        let decisionController = AddMusicToVideoViewController()
-//        let navigationController = UINavigationController(rootViewController: decisionController)
-//        navigationController.navigationBar.isHidden = true
-//        navigationController.modalPresentationStyle = .fullScreen
-
+        let decisionController = SoloVideoCallController()
+        let navigationController = UINavigationController(rootViewController: decisionController)
+        navigationController.navigationBar.isHidden = true
+        
+//        let decisionController = TabViewController()
+        
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()
         appearance.backgroundColor = .clear
@@ -42,8 +42,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         UITabBarItem.appearance().setTitleTextAttributes([NSAttributedString.Key.foregroundColor : UIColor.white], for: .selected)
         UITabBar.appearance().barTintColor = .white
         
-//        window.rootViewController = navigationController
-        window.rootViewController = decisionController
+        window.rootViewController = navigationController
+//        window.rootViewController = decisionController
         window.makeKeyAndVisible()
         self.window = window
         

@@ -263,7 +263,7 @@ final class HomeController: UIViewController {
     
     private let viewCountLabel: UILabel = {
         let label = UILabel()
-        label.text = "341 M"
+        label.text = "13 M"
         label.translatesAutoresizingMaskIntoConstraints = false
         label.backgroundColor = .clear
         label.font = UIFont.segoeUISemiBold(size: 13)
@@ -293,7 +293,7 @@ final class HomeController: UIViewController {
     
     private let uploadTimeLabel: UILabel = {
         let label = UILabel()
-        label.text = "11 Min Ago"
+        label.text = "36 Min Ago"
         label.translatesAutoresizingMaskIntoConstraints = false
         label.backgroundColor = .clear
         label.font = UIFont.segoeUISemiBold(size: 13)
@@ -306,7 +306,7 @@ final class HomeController: UIViewController {
     
     private let mainVideoTitleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Our Trip to Tuscany. Hidden Gems Explored. Did we eat the best ice cream in the world?"
+        label.text = "Fortnite Themepark??? How big can this game get?"
         label.translatesAutoresizingMaskIntoConstraints = false
         label.backgroundColor = .clear
         label.font = UIFont.segoeUISemiBold(size: 18)

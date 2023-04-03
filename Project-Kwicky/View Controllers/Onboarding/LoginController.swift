@@ -15,6 +15,22 @@ final class LoginController: UIViewController {
         return view
     }()
     
+    private let backgroundArrowImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.backgroundColor = .clear
+        imageView.contentMode = .scaleAspectFit
+        imageView.isUserInteractionEnabled = false
+        imageView.backgroundColor = .clear
+        imageView.layer.masksToBounds = true
+        imageView.height(344)
+        imageView.width(226)
+        
+        let image = UIImage(named: "SignUpBackgroundArrow")
+        imageView.image = image
+        return imageView
+    }()
+    
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -109,6 +125,20 @@ final class LoginController: UIViewController {
         return label
     }()
     
+    private let emailErrorLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Please enter a valid email."
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.backgroundColor = .clear
+        label.font = UIFont.interRegular(size: 10)
+        label.numberOfLines = 1
+        label.adjustsFontSizeToFitWidth = true
+        label.textAlignment = .right
+        label.textColor = .systemRed
+        label.isHidden = true
+        return label
+    }()
+    
     private lazy var passwordTextField: UITextField = {
         let textField = UITextField(frame: .zero)
         let placeholder = "ex. kwiks#123"
@@ -151,6 +181,31 @@ final class LoginController: UIViewController {
         return label
     }()
     
+    private lazy var viewHidePasswordButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.backgroundColor = .clear
+        button.tintColor = UIColor(hexString: "#797979")
+        button.width(25)
+        button.height(18)
+        button.addTarget(self, action: #selector(didTapShow), for: .touchUpInside)
+        return button
+    }()
+    
+    private let passwordErrorLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Please enter your password."
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.backgroundColor = .clear
+        label.font = UIFont.interRegular(size: 10)
+        label.numberOfLines = 1
+        label.adjustsFontSizeToFitWidth = true
+        label.textAlignment = .right
+        label.textColor = .systemRed
+        label.isHidden = true
+        return label
+    }()
+    
     private lazy var forgotPasswordButton: UIButton = {
         var attributeContainer = AttributeContainer()
         attributeContainer.font = .interRegular(size: 13)
@@ -170,9 +225,10 @@ final class LoginController: UIViewController {
     }()
     
     private lazy var logInButton: UIButton = {
-        let icon = UIImage(named: "LoginIcon")
+        let icon = UIImage(named: "LoginIcon")?.withTintColor(.black)
         var attributeContainer = AttributeContainer()
         attributeContainer.font = .interRegular(size: 18)
+        attributeContainer.foregroundColor = .black
         
         var configuration = UIButton.Configuration.plain()
         configuration.cornerStyle = .capsule
@@ -187,17 +243,15 @@ final class LoginController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.layer.masksToBounds = true
         button.backgroundColor = #colorLiteral(red: 0.7764705882, green: 0.7764705882, blue: 0.7764705882, alpha: 1)
-        button.tintColor = .black
         button.layer.cornerRadius = 25
         button.height(50)
-        button.isEnabled = false
         return button
     }()
     
     private lazy var appleLoginButton: UIButton = {
         let buttonHeight: CGFloat = 50
         var configuaration = UIButton.Configuration.plain()
-        configuaration.image = UIImage(named: "AppleIcon02")
+        configuaration.image = UIImage(named: "AppleOnboardIcon")?.resized(to: CGSize(width: 20, height: 20))
         
         let button = UIButton(configuration: configuaration, primaryAction: UIAction(handler: { _ in
             self.didTapAppleLogin()
@@ -205,7 +259,7 @@ final class LoginController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.layer.cornerRadius = 0
         button.layer.masksToBounds = true
-        button.backgroundColor = #colorLiteral(red: 0.7764705882, green: 0.7764705882, blue: 0.7764705882, alpha: 1)
+        button.backgroundColor = #colorLiteral(red: 0.8941176471, green: 0.8941176471, blue: 0.8941176471, alpha: 1)
         button.height(buttonHeight)
         button.width(buttonHeight)
         button.layer.cornerRadius = buttonHeight / 2
@@ -215,7 +269,7 @@ final class LoginController: UIViewController {
     private lazy var facebookLoginButton: UIButton = {
         let buttonHeight: CGFloat = 50
         var configuaration = UIButton.Configuration.plain()
-        configuaration.image = UIImage(named: "FacebookIcon02")
+        configuaration.image = UIImage(named: "FacebookOnboardIcon")?.resized(to: CGSize(width: 20, height: 20))
         
         let button = UIButton(configuration: configuaration, primaryAction: UIAction(handler: { _ in
             self.didTapFacebookLogin()
@@ -223,7 +277,7 @@ final class LoginController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.layer.cornerRadius = 0
         button.layer.masksToBounds = true
-        button.backgroundColor = #colorLiteral(red: 0.7764705882, green: 0.7764705882, blue: 0.7764705882, alpha: 1)
+        button.backgroundColor = #colorLiteral(red: 0.8941176471, green: 0.8941176471, blue: 0.8941176471, alpha: 1)
         button.height(buttonHeight)
         button.width(buttonHeight)
         button.layer.cornerRadius = buttonHeight / 2
@@ -233,7 +287,7 @@ final class LoginController: UIViewController {
     private lazy var googleLoginButton: UIButton = {
         let buttonHeight: CGFloat = 50
         var configuaration = UIButton.Configuration.plain()
-        configuaration.image = UIImage(named: "GoogleIcon02")
+        configuaration.image = UIImage(named: "GoogleOnboardIcon")?.resized(to: CGSize(width: 20, height: 20))
         
         let button = UIButton(configuration: configuaration, primaryAction: UIAction(handler: { _ in
             self.didTapGoogleLogin()
@@ -241,7 +295,7 @@ final class LoginController: UIViewController {
         button.translatesAutoresizingMaskIntoConstraints = false
         button.layer.cornerRadius = 0
         button.layer.masksToBounds = true
-        button.backgroundColor = #colorLiteral(red: 0.7764705882, green: 0.7764705882, blue: 0.7764705882, alpha: 1)
+        button.backgroundColor = #colorLiteral(red: 0.8941176471, green: 0.8941176471, blue: 0.8941176471, alpha: 1)
         button.height(buttonHeight)
         button.width(buttonHeight)
         button.layer.cornerRadius = buttonHeight / 2
@@ -284,6 +338,8 @@ final class LoginController: UIViewController {
         self.configure()
         self.addGradientBackground()
         self.layoutUI()
+        
+        self.passwordTextField.setPasswordToggleImage(self.viewHidePasswordButton)
     }
 
 }
@@ -300,6 +356,10 @@ extension LoginController {
             self.bottomLabel.layer.opacity = 1
             self.registerNowButton.layer.opacity = 1
         }
+        
+        let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapGesture))
+        self.view.isUserInteractionEnabled = true
+        self.view.addGestureRecognizer(tapGesture)
     }
     
     private func addGradientBackground() {
@@ -327,6 +387,10 @@ extension LoginController {
         self.titleLabel.leftToSuperview(offset: 40)
         self.titleLabel.rightToSuperview(offset: -40)
         
+        self.view.addSubview(self.backgroundArrowImageView)
+        self.backgroundArrowImageView.top(to: self.titleLabel, offset: -16)
+        self.backgroundArrowImageView.rightToSuperview(offset: 6)
+        
         self.view.addSubview(self.subTitleLabel)
         self.subTitleLabel.topToBottom(of: self.titleLabel, offset: 18)
         self.subTitleLabel.left(to: self.titleLabel)
@@ -351,6 +415,10 @@ extension LoginController {
         self.emailLabel.top(to: self.emailTextField, offset: -8)
         self.emailLabel.left(to: self.emailTextField, offset: 20)
         
+        self.loginContainerView.addSubview(self.emailErrorLabel)
+        self.emailErrorLabel.topToBottom(of: self.emailTextField, offset: 6)
+        self.emailErrorLabel.left(to: self.emailTextField, offset: 6)
+        
         self.loginContainerView.addSubview(self.passwordTextField)
         self.passwordTextField.topToBottom(of: self.emailTextField, offset: 34)
         self.passwordTextField.left(to: self.emailTextField)
@@ -359,6 +427,14 @@ extension LoginController {
         self.loginContainerView.addSubview(self.passwordLabel)
         self.passwordLabel.top(to: self.passwordTextField, offset: -8)
         self.passwordLabel.left(to: self.passwordTextField, offset: 19)
+        
+        self.loginContainerView.addSubview(self.viewHidePasswordButton)
+        self.viewHidePasswordButton.centerY(to: self.passwordTextField)
+        self.viewHidePasswordButton.right(to: self.passwordTextField, offset: -20)
+        
+        self.loginContainerView.addSubview(self.passwordErrorLabel)
+        self.passwordErrorLabel.topToBottom(of: self.passwordTextField, offset: 6)
+        self.passwordErrorLabel.left(to: self.passwordTextField, offset: 6)
         
         self.loginContainerView.addSubview(self.forgotPasswordButton)
         self.forgotPasswordButton.topToBottom(of: self.passwordTextField, offset: 9)
@@ -391,14 +467,40 @@ extension LoginController {
         self.registerNowButton.leftToRight(of: self.bottomLabel, offset: -6)
     }
 }
+//MARK: - Helpers
+extension LoginController {
+    private func removeTextFieldErrors() {
+        self.emailTextField.layer.borderColor = UIColor.borderGrey.cgColor
+        self.emailErrorLabel.isHidden = true
+        
+        self.passwordTextField.layer.borderColor = UIColor.borderGrey.cgColor
+        self.passwordErrorLabel.isHidden = true
+    }
+}
 //MARK: - @objc
 extension LoginController {
+    @objc func tapGesture(_ sender: UITapGestureRecognizer) {
+        self.view.endEditing(true)
+    }
+    
     @objc func didTapLogin() {
         //Capture email address and password.
         //Submit to backend for verification.
         //If valid, present next screen.
         //If invalid, present pop-up with error description.
         print(#function)
+        
+        guard let emailText = self.emailTextField.text, let passwordText = self.passwordTextField.text else { return }
+        
+        if emailText.isEmpty {
+            self.emailTextField.layer.borderColor = UIColor.systemRed.cgColor
+            self.emailErrorLabel.isHidden = false
+        }
+        
+        if passwordText.isEmpty {
+            self.passwordTextField.layer.borderColor = UIColor.systemRed.cgColor
+            self.passwordErrorLabel.isHidden = false
+        }
     }
     
     @objc func didTapAppleLogin() {
@@ -420,6 +522,16 @@ extension LoginController {
         let signUpDetails = SignUpDetailController()
         signUpDetails.isPathFromLogin = true
         self.navigationController?.pushViewController(signUpDetails, animated: true)
+    }
+    
+    @objc func didTapShow() {
+        if self.passwordTextField.isSecureTextEntry {
+            self.viewHidePasswordButton.setImage(UIImage(systemName: "eye.slash.fill"), for: .normal)
+            self.passwordTextField.isSecureTextEntry = false
+        } else {
+            self.viewHidePasswordButton.setImage(UIImage(systemName: "eye.fill"), for: .normal)
+            self.passwordTextField.isSecureTextEntry = true
+        }
     }
     
     @objc func didTapForgotPassword() {
@@ -462,5 +574,17 @@ extension LoginController: UITextFieldDelegate {
         }
         
         return true
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        self.removeTextFieldErrors()
+        
+        guard let emailText = self.emailTextField.text, let passwordText = self.passwordTextField.text else { return }
+        
+        if !emailText.isEmpty && !passwordText.isEmpty {
+            self.logInButton.backgroundColor = .kwiksGreen
+        } else {
+            self.logInButton.backgroundColor = #colorLiteral(red: 0.7764705882, green: 0.7764705882, blue: 0.7764705882, alpha: 1)
+        }
     }
 }

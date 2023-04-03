@@ -33,4 +33,13 @@ extension UIView {
     var height: CGFloat {
         return frame.size.height
     }
+    
+    func addBlurToView() {
+        let blurEffect = UIBlurEffect(style: .systemMaterialDark)
+        let blurEffectView = UIVisualEffectView(effect: blurEffect)
+        blurEffectView.frame = self.frame
+        blurEffectView.alpha = 1.0
+        blurEffectView.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        self.addSubview(blurEffectView)
+    }
 }

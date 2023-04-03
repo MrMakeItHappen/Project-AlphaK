@@ -11,6 +11,7 @@ struct User {
     var uuid: UUID?
     var firsName: String?
     var lastName: String?
+    var profileImage: String?
     var phoneNumber: String?
     var signUpDate: String?
     var emailAddress: String?

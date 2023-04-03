@@ -24,4 +24,14 @@ extension UITextField {
         self.rightView = paddingView
         self.rightViewMode = .always
     }
+    
+    func setPasswordToggleImage(_ button: UIButton) {
+        if isSecureTextEntry {
+            button.setImage(UIImage(systemName: "eye.fill"), for: .normal)
+            button.tintColor = UIColor(hexString: "#797979")
+        } else {
+            button.setImage(UIImage(systemName: "eye.slash.fill"), for: .normal)
+            button.tintColor = UIColor(hexString: "#797979")
+        }
+    }
 }

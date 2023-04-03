@@ -16,4 +16,17 @@ struct Effect {
     static let testEffectThree = Effect(name: "Three", image: UIImage(named: "UnknownEffectIcon"))
     
     static let effectExamples: [Effect] = [testEffectOne, testEffectTwo, testEffectThree, testEffectThree, testEffectThree, testEffectThree, testEffectThree, testEffectThree, testEffectThree]
+    
+    //Temp for Video Calling Effects
+    static let effectOne = Effect(name: "nil", image: UIImage(named: "TimerIcon"))
+    static let effectTwo = Effect(name: "nil", image: UIImage(named: "BeautifyIcon"))
+    static let effectThree = Effect(name: "nil", image: UIImage(named: "CommentTextFieldIcon"))
+    static let effectFour = Effect(name: "nil", image: UIImage(named: "OffCameraLightIcon"))
+    static let effectFive = Effect(name: "nil", image: UIImage(named: "StatsIcon"))
+    static let effectSix = Effect(name: "nil", image: UIImage(named: "UploadImageIconV2"))
+    
+    static let effectsExamples = [effectOne, effectTwo, effectThree, effectFour, effectFive, effectSix]
+    static let backgroundExamples = [effectSix, effectFive, effectFour, effectThree, effectTwo, effectOne]
+    static let lightingsExamples = [effectFour, effectThree, effectTwo, effectOne, effectSix, effectFive]
+    static let activeExamples = [effectThree, effectSix, effectOne, effectFive, effectTwo, effectFour]
 }

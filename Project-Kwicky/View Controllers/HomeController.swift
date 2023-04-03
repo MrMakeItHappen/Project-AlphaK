@@ -609,6 +609,7 @@ extension HomeController: UICollectionViewDelegate, UICollectionViewDataSource {
             let video = self.liveExampleVideos[indexPath.item]
             cell.configureLive(with: video)
         }
+        
         return cell
     }
     

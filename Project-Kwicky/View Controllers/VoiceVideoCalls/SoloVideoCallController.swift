@@ -7,10 +7,27 @@
 
 import UIKit
 
+enum EffectsFeedType: String, CaseIterable {
+    case effects
+    case backgrounds
+    case lightings
+    case active
+}
+
 final class SoloVideoCallController: UIViewController {
     private var timer: Timer = Timer()
     private var timerCount: Int = 0
     private var isShowingMoreOptions = false
+    private var isShowingEffects = false
+    private var mainContainerBottomConstraint: NSLayoutConstraint?
+    private var feedType: EffectsFeedType = .effects
+    
+    private let effectsExamples = Effect.effectsExamples
+    private let backgroundExamples = Effect.backgroundExamples
+    private let lightingExamples = Effect.lightingsExamples
+    private let activeExamples = Effect.activeExamples
+    
+    private let backgroundBlackColor = UIColor.black.withAlphaComponent(0.80)
 
     private let backButton: UIButton = {
         let button = UIButton(type: .system)
@@ -121,18 +138,6 @@ final class SoloVideoCallController: UIViewController {
         return imageView
     }()
     
-    private let buttonStackView: UIStackView = {
-        let stackView = UIStackView()
-        stackView.backgroundColor = .clear
-        stackView.translatesAutoresizingMaskIntoConstraints = false
-        stackView.axis = .horizontal
-        stackView.distribution = .equalSpacing
-        stackView.alignment = .fill
-        stackView.spacing = 18
-        stackView.height(50)
-        return stackView
-    }()
-    
     private let effectsButton: UIButton = {
         let button = UIButton(type: .custom)
         let size: CGFloat = 50
@@ -232,6 +237,114 @@ final class SoloVideoCallController: UIViewController {
         return button
     }()
     
+    private let scrollView: UIScrollView = {
+        let scrollView = UIScrollView()
+        scrollView.translatesAutoresizingMaskIntoConstraints = false
+        scrollView.backgroundColor = .clear
+        scrollView.delaysContentTouches = false
+        scrollView.clipsToBounds = true
+        scrollView.showsVerticalScrollIndicator = false
+        scrollView.showsHorizontalScrollIndicator = false
+        scrollView.height(32)
+        scrollView.alpha = 0
+        return scrollView
+    }()
+
+    private let scrollViewContentView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .clear
+        view.layer.cornerRadius = 0
+        view.clipsToBounds = true
+        view.height(32)
+        return view
+    }()
+    
+    private lazy var effectsCategoryButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Effects", for: .normal)
+        button.titleLabel?.font = .segoeUISemiBold(size: 15)
+        button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 2, right: 0)
+        button.tintColor = .black
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.clipsToBounds = true
+        button.backgroundColor = UIColor.kwiksGreen
+        button.height(30)
+        button.width(84)
+        button.layer.cornerRadius = 15
+        button.addTarget(self, action: #selector(didTapEffectCategory), for: .touchUpInside)
+        return button
+    }()
+    
+    private lazy var backgroundCategoryButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Backgrounds", for: .normal)
+        button.titleLabel?.font = .segoeUISemiBold(size: 15)
+        button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 2, right: 0)
+        button.tintColor = .white
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.clipsToBounds = true
+        button.backgroundColor = UIColor.black.withAlphaComponent(0.80)
+        button.height(30)
+        button.width(130)
+        button.layer.cornerRadius = 15
+        button.addTarget(self, action: #selector(didTapBackgroundCategory), for: .touchUpInside)
+        return button
+    }()
+    
+    private lazy var lightingCategoryButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Lightings", for: .normal)
+        button.titleLabel?.font = .segoeUISemiBold(size: 15)
+        button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 2, right: 0)
+        button.tintColor = .white
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.clipsToBounds = true
+        button.backgroundColor = UIColor.black.withAlphaComponent(0.80)
+        button.height(30)
+        button.width(102)
+        button.layer.cornerRadius = 15
+        button.addTarget(self, action: #selector(didTapLightingCategory), for: .touchUpInside)
+        return button
+    }()
+    
+    private lazy var activeCategoryButton: UIButton = {
+        let button = UIButton(type: .system)
+        button.setTitle("Active", for: .normal)
+        button.titleLabel?.font = .segoeUISemiBold(size: 15)
+        button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 2, right: 0)
+        button.tintColor = .white
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.clipsToBounds = true
+        button.backgroundColor = UIColor.black.withAlphaComponent(0.80)
+        button.height(30)
+        button.width(130)
+        button.layer.cornerRadius = 15
+        button.addTarget(self, action: #selector(didTapActiveCategory), for: .touchUpInside)
+        return button
+    }()
+    
+    private lazy var effectsCollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        layout.itemSize = CGSize(width: 50, height: 50)
+        layout.minimumInteritemSpacing = 12
+        layout.minimumLineSpacing = 12
+        
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.backgroundColor = .clear
+        collectionView.isScrollEnabled = true
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.register(EffectsCollectionViewCell.self, forCellWithReuseIdentifier: EffectsCollectionViewCell.identifier)
+        collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 12)
+        collectionView.height(50)
+        collectionView.alpha = 0
+        return collectionView
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configure()
@@ -299,24 +412,68 @@ extension SoloVideoCallController {
         self.view.addSubview(self.callingThisUserImageView)
         self.callingThisUserImageView.centerInSuperview()
         
-        self.buttonStackView.addArrangedSubview(self.effectsButton)
-        self.buttonStackView.addArrangedSubview(self.volumeButton)
-        self.buttonStackView.addArrangedSubview(self.videoButton)
-        self.buttonStackView.addArrangedSubview(self.endCallButton)
-        self.buttonStackView.addArrangedSubview(self.moreOptionsButton)
+        self.view.addSubview(self.videoButton)
+        self.videoButton.centerXToSuperview()
+        self.videoButton.bottomToSuperview(usingSafeArea: true)
         
-        self.view.addSubview(self.buttonStackView)
-        self.buttonStackView.bottomToSuperview(usingSafeArea: true)
-        self.buttonStackView.leftToSuperview(offset: 30)
-        self.buttonStackView.rightToSuperview(offset: -30)
+        self.view.addSubview(self.endCallButton)
+        self.endCallButton.top(to: self.videoButton)
+        self.endCallButton.leftToRight(of: self.videoButton, offset: 15)
+        
+        self.view.addSubview(self.moreOptionsButton)
+        self.moreOptionsButton.top(to: self.videoButton)
+        self.moreOptionsButton.leftToRight(of: self.endCallButton, offset: 15)
+        
+        self.view.addSubview(self.volumeButton)
+        self.volumeButton.top(to: self.videoButton)
+        self.volumeButton.rightToLeft(of: self.videoButton, offset: -15)
+        
+        self.view.addSubview(self.effectsButton)
+        self.effectsButton.rightToLeft(of: self.volumeButton, offset: -15)
+        self.mainContainerBottomConstraint = self.effectsButton.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: 0)
+        self.mainContainerBottomConstraint?.isActive = true
         
         self.view.addSubview(self.sendMessageButton)
-        self.sendMessageButton.right(to: self.buttonStackView)
-        self.sendMessageButton.bottomToTop(of: self.buttonStackView, offset: -15)
-        
+        self.sendMessageButton.right(to: self.moreOptionsButton)
+        self.sendMessageButton.bottomToTop(of: self.moreOptionsButton, offset: -15)
+
         self.view.addSubview(self.giftButton)
         self.giftButton.right(to: self.sendMessageButton)
         self.giftButton.bottomToTop(of: self.sendMessageButton, offset: -10)
+        
+        self.view.addSubview(self.scrollView)
+        self.scrollView.bottomToSuperview(usingSafeArea: true)
+        self.scrollView.left(to: self.effectsButton)
+        self.scrollView.rightToSuperview()
+
+        self.scrollView.addSubview(self.scrollViewContentView)
+        self.scrollViewContentView.topToSuperview()
+        self.scrollViewContentView.leftToSuperview()
+        self.scrollViewContentView.rightToSuperview()
+        self.scrollViewContentView.bottomToSuperview()
+        
+        self.scrollViewContentView.addSubview(self.effectsCategoryButton)
+        self.effectsCategoryButton.centerYToSuperview()
+        self.effectsCategoryButton.leftToSuperview()
+        
+        self.scrollViewContentView.addSubview(self.backgroundCategoryButton)
+        self.backgroundCategoryButton.centerYToSuperview()
+        self.backgroundCategoryButton.leftToRight(of: self.effectsCategoryButton, offset: 12)
+        
+        self.scrollViewContentView.addSubview(self.lightingCategoryButton)
+        self.lightingCategoryButton.centerYToSuperview()
+        self.lightingCategoryButton.leftToRight(of: self.backgroundCategoryButton, offset: 12)
+        
+        self.scrollViewContentView.addSubview(self.activeCategoryButton)
+        self.activeCategoryButton.centerYToSuperview()
+        self.activeCategoryButton.leftToRight(of: self.lightingCategoryButton, offset: 12)
+        
+        self.view.addSubview(self.effectsCollectionView)
+        self.effectsCollectionView.bottomToSuperview(offset: -45, usingSafeArea: true)
+        self.effectsCollectionView.left(to: self.volumeButton)
+        self.effectsCollectionView.rightToSuperview()
+        
+        self.scrollViewContentView.right(to: self.activeCategoryButton, offset: 12)
     }
 }
 
@@ -356,7 +513,131 @@ extension SoloVideoCallController {
     }
     
     @objc func didTapEffects() {
-        print(#function)
+        isShowingEffects.toggle()
+        self.effectsCollectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .left, animated: true)
+        
+        if isShowingEffects {
+            
+            self.mainContainerBottomConstraint?.constant = -45
+            
+            UIView.animate(withDuration: 0.33) {
+                self.view.layoutIfNeeded()
+            }
+            
+            UIView.animate(withDuration: 0.15, delay: 0.1, options: .curveLinear, animations: {
+                self.effectsButton.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
+                self.volumeButton.alpha = 0
+                self.videoButton.alpha = 0
+                self.endCallButton.alpha = 0
+                self.moreOptionsButton.alpha = 0
+                self.scrollView.alpha = 1
+                self.effectsCollectionView.alpha = 1
+                
+            }) { (success) in
+                UIView.animate(withDuration: 0.15, delay: 0, options: .curveLinear, animations: {
+                    self.effectsButton.transform = .identity
+                    self.effectsButton.setImage(UIImage(named: "CloseEffectIcon"), for: .normal)
+                    self.effectsButton.backgroundColor = UIColor.black.withAlphaComponent(0.80)
+                    self.effectsButton.layer.cornerRadius = 17
+                }, completion: nil)
+            }
+            
+        } else {
+            UIView.animate(withDuration: 0.15, delay: 0.1, options: .curveLinear, animations: {
+                self.effectsButton.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
+                self.volumeButton.alpha = 1
+                self.videoButton.alpha = 1
+                self.endCallButton.alpha = 1
+                self.moreOptionsButton.alpha = 1
+                self.scrollView.alpha = 0
+                self.effectsCollectionView.alpha = 0
+                
+            }) { (success) in
+                UIView.animate(withDuration: 0.15, delay: 0, options: .curveLinear, animations: {
+                    self.effectsButton.transform = .identity
+                    self.effectsButton.setImage(UIImage(named: "EffectsIcon")?.withTintColor(.white), for: .normal)
+                    self.effectsButton.backgroundColor = UIColor(hexString: "#C7C7C7")
+                    self.effectsButton.layer.cornerRadius = 25
+                    self.mainContainerBottomConstraint?.constant = 0
+                }, completion: nil)
+            }
+        }
+    }
+    
+    @objc func didTapEffectCategory() {
+        self.feedType = .effects
+        
+        self.effectsCategoryButton.backgroundColor = UIColor.kwiksGreen
+        self.effectsCategoryButton.tintColor = .black
+        
+        self.backgroundCategoryButton.backgroundColor = self.backgroundBlackColor
+        self.backgroundCategoryButton.tintColor = .white
+        
+        self.lightingCategoryButton.backgroundColor = self.backgroundBlackColor
+        self.lightingCategoryButton.tintColor = .white
+        
+        self.activeCategoryButton.backgroundColor = self.backgroundBlackColor
+        self.activeCategoryButton.tintColor = .white
+        
+        self.effectsCollectionView.reloadData()
+        self.effectsCollectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .left, animated: true)
+    }
+    
+    @objc func didTapBackgroundCategory() {
+        self.feedType = .backgrounds
+        
+        self.backgroundCategoryButton.backgroundColor = UIColor.kwiksGreen
+        self.backgroundCategoryButton.tintColor = .black
+        
+        self.effectsCategoryButton.backgroundColor = self.backgroundBlackColor
+        self.effectsCategoryButton.tintColor = .white
+        
+        self.lightingCategoryButton.backgroundColor = self.backgroundBlackColor
+        self.lightingCategoryButton.tintColor = .white
+        
+        self.activeCategoryButton.backgroundColor = self.backgroundBlackColor
+        self.activeCategoryButton.tintColor = .white
+        
+        self.effectsCollectionView.reloadData()
+        self.effectsCollectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .left, animated: true)
+    }
+    
+    @objc func didTapLightingCategory() {
+        self.feedType = .lightings
+        
+        self.lightingCategoryButton.backgroundColor = UIColor.kwiksGreen
+        self.lightingCategoryButton.tintColor = .black
+        
+        self.effectsCategoryButton.backgroundColor = self.backgroundBlackColor
+        self.effectsCategoryButton.tintColor = .white
+        
+        self.backgroundCategoryButton.backgroundColor = self.backgroundBlackColor
+        self.backgroundCategoryButton.tintColor = .white
+        
+        self.activeCategoryButton.backgroundColor = self.backgroundBlackColor
+        self.activeCategoryButton.tintColor = .white
+        
+        self.effectsCollectionView.reloadData()
+        self.effectsCollectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .left, animated: true)
+    }
+    
+    @objc func didTapActiveCategory() {
+        self.feedType = .active
+        
+        self.activeCategoryButton.backgroundColor = UIColor.kwiksGreen
+        self.activeCategoryButton.tintColor = .black
+        
+        self.effectsCategoryButton.backgroundColor = self.backgroundBlackColor
+        self.effectsCategoryButton.tintColor = .white
+        
+        self.backgroundCategoryButton.backgroundColor = self.backgroundBlackColor
+        self.backgroundCategoryButton.tintColor = .white
+        
+        self.lightingCategoryButton.backgroundColor = self.backgroundBlackColor
+        self.lightingCategoryButton.tintColor = .white
+        
+        self.effectsCollectionView.reloadData()
+        self.effectsCollectionView.scrollToItem(at: IndexPath(row: 0, section: 0), at: .left, animated: true)
     }
     
     @objc func didTapVolume() {
@@ -373,7 +654,6 @@ extension SoloVideoCallController {
     }
     
     @objc func didTapMoreOptions() {
-        print(#function)
         
         if !isShowingMoreOptions {
             UIView.animate(withDuration: 0.50) {
@@ -383,7 +663,7 @@ extension SoloVideoCallController {
                 self.giftButton.alpha = 1
             }
             
-            self.isShowingMoreOptions = true
+            self.isShowingMoreOptions.toggle()
             
         } else {
             UIView.animate(withDuration: 0.50) {
@@ -393,7 +673,7 @@ extension SoloVideoCallController {
                 self.giftButton.alpha = 0
             }
             
-            self.isShowingMoreOptions = false
+            self.isShowingMoreOptions.toggle()
         }
     }
     
@@ -413,5 +693,48 @@ extension SoloVideoCallController {
         
         self.connectionStatusLabel.text = "Connected"
         self.callDurationLabel.text = timeString
+    }
+}
+//MARK: - CollectionView DataSource & Delegate
+extension SoloVideoCallController: UICollectionViewDataSource, UICollectionViewDelegate {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        switch self.feedType {
+        case .effects:
+            return self.effectsExamples.count
+            
+        case .backgrounds:
+            return self.backgroundExamples.count
+            
+        case .lightings:
+            return self.lightingExamples.count
+            
+        case .active:
+            return self.activeExamples.count
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EffectsCollectionViewCell.identifier, for: indexPath) as! EffectsCollectionViewCell
+        
+        switch self.feedType {
+            
+        case .effects:
+            let effect = self.effectsExamples[indexPath.item]
+            cell.configure(with: effect)
+            
+        case .backgrounds:
+            let effect = self.backgroundExamples[indexPath.item]
+            cell.configure(with: effect)
+            
+        case .lightings:
+            let effect = self.lightingExamples[indexPath.item]
+            cell.configure(with: effect)
+            
+        case .active:
+            let effect = self.activeExamples[indexPath.item]
+            cell.configure(with: effect)
+        }
+        
+        return cell
     }
 }

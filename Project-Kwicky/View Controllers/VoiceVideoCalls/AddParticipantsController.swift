@@ -41,7 +41,7 @@ final class AddParticipantsController: UIViewController {
         view.backgroundColor = UIColor.white
         view.clipsToBounds = true
         view.roundCorners(corners: [.topLeft, .topRight], radius: 25)
-        view.height(600)
+        view.height(690)
         return view
     }()
     
@@ -140,7 +140,7 @@ extension AddParticipantsController {
         
         self.containerView.addSubview(self.addParticipantsTableView)
         self.addParticipantsTableView.topToBottom(of: self.searchBar, offset: 20)
-        self.addParticipantsTableView.bottomToTop(of: self.callButton, offset: -60)
+        self.addParticipantsTableView.bottomToTop(of: self.callButton, offset: -30)
         self.addParticipantsTableView.left(to: self.searchBar)
         self.addParticipantsTableView.right(to: self.searchBar)
         

@@ -124,9 +124,9 @@ final class VideoController: UIViewController {
         return label
     }()
     
-    private let templatesLabel: UILabel = {
+    private let liveLabel: UILabel = {
         let label = UILabel()
-        label.text = "Templates"
+        label.text = "Live"
         label.translatesAutoresizingMaskIntoConstraints = false
         label.backgroundColor = .clear
         label.font = UIFont.segoeUISemiBold(size: 15)
@@ -541,15 +541,15 @@ extension VideoController {
         self.cameraLabel.centerXToSuperview()
         self.cameraLabel.bottomToTop(of: self.cameraSelectionView, offset: -10)
         
-        self.containerView.addSubview(self.templatesLabel)
-        self.templatesLabel.leftToRight(of: self.cameraLabel, offset: 22)
-        self.templatesLabel.centerY(to: self.cameraLabel)
+        self.containerView.addSubview(self.liveLabel)
+        self.liveLabel.leftToRight(of: self.cameraLabel, offset: 22)
+        self.liveLabel.centerY(to: self.cameraLabel)
         
         self.containerView.addSubview(self.hiddenTemplatesButton)
-        self.hiddenTemplatesButton.top(to: self.templatesLabel, offset: -2)
-        self.hiddenTemplatesButton.right(to: self.templatesLabel, offset: 2)
-        self.hiddenTemplatesButton.left(to: self.templatesLabel, offset: -2)
-        self.hiddenTemplatesButton.bottom(to: self.templatesLabel, offset: 2)
+        self.hiddenTemplatesButton.top(to: self.liveLabel, offset: -2)
+        self.hiddenTemplatesButton.right(to: self.liveLabel, offset: 2)
+        self.hiddenTemplatesButton.left(to: self.liveLabel, offset: -2)
+        self.hiddenTemplatesButton.bottom(to: self.liveLabel, offset: 2)
         
         self.containerView.addSubview(self.recordIconImageView)
         self.recordIconImageView.centerXToSuperview()

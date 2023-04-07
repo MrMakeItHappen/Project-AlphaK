@@ -7,6 +7,7 @@
 
 import UIKit
 import TinyConstraints
+import Lottie
 
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
@@ -18,7 +19,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let window = UIWindow(windowScene: sceneWindow)
         
-        let decisionController = SoloVideoCallController()
+        let decisionController = VideoController()
+//        let decisionController = DecisionController()
         let navigationController = UINavigationController(rootViewController: decisionController)
         navigationController.navigationBar.isHidden = true
         

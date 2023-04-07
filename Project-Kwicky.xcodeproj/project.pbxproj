@@ -43,6 +43,8 @@
 		CA55DFA629D1234000C54B35 /* AvailableMusic.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA55DFA529D1234000C54B35 /* AvailableMusic.swift */; };
 		CA55DFA829D6339200C54B35 /* StreamingVideoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA55DFA729D6339200C54B35 /* StreamingVideoController.swift */; };
 		CA55DFAA29D6350C00C54B35 /* Mixpanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA55DFA929D6350C00C54B35 /* Mixpanel.swift */; };
+		CA8D700629E09677008A11C0 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = CA8D700529E09677008A11C0 /* Lottie */; };
+		CA8D700929E097A1008A11C0 /* Rocket-Morphing.json in Resources */ = {isa = PBXBuildFile; fileRef = CA8D700829E097A1008A11C0 /* Rocket-Morphing.json */; };
 		CAA90C7C2994171C0013A654 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA90C7B2994171C0013A654 /* AppDelegate.swift */; };
 		CAA90C7E2994171C0013A654 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA90C7D2994171C0013A654 /* SceneDelegate.swift */; };
 		CAA90C802994171C0013A654 /* DecisionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA90C7F2994171C0013A654 /* DecisionController.swift */; };
@@ -127,6 +129,7 @@
 		CA55DFA529D1234000C54B35 /* AvailableMusic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableMusic.swift; sourceTree = "<group>"; };
 		CA55DFA729D6339200C54B35 /* StreamingVideoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamingVideoController.swift; sourceTree = "<group>"; };
 		CA55DFA929D6350C00C54B35 /* Mixpanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mixpanel.swift; sourceTree = "<group>"; };
+		CA8D700829E097A1008A11C0 /* Rocket-Morphing.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "Rocket-Morphing.json"; sourceTree = "<group>"; };
 		CAA90C782994171C0013A654 /* Project-Kwicky.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Project-Kwicky.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAA90C7B2994171C0013A654 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CAA90C7D2994171C0013A654 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -178,6 +181,7 @@
 			files = (
 				CAA90C98299419BE0013A654 /* TinyConstraints in Frameworks */,
 				EF86A0944B731027427F297D /* Pods_Project_Kwicky.framework in Frameworks */,
+				CA8D700629E09677008A11C0 /* Lottie in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -202,6 +206,14 @@
 				CABACC2929DA211F00026CAE /* AddParticipantsCell.swift */,
 			);
 			path = "TableView Cells";
+			sourceTree = "<group>";
+		};
+		CA8D700729E09713008A11C0 /* Lottie Animations */ = {
+			isa = PBXGroup;
+			children = (
+				CA8D700829E097A1008A11C0 /* Rocket-Morphing.json */,
+			);
+			path = "Lottie Animations";
 			sourceTree = "<group>";
 		};
 		CAA90C6F2994171C0013A654 = {
@@ -288,6 +300,7 @@
 		CAA90C92299419890013A654 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				CA8D700729E09713008A11C0 /* Lottie Animations */,
 				CA55DF5829C649D100C54B35 /* KwiksLiveTestVideo.mp4 */,
 				CA55DF4C29BAC9A000C54B35 /* KwiksTestVideo.mp4 */,
 				CAA90C9E29941DA40013A654 /* Fonts */,
@@ -427,6 +440,7 @@
 			name = "Project-Kwicky";
 			packageProductDependencies = (
 				CAA90C97299419BE0013A654 /* TinyConstraints */,
+				CA8D700529E09677008A11C0 /* Lottie */,
 			);
 			productName = "Project-Kwicky";
 			productReference = CAA90C782994171C0013A654 /* Project-Kwicky.app */;
@@ -458,6 +472,7 @@
 			mainGroup = CAA90C6F2994171C0013A654;
 			packageReferences = (
 				CAA90C96299419BE0013A654 /* XCRemoteSwiftPackageReference "TinyConstraints" */,
+				CA8D700429E09677008A11C0 /* XCRemoteSwiftPackageReference "lottie-ios" */,
 			);
 			productRefGroup = CAA90C792994171C0013A654 /* Products */;
 			projectDirPath = "";
@@ -489,6 +504,7 @@
 				CAA90CB82994205B0013A654 /* Inter-Medium.ttf in Resources */,
 				CAA90CB72994205B0013A654 /* Inter-Light.ttf in Resources */,
 				CAA90CB32994205B0013A654 /* Inter-Black.ttf in Resources */,
+				CA8D700929E097A1008A11C0 /* Rocket-Morphing.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -812,6 +828,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		CA8D700429E09677008A11C0 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/airbnb/lottie-ios";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 4.0.0;
+			};
+		};
 		CAA90C96299419BE0013A654 /* XCRemoteSwiftPackageReference "TinyConstraints" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/roberthein/TinyConstraints";
@@ -823,6 +847,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		CA8D700529E09677008A11C0 /* Lottie */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CA8D700429E09677008A11C0 /* XCRemoteSwiftPackageReference "lottie-ios" */;
+			productName = Lottie;
+		};
 		CAA90C97299419BE0013A654 /* TinyConstraints */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = CAA90C96299419BE0013A654 /* XCRemoteSwiftPackageReference "TinyConstraints" */;

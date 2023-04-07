@@ -24,7 +24,7 @@ final class ServiceProvider: NSObject {
         
         var url : URL = URL(string: "nil")!
         url = URL(string: "\(Statics.sandboxDomain)\(endpoint)")!
-//        print("ENDPOINT URL - ", url)
+        //        print("ENDPOINT URL - ", url)
         
         let session = URLSession.shared
         var request = URLRequest(url: url)
@@ -78,11 +78,12 @@ final class ServiceProvider: NSObject {
     }
 }
 
+//Do not call. Examples only.
 extension ServiceProvider {
     func serverSignUp(with values: [String : Any]) {
         
-//        Key/Value Example
-//        ["email" : "me@cryptobyte.com"]
+        //        Key/Value Example
+        //        ["email" : "me@cryptobyte.com"]
         
         ServiceProvider.shared.serviceRequest(typeOfRequest: .POST, passedParameters: values, endpoint: Statics.signUpEndpoint) { JSON, error in
             
@@ -114,8 +115,8 @@ extension ServiceProvider {
     
     func serverSignIn(with values: [String : Any]) {
         
-//        Key/Value Example
-//        ["email" : "me@cryptobyte.dev"]
+        //        Key/Value Example
+        //        ["email" : "me@cryptobyte.dev"]
         
         ServiceProvider.shared.serviceRequest(typeOfRequest: .POST, passedParameters: values, endpoint: Statics.signInEndpoint) { JSON, error in
             
@@ -131,7 +132,8 @@ extension ServiceProvider {
                 let returnedData = JSON["data"] as? String ?? "This is a hard NULL from the server"
                 
                 if errors != [] {
-                    print(Statics.unknownError)
+                    guard let error = errors.first else { return }
+                    print("ERROR - ", error)
                     return
                 }
                 
@@ -146,8 +148,8 @@ extension ServiceProvider {
     
     func checkUsernameAvailability(for values: [String : Any]) {
         
-//        Key/Value Example
-//        ["username" : "Cryptobyte"]
+        //        Key/Value Example
+        //        ["username" : "Cryptobyte"]
         
         ServiceProvider.shared.serviceRequest(typeOfRequest: .GET, passedParameters: values, endpoint: Statics.userNameAvailability) { JSON, error in
             
@@ -161,18 +163,54 @@ extension ServiceProvider {
             
             if let JSON = JSON {
                 let errors = JSON["errors"] as? [String] ?? ["nil"]
-                let returnedData = JSON["data"] as? Bool ?? false
+                let isAvailable = JSON["data"] as? Bool ?? false
                 
                 if errors != [] {
-                    print(Statics.unknownError)
+                    guard let error = errors.first else { return }
+                    print("ERROR - ", error)
                     return
                 }
                 
-                if returnedData == true {
+                if isAvailable == true {
                     print("Username is available")
                 } else {
                     print("Username is unavailable")
                 }
+                
+            } else {
+                print(Statics.JSONFailedToLoad)
+            }
+        }
+    }
+    
+    func verifyUser(for values: [String : Any]) {
+        //        POST
+        //        ["email" : "<user email",
+        //         "phone" : "<user phone number>",
+        //         "code" : "<verification code>"]
+        
+        ServiceProvider.shared.serviceRequest(typeOfRequest: .GET, passedParameters: values, endpoint: Statics.verifyEndpoint) { JSON, error in
+            
+            if error != nil {
+                if let error = error {
+                    print(error.localizedDescription)
+                }
+                
+                return
+            }
+            
+            if let JSON = JSON {
+                let errors = JSON["errors"] as? [String] ?? ["nil"]
+                let jwtToken = JSON["data"] as? String ?? "This is a hard NULL from the server"
+                
+                if errors != [] {
+                    guard let error = errors.first else { return }
+                    print("ERROR - ", error)
+                    return
+                }
+                
+                //TODO: Store this token
+                print("JWT TOKEN - ", jwtToken)
                 
             } else {
                 print(Statics.JSONFailedToLoad)

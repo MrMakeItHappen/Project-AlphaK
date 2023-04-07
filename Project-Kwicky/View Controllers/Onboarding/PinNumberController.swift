@@ -8,6 +8,8 @@
 import UIKit
 
 final class PinNumberController: UIViewController {
+    var pinNumber: String?
+    
     private let mainTitleLabel: UILabel = {
         let label = UILabel()
         label.text = "Confirmation\nLink Sent"
@@ -225,7 +227,20 @@ final class PinNumberController: UIViewController {
         stackView.spacing = -6
         return stackView
     }()
-
+    
+    var tempPinNumberDisplay: UILabel = {
+        let label = UILabel()
+        label.text = "0000"
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.backgroundColor = .clear
+        label.font = UIFont.interRegular(size: 18)
+        label.numberOfLines = 1
+        label.adjustsFontSizeToFitWidth = true
+        label.textAlignment = .center
+        label.textColor = UIColor.kwiksTextBlack
+        return label
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configure()
@@ -263,6 +278,11 @@ extension PinNumberController {
         self.view.addSubview(self.pinStackView)
         self.pinStackView.topToBottom(of: self.subTitleLabel, offset: 49)
         self.pinStackView.centerXToSuperview()
+        
+        self.view.addSubview(self.tempPinNumberDisplay)
+        self.tempPinNumberDisplay.topToBottom(of: self.pinStackView, offset: 20)
+        self.tempPinNumberDisplay.left(to: self.pinStackView)
+        self.tempPinNumberDisplay.right(to: self.pinStackView)
         
         self.view.addSubview(self.confirmButton)
         self.confirmButton.topToBottom(of: self.pinStackView, offset: 114)
@@ -307,7 +327,7 @@ extension PinNumberController {
         let secondDigit = self.digitTwoTextField.text ?? ""
         let thirdDigit = self.digitThreeTextField.text ?? ""
         let fourthDigit = self.digitFourTextField.text ?? ""
-
+        
         
         if self.digitOneTextField.isFirstResponder && firstDigit.count > 0 {
             self.digitTwoTextField.becomeFirstResponder()
@@ -330,13 +350,13 @@ extension PinNumberController {
 extension PinNumberController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         let nextTag = textField.tag + 1
-
+        
         if let nextResponder = textField.superview?.viewWithTag(nextTag) {
             nextResponder.becomeFirstResponder()
         } else {
             textField.resignFirstResponder()
         }
-
+        
         return true
     }
     

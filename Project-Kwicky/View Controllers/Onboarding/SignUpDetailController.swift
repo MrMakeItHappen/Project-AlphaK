@@ -6,6 +6,7 @@
 //
 
 import UIKit
+import Lottie
 
 final class SignUpDetailController: UIViewController {
     var isPathFromLogin = false
@@ -388,14 +389,38 @@ final class SignUpDetailController: UIViewController {
         button.sizeToFit()
         return button
     }()
-
+    
+    private lazy var loadingScreen: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.backgroundColor = .kwiksGreen
+        view.layer.cornerRadius = 0
+        view.clipsToBounds = true
+        view.alpha = 0
+        return view
+    }()
+    
+    private lazy var lottieAnimation: LottieAnimationView = {
+        let lottie = LottieAnimationView(name: "Rocket-Morphing")
+        lottie.translatesAutoresizingMaskIntoConstraints = false
+        lottie.isUserInteractionEnabled = false
+        lottie.backgroundBehavior = .pauseAndRestore
+        lottie.currentProgress = 0
+        lottie.loopMode = .loop
+        lottie.play()
+        lottie.width(300)
+        lottie.height(300)
+        lottie.alpha = 0
+        return lottie
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configure()
         self.addGradientBackground()
         self.layoutUI()
     }
-
+    
 }
 //MARK: - Configure Controller
 extension SignUpDetailController {
@@ -474,7 +499,7 @@ extension SignUpDetailController {
         self.fullNameTextField.topToSuperview(offset: 10)
         self.fullNameTextField.leftToSuperview(offset: 20)
         self.fullNameTextField.rightToSuperview(offset: -20)
-
+        
         self.scrollViewContentView.addSubview(self.fullNameLabel)
         self.fullNameLabel.top(to: self.fullNameTextField, offset: -8)
         self.fullNameLabel.left(to: self.fullNameTextField, offset: 22)
@@ -483,12 +508,12 @@ extension SignUpDetailController {
         self.fullNameErrorLabel.topToBottom(of: self.fullNameTextField, offset: 4)
         self.fullNameErrorLabel.left(to: self.fullNameTextField)
         self.fullNameErrorLabel.right(to: self.fullNameTextField, offset: -6)
-
+        
         self.scrollViewContentView.addSubview(self.emailTextField)
         self.emailTextField.topToBottom(of: self.fullNameTextField, offset: 30)
         self.emailTextField.left(to: self.fullNameTextField)
         self.emailTextField.right(to: self.fullNameTextField)
-
+        
         self.scrollViewContentView.addSubview(self.emailLabel)
         self.emailLabel.top(to: self.emailTextField, offset: -8)
         self.emailLabel.left(to: self.emailTextField, offset: 18)
@@ -497,12 +522,12 @@ extension SignUpDetailController {
         self.emailErrorLabel.topToBottom(of: self.emailTextField, offset: 4)
         self.emailErrorLabel.left(to: self.emailTextField)
         self.emailErrorLabel.right(to: self.emailTextField, offset: -6)
-
+        
         self.scrollViewContentView.addSubview(self.passwordTextField)
         self.passwordTextField.topToBottom(of: self.emailTextField, offset: 30)
         self.passwordTextField.left(to: self.fullNameTextField)
         self.passwordTextField.right(to: self.fullNameTextField)
-
+        
         self.scrollViewContentView.addSubview(self.passwordLabel)
         self.passwordLabel.top(to: self.passwordTextField, offset: -8)
         self.passwordLabel.left(to: self.passwordTextField, offset: 22)
@@ -511,12 +536,12 @@ extension SignUpDetailController {
         self.passwordErrorLabel.topToBottom(of: self.passwordTextField, offset: 4)
         self.passwordErrorLabel.left(to: self.passwordTextField)
         self.passwordErrorLabel.right(to: self.passwordTextField, offset: -6)
-
+        
         self.scrollViewContentView.addSubview(self.birthdateTextField)
         self.birthdateTextField.topToBottom(of: self.passwordTextField, offset: 30)
         self.birthdateTextField.left(to: self.fullNameTextField)
         self.birthdateTextField.right(to: self.fullNameTextField)
-
+        
         self.scrollViewContentView.addSubview(self.birthdateLabel)
         self.birthdateLabel.top(to: self.birthdateTextField, offset: -8)
         self.birthdateLabel.left(to: self.birthdateTextField, offset: 22)
@@ -545,6 +570,12 @@ extension SignUpDetailController {
         self.signInButton.leftToRight(of: self.bottomLabel, offset: -6)
         
         self.scrollViewContentView.bottom(to: self.bottomLabel, offset: 4)
+        
+        self.view.addSubview(self.loadingScreen)
+        self.loadingScreen.edgesToSuperview()
+        
+        self.loadingScreen.addSubview(self.lottieAnimation)
+        self.lottieAnimation.centerInSuperview()
     }
 }
 //MARK: - Helpers
@@ -571,7 +602,7 @@ extension SignUpDetailController {
     
     @objc func didTapSignUp() {
         //Check if all fields are valid before submitting to backend.
-        //TODO: If missing fields, change border color
+        
         print(#function)
         
         guard let emailText = self.emailTextField.text, let passwordText = self.passwordTextField.text, let fullNameText = self.fullNameTextField.text, let dateText = self.birthdateTextField.text else { return }
@@ -596,9 +627,65 @@ extension SignUpDetailController {
             self.birthdateErrorLabel.isHidden = false
         }
         
-        if !fullNameText.isEmpty && !emailText.isEmpty && !passwordText.isEmpty && !dateText.isEmpty {
-            let pinVC = PinNumberController()
-            self.navigationController?.pushViewController(pinVC, animated: true)
+        let values = ["email":"\(emailText)"]
+        
+        //Display Loading Screen
+        DispatchQueue.main.async {
+            UIView.animate(withDuration: 0.50) {
+                self.loadingScreen.alpha = 1
+                self.lottieAnimation.alpha = 1
+                self.lottieAnimation.play()
+            }
+        }
+        
+        ServiceProvider.shared.serviceRequest(typeOfRequest: .POST, passedParameters: values, endpoint: Statics.signUpEndpoint) { JSON, error in
+            
+            if error != nil {
+                if let error = error {
+                    print(error.localizedDescription)
+                }
+                return
+            }
+            
+            if let JSON = JSON {
+                let errors = JSON["errors"] as? [String] ?? ["nil"]
+                let pinNumber = JSON["data"] as? String ?? "This is a hard NULL from the server"
+                
+                if errors != [] {
+                    guard let error = errors.first else { return }
+                    print("ERROR - ", error)
+                    
+                    DispatchQueue.main.async {
+                        self.emailTextField.layer.borderColor = UIColor.systemRed.cgColor
+                        self.emailErrorLabel.isHidden = false
+                        self.emailErrorLabel.text = "Sorry, email already exists."
+                    }
+                    
+                    return
+                }
+                
+                print("SUCCESSFUL SIGN UP!")
+                print("JSON Response - ", pinNumber)
+                
+                if !fullNameText.isEmpty && !emailText.isEmpty && !passwordText.isEmpty && !dateText.isEmpty {
+                    //Remove Loading Screen
+                    DispatchQueue.main.async {
+                        UIView.animate(withDuration: 0.50) {
+                            self.loadingScreen.alpha = 0
+                            self.lottieAnimation.alpha = 0
+                            self.lottieAnimation.stop()
+                        }
+                        
+                        let pinVC = PinNumberController()
+                        pinVC.pinNumber = pinNumber
+                        pinVC.tempPinNumberDisplay.text = pinNumber
+                        self.navigationController?.pushViewController(pinVC, animated: true)
+                    }
+                }
+                
+            } else {
+                print(Statics.JSONFailedToLoad)
+            }
         }
     }
     
@@ -622,13 +709,13 @@ extension SignUpDetailController {
 extension SignUpDetailController: UITextFieldDelegate {
     func textFieldShouldReturn(_ textField: UITextField) -> Bool {
         let nextTag = textField.tag + 1
-
+        
         if let nextResponder = textField.superview?.viewWithTag(nextTag) {
             nextResponder.becomeFirstResponder()
         } else {
             textField.resignFirstResponder()
         }
-
+        
         return true
     }
     
@@ -636,7 +723,7 @@ extension SignUpDetailController: UITextFieldDelegate {
         
         if let text = textField.text {
             
-            let maxLength = 20
+            let maxLength = 30
             let currentString: NSString = textField.text! as NSString
             let newString: NSString = currentString.replacingCharacters(in: range, with: string) as NSString
             

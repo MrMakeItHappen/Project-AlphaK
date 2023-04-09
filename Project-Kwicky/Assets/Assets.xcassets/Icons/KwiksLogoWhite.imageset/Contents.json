@@ -1,0 +1,12 @@
+{
+  "images" : [
+    {
+      "filename" : "KwiksLogoWhite.svg",
+      "idiom" : "universal"
+    }
+  ],
+  "info" : {
+    "author" : "xcode",
+    "version" : 1
+  }
+}

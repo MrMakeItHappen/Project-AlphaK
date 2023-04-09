@@ -26,3 +26,13 @@ var _userAddedProduct: KwiksSaleProduct?
 
 ///Never set this value. Retrieve only.
 var _allAvailableVideoMusic: [AvailableMusic] = []
+
+
+
+
+
+
+
+///Kwiks Podfile Pop Up Alert Example
+//self.popUpAlert = KwiksSystemPopups(presentingViewController: self, popupType: .UpdateKwiks)
+//self.popUpAlert.engagePopup()

@@ -12,8 +12,15 @@ import KwiksSystemsPopups
 
 final class VideoController: UIViewController {
     private let effectsExamples = Effect.effectExamples
+    private var timer: Timer = Timer()
+    private var timerCount: Int = 5
+    
+    private let stopImageIcon = UIImage(systemName: "stop.fill")
+    private let playImageIcon = UIImage(named: "KwiksLogoWhite")
     
     var isShowingOptions = false
+    var isShowingTimer = false
+    var isRecording = false
     var mainContainerBottomConstraint: NSLayoutConstraint?
     var userCreatedVideo: KwiksVideo?
     var popUpAlert = KwiksSystemPopups()
@@ -22,7 +29,7 @@ final class VideoController: UIViewController {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.clipsToBounds = true
-        view.backgroundColor = UIColor.black
+        view.backgroundColor = UIColor.systemBlue
         view.roundCorners(corners: [.bottomLeft, .bottomRight], radius: 40)
         return view
     }()
@@ -146,27 +153,21 @@ final class VideoController: UIViewController {
         return button
     }()
     
-    private let recordIconImageView: UIImageView = {
-        let imageView = UIImageView()
-        imageView.translatesAutoresizingMaskIntoConstraints = false
-        imageView.contentMode = .scaleAspectFit
-        imageView.isUserInteractionEnabled = false
-        imageView.backgroundColor = .clear
-        imageView.layer.masksToBounds = true
-        imageView.height(130)
-        imageView.width(130)
+    private let recordButton: UIButton = {
+        var configuration = UIButton.Configuration.plain()
+        configuration.image = UIImage(named: "KwiksLogoWhite")
+        configuration.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 4, bottom: 0, trailing: 0)
         
-        let image = UIImage(named: "KwiksVideoRecordIcon")
-        imageView.image = image
-        return imageView
-    }()
-    
-    private let hiddenRecordButton: UIButton = {
-        let button = UIButton(type: .system)
+        let button = UIButton(configuration: configuration)
+        let size: CGFloat = 82
         button.translatesAutoresizingMaskIntoConstraints = false
         button.layer.masksToBounds = true
-        button.tintColor = UIColor.clear
-        button.backgroundColor = UIColor.clear
+        button.layer.cornerRadius = size / 2
+        button.clipsToBounds = true
+        button.backgroundColor = UIColor.kwiksGreen
+        button.tintColor = .white
+        button.height(size)
+        button.width(size)
         return button
     }()
     
@@ -398,6 +399,114 @@ final class VideoController: UIViewController {
         return button
     }()
     
+    private let timerContainer: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.clipsToBounds = true
+        view.backgroundColor = UIColor.black.withAlphaComponent(0.75)
+        view.layer.cornerRadius = 30
+        view.height(107)
+        view.width(150)
+        view.alpha = 0
+        return view
+    }()
+    
+    private lazy var tenSecondButton: UIButton = {
+        var attributeContainer = AttributeContainer()
+        attributeContainer.font = .segoeUIRegular(size: 16)
+        
+        var configuration = UIButton.Configuration.plain()
+        configuration.attributedTitle = AttributedString("10s", attributes: attributeContainer)
+        configuration.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 2, trailing: 0)
+        
+        let button = UIButton(configuration: configuration, primaryAction: UIAction(handler: { _ in
+            self.didTapTenSeconds()
+        }))
+        
+        button.layer.masksToBounds = true
+        button.layer.cornerRadius = 20
+        button.tintColor = UIColor.white
+        button.backgroundColor = UIColor.clear
+        button.width(72)
+        button.height(43)
+        return button
+    }()
+    
+    private lazy var twentySecondButton: UIButton = {
+        var attributeContainer = AttributeContainer()
+        attributeContainer.font = .segoeUIRegular(size: 16)
+        
+        var configuration = UIButton.Configuration.plain()
+        configuration.attributedTitle = AttributedString("20s", attributes: attributeContainer)
+        configuration.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 2, trailing: 0)
+        
+        let button = UIButton(configuration: configuration, primaryAction: UIAction(handler: { _ in
+            self.didTapTwentySeconds()
+        }))
+        
+        button.layer.masksToBounds = true
+        button.layer.cornerRadius = 20
+        button.tintColor = UIColor.white
+        button.backgroundColor = UIColor.clear
+        button.width(72)
+        button.height(43)
+        return button
+    }()
+    
+    private lazy var thirtySecondButton: UIButton = {
+        var attributeContainer = AttributeContainer()
+        attributeContainer.font = .segoeUIRegular(size: 16)
+        
+        var configuration = UIButton.Configuration.plain()
+        configuration.attributedTitle = AttributedString("30s", attributes: attributeContainer)
+        configuration.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 2, trailing: 0)
+        
+        let button = UIButton(configuration: configuration, primaryAction: UIAction(handler: { _ in
+            self.didTapThirtySeconds()
+        }))
+        
+        button.layer.masksToBounds = true
+        button.layer.cornerRadius = 20
+        button.tintColor = UIColor.white
+        button.backgroundColor = UIColor.clear
+        button.width(72)
+        button.height(43)
+        return button
+    }()
+    
+    private lazy var sixtySecondButton: UIButton = {
+        var attributeContainer = AttributeContainer()
+        attributeContainer.font = .segoeUIRegular(size: 16)
+        
+        var configuration = UIButton.Configuration.plain()
+        configuration.attributedTitle = AttributedString("60s", attributes: attributeContainer)
+        configuration.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 2, trailing: 0)
+        
+        let button = UIButton(configuration: configuration, primaryAction: UIAction(handler: { _ in
+            self.didTapSixtySeconds()
+        }))
+        
+        button.layer.masksToBounds = true
+        button.layer.cornerRadius = 20
+        button.tintColor = UIColor.white
+        button.backgroundColor = UIColor.clear
+        button.width(72)
+        button.height(43)
+        return button
+    }()
+    
+    private let timerDurationLabel: UILabel = {
+        let label = UILabel()
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.backgroundColor = .clear
+        label.font = UIFont.segoeUIBold(size: 16)
+        label.numberOfLines = 1
+        label.adjustsFontSizeToFitWidth = false
+        label.textAlignment = .center
+        label.textColor = UIColor.white
+        return label
+    }()
+    
     private let flipLabel: UILabel = {
         let label = UILabel()
         label.text = " Flip"
@@ -455,6 +564,32 @@ final class VideoController: UIViewController {
         return collectionView
     }()
     
+    private let shapeLayer: CAShapeLayer = {
+        let layer = CAShapeLayer()
+        layer.lineWidth = 6
+        layer.strokeColor = UIColor.systemRed.cgColor
+        layer.fillColor = UIColor.clear.cgColor
+        layer.strokeEnd = 0
+        return layer
+    }()
+    
+    private let trackLayer: CAShapeLayer = {
+        let layer = CAShapeLayer()
+        layer.lineWidth = 6
+        layer.strokeColor = UIColor.black.withAlphaComponent(0.75).cgColor
+        layer.fillColor = UIColor.clear.cgColor
+        layer.strokeEnd = 1
+        return layer
+    }()
+    
+    private let recordAnimation: CABasicAnimation = {
+        let animation = CABasicAnimation(keyPath: "strokeEnd")
+        animation.toValue = 1
+        animation.isRemovedOnCompletion = false
+        animation.fillMode = .forwards
+        return animation
+    }()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configure()
@@ -463,6 +598,17 @@ final class VideoController: UIViewController {
         self.layoutLeadingUI()
         
         _allAvailableVideoMusic = AvailableMusic.allTempSongs
+    }
+    
+    override func viewDidLayoutSubviews() {
+        super.viewDidLayoutSubviews()
+        
+        let circlePath = UIBezierPath(arcCenter: recordButton.center, radius: 46, startAngle: -(.pi / 2), endAngle: .pi * 2, clockwise: true)
+        self.shapeLayer.path = circlePath.cgPath
+        self.trackLayer.path = circlePath.cgPath
+        
+        self.view.layer.addSublayer(self.trackLayer)
+        self.view.layer.addSublayer(self.shapeLayer)
     }
 }
 //MARK: - Configure View Controller
@@ -474,7 +620,7 @@ extension VideoController {
         self.cameraLightButton.addTarget(self, action: #selector(didTapCameraLight), for: .touchDown)
         
         self.hiddenAddMusicButton.addTarget(self, action: #selector(didTapAddMusic), for: .touchDown)
-        self.hiddenRecordButton.addTarget(self, action: #selector(didTapRecord), for: .touchDown)
+        self.recordButton.addTarget(self, action: #selector(didTapRecord), for: .touchDown)
         
         self.hiddenTemplatesButton.addTarget(self, action: #selector(didTapTemplates), for: .touchDown)
         
@@ -551,19 +697,13 @@ extension VideoController {
         self.hiddenTemplatesButton.left(to: self.liveLabel, offset: -2)
         self.hiddenTemplatesButton.bottom(to: self.liveLabel, offset: 2)
         
-        self.containerView.addSubview(self.recordIconImageView)
-        self.recordIconImageView.centerXToSuperview()
-        self.recordIconImageView.bottomToTop(of: self.cameraLabel, offset: -20)
-        
-        self.containerView.addSubview(self.hiddenRecordButton)
-        self.hiddenRecordButton.top(to: self.recordIconImageView, offset: -2)
-        self.hiddenRecordButton.right(to: self.recordIconImageView, offset: 2)
-        self.hiddenRecordButton.left(to: self.recordIconImageView, offset: -2)
-        self.hiddenRecordButton.bottom(to: self.recordIconImageView, offset: 2)
+        self.containerView.addSubview(self.recordButton)
+        self.recordButton.centerXToSuperview()
+        self.recordButton.bottomToTop(of: self.cameraLabel, offset: -20)
         
         self.containerView.addSubview(self.effectsIconImageView)
-        self.effectsIconImageView.centerY(to: self.recordIconImageView)
-        self.effectsIconImageView.rightToLeft(of: self.recordIconImageView, offset: -50)
+        self.effectsIconImageView.centerY(to: self.recordButton)
+        self.effectsIconImageView.rightToLeft(of: self.recordButton, offset: -50)
         
         self.containerView.addSubview(self.effectsButton)
         self.effectsButton.top(to: self.effectsIconImageView, offset: -15)
@@ -576,8 +716,8 @@ extension VideoController {
         self.effectsLabel.topToBottom(of: self.effectsButton, offset: 5)
         
         self.containerView.addSubview(self.uploadIconImageView)
-        self.uploadIconImageView.centerY(to: self.recordIconImageView)
-        self.uploadIconImageView.leftToRight(of: self.recordIconImageView, offset: 50)
+        self.uploadIconImageView.centerY(to: self.recordButton)
+        self.uploadIconImageView.leftToRight(of: self.recordButton, offset: 50)
         
         self.containerView.addSubview(self.uploadVideoButton)
         self.uploadVideoButton.top(to: self.uploadIconImageView, offset: -15)
@@ -593,7 +733,7 @@ extension VideoController {
     private func layoutLeadingUI() {
         self.containerView.addSubview(self.stickersLabel)
         self.stickersLabel.leftToSuperview(offset: 23)
-        self.stickersLabel.bottomToTop(of: self.hiddenRecordButton, offset: -55)
+        self.stickersLabel.bottomToTop(of: self.recordButton, offset: -55)
         
         self.containerView.addSubview(self.stickersIconImageView)
         self.stickersIconImageView.bottomToTop(of: self.stickersLabel, offset: -8)
@@ -647,6 +787,31 @@ extension VideoController {
         self.hiddenTimerButton.left(to: self.timerLabel, offset: -2)
         self.hiddenTimerButton.bottom(to: self.timerLabel, offset: 2)
         
+        self.containerView.addSubview(self.timerContainer)
+        self.timerContainer.top(to: self.timerIconImageView, offset: -4)
+        self.timerContainer.leftToRight(of: self.timerIconImageView, offset: 20)
+        
+        self.timerContainer.addSubview(self.tenSecondButton)
+        self.tenSecondButton.topToSuperview(offset: 8)
+        self.tenSecondButton.leftToSuperview(offset: 8)
+        
+        self.timerContainer.addSubview(self.twentySecondButton)
+        self.twentySecondButton.topToSuperview(offset: 8)
+        self.twentySecondButton.rightToSuperview(offset: -8)
+        
+        self.timerContainer.addSubview(self.thirtySecondButton)
+        self.thirtySecondButton.bottomToSuperview(offset: -8)
+        self.thirtySecondButton.left(to: self.tenSecondButton)
+        
+        self.timerContainer.addSubview(self.sixtySecondButton)
+        self.sixtySecondButton.bottomToSuperview(offset: -8)
+        self.sixtySecondButton.right(to: self.twentySecondButton)
+        
+        self.containerView.addSubview(self.timerDurationLabel)
+        self.timerDurationLabel.bottomToTop(of: self.recordButton, offset: -16)
+        self.timerDurationLabel.left(to: self.recordButton)
+        self.timerDurationLabel.right(to: self.recordButton)
+        
         self.containerView.addSubview(self.flipLabel)
         self.flipLabel.centerX(to: self.stickersLabel)
         self.flipLabel.bottomToTop(of: self.timerIconImageView, offset: -28)
@@ -660,6 +825,34 @@ extension VideoController {
         self.hiddenFlipButton.right(to: self.flipLabel, offset: 2)
         self.hiddenFlipButton.left(to: self.flipLabel, offset: -2)
         self.hiddenFlipButton.bottom(to: self.flipLabel, offset: 2)
+    }
+}
+//MARK: - Helpers
+extension VideoController {
+    private func secondsToMintues(seconds: Int) -> (Int, Int) {
+        return ((seconds % 3600) / 60, (seconds % 3600) % 60)
+    }
+    
+    private func createTimeString(minutes: Int, seconds: Int) -> String {
+        var timeString = ""
+        timeString += String(format: "%02d", minutes)
+        timeString += ":"
+        timeString += String(format: "%02d", seconds)
+        return timeString
+    }
+    
+    private func deselectAllTimerButtons() {
+        self.tenSecondButton.tintColor = .white
+        self.tenSecondButton.backgroundColor = .clear
+        
+        self.twentySecondButton.tintColor = .white
+        self.twentySecondButton.backgroundColor = .clear
+        
+        self.thirtySecondButton.tintColor = .white
+        self.thirtySecondButton.backgroundColor = .clear
+        
+        self.sixtySecondButton.tintColor = .white
+        self.sixtySecondButton.backgroundColor = .clear
     }
 }
 //MARK: - @objc
@@ -683,6 +876,102 @@ extension VideoController {
     
     @objc func didTapTimer() {
         print(#function)
+        self.isShowingTimer.toggle()
+        self.deselectAllTimerButtons()
+        
+        if isShowingTimer {
+            UIView.animate(withDuration: 0.75) {
+                self.timerContainer.alpha = 1
+            }
+        } else {
+            UIView.animate(withDuration: 0.75) {
+                self.timerContainer.alpha = 0
+            }
+        }
+    }
+    
+    @objc func timerCounter() {if self.timerCount > 0 {
+            self.timerCount -= 1
+            
+        } else {
+            self.timer.invalidate()
+            self.timerCount = 5
+            self.timerDurationLabel.text = "👍🏽"
+            return
+        }
+        
+        var timeString = "00:"
+        timeString += String(format: "%02d", timerCount)
+        
+        self.timerDurationLabel.text = timeString
+    }
+    
+    @objc func didTapTenSeconds() {
+        self.tenSecondButton.tintColor = .kwiksTextBlack
+        self.tenSecondButton.backgroundColor = .white
+        
+        self.twentySecondButton.tintColor = .white
+        self.twentySecondButton.backgroundColor = .clear
+        
+        self.thirtySecondButton.tintColor = .white
+        self.thirtySecondButton.backgroundColor = .clear
+        
+        self.sixtySecondButton.tintColor = .white
+        self.sixtySecondButton.backgroundColor = .clear
+        
+        self.timerDurationLabel.text = "00:10"
+        self.timerCount = 10
+    }
+    
+    @objc func didTapTwentySeconds() {
+        self.twentySecondButton.tintColor = .kwiksTextBlack
+        self.twentySecondButton.backgroundColor = .white
+        
+        self.tenSecondButton.tintColor = .white
+        self.tenSecondButton.backgroundColor = .clear
+        
+        self.thirtySecondButton.tintColor = .white
+        self.thirtySecondButton.backgroundColor = .clear
+        
+        self.sixtySecondButton.tintColor = .white
+        self.sixtySecondButton.backgroundColor = .clear
+        
+        self.timerDurationLabel.text = "00:20"
+        self.timerCount = 20
+    }
+    
+    @objc func didTapThirtySeconds() {
+        self.thirtySecondButton.tintColor = .kwiksTextBlack
+        self.thirtySecondButton.backgroundColor = .white
+        
+        self.tenSecondButton.tintColor = .white
+        self.tenSecondButton.backgroundColor = .clear
+        
+        self.twentySecondButton.tintColor = .white
+        self.twentySecondButton.backgroundColor = .clear
+        
+        self.sixtySecondButton.tintColor = .white
+        self.sixtySecondButton.backgroundColor = .clear
+        
+        self.timerDurationLabel.text = "00:30"
+        self.timerCount = 30
+    }
+    
+    @objc func didTapSixtySeconds() {
+        self.sixtySecondButton.tintColor = .kwiksTextBlack
+        self.sixtySecondButton.backgroundColor = .white
+        
+        self.tenSecondButton.tintColor = .white
+        self.tenSecondButton.backgroundColor = .clear
+        
+        self.twentySecondButton.tintColor = .white
+        self.twentySecondButton.backgroundColor = .clear
+        
+        self.thirtySecondButton.tintColor = .white
+        self.thirtySecondButton.backgroundColor = .clear
+        
+        self.timerDurationLabel.text = "00:60"
+        self.timerCount = 60
     }
     
     @objc func didTapBeautify() {
@@ -759,11 +1048,49 @@ extension VideoController {
     }
     
     @objc func didTapRecord() {
-        print(#function)
-        self.popUpAlert = KwiksSystemPopups(presentingViewController: self, popupType: .UpdateKwiks)
-        self.popUpAlert.engagePopup()
+        UIView.animate(withDuration: 0.75) {
+            self.timerContainer.alpha = 0
+            self.isShowingTimer = false
+        }
+        
+        self.recordButton.alpha = 0
+        self.recordAnimation.duration = CFTimeInterval(self.timerCount)
+        
+        if !self.isRecording {
+            
+            UIView.animate(withDuration: 0.50) {
+                self.recordButton.alpha = 1
+                self.recordButton.backgroundColor = UIColor.kwiksGreen.withAlphaComponent(0.50)
+                self.recordButton.setImage(self.stopImageIcon, for: .normal)
+            }
+            
+            self.recordAnimation.toValue = 1
+            self.isRecording = true
+            
+            self.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.timerCounter), userInfo: nil, repeats: true)
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                self.shapeLayer.add(self.recordAnimation, forKey: "animation")
+            }
+            
+        } else {
+            
+            UIView.animate(withDuration: 0.50) {
+                self.recordButton.alpha = 1
+                self.recordButton.backgroundColor = UIColor.kwiksGreen
+                self.recordButton.setImage(self.playImageIcon, for: .normal)
+            }
+            
+            self.timerDurationLabel.text = ""
+            self.recordAnimation.toValue = 0
+            self.isRecording = false
+            self.timer.invalidate()
+            
+            DispatchQueue.main.asyncAfter(deadline: .now()) {
+                self.shapeLayer.add(self.recordAnimation, forKey: "animation")
+            }
+        }
     }
-
     
     @objc func didTapCamera() {
         print(#function)

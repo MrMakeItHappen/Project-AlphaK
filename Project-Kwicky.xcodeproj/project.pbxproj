@@ -48,6 +48,7 @@
 		CA8D700B29E36DA1008A11C0 /* BeautifyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8D700A29E36DA1008A11C0 /* BeautifyCollectionViewCell.swift */; };
 		CA8D700F29E44D1B008A11C0 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8D700E29E44D1B008A11C0 /* Enums.swift */; };
 		CA8D701129E6F59A008A11C0 /* Beautify.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8D701029E6F59A008A11C0 /* Beautify.swift */; };
+		CA8D702529E72A47008A11C0 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = CA8D702429E72A47008A11C0 /* .gitignore */; };
 		CAA90C7C2994171C0013A654 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA90C7B2994171C0013A654 /* AppDelegate.swift */; };
 		CAA90C7E2994171C0013A654 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA90C7D2994171C0013A654 /* SceneDelegate.swift */; };
 		CAA90C802994171C0013A654 /* DecisionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA90C7F2994171C0013A654 /* DecisionController.swift */; };
@@ -136,6 +137,7 @@
 		CA8D700A29E36DA1008A11C0 /* BeautifyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeautifyCollectionViewCell.swift; sourceTree = "<group>"; };
 		CA8D700E29E44D1B008A11C0 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		CA8D701029E6F59A008A11C0 /* Beautify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Beautify.swift; sourceTree = "<group>"; };
+		CA8D702429E72A47008A11C0 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
 		CAA90C782994171C0013A654 /* Project-Kwicky.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Project-Kwicky.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAA90C7B2994171C0013A654 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CAA90C7D2994171C0013A654 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -337,6 +339,7 @@
 		CAA90C94299419960013A654 /* Git */ = {
 			isa = PBXGroup;
 			children = (
+				CA8D702429E72A47008A11C0 /* .gitignore */,
 			);
 			path = Git;
 			sourceTree = "<group>";
@@ -513,6 +516,7 @@
 				CAA90CB82994205B0013A654 /* Inter-Medium.ttf in Resources */,
 				CAA90CB72994205B0013A654 /* Inter-Light.ttf in Resources */,
 				CAA90CB32994205B0013A654 /* Inter-Black.ttf in Resources */,
+				CA8D702529E72A47008A11C0 /* .gitignore in Resources */,
 				CA8D700929E097A1008A11C0 /* Rocket-Morphing.json in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

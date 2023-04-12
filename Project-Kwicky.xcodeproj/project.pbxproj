@@ -45,6 +45,9 @@
 		CA55DFAA29D6350C00C54B35 /* Mixpanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA55DFA929D6350C00C54B35 /* Mixpanel.swift */; };
 		CA8D700629E09677008A11C0 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = CA8D700529E09677008A11C0 /* Lottie */; };
 		CA8D700929E097A1008A11C0 /* Rocket-Morphing.json in Resources */ = {isa = PBXBuildFile; fileRef = CA8D700829E097A1008A11C0 /* Rocket-Morphing.json */; };
+		CA8D700B29E36DA1008A11C0 /* BeautifyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8D700A29E36DA1008A11C0 /* BeautifyCollectionViewCell.swift */; };
+		CA8D700F29E44D1B008A11C0 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8D700E29E44D1B008A11C0 /* Enums.swift */; };
+		CA8D701129E6F59A008A11C0 /* Beautify.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8D701029E6F59A008A11C0 /* Beautify.swift */; };
 		CAA90C7C2994171C0013A654 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA90C7B2994171C0013A654 /* AppDelegate.swift */; };
 		CAA90C7E2994171C0013A654 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA90C7D2994171C0013A654 /* SceneDelegate.swift */; };
 		CAA90C802994171C0013A654 /* DecisionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA90C7F2994171C0013A654 /* DecisionController.swift */; };
@@ -130,6 +133,9 @@
 		CA55DFA729D6339200C54B35 /* StreamingVideoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamingVideoController.swift; sourceTree = "<group>"; };
 		CA55DFA929D6350C00C54B35 /* Mixpanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mixpanel.swift; sourceTree = "<group>"; };
 		CA8D700829E097A1008A11C0 /* Rocket-Morphing.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "Rocket-Morphing.json"; sourceTree = "<group>"; };
+		CA8D700A29E36DA1008A11C0 /* BeautifyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeautifyCollectionViewCell.swift; sourceTree = "<group>"; };
+		CA8D700E29E44D1B008A11C0 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
+		CA8D701029E6F59A008A11C0 /* Beautify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Beautify.swift; sourceTree = "<group>"; };
 		CAA90C782994171C0013A654 /* Project-Kwicky.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Project-Kwicky.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAA90C7B2994171C0013A654 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CAA90C7D2994171C0013A654 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -195,6 +201,7 @@
 				CA55DF3F29B16A1400C54B35 /* ForYouCollectionViewCell.swift */,
 				CA55DF4E29BCF7F100C54B35 /* EffectsCollectionViewCell.swift */,
 				CA55DF5A29C66AFC00C54B35 /* GoLiveCommentCollectionViewCell.swift */,
+				CA8D700A29E36DA1008A11C0 /* BeautifyCollectionViewCell.swift */,
 			);
 			path = "Collection View Cells";
 			sourceTree = "<group>";
@@ -348,6 +355,7 @@
 				CA55DF3B29AF9FBF00C54B35 /* SocialMediaLink.swift */,
 				CA55DF3129AF9A9B00C54B35 /* User.swift */,
 				CA55DFA529D1234000C54B35 /* AvailableMusic.swift */,
+				CA8D701029E6F59A008A11C0 /* Beautify.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -358,6 +366,7 @@
 				CA55DFA029D1140400C54B35 /* GlobalVariables.swift */,
 				CA55DFA729D6339200C54B35 /* StreamingVideoController.swift */,
 				CA55DFA929D6350C00C54B35 /* Mixpanel.swift */,
+				CA8D700E29E44D1B008A11C0 /* Enums.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -565,12 +574,14 @@
 				CA55DFA129D1140400C54B35 /* GlobalVariables.swift in Sources */,
 				CABAA2FF2998340800C5EBC6 /* SignUpDetailController.swift in Sources */,
 				CA55DF5B29C66AFC00C54B35 /* GoLiveCommentCollectionViewCell.swift in Sources */,
+				CA8D701129E6F59A008A11C0 /* Beautify.swift in Sources */,
 				CABAA31E29A311AC00C5EBC6 /* SettingsItem.swift in Sources */,
 				CA55DF4F29BCF7F100C54B35 /* EffectsCollectionViewCell.swift in Sources */,
 				CA55DF4729B8DE3A00C54B35 /* KwiksVideoPlayerController.swift in Sources */,
 				CA55DF2A29AA966A00C54B35 /* ProfileController.swift in Sources */,
 				CA55DF3A29AF9E9100C54B35 /* KwiksNotification.swift in Sources */,
 				CA55DFA429D11D8D00C54B35 /* AvailableMusicTableViewCell.swift in Sources */,
+				CA8D700F29E44D1B008A11C0 /* Enums.swift in Sources */,
 				CA55DF2829AA94EF00C54B35 /* SettingsController.swift in Sources */,
 				CAA90C9B29941ACD0013A654 /* UIColor+Ext.swift in Sources */,
 				CA55DF3E29AFA13100C54B35 /* KwiksUserAnalytics.swift in Sources */,
@@ -603,6 +614,7 @@
 				CABACC2A29DA211F00026CAE /* AddParticipantsCell.swift in Sources */,
 				CA55DFAA29D6350C00C54B35 /* Mixpanel.swift in Sources */,
 				CA55DF2229A7E87C00C54B35 /* UIImageView+Ext.swift in Sources */,
+				CA8D700B29E36DA1008A11C0 /* BeautifyCollectionViewCell.swift in Sources */,
 				CABAA31229A2C95A00C5EBC6 /* HomeController.swift in Sources */,
 				CA55DF2029A7D32100C54B35 /* NotificationsController.swift in Sources */,
 				CABAA30D29A2AED600C5EBC6 /* SelectUsernameController.swift in Sources */,

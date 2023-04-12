@@ -8,9 +8,10 @@
 import UIKit
 
 struct Effect {
-    var name: String?
+    var name: String
     var image: UIImage?
     
+    //Temp
     static let testEffectOne = Effect(name: "One", image: UIImage(named: "RemoveEffectIcon"))
     static let testEffectTwo = Effect(name: "Two", image: UIImage(named: "UploadImageIconV2"))
     static let testEffectThree = Effect(name: "Three", image: UIImage(named: "UnknownEffectIcon"))
@@ -29,4 +30,14 @@ struct Effect {
     static let backgroundExamples = [effectSix, effectFive, effectFour, effectThree, effectTwo, effectOne]
     static let lightingsExamples = [effectFour, effectThree, effectTwo, effectOne, effectSix, effectFive]
     static let activeExamples = [effectThree, effectSix, effectOne, effectFive, effectTwo, effectFour]
+    
+    //Beautify Options
+    static let smooth = Effect(name: "Smooth", image: UIImage(named: "SmoothIcon"))
+    static let contrast = Effect(name: "Contrast", image: UIImage(named: "ContrastIcon"))
+    static let lips = Effect(name: "Lips", image: UIImage(named: "LipsIcon"))
+    static let teeth = Effect(name: "Teeth", image: UIImage(named: "TeethIcon"))
+    static let lipstick = Effect(name: "Lipstick", image: UIImage(named: "LipstickIcon"))
+    static let contour = Effect(name: "Contour", image: UIImage(named: "ContourIcon"))
+    
+    static let beautifyExamples: [Effect] = [smooth, contrast, lips, teeth, lipstick, contour]
 }

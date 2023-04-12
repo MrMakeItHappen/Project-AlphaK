@@ -9,27 +9,35 @@ import UIKit
 import KwiksSystemsPopups
 
 //TODO: Fetch any available music here. Can be processed in the background while user makes video adjustments.
+//TODO: Convert timerCount to date. Default countdown should be 3 minutes.
 
 final class VideoController: UIViewController {
+    var userCreatedVideo: KwiksVideo?
+    private var beautify: Beautify = Beautify(type: .none, smoothValue: 5, contrastValue: 10, lipsValue: 15, teethValue: 20, lipstickValue: 25, contourValue: 30)
+    
     private let effectsExamples = Effect.effectExamples
+    private let beautifyData = Effect.beautifyExamples
+    private var selectionType: SelectionType = .beautify
+    private var beautifySelection: BeautifyType = .none
     private var timer: Timer = Timer()
-    private var timerCount: Int = 5
+    private var timerCount: Int = 60
     
     private let stopImageIcon = UIImage(systemName: "stop.fill")
     private let playImageIcon = UIImage(named: "KwiksLogoWhite")
     
-    var isShowingOptions = false
-    var isShowingTimer = false
-    var isRecording = false
-    var mainContainerBottomConstraint: NSLayoutConstraint?
-    var userCreatedVideo: KwiksVideo?
-    var popUpAlert = KwiksSystemPopups()
+    private var isShowingOptions = false
+    private var isShowingTimer = false
+    private var isShowingBeautify = false
+    private var isRecording = false
+    private var mainContainerBottomConstraint: NSLayoutConstraint?
+    private var popUpAlert = KwiksSystemPopups()
+    private var beautifyIndexPath: IndexPath?
     
     private let containerView: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.clipsToBounds = true
-        view.backgroundColor = UIColor.systemBlue
+        view.backgroundColor = UIColor.kwiksTextBlack
         view.roundCorners(corners: [.bottomLeft, .bottomRight], radius: 40)
         return view
     }()
@@ -144,7 +152,7 @@ final class VideoController: UIViewController {
         return label
     }()
     
-    private let hiddenTemplatesButton: UIButton = {
+    private let hiddenLiveButton: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.layer.masksToBounds = true
@@ -279,7 +287,7 @@ final class VideoController: UIViewController {
         return imageView
     }()
     
-    private let hiddenUnknownShapeButton: UIButton = {
+    private let hiddenStickersButton: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.layer.masksToBounds = true
@@ -316,7 +324,7 @@ final class VideoController: UIViewController {
         return imageView
     }()
     
-    private let hiddenShapeButton: UIButton = {
+    private let hiddenCropButton: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.layer.masksToBounds = true
@@ -564,6 +572,78 @@ final class VideoController: UIViewController {
         return collectionView
     }()
     
+    private let faceLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Face"
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.backgroundColor = .clear
+        label.font = UIFont.segoeUIBold(size: 15)
+        label.numberOfLines = 1
+        label.adjustsFontSizeToFitWidth = false
+        label.textAlignment = .left
+        label.textColor = UIColor.white
+        label.isUserInteractionEnabled = false
+        label.alpha = 0
+        return label
+    }()
+    
+    private lazy var progressSlider: UISlider = {
+        let slider = UISlider()
+        let configuration = UIImage.SymbolConfiguration(pointSize: 20)
+        let image = UIImage(systemName: "circle.fill", withConfiguration: configuration)?.withTintColor(.white, renderingMode: .alwaysOriginal)
+        slider.setThumbImage(image, for: .normal)
+        slider.setThumbImage(image, for: .highlighted)
+        slider.translatesAutoresizingMaskIntoConstraints = false
+        slider.minimumValue = 0
+        slider.maximumValue = 100
+        slider.backgroundColor = .clear
+        slider.layer.masksToBounds = true
+        slider.isContinuous = true
+        slider.minimumTrackTintColor = UIColor.kwiksGreen
+        slider.maximumTrackTintColor = UIColor.white
+        slider.value = 50
+        slider.addTarget(self, action: #selector(sliderValueDidChange), for: .valueChanged)
+        slider.alpha = 0
+        slider.isUserInteractionEnabled = false
+        return slider
+    }()
+    
+    private let progressLabel: UILabel = {
+        let label = UILabel()
+        label.text = "50"
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.backgroundColor = .clear
+        label.font = UIFont.segoeUIBold(size: 16)
+        label.numberOfLines = 1
+        label.adjustsFontSizeToFitWidth = false
+        label.textAlignment = .center
+        label.textColor = UIColor.white
+        label.alpha = 0
+        return label
+    }()
+    
+    private lazy var beautifyCollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        layout.itemSize = CGSize(width: 60, height: 80)
+        layout.minimumInteritemSpacing = 18
+        layout.minimumLineSpacing = 18
+        
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.backgroundColor = .clear
+        collectionView.isScrollEnabled = true
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.register(BeautifyCollectionViewCell.self, forCellWithReuseIdentifier: BeautifyCollectionViewCell.identifier)
+        collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        collectionView.height(82)
+        collectionView.alpha = 0
+        collectionView.isUserInteractionEnabled = false
+        return collectionView
+    }()
+    
     private let shapeLayer: CAShapeLayer = {
         let layer = CAShapeLayer()
         layer.lineWidth = 6
@@ -602,13 +682,7 @@ final class VideoController: UIViewController {
     
     override func viewDidLayoutSubviews() {
         super.viewDidLayoutSubviews()
-        
-        let circlePath = UIBezierPath(arcCenter: recordButton.center, radius: 46, startAngle: -(.pi / 2), endAngle: .pi * 2, clockwise: true)
-        self.shapeLayer.path = circlePath.cgPath
-        self.trackLayer.path = circlePath.cgPath
-        
-        self.view.layer.addSublayer(self.trackLayer)
-        self.view.layer.addSublayer(self.shapeLayer)
+        self.addShapeLayers()
     }
 }
 //MARK: - Configure View Controller
@@ -622,10 +696,10 @@ extension VideoController {
         self.hiddenAddMusicButton.addTarget(self, action: #selector(didTapAddMusic), for: .touchDown)
         self.recordButton.addTarget(self, action: #selector(didTapRecord), for: .touchDown)
         
-        self.hiddenTemplatesButton.addTarget(self, action: #selector(didTapTemplates), for: .touchDown)
+        self.hiddenLiveButton.addTarget(self, action: #selector(didTapLive), for: .touchDown)
+        self.hiddenStickersButton.addTarget(self, action: #selector(didTapSticker), for: .touchDown)
+        self.hiddenCropButton.addTarget(self, action: #selector(didTapCrop), for: .touchDown)
         
-        self.hiddenUnknownShapeButton.addTarget(self, action: #selector(didTapUnknown), for: .touchDown)
-        self.hiddenShapeButton.addTarget(self, action: #selector(didTapShapes), for: .touchDown)
         self.hiddenBeautifyButton.addTarget(self, action: #selector(didTapBeautify), for: .touchDown)
         self.hiddenTimerButton.addTarget(self, action: #selector(didTapTimer), for: .touchDown)
         self.hiddenFlipButton.addTarget(self, action: #selector(didTapFlipCamera), for: .touchDown)
@@ -691,11 +765,11 @@ extension VideoController {
         self.liveLabel.leftToRight(of: self.cameraLabel, offset: 22)
         self.liveLabel.centerY(to: self.cameraLabel)
         
-        self.containerView.addSubview(self.hiddenTemplatesButton)
-        self.hiddenTemplatesButton.top(to: self.liveLabel, offset: -2)
-        self.hiddenTemplatesButton.right(to: self.liveLabel, offset: 2)
-        self.hiddenTemplatesButton.left(to: self.liveLabel, offset: -2)
-        self.hiddenTemplatesButton.bottom(to: self.liveLabel, offset: 2)
+        self.containerView.addSubview(self.hiddenLiveButton)
+        self.hiddenLiveButton.top(to: self.liveLabel, offset: -2)
+        self.hiddenLiveButton.right(to: self.liveLabel, offset: 2)
+        self.hiddenLiveButton.left(to: self.liveLabel, offset: -2)
+        self.hiddenLiveButton.bottom(to: self.liveLabel, offset: 2)
         
         self.containerView.addSubview(self.recordButton)
         self.recordButton.centerXToSuperview()
@@ -728,6 +802,24 @@ extension VideoController {
         self.containerView.addSubview(self.uploadLabel)
         self.uploadLabel.centerX(to: self.uploadIconImageView)
         self.uploadLabel.topToBottom(of: self.uploadVideoButton, offset: 5)
+        
+        self.containerView.addSubview(self.beautifyCollectionView)
+        self.beautifyCollectionView.leftToSuperview(offset: 30)
+        self.beautifyCollectionView.rightToSuperview()
+        self.beautifyCollectionView.bottomToSuperview(usingSafeArea: true)
+        
+        self.containerView.addSubview(self.faceLabel)
+        self.faceLabel.bottomToTop(of: self.beautifyCollectionView, offset: -12)
+        self.faceLabel.left(to: self.beautifyCollectionView)
+        
+        self.containerView.addSubview(self.progressSlider)
+        self.progressSlider.bottomToTop(of: self.faceLabel, offset: -10)
+        self.progressSlider.leftToSuperview(offset: 30)
+        self.progressSlider.rightToSuperview(offset: -30)
+        
+        self.containerView.addSubview(self.progressLabel)
+        self.progressLabel.bottomToTop(of: self.progressSlider, offset: -10)
+        self.progressLabel.centerXToSuperview()
     }
     
     private func layoutLeadingUI() {
@@ -739,11 +831,11 @@ extension VideoController {
         self.stickersIconImageView.bottomToTop(of: self.stickersLabel, offset: -8)
         self.stickersIconImageView.centerX(to: self.stickersLabel)
         
-        self.containerView.addSubview(self.hiddenUnknownShapeButton)
-        self.hiddenUnknownShapeButton.top(to: self.stickersIconImageView, offset: -2)
-        self.hiddenUnknownShapeButton.right(to: self.stickersLabel, offset: 2)
-        self.hiddenUnknownShapeButton.left(to: self.stickersLabel, offset: -2)
-        self.hiddenUnknownShapeButton.bottom(to: self.stickersLabel, offset: 2)
+        self.containerView.addSubview(self.hiddenStickersButton)
+        self.hiddenStickersButton.top(to: self.stickersIconImageView, offset: -2)
+        self.hiddenStickersButton.right(to: self.stickersLabel, offset: 2)
+        self.hiddenStickersButton.left(to: self.stickersLabel, offset: -2)
+        self.hiddenStickersButton.bottom(to: self.stickersLabel, offset: 2)
         
         self.containerView.addSubview(self.cropLabel)
         self.cropLabel.centerX(to: self.stickersLabel)
@@ -753,11 +845,11 @@ extension VideoController {
         self.cropIconImageView.bottomToTop(of: self.cropLabel, offset: -8)
         self.cropIconImageView.centerX(to: self.stickersLabel)
         
-        self.containerView.addSubview(self.hiddenShapeButton)
-        self.hiddenShapeButton.top(to: self.cropIconImageView, offset: -2)
-        self.hiddenShapeButton.right(to: self.cropLabel, offset: 2)
-        self.hiddenShapeButton.left(to: self.cropLabel, offset: -2)
-        self.hiddenShapeButton.bottom(to: self.cropLabel, offset: 2)
+        self.containerView.addSubview(self.hiddenCropButton)
+        self.hiddenCropButton.top(to: self.cropIconImageView, offset: -2)
+        self.hiddenCropButton.right(to: self.cropLabel, offset: 2)
+        self.hiddenCropButton.left(to: self.cropLabel, offset: -2)
+        self.hiddenCropButton.bottom(to: self.cropLabel, offset: 2)
         
         self.containerView.addSubview(self.beautifyLabel)
         self.beautifyLabel.centerX(to: self.stickersLabel)
@@ -854,6 +946,174 @@ extension VideoController {
         self.sixtySecondButton.tintColor = .white
         self.sixtySecondButton.backgroundColor = .clear
     }
+    
+    private func startVideoTimer() {
+        UIView.animate(withDuration: 0.50) {
+            self.recordButton.alpha = 1
+            self.recordButton.backgroundColor = UIColor.kwiksGreen.withAlphaComponent(0.50)
+            self.recordButton.setImage(self.stopImageIcon, for: .normal)
+        }
+        
+        self.recordAnimation.toValue = 1
+        self.isRecording = true
+        
+        self.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.timerCounter), userInfo: nil, repeats: true)
+        
+        DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+            self.shapeLayer.add(self.recordAnimation, forKey: "animation")
+        }
+    }
+    
+    private func endVideoTimer() {
+        UIView.animate(withDuration: 0.50) {
+            self.recordButton.alpha = 1
+            self.recordButton.backgroundColor = UIColor.kwiksGreen
+            self.recordButton.setImage(self.playImageIcon, for: .normal)
+        }
+        
+        self.timerDurationLabel.text = ""
+        self.recordAnimation.toValue = 0
+        self.isRecording = false
+        self.timer.invalidate()
+        
+        DispatchQueue.main.asyncAfter(deadline: .now()) {
+            self.shapeLayer.add(self.recordAnimation, forKey: "animation")
+        }
+    }
+    
+    private func addShapeLayers() {
+        let circlePath = UIBezierPath(arcCenter: recordButton.center, radius: 46, startAngle: -(.pi / 2), endAngle: .pi * 2, clockwise: true)
+        self.shapeLayer.path = circlePath.cgPath
+        self.trackLayer.path = circlePath.cgPath
+        
+        self.view.layer.addSublayer(self.trackLayer)
+        self.view.layer.addSublayer(self.shapeLayer)
+    }
+    
+    private func hideNonBeautifyOptions() {
+        
+        UIView.animate(withDuration: 0.75) {
+            self.flipIconImageView.alpha = 0
+            self.flipLabel.alpha = 0
+            self.hiddenFlipButton.isUserInteractionEnabled = false
+            
+            self.timerIconImageView.alpha = 0
+            self.timerLabel.alpha = 0
+            self.hiddenTimerButton.isUserInteractionEnabled = false
+            
+            self.cropIconImageView.alpha = 0
+            self.cropLabel.alpha = 0
+            self.hiddenCropButton.isUserInteractionEnabled = false
+            
+            self.stickersIconImageView.alpha = 0
+            self.stickersLabel.alpha = 0
+            self.hiddenStickersButton.isUserInteractionEnabled = false
+            
+            self.closeButton.alpha = 0
+            self.closeButton.isUserInteractionEnabled = false
+            
+            self.addMusicContainerView.alpha = 0
+            self.addMusicContainerView.isUserInteractionEnabled = false
+            
+            self.cameraLightButton.alpha = 0
+            self.cameraLightButton.isUserInteractionEnabled = false
+            
+            self.cameraSelectionView.alpha = 0
+            self.recordButton.alpha = 0
+            self.recordButton.isUserInteractionEnabled = false
+            
+            self.shapeLayer.isHidden = true
+            self.trackLayer.isHidden = true
+            
+            self.cameraLabel.alpha = 0
+            self.liveLabel.alpha = 0
+            self.hiddenLiveButton.alpha = 0
+            self.hiddenLiveButton.isUserInteractionEnabled = false
+            
+            self.effectsLabel.alpha = 0
+            self.effectsIconImageView.alpha = 0
+            self.effectsButton.alpha = 0
+            self.effectsButton.isUserInteractionEnabled = false
+            
+            self.uploadLabel.alpha = 0
+            self.uploadIconImageView.alpha = 0
+            self.uploadVideoButton.alpha = 0
+            self.uploadVideoButton.isUserInteractionEnabled = false
+        } completion: { success in
+            
+            UIView.animate(withDuration: 0.50) {
+                self.beautifyCollectionView.isUserInteractionEnabled = true
+                self.beautifyCollectionView.alpha = 1
+                self.faceLabel.alpha = 1
+            }
+            
+        }
+    }
+    
+    private func showAllOptions() {
+        self.faceLabel.alpha = 0
+        self.faceLabel.isUserInteractionEnabled = false
+        
+        self.progressLabel.alpha = 0
+        self.progressSlider.alpha = 0
+        self.progressSlider.isUserInteractionEnabled = false
+        
+        self.beautifyCollectionView.alpha = 0
+        self.beautifyCollectionView.isUserInteractionEnabled = false
+        
+        UIView.animate(withDuration: 0.75) {
+            self.flipIconImageView.alpha = 1
+            self.flipLabel.alpha = 1
+            self.hiddenFlipButton.isUserInteractionEnabled = true
+            
+            self.timerIconImageView.alpha = 1
+            self.timerLabel.alpha = 1
+            self.hiddenTimerButton.isUserInteractionEnabled = true
+            
+            self.beautifyIconImageView.alpha = 1
+            self.beautifyLabel.alpha = 1
+            self.hiddenBeautifyButton.isUserInteractionEnabled = true
+            
+            self.cropIconImageView.alpha = 1
+            self.cropLabel.alpha = 1
+            self.hiddenCropButton.isUserInteractionEnabled = true
+            
+            self.stickersIconImageView.alpha = 1
+            self.stickersLabel.alpha = 1
+            self.hiddenStickersButton.isUserInteractionEnabled = true
+            
+            self.closeButton.alpha = 1
+            self.closeButton.isUserInteractionEnabled = true
+            
+            self.addMusicContainerView.alpha = 1
+            self.addMusicContainerView.isUserInteractionEnabled = true
+            
+            self.cameraLightButton.alpha = 1
+            self.cameraLightButton.isUserInteractionEnabled = true
+            
+            self.cameraSelectionView.alpha = 1
+            self.recordButton.alpha = 1
+            self.recordButton.isUserInteractionEnabled = true
+            
+            self.cameraLabel.alpha = 1
+            self.liveLabel.alpha = 1
+            self.hiddenLiveButton.alpha = 1
+            self.hiddenLiveButton.isUserInteractionEnabled = true
+            
+            self.effectsLabel.alpha = 1
+            self.effectsIconImageView.alpha = 1
+            self.effectsButton.alpha = 1
+            self.effectsButton.isUserInteractionEnabled = true
+            
+            self.uploadLabel.alpha = 1
+            self.uploadIconImageView.alpha = 1
+            self.uploadVideoButton.alpha = 1
+            self.uploadVideoButton.isUserInteractionEnabled = true
+            
+            self.shapeLayer.isHidden = false
+            self.trackLayer.isHidden = false
+        }
+    }
 }
 //MARK: - @objc
 extension VideoController {
@@ -875,9 +1135,7 @@ extension VideoController {
     }
     
     @objc func didTapTimer() {
-        print(#function)
         self.isShowingTimer.toggle()
-        self.deselectAllTimerButtons()
         
         if isShowingTimer {
             UIView.animate(withDuration: 0.75) {
@@ -890,19 +1148,22 @@ extension VideoController {
         }
     }
     
-    @objc func timerCounter() {if self.timerCount > 0 {
+    @objc func timerCounter() {
+        var timeString = ""
+        
+        if self.timerCount > 0 {
             self.timerCount -= 1
             
         } else {
             self.timer.invalidate()
-            self.timerCount = 5
+            self.timerCount = 0
             self.timerDurationLabel.text = "👍🏽"
             return
         }
         
-        var timeString = "00:"
+        timeString += "00:"
         timeString += String(format: "%02d", timerCount)
-        
+
         self.timerDurationLabel.text = timeString
     }
     
@@ -976,23 +1237,69 @@ extension VideoController {
     
     @objc func didTapBeautify() {
         print(#function)
+        
+        self.isShowingBeautify.toggle()
+        
+        if isShowingBeautify {
+            self.selectionType = .beautify
+            self.hideNonBeautifyOptions()
+        } else {
+            self.beautifySelection = .none
+            self.showAllOptions()
+        }
+        
     }
     
-    @objc func didTapShapes() {
+    @objc func sliderValueDidChange(_ sender: UISlider) {
+
+        let roundedValue = Int(sender.value)
+//        self.progressLabel.text = "\(roundedValue)"
+        
+        switch self.beautify.type {
+        case .smooth:
+            self.beautify.smoothValue = roundedValue
+            break
+            
+        case .contrast:
+            return
+            
+        case .lips:
+            return
+            
+        case .teeth:
+            return
+            
+        case .lipstick:
+            return
+            
+        case .contour:
+            return
+            
+        default:
+            return
+        }
+    }
+    
+    @objc func didTapCrop() {
         print(#function)
     }
     
-    @objc func didTapUnknown() {
+    @objc func didTapSticker() {
         print(#function)
     }
     
     @objc func didTapEffects() {
+        self.selectionType = .effects
+        self.effectsCollectionView.reloadData()
+        
         isShowingOptions.toggle()
         
         if isShowingOptions == true {
             self.closeButton.alpha = 0
             self.cameraLightButton.alpha = 0
             self.addMusicContainerView.alpha = 0
+            self.shapeLayer.isHidden = true
+            self.trackLayer.isHidden = true
             
             self.closeButton.isUserInteractionEnabled = false
             self.cameraLightButton.isUserInteractionEnabled = false
@@ -1036,8 +1343,14 @@ extension VideoController {
                         self.addMusicContainerView.alpha = 1
                         
                         self.mainContainerBottomConstraint?.constant = 0
+                        self.containerView.layoutIfNeeded()
                     }
                 })
+            }
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 1) {
+                self.shapeLayer.isHidden = false
+                self.trackLayer.isHidden = false
             }
         }
     }
@@ -1048,6 +1361,8 @@ extension VideoController {
     }
     
     @objc func didTapRecord() {
+        self.deselectAllTimerButtons()
+        
         UIView.animate(withDuration: 0.75) {
             self.timerContainer.alpha = 0
             self.isShowingTimer = false
@@ -1057,38 +1372,10 @@ extension VideoController {
         self.recordAnimation.duration = CFTimeInterval(self.timerCount)
         
         if !self.isRecording {
-            
-            UIView.animate(withDuration: 0.50) {
-                self.recordButton.alpha = 1
-                self.recordButton.backgroundColor = UIColor.kwiksGreen.withAlphaComponent(0.50)
-                self.recordButton.setImage(self.stopImageIcon, for: .normal)
-            }
-            
-            self.recordAnimation.toValue = 1
-            self.isRecording = true
-            
-            self.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(self.timerCounter), userInfo: nil, repeats: true)
-            
-            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
-                self.shapeLayer.add(self.recordAnimation, forKey: "animation")
-            }
+            self.startVideoTimer()
             
         } else {
-            
-            UIView.animate(withDuration: 0.50) {
-                self.recordButton.alpha = 1
-                self.recordButton.backgroundColor = UIColor.kwiksGreen
-                self.recordButton.setImage(self.playImageIcon, for: .normal)
-            }
-            
-            self.timerDurationLabel.text = ""
-            self.recordAnimation.toValue = 0
-            self.isRecording = false
-            self.timer.invalidate()
-            
-            DispatchQueue.main.asyncAfter(deadline: .now()) {
-                self.shapeLayer.add(self.recordAnimation, forKey: "animation")
-            }
+            self.endVideoTimer()
         }
     }
     
@@ -1096,20 +1383,113 @@ extension VideoController {
         print(#function)
     }
     
-    @objc func didTapTemplates() {
+    @objc func didTapLive() {
         print(#function)
     }
 }
 //MARK: - Collectionview DataSource & Delegate
 extension VideoController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return self.effectsExamples.count
+        
+        switch self.selectionType {
+        case .beautify:
+            return self.beautifyData.count
+            
+        case .effects:
+            return self.effectsExamples.count
+            
+        case .stickers:
+            return 0
+            
+        case .none:
+            return 0
+        }
+        
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EffectsCollectionViewCell.identifier, for: indexPath) as! EffectsCollectionViewCell
-        let effect = self.effectsExamples[indexPath.item]
-        cell.configure(with: effect)
-        return cell
+        
+        switch self.selectionType {
+        case .effects:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EffectsCollectionViewCell.identifier, for: indexPath) as! EffectsCollectionViewCell
+            let effect = self.effectsExamples[indexPath.item]
+            cell.configure(with: effect)
+            return cell
+            
+        case .beautify:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BeautifyCollectionViewCell.identifier, for: indexPath) as! BeautifyCollectionViewCell
+            let effect = self.beautifyData[indexPath.item]
+            cell.configure(with: effect)
+            return cell
+            
+        case .stickers:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "id", for: indexPath)
+            return cell
+            
+        case .none:
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "id", for: indexPath)
+            return cell
+        }
+    }
+    
+    //TODO: Store UISlider value for each beautify selection.
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        switch self.selectionType {
+        case .effects:
+            return
+            
+        case .beautify:
+            let effect = self.beautifyData[indexPath.item]
+            
+            if let cell = collectionView.cellForItem(at: indexPath) as? BeautifyCollectionViewCell {
+                cell.iconImageView.layer.borderColor = UIColor.kwiksGreen.cgColor
+                cell.iconImageView.tintColor = UIColor.kwiksGreen
+                cell.iconImageView.layer.borderWidth = 1
+            }
+            
+            self.progressLabel.alpha = 1
+            self.progressSlider.alpha = 1
+            self.progressSlider.isUserInteractionEnabled = true
+            
+            switch effect.name {
+            case "Smooth":
+                return
+                
+            case "Contrast":
+                return
+                
+            case "Lips":
+                return
+                
+            case "Teeth":
+                return
+                
+            case "Lipstick":
+                return
+                
+            case "Contour":
+                return
+                
+            default:
+                return
+            }
+            
+        case .stickers:
+            return
+            
+        case .none:
+            return
+        }
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, didDeselectItemAt indexPath: IndexPath) {
+        if let cell = collectionView.cellForItem(at: indexPath) as? BeautifyCollectionViewCell {
+            cell.iconImageView.layer.borderColor = UIColor.clear.cgColor
+            cell.iconImageView.tintColor = UIColor.white
+            cell.iconImageView.layer.borderWidth = 1
+        }
+        
+        self.progressLabel.text = "50"
+        self.progressSlider.value = 50
     }
 }

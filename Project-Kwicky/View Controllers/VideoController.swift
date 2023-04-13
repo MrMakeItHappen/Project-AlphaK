@@ -17,8 +17,7 @@ final class VideoController: UIViewController {
     
     private let effectsExamples = Effect.effectExamples
     private let beautifyData = Effect.beautifyExamples
-    private var selectionType: SelectionType = .beautify
-    private var beautifySelection: BeautifyType = .none
+    private let stickerExamples = Sticker.allTempStickers
     private var timer: Timer = Timer()
     private var timerCount: Int = 60
     
@@ -28,6 +27,7 @@ final class VideoController: UIViewController {
     private var isShowingOptions = false
     private var isShowingTimer = false
     private var isShowingBeautify = false
+    private var isShowingStickers = false
     private var isRecording = false
     private var mainContainerBottomConstraint: NSLayoutConstraint?
     private var popUpAlert = KwiksSystemPopups()
@@ -202,7 +202,7 @@ final class VideoController: UIViewController {
         button.backgroundColor = UIColor.clear
         button.layer.cornerRadius = 14
         button.layer.borderWidth = 1
-        button.layer.borderColor = UIColor(hexString: "#2B2B2B", alpha: 1).cgColor
+        button.layer.borderColor = UIColor(hexString: "#575757").cgColor
         return button
     }()
     
@@ -242,7 +242,7 @@ final class VideoController: UIViewController {
         button.backgroundColor = UIColor.clear
         button.layer.cornerRadius = 14
         button.layer.borderWidth = 1
-        button.layer.borderColor = UIColor(hexString: "#2B2B2B", alpha: 1).cgColor
+        button.layer.borderColor = UIColor(hexString: "#575757").cgColor
         return button
     }()
     
@@ -294,6 +294,154 @@ final class VideoController: UIViewController {
         button.tintColor = UIColor.clear
         button.backgroundColor = UIColor.clear
         return button
+    }()
+    
+    //TODO: Move this to a subclass to easily add and remove on sticker button tap.
+    private let stickerContainer: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.clipsToBounds = true
+        view.backgroundColor = UIColor.clear
+        view.roundCorners(corners: [.topLeft, .topRight], radius: 26)
+        view.alpha = 0
+        return view
+    }()
+    
+    private let blurView: UIVisualEffectView = {
+        let blur = UIBlurEffect(style: .dark)
+        let blurView = UIVisualEffectView(effect: blur)
+        return blurView
+    }()
+    
+    private lazy var trendingCategoryButton: UIButton = {
+        var attributeContainer = AttributeContainer()
+        attributeContainer.font = .segoeUIRegular(size: 14)
+        
+        var configuration = UIButton.Configuration.plain()
+        configuration.attributedTitle = AttributedString("Trending", attributes: attributeContainer)
+        configuration.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 2, trailing: 0)
+        
+        let button = UIButton(configuration: configuration, primaryAction: UIAction(handler: { _ in
+            self.didTapTrending()
+        }))
+        
+        button.layer.masksToBounds = true
+        button.layer.cornerRadius = 15
+        button.layer.borderWidth = 0.50
+        button.layer.borderColor = UIColor.kwiksGreen.cgColor
+        button.tintColor = UIColor.white
+        button.backgroundColor = UIColor.black.withAlphaComponent(0.60)
+        button.width(75)
+        button.height(30)
+        return button
+    }()
+    
+    private lazy var newCategoryButton: UIButton = {
+        var attributeContainer = AttributeContainer()
+        attributeContainer.font = .segoeUIRegular(size: 14)
+        
+        var configuration = UIButton.Configuration.plain()
+        configuration.attributedTitle = AttributedString("New", attributes: attributeContainer)
+        configuration.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 2, trailing: 0)
+        
+        let button = UIButton(configuration: configuration, primaryAction: UIAction(handler: { _ in
+            self.didTapNew()
+        }))
+        
+        button.layer.masksToBounds = true
+        button.layer.cornerRadius = 15
+        button.layer.borderWidth = 0.50
+        button.tintColor = UIColor.white
+        button.backgroundColor = UIColor.black.withAlphaComponent(0.60)
+        button.width(48)
+        button.height(30)
+        return button
+    }()
+    
+    private lazy var funnyCategoryButton: UIButton = {
+        var attributeContainer = AttributeContainer()
+        attributeContainer.font = .segoeUIRegular(size: 14)
+        
+        var configuration = UIButton.Configuration.plain()
+        configuration.attributedTitle = AttributedString("Funny", attributes: attributeContainer)
+        configuration.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 2, trailing: 0)
+        
+        let button = UIButton(configuration: configuration, primaryAction: UIAction(handler: { _ in
+            self.didTapFunny()
+        }))
+        
+        button.layer.masksToBounds = true
+        button.layer.cornerRadius = 15
+        button.layer.borderWidth = 0.50
+        button.tintColor = UIColor.white
+        button.backgroundColor = UIColor.black.withAlphaComponent(0.60)
+        button.width(57)
+        button.height(30)
+        return button
+    }()
+    
+    private lazy var interactiveCategoryButton: UIButton = {
+        var attributeContainer = AttributeContainer()
+        attributeContainer.font = .segoeUIRegular(size: 14)
+        
+        var configuration = UIButton.Configuration.plain()
+        configuration.attributedTitle = AttributedString("Interactive", attributes: attributeContainer)
+        configuration.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 2, trailing: 0)
+        
+        let button = UIButton(configuration: configuration, primaryAction: UIAction(handler: { _ in
+            self.didTapInteractive()
+        }))
+        
+        button.layer.masksToBounds = true
+        button.layer.cornerRadius = 15
+        button.layer.borderWidth = 0.50
+        button.tintColor = UIColor.white
+        button.backgroundColor = UIColor.black.withAlphaComponent(0.60)
+        button.width(83)
+        button.height(30)
+        return button
+    }()
+    
+    private lazy var animalCategoryButton: UIButton = {
+        var attributeContainer = AttributeContainer()
+        attributeContainer.font = .segoeUIRegular(size: 14)
+        
+        var configuration = UIButton.Configuration.plain()
+        configuration.attributedTitle = AttributedString("Animal", attributes: attributeContainer)
+        configuration.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 2, trailing: 0)
+        
+        let button = UIButton(configuration: configuration, primaryAction: UIAction(handler: { _ in
+            self.didTapAnimal()
+        }))
+        
+        button.layer.masksToBounds = true
+        button.layer.cornerRadius = 15
+        button.layer.borderWidth = 0.50
+        button.tintColor = UIColor.white
+        button.backgroundColor = UIColor.black.withAlphaComponent(0.60)
+        button.width(67)
+        button.height(30)
+        return button
+    }()
+    
+    private lazy var stickerCollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .vertical
+        layout.itemSize = CGSize(width: 50, height: 50)
+        layout.minimumInteritemSpacing = 12
+        layout.minimumLineSpacing = 12
+        
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.backgroundColor = .clear
+        collectionView.isScrollEnabled = true
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.register(StickerCollectionViewCell.self, forCellWithReuseIdentifier: StickerCollectionViewCell.identifier)
+        collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
+        collectionView.tag = 2
+        return collectionView
     }()
     
     private let cropLabel: UILabel = {
@@ -568,10 +716,11 @@ final class VideoController: UIViewController {
         collectionView.showsVerticalScrollIndicator = false
         collectionView.register(EffectsCollectionViewCell.self, forCellWithReuseIdentifier: EffectsCollectionViewCell.identifier)
         collectionView.contentInset = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 25)
-        
+        collectionView.tag = 0
         return collectionView
     }()
     
+    //TODO: Move beautify options to subclass. Use container with clear background.
     private let faceLabel: UILabel = {
         let label = UILabel()
         label.text = "Face"
@@ -641,6 +790,7 @@ final class VideoController: UIViewController {
         collectionView.height(82)
         collectionView.alpha = 0
         collectionView.isUserInteractionEnabled = false
+        collectionView.tag = 1
         return collectionView
     }()
     
@@ -717,6 +867,16 @@ extension VideoController {
         self.containerView.rightToSuperview()
         self.mainContainerBottomConstraint = self.containerView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 0)
         self.mainContainerBottomConstraint?.isActive = true
+        
+        //Temp. Remove after testing
+        let backgroundImage = UIImage(named: "FemalePlaceholder02")
+        let backgroundImageView = UIImageView(frame: .zero)
+        backgroundImageView.contentMode = .scaleAspectFill
+        backgroundImageView.image = backgroundImage
+        
+        self.containerView.addSubview(backgroundImageView)
+        backgroundImageView.edgesToSuperview()
+        //
         
         self.view.addSubview(self.effectsCollectionView)
         self.view.sendSubviewToBack(self.effectsCollectionView)
@@ -825,7 +985,7 @@ extension VideoController {
     private func layoutLeadingUI() {
         self.containerView.addSubview(self.stickersLabel)
         self.stickersLabel.leftToSuperview(offset: 23)
-        self.stickersLabel.bottomToTop(of: self.recordButton, offset: -55)
+        self.stickersLabel.bottomToTop(of: self.recordButton, offset: -80)
         
         self.containerView.addSubview(self.stickersIconImageView)
         self.stickersIconImageView.bottomToTop(of: self.stickersLabel, offset: -8)
@@ -836,6 +996,42 @@ extension VideoController {
         self.hiddenStickersButton.right(to: self.stickersLabel, offset: 2)
         self.hiddenStickersButton.left(to: self.stickersLabel, offset: -2)
         self.hiddenStickersButton.bottom(to: self.stickersLabel, offset: 2)
+        
+        self.containerView.addSubview(self.stickerContainer)
+        self.stickerContainer.bottomToSuperview()
+        self.stickerContainer.leftToSuperview()
+        self.stickerContainer.rightToSuperview()
+        self.stickerContainer.topToBottom(of: self.stickersLabel, offset: 20)
+        
+        self.stickerContainer.addSubview(self.blurView)
+        self.blurView.edgesToSuperview()
+        self.stickerContainer.sendSubviewToBack(self.blurView)
+        
+        self.stickerContainer.addSubview(self.trendingCategoryButton)
+        self.trendingCategoryButton.leftToSuperview(offset: 20)
+        self.trendingCategoryButton.topToSuperview(offset: 27)
+        
+        self.stickerContainer.addSubview(self.newCategoryButton)
+        self.newCategoryButton.centerY(to: self.trendingCategoryButton)
+        self.newCategoryButton.leftToRight(of: self.trendingCategoryButton, offset: 5)
+        
+        self.stickerContainer.addSubview(self.funnyCategoryButton)
+        self.funnyCategoryButton.centerY(to: self.trendingCategoryButton)
+        self.funnyCategoryButton.leftToRight(of: self.newCategoryButton, offset: 5)
+        
+        self.stickerContainer.addSubview(self.interactiveCategoryButton)
+        self.interactiveCategoryButton.centerY(to: self.trendingCategoryButton)
+        self.interactiveCategoryButton.leftToRight(of: self.funnyCategoryButton, offset: 5)
+        
+        self.stickerContainer.addSubview(self.animalCategoryButton)
+        self.animalCategoryButton.centerY(to: self.trendingCategoryButton)
+        self.animalCategoryButton.leftToRight(of: self.interactiveCategoryButton, offset: 5)
+        
+        self.stickerContainer.addSubview(self.stickerCollectionView)
+        self.stickerCollectionView.topToBottom(of: self.trendingCategoryButton, offset: 20)
+        self.stickerCollectionView.left(to: self.trendingCategoryButton)
+        self.stickerCollectionView.right(to: self.animalCategoryButton)
+        self.stickerCollectionView.bottomToSuperview(offset: -20)
         
         self.containerView.addSubview(self.cropLabel)
         self.cropLabel.centerX(to: self.stickersLabel)
@@ -1050,6 +1246,62 @@ extension VideoController {
         }
     }
     
+    private func hideNonStickerOptions() {
+        
+        UIView.animate(withDuration: 0.75) {
+            self.flipIconImageView.alpha = 0
+            self.flipLabel.alpha = 0
+            self.hiddenFlipButton.isUserInteractionEnabled = false
+            
+            self.timerIconImageView.alpha = 0
+            self.timerLabel.alpha = 0
+            self.hiddenTimerButton.isUserInteractionEnabled = false
+            
+            self.cropIconImageView.alpha = 0
+            self.cropLabel.alpha = 0
+            self.hiddenCropButton.isUserInteractionEnabled = false
+            
+            self.beautifyIconImageView.alpha = 0
+            self.beautifyLabel.alpha = 0
+            self.hiddenBeautifyButton.isUserInteractionEnabled = false
+            
+            self.closeButton.alpha = 0
+            self.closeButton.isUserInteractionEnabled = false
+            
+            self.addMusicContainerView.alpha = 0
+            self.addMusicContainerView.isUserInteractionEnabled = false
+            
+            self.cameraLightButton.alpha = 0
+            self.cameraLightButton.isUserInteractionEnabled = false
+            
+            self.cameraSelectionView.alpha = 0
+            self.recordButton.alpha = 0
+            self.recordButton.isUserInteractionEnabled = false
+            
+            self.shapeLayer.isHidden = true
+            self.trackLayer.isHidden = true
+            
+            self.cameraLabel.alpha = 0
+            self.liveLabel.alpha = 0
+            self.hiddenLiveButton.alpha = 0
+            self.hiddenLiveButton.isUserInteractionEnabled = false
+            
+            self.effectsLabel.alpha = 0
+            self.effectsIconImageView.alpha = 0
+            self.effectsButton.alpha = 0
+            self.effectsButton.isUserInteractionEnabled = false
+            
+            self.uploadLabel.alpha = 0
+            self.uploadIconImageView.alpha = 0
+            self.uploadVideoButton.alpha = 0
+            self.uploadVideoButton.isUserInteractionEnabled = false
+        } completion: { success in
+            UIView.animate(withDuration: 0.70) {
+                self.stickerContainer.alpha = 1
+            }
+        }
+    }
+    
     private func showAllOptions() {
         self.faceLabel.alpha = 0
         self.faceLabel.isUserInteractionEnabled = false
@@ -1060,6 +1312,8 @@ extension VideoController {
         
         self.beautifyCollectionView.alpha = 0
         self.beautifyCollectionView.isUserInteractionEnabled = false
+        
+        self.stickerContainer.alpha = 0
         
         UIView.animate(withDuration: 0.75) {
             self.flipIconImageView.alpha = 1
@@ -1163,7 +1417,7 @@ extension VideoController {
         
         timeString += "00:"
         timeString += String(format: "%02d", timerCount)
-
+        
         self.timerDurationLabel.text = timeString
     }
     
@@ -1239,17 +1493,14 @@ extension VideoController {
         self.isShowingBeautify.toggle()
         
         if isShowingBeautify {
-            self.selectionType = .beautify
             self.hideNonBeautifyOptions()
         } else {
-            self.beautifySelection = .none
             self.showAllOptions()
         }
-        
     }
     
     @objc func sliderValueDidChange(_ sender: UISlider) {
-
+        
         let roundedValue = Int(sender.value)
         
         switch self.beautify.type {
@@ -1293,13 +1544,76 @@ extension VideoController {
     }
     
     @objc func didTapSticker() {
-        print(#function)
+        self.isShowingStickers.toggle()
+        
+        if isShowingStickers {
+            self.hideNonStickerOptions()
+        } else {
+            self.showAllOptions()
+        }
+    }
+    
+    @objc func didTapTrending() {
+        self.trendingCategoryButton.layer.borderColor = UIColor.kwiksGreen.cgColor
+        
+        self.newCategoryButton.layer.borderColor = UIColor.clear.cgColor
+        self.funnyCategoryButton.layer.borderColor = UIColor.clear.cgColor
+        self.interactiveCategoryButton.layer.borderColor = UIColor.clear.cgColor
+        self.animalCategoryButton.layer.borderColor = UIColor.clear.cgColor
+        
+        //TODO: Download new sticker data. Then reload data.
+        self.stickerCollectionView.reloadData()
+    }
+    
+    @objc func didTapNew() {
+        self.newCategoryButton.layer.borderColor = UIColor.kwiksGreen.cgColor
+        
+        self.trendingCategoryButton.layer.borderColor = UIColor.clear.cgColor
+        self.funnyCategoryButton.layer.borderColor = UIColor.clear.cgColor
+        self.interactiveCategoryButton.layer.borderColor = UIColor.clear.cgColor
+        self.animalCategoryButton.layer.borderColor = UIColor.clear.cgColor
+        
+        //TODO: Download new sticker data. Then reload data.
+        self.stickerCollectionView.reloadData()
+    }
+    
+    @objc func didTapFunny() {
+        self.funnyCategoryButton.layer.borderColor = UIColor.kwiksGreen.cgColor
+        
+        self.trendingCategoryButton.layer.borderColor = UIColor.clear.cgColor
+        self.newCategoryButton.layer.borderColor = UIColor.clear.cgColor
+        self.interactiveCategoryButton.layer.borderColor = UIColor.clear.cgColor
+        self.animalCategoryButton.layer.borderColor = UIColor.clear.cgColor
+        
+        //TODO: Download new sticker data. Then reload data.
+        self.stickerCollectionView.reloadData()
+    }
+    
+    @objc func didTapInteractive() {
+        self.interactiveCategoryButton.layer.borderColor = UIColor.kwiksGreen.cgColor
+        
+        self.trendingCategoryButton.layer.borderColor = UIColor.clear.cgColor
+        self.newCategoryButton.layer.borderColor = UIColor.clear.cgColor
+        self.funnyCategoryButton.layer.borderColor = UIColor.clear.cgColor
+        self.animalCategoryButton.layer.borderColor = UIColor.clear.cgColor
+        
+        //TODO: Download new sticker data. Then reload data.
+        self.stickerCollectionView.reloadData()
+    }
+    
+    @objc func didTapAnimal() {
+        self.animalCategoryButton.layer.borderColor = UIColor.kwiksGreen.cgColor
+        
+        self.trendingCategoryButton.layer.borderColor = UIColor.clear.cgColor
+        self.newCategoryButton.layer.borderColor = UIColor.clear.cgColor
+        self.funnyCategoryButton.layer.borderColor = UIColor.clear.cgColor
+        self.interactiveCategoryButton.layer.borderColor = UIColor.clear.cgColor
+        
+        //TODO: Download new sticker data. Then reload data.
+        self.stickerCollectionView.reloadData()
     }
     
     @objc func didTapEffects() {
-        self.selectionType = .effects
-        self.effectsCollectionView.reloadData()
-        
         isShowingOptions.toggle()
         
         if isShowingOptions == true {
@@ -1399,17 +1713,20 @@ extension VideoController {
 extension VideoController: UICollectionViewDataSource, UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         
-        switch self.selectionType {
-        case .beautify:
-            return self.beautifyData.count
-            
-        case .effects:
+        switch collectionView.tag {
+        case 0:
+            //Effects CollectionView
             return self.effectsExamples.count
             
-        case .stickers:
-            return 0
+        case 1:
+            //Beautify CollectionView
+            return self.beautifyData.count
             
-        case .none:
+        case 2:
+            //Sticker CollectionView
+            return self.stickerExamples.count
+            
+        default:
             return 0
         }
         
@@ -1417,36 +1734,44 @@ extension VideoController: UICollectionViewDataSource, UICollectionViewDelegate 
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         
-        switch self.selectionType {
-        case .effects:
+        switch collectionView.tag {
+        case 0:
+            //Effects CollectionView
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: EffectsCollectionViewCell.identifier, for: indexPath) as! EffectsCollectionViewCell
             let effect = self.effectsExamples[indexPath.item]
             cell.configure(with: effect)
             return cell
             
-        case .beautify:
+        case 1:
+            //Beautify CollectionView
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: BeautifyCollectionViewCell.identifier, for: indexPath) as! BeautifyCollectionViewCell
             let effect = self.beautifyData[indexPath.item]
             cell.configure(with: effect)
             return cell
             
-        case .stickers:
-            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "id", for: indexPath)
+        case 2:
+            //Sticker CollectionView
+            let cell = collectionView.dequeueReusableCell(withReuseIdentifier: StickerCollectionViewCell.identifier, for: indexPath) as! StickerCollectionViewCell
+            let sticker = self.stickerExamples[indexPath.item]
+            cell.configure(with: sticker)
             return cell
             
-        case .none:
+            //Shouldn't hit here. App will explode
+        default:
             let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "id", for: indexPath)
             return cell
         }
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        switch self.selectionType {
-        case .effects:
+        
+        switch collectionView.tag {
+        case 0:
+            //Effects CollectionView
             return
             
-        case .beautify:
-            
+        case 1:
+            //Beautify CollectionView
             if let cell = collectionView.cellForItem(at: indexPath) as? BeautifyCollectionViewCell {
                 cell.iconImageView.layer.borderColor = UIColor.kwiksGreen.cgColor
                 cell.iconImageView.tintColor = UIColor.kwiksGreen
@@ -1500,10 +1825,13 @@ extension VideoController: UICollectionViewDataSource, UICollectionViewDelegate 
                 return
             }
             
-        case .stickers:
+        case 2:
+            //Sticker CollectionView
+            let sticker = self.stickerExamples[indexPath.item]
+            //TODO: Drag and drop selected sticker onto video
             return
             
-        case .none:
+        default:
             return
         }
     }

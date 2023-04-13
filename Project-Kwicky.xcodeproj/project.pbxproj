@@ -49,6 +49,8 @@
 		CA8D700F29E44D1B008A11C0 /* Enums.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8D700E29E44D1B008A11C0 /* Enums.swift */; };
 		CA8D701129E6F59A008A11C0 /* Beautify.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8D701029E6F59A008A11C0 /* Beautify.swift */; };
 		CA8D702529E72A47008A11C0 /* .gitignore in Resources */ = {isa = PBXBuildFile; fileRef = CA8D702429E72A47008A11C0 /* .gitignore */; };
+		CA8D702729E8A680008A11C0 /* StickerCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8D702629E8A680008A11C0 /* StickerCollectionViewCell.swift */; };
+		CA8D702929E8A96F008A11C0 /* Sticker.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8D702829E8A96F008A11C0 /* Sticker.swift */; };
 		CAA90C7C2994171C0013A654 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA90C7B2994171C0013A654 /* AppDelegate.swift */; };
 		CAA90C7E2994171C0013A654 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA90C7D2994171C0013A654 /* SceneDelegate.swift */; };
 		CAA90C802994171C0013A654 /* DecisionController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAA90C7F2994171C0013A654 /* DecisionController.swift */; };
@@ -138,6 +140,8 @@
 		CA8D700E29E44D1B008A11C0 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
 		CA8D701029E6F59A008A11C0 /* Beautify.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Beautify.swift; sourceTree = "<group>"; };
 		CA8D702429E72A47008A11C0 /* .gitignore */ = {isa = PBXFileReference; lastKnownFileType = text; path = .gitignore; sourceTree = "<group>"; };
+		CA8D702629E8A680008A11C0 /* StickerCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StickerCollectionViewCell.swift; sourceTree = "<group>"; };
+		CA8D702829E8A96F008A11C0 /* Sticker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Sticker.swift; sourceTree = "<group>"; };
 		CAA90C782994171C0013A654 /* Project-Kwicky.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = "Project-Kwicky.app"; sourceTree = BUILT_PRODUCTS_DIR; };
 		CAA90C7B2994171C0013A654 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		CAA90C7D2994171C0013A654 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -204,6 +208,7 @@
 				CA55DF4E29BCF7F100C54B35 /* EffectsCollectionViewCell.swift */,
 				CA55DF5A29C66AFC00C54B35 /* GoLiveCommentCollectionViewCell.swift */,
 				CA8D700A29E36DA1008A11C0 /* BeautifyCollectionViewCell.swift */,
+				CA8D702629E8A680008A11C0 /* StickerCollectionViewCell.swift */,
 			);
 			path = "Collection View Cells";
 			sourceTree = "<group>";
@@ -359,6 +364,7 @@
 				CABAA31D29A311AC00C5EBC6 /* SettingsItem.swift */,
 				CA55DF3B29AF9FBF00C54B35 /* SocialMediaLink.swift */,
 				CA55DF3129AF9A9B00C54B35 /* User.swift */,
+				CA8D702829E8A96F008A11C0 /* Sticker.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -614,6 +620,7 @@
 				CA55DFA629D1234000C54B35 /* AvailableMusic.swift in Sources */,
 				CABAA31A29A2CB8000C5EBC6 /* VideoController.swift in Sources */,
 				CA55DF3829AF9DB700C54B35 /* KwiksVideoAnalytics.swift in Sources */,
+				CA8D702929E8A96F008A11C0 /* Sticker.swift in Sources */,
 				CA55DF4929B8DE4A00C54B35 /* KwiksLiveVideoPlayerController.swift in Sources */,
 				CABACC2A29DA211F00026CAE /* AddParticipantsCell.swift in Sources */,
 				CA55DFAA29D6350C00C54B35 /* Mixpanel.swift in Sources */,
@@ -624,6 +631,7 @@
 				CABAA30D29A2AED600C5EBC6 /* SelectUsernameController.swift in Sources */,
 				CA55DF5729C4D59800C54B35 /* GoLiveVideoController.swift in Sources */,
 				CABAA31829A2C9D000C5EBC6 /* WalletController.swift in Sources */,
+				CA8D702729E8A680008A11C0 /* StickerCollectionViewCell.swift in Sources */,
 				CABAA2FB299805F600C5EBC6 /* LoginController.swift in Sources */,
 				CABACC2829DA175D00026CAE /* AddParticipantsController.swift in Sources */,
 				CABAA31C29A3104100C5EBC6 /* SettingsCollectionViewCell.swift in Sources */,

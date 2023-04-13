@@ -339,7 +339,7 @@ extension PinNumberController {
             self.digitFourTextField.becomeFirstResponder()
             
         } else if self.digitFourTextField.isFirstResponder && fourthDigit.count > 0 {
-            //Handle Pin Completion Flow Here. If all fields are not complete, present error message. Otherwise proceed.
+            //TODO: Handle Pin Completion Flow Here. If all fields are not complete, present error message. Otherwise store JWT token in user defaults to confirm authorization and login.
             self.digitFourTextField.resignFirstResponder()
             self.confirmButton.isEnabled = true
             self.confirmButton.backgroundColor = .kwiksGreen

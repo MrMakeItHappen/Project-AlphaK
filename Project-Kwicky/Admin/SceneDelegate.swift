@@ -21,10 +21,9 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let decisionController = VideoController()
 //        let decisionController = DecisionController()
+//        let decisionController = TabViewController()
         let navigationController = UINavigationController(rootViewController: decisionController)
         navigationController.navigationBar.isHidden = true
-        
-//        let decisionController = TabViewController()
         
         let appearance = UINavigationBarAppearance()
         appearance.configureWithOpaqueBackground()

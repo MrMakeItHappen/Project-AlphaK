@@ -189,7 +189,6 @@ extension AddParticipantsController: UITableViewDelegate, UITableViewDataSource 
         let cell = tableView.dequeueReusableCell(withIdentifier: AddParticipantsCell.identifier, for: indexPath) as! AddParticipantsCell
         let user = self.filteredUsers[indexPath.item]
         cell.configure(with: user)
-        
         return cell
     }
     

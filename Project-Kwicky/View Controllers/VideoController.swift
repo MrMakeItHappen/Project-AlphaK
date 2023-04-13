@@ -13,7 +13,7 @@ import KwiksSystemsPopups
 
 final class VideoController: UIViewController {
     var userCreatedVideo: KwiksVideo?
-    private var beautify: Beautify = Beautify(type: .none, smoothValue: 5, contrastValue: 10, lipsValue: 15, teethValue: 20, lipstickValue: 25, contourValue: 30)
+    private var beautify: Beautify = Beautify(type: .none, smoothValue: 50, contrastValue: 50, lipsValue: 50, teethValue: 50, lipstickValue: 50, contourValue: 50)
     
     private let effectsExamples = Effect.effectExamples
     private let beautifyData = Effect.beautifyExamples
@@ -1236,8 +1236,6 @@ extension VideoController {
     }
     
     @objc func didTapBeautify() {
-        print(#function)
-        
         self.isShowingBeautify.toggle()
         
         if isShowingBeautify {
@@ -1253,26 +1251,36 @@ extension VideoController {
     @objc func sliderValueDidChange(_ sender: UISlider) {
 
         let roundedValue = Int(sender.value)
-//        self.progressLabel.text = "\(roundedValue)"
         
         switch self.beautify.type {
         case .smooth:
             self.beautify.smoothValue = roundedValue
-            break
+            self.progressLabel.text = "\(roundedValue)"
+            return
             
         case .contrast:
+            self.beautify.contrastValue = roundedValue
+            self.progressLabel.text = "\(roundedValue)"
             return
             
         case .lips:
+            self.beautify.lipsValue = roundedValue
+            self.progressLabel.text = "\(roundedValue)"
             return
             
         case .teeth:
+            self.beautify.teethValue = roundedValue
+            self.progressLabel.text = "\(roundedValue)"
             return
             
         case .lipstick:
+            self.beautify.lipstickValue = roundedValue
+            self.progressLabel.text = "\(roundedValue)"
             return
             
         case .contour:
+            self.beautify.contourValue = roundedValue
+            self.progressLabel.text = "\(roundedValue)"
             return
             
         default:
@@ -1432,14 +1440,12 @@ extension VideoController: UICollectionViewDataSource, UICollectionViewDelegate 
         }
     }
     
-    //TODO: Store UISlider value for each beautify selection.
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch self.selectionType {
         case .effects:
             return
             
         case .beautify:
-            let effect = self.beautifyData[indexPath.item]
             
             if let cell = collectionView.cellForItem(at: indexPath) as? BeautifyCollectionViewCell {
                 cell.iconImageView.layer.borderColor = UIColor.kwiksGreen.cgColor
@@ -1451,23 +1457,43 @@ extension VideoController: UICollectionViewDataSource, UICollectionViewDelegate 
             self.progressSlider.alpha = 1
             self.progressSlider.isUserInteractionEnabled = true
             
-            switch effect.name {
-            case "Smooth":
+            let beautyItem = indexPath.item
+            
+            switch beautyItem {
+            case 0:
+                self.beautify.type = .smooth
+                self.progressSlider.value = Float(self.beautify.smoothValue)
+                self.progressLabel.text = "\(self.beautify.smoothValue)"
                 return
                 
-            case "Contrast":
+            case 1:
+                self.beautify.type = .contrast
+                self.progressSlider.value = Float(self.beautify.contrastValue)
+                self.progressLabel.text = "\(self.beautify.contrastValue)"
                 return
                 
-            case "Lips":
+            case 2:
+                self.beautify.type = .lips
+                self.progressSlider.value = Float(self.beautify.lipsValue)
+                self.progressLabel.text = "\(self.beautify.lipsValue)"
                 return
                 
-            case "Teeth":
+            case 3:
+                self.beautify.type = .teeth
+                self.progressSlider.value = Float(self.beautify.teethValue)
+                self.progressLabel.text = "\(self.beautify.teethValue)"
                 return
                 
-            case "Lipstick":
+            case 4:
+                self.beautify.type = .lipstick
+                self.progressSlider.value = Float(self.beautify.lipstickValue)
+                self.progressLabel.text = "\(self.beautify.lipstickValue)"
                 return
                 
-            case "Contour":
+            case 5:
+                self.beautify.type = .contour
+                self.progressSlider.value = Float(self.beautify.contourValue)
+                self.progressLabel.text = "\(self.beautify.contourValue)"
                 return
                 
             default:
@@ -1488,8 +1514,5 @@ extension VideoController: UICollectionViewDataSource, UICollectionViewDelegate 
             cell.iconImageView.tintColor = UIColor.white
             cell.iconImageView.layer.borderWidth = 1
         }
-        
-        self.progressLabel.text = "50"
-        self.progressSlider.value = 50
     }
 }

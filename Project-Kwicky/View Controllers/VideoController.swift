@@ -296,7 +296,6 @@ final class VideoController: UIViewController {
         return button
     }()
     
-    //TODO: Move this to a subclass to easily add and remove on sticker button tap.
     private let stickerContainer: UIView = {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -720,7 +719,6 @@ final class VideoController: UIViewController {
         return collectionView
     }()
     
-    //TODO: Move beautify options to subclass. Use container with clear background.
     private let faceLabel: UILabel = {
         let label = UILabel()
         label.text = "Face"
@@ -818,6 +816,25 @@ final class VideoController: UIViewController {
         animation.isRemovedOnCompletion = false
         animation.fillMode = .forwards
         return animation
+    }()
+    
+    private lazy var videoSetupButton: UIButton = {
+        var configuration = UIButton.Configuration.plain()
+        configuration.image = UIImage(named: "ForwardArrow")
+        configuration.contentInsets = NSDirectionalEdgeInsets(top: 0, leading: 0, bottom: 0, trailing: 0)
+        
+        let button = UIButton(configuration: configuration, primaryAction: UIAction(handler: { _ in
+            self.didTapSetup()
+        }))
+        
+        button.layer.masksToBounds = true
+        button.layer.cornerRadius = 25
+        button.tintColor = UIColor.white
+        button.backgroundColor = UIColor.kwiksGreen
+        button.width(186)
+        button.height(50)
+        button.isHidden = true
+        return button
     }()
     
     override func viewDidLoad() {
@@ -980,6 +997,10 @@ extension VideoController {
         self.containerView.addSubview(self.progressLabel)
         self.progressLabel.bottomToTop(of: self.progressSlider, offset: -10)
         self.progressLabel.centerXToSuperview()
+        
+        self.containerView.addSubview(self.videoSetupButton)
+        self.videoSetupButton.centerXToSuperview()
+        self.videoSetupButton.bottomToSuperview(usingSafeArea: true)
     }
     
     private func layoutLeadingUI() {
@@ -1368,6 +1389,53 @@ extension VideoController {
             self.trackLayer.isHidden = false
         }
     }
+    
+    private func hideAllOptions() {
+        self.cameraLightButton.isHidden = true
+        
+        self.flipLabel.isHidden = true
+        self.flipIconImageView.isHidden = true
+        self.hiddenFlipButton.isHidden = true
+        
+        self.timerLabel.isHidden = true
+        self.timerIconImageView.isHidden = true
+        self.hiddenTimerButton.isHidden = true
+        
+        self.beautifyLabel.isHidden = true
+        self.beautifyIconImageView.isHidden = true
+        self.hiddenBeautifyButton.isHidden = true
+        
+        self.cropLabel.isHidden = true
+        self.cropIconImageView.isHidden = true
+        self.hiddenCropButton.isHidden = true
+        
+        self.stickersLabel.isHidden = true
+        self.stickersIconImageView.isHidden = true
+        self.hiddenStickersButton.isHidden = true
+        
+        self.effectsLabel.alpha = 0
+        self.effectsIconImageView.alpha = 0
+        self.effectsButton.alpha = 0
+        self.effectsButton.isUserInteractionEnabled = false
+        
+        self.uploadLabel.alpha = 0
+        self.uploadIconImageView.alpha = 0
+        self.uploadVideoButton.alpha = 0
+        self.uploadVideoButton.isUserInteractionEnabled = false
+        
+        self.recordButton.alpha = 0
+        self.recordButton.isUserInteractionEnabled = false
+        
+        self.cameraLabel.alpha = 0
+        self.liveLabel.alpha = 0
+        self.hiddenLiveButton.alpha = 0
+        self.hiddenLiveButton.isUserInteractionEnabled = false
+        
+        self.shapeLayer.isHidden = true
+        self.trackLayer.isHidden = true
+        
+        self.videoSetupButton.isHidden = false
+    }
 }
 //MARK: - @objc
 extension VideoController {
@@ -1385,7 +1453,7 @@ extension VideoController {
     }
     
     @objc func didTapFlipCamera() {
-        print(#function)
+        self.hideAllOptions()
     }
     
     @objc func didTapTimer() {
@@ -1682,6 +1750,7 @@ extension VideoController {
         self.navigationController?.pushViewController(fileSaveVC, animated: true)
     }
     
+    //TODO: Configure for when no timer is selected
     @objc func didTapRecord() {
         self.deselectAllTimerButtons()
         
@@ -1706,6 +1775,10 @@ extension VideoController {
     }
     
     @objc func didTapLive() {
+        print(#function)
+    }
+    
+    @objc func didTapSetup() {
         print(#function)
     }
 }
@@ -1827,7 +1900,7 @@ extension VideoController: UICollectionViewDataSource, UICollectionViewDelegate 
             
         case 2:
             //Sticker CollectionView
-            let sticker = self.stickerExamples[indexPath.item]
+            _ = self.stickerExamples[indexPath.item]
             //TODO: Drag and drop selected sticker onto video
             return
             

@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class AddMusicToVideoViewController: UIViewController {
+final class AddMusicToVideoController: UIViewController {
     private var filteredSongs: [AvailableMusic] = []
     private var searchCategories: String?
 
@@ -15,7 +15,7 @@ final class AddMusicToVideoViewController: UIViewController {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.layer.masksToBounds = true
-        button.tintColor = UIColor.white
+        button.tintColor = UIColor.kwiksTextBlack
         button.backgroundColor = UIColor.clear
         button.addTarget(self, action: #selector(didTapBack), for: .touchUpInside)
         button.height(23)
@@ -33,7 +33,7 @@ final class AddMusicToVideoViewController: UIViewController {
         label.numberOfLines = 1
         label.adjustsFontSizeToFitWidth = true
         label.textAlignment = .left
-        label.textColor = UIColor.white
+        label.textColor = UIColor.kwiksTextBlack
         return label
     }()
     
@@ -48,21 +48,21 @@ final class AddMusicToVideoViewController: UIViewController {
         searchBar.height(50)
         searchBar.searchTextField.font = .segoeUIRegular(size: 15)
         searchBar.searchTextField.backgroundColor = UIColor(hexString: "#E4E4E4")
-        searchBar.searchTextField.attributedPlaceholder = NSAttributedString(string: "Search", attributes: [.foregroundColor : UIColor.black])
+        searchBar.searchTextField.attributedPlaceholder = NSAttributedString(string: "Search Music", attributes: [.foregroundColor : UIColor.black])
         return searchBar
     }()
     
     private let musicLabel: UILabel = {
         let label = UILabel()
-        label.text = "Music"
+        label.text = "Featured Music"
         label.isUserInteractionEnabled = false
         label.translatesAutoresizingMaskIntoConstraints = false
         label.backgroundColor = .clear
-        label.font = UIFont.segoeUIBold(size: 14)
+        label.font = UIFont.segoeUISemiBold(size: 16)
         label.numberOfLines = 1
         label.adjustsFontSizeToFitWidth = true
         label.textAlignment = .left
-        label.textColor = UIColor.white
+        label.textColor = UIColor.kwiksTextBlack
         return label
     }()
     
@@ -76,8 +76,29 @@ final class AddMusicToVideoViewController: UIViewController {
         tableView.showsVerticalScrollIndicator = false
         tableView.showsHorizontalScrollIndicator = false
         tableView.register(AvailableMusicTableViewCell.self, forCellReuseIdentifier: AvailableMusicTableViewCell.identifier)
-        tableView.height(210)
+        tableView.height(300)
         return tableView
+    }()
+    
+    private lazy var saveButton: UIButton = {
+        var attributeContainer = AttributeContainer()
+        attributeContainer.font = .segoeUISemiBold(size: 15)
+        
+        var configuration = UIButton.Configuration.plain()
+        configuration.cornerStyle = .capsule
+        configuration.attributedTitle = AttributedString("Save", attributes: attributeContainer)
+        
+        let button = UIButton(configuration: configuration, primaryAction: UIAction(handler: { _ in
+            self.didTapSave()
+        }))
+        
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.layer.masksToBounds = true
+        button.layer.cornerRadius = 25
+        button.backgroundColor = .kwiksGreen
+        button.tintColor = .white
+        button.height(50)
+        return button
     }()
     
     override func viewDidLoad() {
@@ -93,9 +114,9 @@ final class AddMusicToVideoViewController: UIViewController {
     }
 }
 //MARK: - Configure View Controller
-extension AddMusicToVideoViewController {
+extension AddMusicToVideoController {
     private func configure() {
-        self.view.backgroundColor = UIColor.black
+        self.view.backgroundColor = UIColor.white
         
         let tapGesture = UITapGestureRecognizer(target: self, action: #selector(tapGesture))
         self.view.isUserInteractionEnabled = true
@@ -103,7 +124,7 @@ extension AddMusicToVideoViewController {
     }
 }
 //MARK: - Layout UI
-extension AddMusicToVideoViewController {
+extension AddMusicToVideoController {
     private func layoutUI() {
         self.view.addSubview(self.customBackButton)
         self.customBackButton.topToSuperview(offset: 22, usingSafeArea: true)
@@ -114,7 +135,7 @@ extension AddMusicToVideoViewController {
         self.titleLabel.leftToRight(of: self.customBackButton, offset: 18)
         
         self.view.addSubview(self.searchBar)
-        self.searchBar.topToBottom(of: self.titleLabel, offset: 48)
+        self.searchBar.topToBottom(of: self.titleLabel, offset: 20)
         self.searchBar.leftToSuperview(offset: 30)
         self.searchBar.rightToSuperview(offset: -30)
         
@@ -122,14 +143,21 @@ extension AddMusicToVideoViewController {
         self.musicLabel.topToBottom(of: self.searchBar, offset: 30)
         self.musicLabel.left(to: self.searchBar)
         
+        self.view.addSubview(self.saveButton)
+        self.saveButton.bottomToSuperview(offset: -10, usingSafeArea: true)
+        self.saveButton.leftToSuperview(offset: 30)
+        self.saveButton.rightToSuperview(offset: -30)
+        
         self.view.addSubview(self.availableMusicTableView)
-        self.availableMusicTableView.topToBottom(of: self.musicLabel, offset: 10)
-        self.availableMusicTableView.left(to: self.searchBar)
-        self.availableMusicTableView.right(to: self.searchBar)
+        self.availableMusicTableView.bottomToTop(of: self.saveButton, offset: -10)
+        self.availableMusicTableView.left(to: self.saveButton)
+        self.availableMusicTableView.right(to: self.saveButton)
+        
+        
     }
 }
 //MARK: - Helpers
-extension AddMusicToVideoViewController {
+extension AddMusicToVideoController {
     private func modifySearchbarIcon() {
         if let searchIconImageView = self.searchBar.searchTextField.leftView as? UIImageView {
             searchIconImageView.image = searchIconImageView.image?.withRenderingMode(.alwaysTemplate)
@@ -144,9 +172,13 @@ extension AddMusicToVideoViewController {
     }
 }
 //MARK: - @objc
-extension AddMusicToVideoViewController {
+extension AddMusicToVideoController {
     @objc func didTapBack() {
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    @objc func didTapSave() {
+        print(#function)
     }
     
     @objc func tapGesture(_ sender: UITapGestureRecognizer) {
@@ -155,13 +187,13 @@ extension AddMusicToVideoViewController {
     }
 }
 //MARK: - UITableView DataSource & Delegate
-extension AddMusicToVideoViewController: UITableViewDelegate, UITableViewDataSource {
+extension AddMusicToVideoController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return self.filteredSongs.count
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 52.0
+        return 60.0
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -169,12 +201,8 @@ extension AddMusicToVideoViewController: UITableViewDelegate, UITableViewDataSou
         let selectedSong = self.filteredSongs[indexPath.item]
         cell.configure(with: selectedSong)
         
-        cell.playMusicCallback = {
-            print("Play This Song - ", selectedSong.songTitle ?? "Error")
-        }
-        
-        cell.showVideosCallback = {
-            print("Show Kwiks Containing This Song - ")
+        cell.bookmarkCallback = {
+            print("Bookmark This Song - ", selectedSong.songTitle ?? "Error")
         }
         
         return cell
@@ -187,7 +215,7 @@ extension AddMusicToVideoViewController: UITableViewDelegate, UITableViewDataSou
     }
 }
 //MARK: - UISearchBar Delegate
-extension AddMusicToVideoViewController: UISearchBarDelegate {
+extension AddMusicToVideoController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
         if searchText != "" {

@@ -1448,7 +1448,7 @@ extension VideoController {
     }
     
     @objc func didTapAddMusic() {
-        let addMusicVC = AddMusicToVideoViewController()
+        let addMusicVC = AddMusicToVideoController()
         self.navigationController?.pushViewController(addMusicVC, animated: true)
     }
     
@@ -1746,8 +1746,7 @@ extension VideoController {
     }
     
     @objc func didTapUpload() {
-        let fileSaveVC = VideoFileSaveController()
-        self.navigationController?.pushViewController(fileSaveVC, animated: true)
+        print(#function)
     }
     
     //TODO: Configure for when no timer is selected
@@ -1779,7 +1778,8 @@ extension VideoController {
     }
     
     @objc func didTapSetup() {
-        print(#function)
+        let fileSaveVC = VideoShareController()
+        self.navigationController?.pushViewController(fileSaveVC, animated: true)
     }
 }
 //MARK: - Collectionview DataSource & Delegate

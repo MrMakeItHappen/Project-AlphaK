@@ -20,7 +20,7 @@ extension UIImageView {
         imageView.height(12)
         imageView.width(12)
         
-        let image = UIImage(named: "GreyNextIcon")
+        let image = UIImage(named: "GreyNextIcon")?.withTintColor(.black, renderingMode: .alwaysOriginal)
         imageView.image = image
         return imageView
     }

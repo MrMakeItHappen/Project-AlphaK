@@ -26,8 +26,8 @@ extension UIColor {
     /// #171717
     static let kwiksBackgroundBlack = #colorLiteral(red: 0.09019607843, green: 0.09019607843, blue: 0.09019607843, alpha: 1)
     
-    /// #A6A6A6
-    static let musicTextColor = #colorLiteral(red: 0.6509803922, green: 0.6509803922, blue: 0.6509803922, alpha: 1)
+    /// #686868
+    static let musicTextColor = #colorLiteral(red: 0.4078431373, green: 0.4078431373, blue: 0.4078431373, alpha: 1)
 }
 
 //Convert Hex Color to UIColor

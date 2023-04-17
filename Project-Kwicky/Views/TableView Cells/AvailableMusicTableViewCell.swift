@@ -9,19 +9,26 @@ import UIKit
 
 final class AvailableMusicTableViewCell: UITableViewCell {
     static let identifier = "AvailableMusicTableViewCell"
+    
+    private var isBookmarked = false
     var bookmarkCallback: () -> () = {}
+    var trashCallback: () -> () = {}
+    
+    private let bookmarkIcon = UIImage(named: "BookmarkIcon")
+    private let selectedBookmarkIcon = UIImage(named: "BookmarkSelectedIcon")
     
     private let songImageView: UIImageView = {
         let imageView = UIImageView()
         let size: CGFloat = 50
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.clipsToBounds = true
-        imageView.backgroundColor = UIColor.kwiksGreen.withAlphaComponent(0.80)
+        imageView.backgroundColor = UIColor.clear
         imageView.contentMode = .scaleAspectFill
         imageView.layer.masksToBounds = true
         imageView.layer.cornerRadius = size / 2
         imageView.height(size)
         imageView.width(size)
+        imageView.image = UIImage(named: "PlaceholderMusicIconV3")
         return imageView
     }()
     
@@ -42,6 +49,19 @@ final class AvailableMusicTableViewCell: UITableViewCell {
         button.height(18)
         button.width(16)
         button.setImage(UIImage(named: "BookmarkIcon"), for: .normal)
+        return button
+    }()
+    
+    let trashcanButton: UIButton = {
+        let button = UIButton(type: .custom)
+        button.isUserInteractionEnabled = true
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.layer.masksToBounds = true
+        button.backgroundColor = UIColor.clear
+        button.height(18)
+        button.width(16)
+        button.setImage(UIImage(named: "TrashcanIcon"), for: .normal)
+        button.isHidden = true
         return button
     }()
     
@@ -108,6 +128,7 @@ final class AvailableMusicTableViewCell: UITableViewCell {
         self.backgroundColor = .clear
         
         self.bookmarkButton.addTarget(self, action: #selector(didTapBookmark), for: .touchUpInside)
+        self.trashcanButton.addTarget(self, action: #selector(didTapTrash), for: .touchUpInside)
     }
     
     private func layoutUI() {
@@ -118,6 +139,10 @@ final class AvailableMusicTableViewCell: UITableViewCell {
         self.addSubview(self.bookmarkButton)
         self.bookmarkButton.rightToSuperview()
         self.bookmarkButton.centerYToSuperview()
+        
+        self.addSubview(self.trashcanButton)
+        self.trashcanButton.rightToSuperview()
+        self.trashcanButton.centerYToSuperview()
         
         self.addSubview(self.centerLine)
         self.centerLine.leftToRight(of: self.songImageView, offset: 12)
@@ -141,7 +166,7 @@ final class AvailableMusicTableViewCell: UITableViewCell {
         self.durationLabel.centerY(to: self.artistNameLabel)
     }
     
-    func configure(with music: AvailableMusic) {
+    func configure(with music: Music) {
         self.songTitleLabel.text = music.songTitle ?? "Searching..."
         self.durationLabel.text = music.duration ?? "01:00"
         
@@ -153,8 +178,22 @@ final class AvailableMusicTableViewCell: UITableViewCell {
         
         self.artistNameLabel.text = "\(artistName)"
     }
+
+    func toggleBookmark() {
+        self.isBookmarked = !self.isBookmarked
+        
+        if isBookmarked {
+            self.bookmarkButton.setImage(self.selectedBookmarkIcon, for: .normal)
+        } else {
+            self.bookmarkButton.setImage(self.bookmarkIcon, for: .normal)
+        }
+    }
     
     @objc func didTapBookmark() {
         bookmarkCallback()
+    }
+    
+    @objc func didTapTrash() {
+        trashCallback()
     }
 }

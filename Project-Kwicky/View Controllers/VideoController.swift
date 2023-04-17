@@ -844,7 +844,7 @@ final class VideoController: UIViewController {
         self.layoutBottomUI()
         self.layoutLeadingUI()
         
-        _allAvailableVideoMusic = AvailableMusic.allTempSongs
+        _allAvailableVideoMusic = Music.allTempSongs
     }
     
     override func viewDidLayoutSubviews() {

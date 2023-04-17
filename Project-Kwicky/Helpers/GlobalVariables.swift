@@ -25,7 +25,7 @@ var _userTaggedPeople: [String]?
 var _userAddedProduct: KwiksSaleProduct?
 
 ///Never set this value. Retrieve only.
-var _allAvailableVideoMusic: [AvailableMusic] = []
+var _allAvailableVideoMusic: [Music] = []
 
 
 

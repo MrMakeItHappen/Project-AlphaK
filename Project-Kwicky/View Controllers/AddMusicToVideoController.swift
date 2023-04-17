@@ -8,8 +8,11 @@
 import UIKit
 
 final class AddMusicToVideoController: UIViewController {
-    private var filteredSongs: [AvailableMusic] = []
+    private var filteredSongs: [Music] = []
+    private var savedSongs: [Music] = []
+    private var featuredMusic: [Music] = Music.allTempFeatured
     private var searchCategories: String?
+    private var isShowingSaved = false
 
     private lazy var customBackButton: UIButton = {
         let button = UIButton(type: .system)
@@ -52,7 +55,151 @@ final class AddMusicToVideoController: UIViewController {
         return searchBar
     }()
     
-    private let musicLabel: UILabel = {
+    private let videoVolumeImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.backgroundColor = .clear
+        imageView.contentMode = .scaleAspectFit
+        imageView.isUserInteractionEnabled = false
+        imageView.backgroundColor = .clear
+        imageView.layer.masksToBounds = true
+        imageView.layer.cornerRadius = 25
+        imageView.height(50)
+        imageView.width(50)
+        
+        let image = UIImage(named: "VideoVolumeIcon")
+        imageView.image = image
+        return imageView
+    }()
+    
+    private let videoVolumeCenterLine: UIView = {
+        let view = UIView(frame: .zero)
+        view.isUserInteractionEnabled = false
+        view.height(1)
+        view.backgroundColor = .clear
+        return view
+    }()
+    
+    private lazy var videoVolumeSlider: UISlider = {
+        let slider = UISlider()
+        let configuration = UIImage.SymbolConfiguration(pointSize: 18)
+        let image = UIImage(systemName: "circle.fill", withConfiguration: configuration)?.withTintColor(.kwiksGreen, renderingMode: .alwaysOriginal)
+        slider.setThumbImage(image, for: .normal)
+        slider.setThumbImage(image, for: .highlighted)
+        slider.translatesAutoresizingMaskIntoConstraints = false
+        slider.minimumValue = 0
+        slider.maximumValue = 100
+        slider.backgroundColor = .clear
+        slider.layer.masksToBounds = true
+        slider.minimumTrackTintColor = UIColor.kwiksGreen
+        slider.maximumTrackTintColor = UIColor.kwiksGrey
+        slider.value = 75
+        slider.addTarget(self, action: #selector(sliderValueDidChange), for: .valueChanged)
+        slider.tag = 0
+        return slider
+    }()
+    
+    private let videoSliderLabel: UILabel = {
+        let label = UILabel()
+        label.text = "75%"
+        label.isUserInteractionEnabled = false
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.backgroundColor = .clear
+        label.font = UIFont.segoeUIRegular(size: 15)
+        label.numberOfLines = 1
+        label.adjustsFontSizeToFitWidth = false
+        label.textAlignment = .center
+        label.textColor = UIColor.kwiksTextBlack
+        return label
+    }()
+    
+    private let videoAudioLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Video Audio"
+        label.isUserInteractionEnabled = false
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.backgroundColor = .clear
+        label.font = UIFont.segoeUISemiBold(size: 10)
+        label.numberOfLines = 1
+        label.adjustsFontSizeToFitWidth = false
+        label.textAlignment = .left
+        label.textColor = UIColor.kwiksTextBlack
+        return label
+    }()
+    
+    private let musicVolumeImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.backgroundColor = .clear
+        imageView.contentMode = .scaleAspectFit
+        imageView.isUserInteractionEnabled = false
+        imageView.backgroundColor = .clear
+        imageView.layer.masksToBounds = true
+        imageView.layer.cornerRadius = 25
+        imageView.height(50)
+        imageView.width(50)
+        
+        let image = UIImage(named: "MusicVolumeIcon")
+        imageView.image = image
+        return imageView
+    }()
+    
+    private let musicVolumeCenterLine: UIView = {
+        let view = UIView(frame: .zero)
+        view.isUserInteractionEnabled = false
+        view.height(1)
+        view.backgroundColor = .clear
+        return view
+    }()
+    
+    private lazy var musicVolumeSlider: UISlider = {
+        let slider = UISlider()
+        let configuration = UIImage.SymbolConfiguration(pointSize: 18)
+        let image = UIImage(systemName: "circle.fill", withConfiguration: configuration)?.withTintColor(.kwiksGreen, renderingMode: .alwaysOriginal)
+        slider.setThumbImage(image, for: .normal)
+        slider.setThumbImage(image, for: .highlighted)
+        slider.translatesAutoresizingMaskIntoConstraints = false
+        slider.minimumValue = 0
+        slider.maximumValue = 100
+        slider.backgroundColor = .clear
+        slider.layer.masksToBounds = true
+        slider.minimumTrackTintColor = UIColor.kwiksGreen
+        slider.maximumTrackTintColor = UIColor.kwiksGrey
+        slider.value = 25
+        slider.addTarget(self, action: #selector(sliderValueDidChange), for: .valueChanged)
+        slider.tag = 1
+        return slider
+    }()
+    
+    private let musicSliderLabel: UILabel = {
+        let label = UILabel()
+        label.text = "25%"
+        label.isUserInteractionEnabled = false
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.backgroundColor = .clear
+        label.font = UIFont.segoeUIRegular(size: 15)
+        label.numberOfLines = 1
+        label.adjustsFontSizeToFitWidth = false
+        label.textAlignment = .center
+        label.textColor = UIColor.kwiksTextBlack
+        return label
+    }()
+    
+    private let musicAudioLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Music Audio"
+        label.isUserInteractionEnabled = false
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.backgroundColor = .clear
+        label.font = UIFont.segoeUISemiBold(size: 10)
+        label.numberOfLines = 1
+        label.adjustsFontSizeToFitWidth = false
+        label.textAlignment = .left
+        label.textColor = UIColor.kwiksTextBlack
+        return label
+    }()
+    
+    private let featuredLabel: UILabel = {
         let label = UILabel()
         label.text = "Featured Music"
         label.isUserInteractionEnabled = false
@@ -66,6 +213,47 @@ final class AddMusicToVideoController: UIViewController {
         return label
     }()
     
+    private lazy var forYouButton: UIButton = {
+        var attributeContainer = AttributeContainer()
+        attributeContainer.font = .segoeUISemiBold(size: 16)
+        
+        var configuration = UIButton.Configuration.plain()
+        configuration.attributedTitle = AttributedString("For you", attributes: attributeContainer)
+        
+        let button = UIButton(configuration: configuration, primaryAction: UIAction(handler: { _ in
+            self.didTapForYou()
+        }))
+        
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.layer.masksToBounds = true
+        button.backgroundColor = .clear
+        button.titleLabel?.textAlignment = .left
+        button.tintColor = .kwiksTextBlack
+        button.sizeToFit()
+        return button
+    }()
+    
+    private lazy var savedButton: UIButton = {
+        var attributeContainer = AttributeContainer()
+        attributeContainer.font = .segoeUISemiBold(size: 16)
+        
+        var configuration = UIButton.Configuration.plain()
+        configuration.attributedTitle = AttributedString("Saved", attributes: attributeContainer)
+        
+        let button = UIButton(configuration: configuration, primaryAction: UIAction(handler: { _ in
+            self.didTapSaved()
+        }))
+        
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.layer.masksToBounds = true
+        button.layer.cornerRadius = 25
+        button.titleLabel?.textAlignment = .left
+        button.backgroundColor = .clear
+        button.tintColor = .kwiksGrey
+        button.height(50)
+        return button
+    }()
+    
     private lazy var availableMusicTableView: UITableView = {
         let tableView = UITableView(frame: .zero)
         tableView.dataSource = self
@@ -76,7 +264,7 @@ final class AddMusicToVideoController: UIViewController {
         tableView.showsVerticalScrollIndicator = false
         tableView.showsHorizontalScrollIndicator = false
         tableView.register(AvailableMusicTableViewCell.self, forCellReuseIdentifier: AvailableMusicTableViewCell.identifier)
-        tableView.height(300)
+        tableView.height(240)
         return tableView
     }()
     
@@ -99,6 +287,25 @@ final class AddMusicToVideoController: UIViewController {
         button.tintColor = .white
         button.height(50)
         return button
+    }()
+    
+    private lazy var featuredMusicCollectionView: UICollectionView = {
+        let layout = UICollectionViewFlowLayout()
+        layout.scrollDirection = .horizontal
+        layout.itemSize = CGSize(width: 166, height: 72)
+        layout.minimumInteritemSpacing = 10
+        layout.minimumLineSpacing = 10
+        
+        let collectionView = UICollectionView(frame: .zero, collectionViewLayout: layout)
+        collectionView.backgroundColor = .clear
+        collectionView.isScrollEnabled = true
+        collectionView.delegate = self
+        collectionView.dataSource = self
+        collectionView.showsHorizontalScrollIndicator = false
+        collectionView.showsVerticalScrollIndicator = false
+        collectionView.register(FeaturedMusicCollectionViewCell.self, forCellWithReuseIdentifier: FeaturedMusicCollectionViewCell.identifier)
+        collectionView.height(74)
+        return collectionView
     }()
     
     override func viewDidLoad() {
@@ -139,9 +346,51 @@ extension AddMusicToVideoController {
         self.searchBar.leftToSuperview(offset: 30)
         self.searchBar.rightToSuperview(offset: -30)
         
-        self.view.addSubview(self.musicLabel)
-        self.musicLabel.topToBottom(of: self.searchBar, offset: 30)
-        self.musicLabel.left(to: self.searchBar)
+        self.view.addSubview(self.videoVolumeImageView)
+        self.videoVolumeImageView.topToBottom(of: self.searchBar, offset: 20)
+        self.videoVolumeImageView.leftToSuperview(offset: 46)
+        
+        self.view.addSubview(self.videoVolumeCenterLine)
+        self.videoVolumeCenterLine.centerY(to: self.videoVolumeImageView)
+        self.videoVolumeCenterLine.leftToRight(of: self.videoVolumeImageView, offset: 12)
+        self.videoVolumeCenterLine.rightToSuperview(offset: -46)
+        
+        self.view.addSubview(self.videoAudioLabel)
+        self.videoAudioLabel.left(to: self.videoVolumeCenterLine, offset: 2)
+        self.videoAudioLabel.topToBottom(of: self.videoVolumeCenterLine)
+        
+        self.view.addSubview(self.videoVolumeSlider)
+        self.videoVolumeSlider.bottomToTop(of: self.videoVolumeCenterLine, offset: 2)
+        self.videoVolumeSlider.left(to: self.videoVolumeCenterLine)
+        
+        self.view.addSubview(self.videoSliderLabel)
+        self.videoSliderLabel.right(to: self.videoVolumeCenterLine)
+        self.videoSliderLabel.centerY(to: self.videoVolumeSlider, offset: -2)
+        
+        self.videoVolumeSlider.rightToLeft(of: self.videoSliderLabel, offset: -10)
+        
+        self.view.addSubview(self.musicVolumeImageView)
+        self.musicVolumeImageView.topToBottom(of: self.videoVolumeImageView, offset: 10)
+        self.musicVolumeImageView.left(to: self.videoVolumeImageView)
+        
+        self.view.addSubview(self.musicVolumeCenterLine)
+        self.musicVolumeCenterLine.centerY(to: self.musicVolumeImageView)
+        self.musicVolumeCenterLine.leftToRight(of: self.musicVolumeImageView, offset: 12)
+        self.musicVolumeCenterLine.rightToSuperview(offset: -46)
+        
+        self.view.addSubview(self.musicAudioLabel)
+        self.musicAudioLabel.left(to: self.musicVolumeCenterLine, offset: 2)
+        self.musicAudioLabel.topToBottom(of: self.musicVolumeCenterLine)
+        
+        self.view.addSubview(self.musicVolumeSlider)
+        self.musicVolumeSlider.bottomToTop(of: self.musicVolumeCenterLine, offset: 2)
+        self.musicVolumeSlider.left(to: self.musicVolumeCenterLine)
+        
+        self.view.addSubview(self.musicSliderLabel)
+        self.musicSliderLabel.right(to: self.musicVolumeCenterLine)
+        self.musicSliderLabel.centerY(to: self.musicVolumeSlider, offset: -2)
+        
+        self.musicVolumeSlider.rightToLeft(of: self.musicSliderLabel, offset: -10)
         
         self.view.addSubview(self.saveButton)
         self.saveButton.bottomToSuperview(offset: -10, usingSafeArea: true)
@@ -153,7 +402,22 @@ extension AddMusicToVideoController {
         self.availableMusicTableView.left(to: self.saveButton)
         self.availableMusicTableView.right(to: self.saveButton)
         
+        self.view.addSubview(self.forYouButton)
+        self.forYouButton.bottomToTop(of: self.availableMusicTableView, offset: -10)
+        self.forYouButton.left(to: self.saveButton)
         
+        self.view.addSubview(self.savedButton)
+        self.savedButton.leftToRight(of: self.forYouButton, offset: 2)
+        self.savedButton.centerY(to: self.forYouButton)
+        
+        self.view.addSubview(self.featuredMusicCollectionView)
+        self.featuredMusicCollectionView.bottomToTop(of: self.forYouButton, offset: -20)
+        self.featuredMusicCollectionView.left(to: self.saveButton)
+        self.featuredMusicCollectionView.rightToSuperview()
+        
+        self.view.addSubview(self.featuredLabel)
+        self.featuredLabel.bottomToTop(of: self.featuredMusicCollectionView, offset: -13)
+        self.featuredLabel.left(to: self.saveButton)
     }
 }
 //MARK: - Helpers
@@ -166,7 +430,7 @@ extension AddMusicToVideoController {
     }
     
     private func downloadAvailableMusic() {
-        _allAvailableVideoMusic = AvailableMusic.allTempSongs
+        _allAvailableVideoMusic = Music.allTempSongs
         self.filteredSongs = _allAvailableVideoMusic
         self.availableMusicTableView.reloadData()
     }
@@ -181,6 +445,37 @@ extension AddMusicToVideoController {
         print(#function)
     }
     
+    @objc func didTapForYou() {
+        self.isShowingSaved = false
+        self.forYouButton.tintColor = .kwiksTextBlack
+        self.savedButton.tintColor = .kwiksGrey
+        self.availableMusicTableView.reloadData()
+    }
+    
+    @objc func didTapSaved() {
+        self.isShowingSaved = true
+        self.forYouButton.tintColor = .kwiksGrey
+        self.savedButton.tintColor = .kwiksTextBlack
+        self.availableMusicTableView.reloadData()
+    }
+    
+    @objc func sliderValueDidChange(_ sender: UISlider) {
+        let roundedValue = Int(sender.value)
+        
+        switch sender.tag {
+        case 0:
+            self.videoSliderLabel.text = "\(roundedValue)%"
+            return
+            
+        case 1:
+            self.musicSliderLabel.text = "\(roundedValue)%"
+            return
+            
+        default:
+            return
+        }
+    }
+    
     @objc func tapGesture(_ sender: UITapGestureRecognizer) {
         self.searchBar.resignFirstResponder()
         self.view.endEditing(true)
@@ -189,7 +484,11 @@ extension AddMusicToVideoController {
 //MARK: - UITableView DataSource & Delegate
 extension AddMusicToVideoController: UITableViewDelegate, UITableViewDataSource {
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return self.filteredSongs.count
+        if self.isShowingSaved {
+            return self.savedSongs.count
+        } else {
+            return self.filteredSongs.count
+        }
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
@@ -199,10 +498,36 @@ extension AddMusicToVideoController: UITableViewDelegate, UITableViewDataSource 
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: AvailableMusicTableViewCell.identifier, for: indexPath) as! AvailableMusicTableViewCell
         let selectedSong = self.filteredSongs[indexPath.item]
+        
         cell.configure(with: selectedSong)
         
         cell.bookmarkCallback = {
-            print("Bookmark This Song - ", selectedSong.songTitle ?? "Error")
+            print("Bookmark This Song - ", selectedSong.songTitle ?? "Song Error")
+            
+            if self.savedSongs.contains(selectedSong) {
+                cell.toggleBookmark()
+                return
+                
+            } else {
+                self.savedSongs.append(selectedSong)
+                cell.toggleBookmark()
+                return
+            }
+        }
+        
+        cell.trashCallback = {
+            print("Delete This Song - ", selectedSong.songTitle ?? "Song Error")
+            self.savedSongs.remove(at: indexPath.item)
+            tableView.reloadData()
+        }
+        
+        if isShowingSaved {
+            cell.bookmarkButton.isHidden = true
+            cell.trashcanButton.isHidden = false
+            
+        } else {
+            cell.bookmarkButton.isHidden = false
+            cell.trashcanButton.isHidden = true
         }
         
         return cell
@@ -235,4 +560,19 @@ extension AddMusicToVideoController: UISearchBarDelegate {
             self.availableMusicTableView.reloadData()
         }
     }
+}
+//MARK: UICollectionView Delegate & DataSource
+extension AddMusicToVideoController: UICollectionViewDelegate, UICollectionViewDataSource {
+    func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
+        return self.featuredMusic.count
+    }
+    
+    func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: FeaturedMusicCollectionViewCell.identifier, for: indexPath) as! FeaturedMusicCollectionViewCell
+        let featuredMusic = self.featuredMusic[indexPath.item]
+        cell.configure(with: featuredMusic)
+        return cell
+    }
+    
+    
 }

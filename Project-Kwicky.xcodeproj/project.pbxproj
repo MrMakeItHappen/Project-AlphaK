@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CA20FE2029ED8A590089A6B8 /* FeaturedMusicCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA20FE1F29ED8A590089A6B8 /* FeaturedMusicCollectionViewCell.swift */; };
 		CA55DF1C29A674F000C54B35 /* FollowInviteFriendsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA55DF1B29A674F000C54B35 /* FollowInviteFriendsController.swift */; };
 		CA55DF1E29A6CBCA00C54B35 /* AccountController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA55DF1D29A6CBCA00C54B35 /* AccountController.swift */; };
 		CA55DF2029A7D32100C54B35 /* NotificationsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA55DF1F29A7D32100C54B35 /* NotificationsController.swift */; };
@@ -40,7 +41,7 @@
 		CA55DF9F29D1127100C54B35 /* KwiksSaleProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA55DF9E29D1127100C54B35 /* KwiksSaleProduct.swift */; };
 		CA55DFA129D1140400C54B35 /* GlobalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA55DFA029D1140400C54B35 /* GlobalVariables.swift */; };
 		CA55DFA429D11D8D00C54B35 /* AvailableMusicTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA55DFA329D11D8D00C54B35 /* AvailableMusicTableViewCell.swift */; };
-		CA55DFA629D1234000C54B35 /* AvailableMusic.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA55DFA529D1234000C54B35 /* AvailableMusic.swift */; };
+		CA55DFA629D1234000C54B35 /* Music.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA55DFA529D1234000C54B35 /* Music.swift */; };
 		CA55DFA829D6339200C54B35 /* StreamingVideoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA55DFA729D6339200C54B35 /* StreamingVideoController.swift */; };
 		CA55DFAA29D6350C00C54B35 /* Mixpanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA55DFA929D6350C00C54B35 /* Mixpanel.swift */; };
 		CA8D700629E09677008A11C0 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = CA8D700529E09677008A11C0 /* Lottie */; };
@@ -99,6 +100,7 @@
 		044932EAEBFED5A84724F8CC /* Pods-Project-Kwicky.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Project-Kwicky.debug.xcconfig"; path = "Target Support Files/Pods-Project-Kwicky/Pods-Project-Kwicky.debug.xcconfig"; sourceTree = "<group>"; };
 		3A10B6F05DB8FEB45B77C9FE /* Pods-Project-Kwicky.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Project-Kwicky.release.xcconfig"; path = "Target Support Files/Pods-Project-Kwicky/Pods-Project-Kwicky.release.xcconfig"; sourceTree = "<group>"; };
 		3FF4CC60EA800B5EA4493BF7 /* Pods_Project_Kwicky.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Project_Kwicky.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CA20FE1F29ED8A590089A6B8 /* FeaturedMusicCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedMusicCollectionViewCell.swift; sourceTree = "<group>"; };
 		CA55DF1B29A674F000C54B35 /* FollowInviteFriendsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowInviteFriendsController.swift; sourceTree = "<group>"; };
 		CA55DF1D29A6CBCA00C54B35 /* AccountController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountController.swift; sourceTree = "<group>"; };
 		CA55DF1F29A7D32100C54B35 /* NotificationsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationsController.swift; sourceTree = "<group>"; };
@@ -132,7 +134,7 @@
 		CA55DF9E29D1127100C54B35 /* KwiksSaleProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KwiksSaleProduct.swift; sourceTree = "<group>"; };
 		CA55DFA029D1140400C54B35 /* GlobalVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalVariables.swift; sourceTree = "<group>"; };
 		CA55DFA329D11D8D00C54B35 /* AvailableMusicTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableMusicTableViewCell.swift; sourceTree = "<group>"; };
-		CA55DFA529D1234000C54B35 /* AvailableMusic.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableMusic.swift; sourceTree = "<group>"; };
+		CA55DFA529D1234000C54B35 /* Music.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Music.swift; sourceTree = "<group>"; };
 		CA55DFA729D6339200C54B35 /* StreamingVideoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamingVideoController.swift; sourceTree = "<group>"; };
 		CA55DFA929D6350C00C54B35 /* Mixpanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mixpanel.swift; sourceTree = "<group>"; };
 		CA8D700829E097A1008A11C0 /* Rocket-Morphing.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "Rocket-Morphing.json"; sourceTree = "<group>"; };
@@ -209,6 +211,7 @@
 				CA55DF5A29C66AFC00C54B35 /* GoLiveCommentCollectionViewCell.swift */,
 				CA8D700A29E36DA1008A11C0 /* BeautifyCollectionViewCell.swift */,
 				CA8D702629E8A680008A11C0 /* StickerCollectionViewCell.swift */,
+				CA20FE1F29ED8A590089A6B8 /* FeaturedMusicCollectionViewCell.swift */,
 			);
 			path = "Collection View Cells";
 			sourceTree = "<group>";
@@ -352,7 +355,7 @@
 		CAA90C952994199A0013A654 /* Models */ = {
 			isa = PBXGroup;
 			children = (
-				CA55DFA529D1234000C54B35 /* AvailableMusic.swift */,
+				CA55DFA529D1234000C54B35 /* Music.swift */,
 				CA8D701029E6F59A008A11C0 /* Beautify.swift */,
 				CA55DF5029BCFA7900C54B35 /* Effect.swift */,
 				CA55DF3929AF9E9100C54B35 /* KwiksNotification.swift */,
@@ -588,6 +591,7 @@
 				CABAA31E29A311AC00C5EBC6 /* SettingsItem.swift in Sources */,
 				CA55DF4F29BCF7F100C54B35 /* EffectsCollectionViewCell.swift in Sources */,
 				CA55DF4729B8DE3A00C54B35 /* KwiksVideoPlayerController.swift in Sources */,
+				CA20FE2029ED8A590089A6B8 /* FeaturedMusicCollectionViewCell.swift in Sources */,
 				CA55DF2A29AA966A00C54B35 /* ProfileController.swift in Sources */,
 				CA55DF3A29AF9E9100C54B35 /* KwiksNotification.swift in Sources */,
 				CA55DFA429D11D8D00C54B35 /* AvailableMusicTableViewCell.swift in Sources */,
@@ -617,7 +621,7 @@
 				CA55DF2E29AC06F600C54B35 /* UploadImageController.swift in Sources */,
 				CABAA3032999609200C5EBC6 /* UIView+Ext.swift in Sources */,
 				CABAA30F29A2C8EE00C5EBC6 /* TabViewController.swift in Sources */,
-				CA55DFA629D1234000C54B35 /* AvailableMusic.swift in Sources */,
+				CA55DFA629D1234000C54B35 /* Music.swift in Sources */,
 				CABAA31A29A2CB8000C5EBC6 /* VideoController.swift in Sources */,
 				CA55DF3829AF9DB700C54B35 /* KwiksVideoAnalytics.swift in Sources */,
 				CA8D702929E8A96F008A11C0 /* Sticker.swift in Sources */,

@@ -44,12 +44,10 @@ final class AddParticipantsCell: UITableViewCell {
         button.isUserInteractionEnabled = true
         button.translatesAutoresizingMaskIntoConstraints = false
         button.layer.masksToBounds = true
-        button.backgroundColor = UIColor.white
+        button.backgroundColor = UIColor.kwiksGrey
         button.height(size)
         button.width(size)
         button.layer.cornerRadius = size / 2
-        button.layer.borderWidth = 2
-        button.layer.borderColor = UIColor.borderGrey.cgColor
         return button
     }()
     
@@ -100,8 +98,7 @@ final class AddParticipantsCell: UITableViewCell {
             self.participantSelectedButton.setImage(UIImage(named: "Checkmark"), for: .normal)
             
         } else {
-            self.participantSelectedButton.backgroundColor = .white
-            self.participantSelectedButton.layer.borderColor = UIColor.borderGrey.cgColor
+            self.participantSelectedButton.backgroundColor = UIColor.kwiksGrey
             self.participantSelectedButton.setImage(nil, for: .normal)
         }
     }

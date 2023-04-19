@@ -33,6 +33,22 @@ final class AvailableMusicTableViewCell: UITableViewCell {
         return imageView
     }()
     
+    let nowPlayingImageView: UIImageView = {
+        let imageView = UIImageView()
+        let size: CGFloat = 30
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.clipsToBounds = true
+        imageView.backgroundColor = UIColor.clear
+        imageView.contentMode = .scaleAspectFit
+        imageView.layer.masksToBounds = true
+        imageView.layer.cornerRadius = size / 2
+        imageView.height(size)
+        imageView.width(size)
+        imageView.image = UIImage(named: "NowPlayingMusicIcon")
+        imageView.isHidden = true
+        return imageView
+    }()
+    
     private let centerLine: UIView = {
         let view = UIView(frame: .zero)
         view.isUserInteractionEnabled = false
@@ -146,6 +162,10 @@ final class AvailableMusicTableViewCell: UITableViewCell {
         self.addSubview(self.songImageView)
         self.songImageView.leftToSuperview()
         self.songImageView.centerYToSuperview()
+        
+        self.addSubview(self.nowPlayingImageView)
+        self.nowPlayingImageView.centerX(to: self.songImageView)
+        self.nowPlayingImageView.centerY(to: self.songImageView)
         
         self.addSubview(self.bookmarkButton)
         self.bookmarkButton.rightToSuperview()

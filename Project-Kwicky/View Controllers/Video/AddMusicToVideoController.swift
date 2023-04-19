@@ -40,6 +40,7 @@ final class AddMusicToVideoController: UIViewController {
         return label
     }()
     
+    //TODO: Open in another controller
     private lazy var searchBar: UISearchBar = {
         let searchBar = UISearchBar(frame: .zero)
         searchBar.barStyle = .default
@@ -503,6 +504,7 @@ extension AddMusicToVideoController: UITableViewDelegate, UITableViewDataSource 
         
         cell.cellCallback = {
             print("Play This Song - ", selectedSong.songTitle ?? "Song Error")
+            cell.nowPlayingImageView.isHidden.toggle()
         }
         
         cell.bookmarkCallback = {
@@ -540,9 +542,11 @@ extension AddMusicToVideoController: UITableViewDelegate, UITableViewDataSource 
     
     //TODO: Show music playing icon on cell tap.
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        let selectedSong = self.filteredSongs[indexPath.item]
-        let songTitle = selectedSong.songTitle
-        print(songTitle ?? "Error")
+        if let cell = tableView.cellForRow(at: indexPath) as? AddParticipantsCell {
+            let selectedSong = self.filteredSongs[indexPath.item]
+            let songTitle = selectedSong.songTitle
+            print(songTitle ?? "Error")
+        }
     }
 }
 //MARK: - UISearchBar Delegate

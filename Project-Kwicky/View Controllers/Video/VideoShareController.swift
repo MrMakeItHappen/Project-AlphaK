@@ -50,26 +50,6 @@ final class VideoShareController: UIViewController {
         return imageView
     }()
     
-//    private let scrollView: UIScrollView = {
-//        let scrollView = UIScrollView()
-//        scrollView.translatesAutoresizingMaskIntoConstraints = false
-//        scrollView.backgroundColor = .clear
-//        scrollView.delaysContentTouches = false
-//        scrollView.clipsToBounds = true
-//        scrollView.showsVerticalScrollIndicator = false
-//        scrollView.showsHorizontalScrollIndicator = false
-//        return scrollView
-//    }()
-//
-//    private let scrollViewContentView: UIView = {
-//        let view = UIView()
-//        view.translatesAutoresizingMaskIntoConstraints = false
-//        view.backgroundColor = .clear
-//        view.layer.cornerRadius = 0
-//        view.clipsToBounds = true
-//        return view
-//    }()
-    
     private let shareNowButton: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -341,7 +321,8 @@ extension VideoShareController {
     }
     
     @objc func didTapTag() {
-        print(#function)
+        let tagPeopleVC = TagPeopleController()
+        self.navigationController?.pushViewController(tagPeopleVC, animated: true)
     }
     
     @objc func didChangeUISwitch() {

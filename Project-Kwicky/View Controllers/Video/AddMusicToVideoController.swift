@@ -501,6 +501,10 @@ extension AddMusicToVideoController: UITableViewDelegate, UITableViewDataSource 
         
         cell.configure(with: selectedSong)
         
+        cell.cellCallback = {
+            print("Play This Song - ", selectedSong.songTitle ?? "Song Error")
+        }
+        
         cell.bookmarkCallback = {
             print("Bookmark This Song - ", selectedSong.songTitle ?? "Song Error")
             
@@ -516,6 +520,7 @@ extension AddMusicToVideoController: UITableViewDelegate, UITableViewDataSource 
         }
         
         cell.trashCallback = {
+            //TODO: Remove song and remove bookmark
             print("Delete This Song - ", selectedSong.songTitle ?? "Song Error")
             self.savedSongs.remove(at: indexPath.item)
             tableView.reloadData()
@@ -533,6 +538,7 @@ extension AddMusicToVideoController: UITableViewDelegate, UITableViewDataSource 
         return cell
     }
     
+    //TODO: Show music playing icon on cell tap.
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         let selectedSong = self.filteredSongs[indexPath.item]
         let songTitle = selectedSong.songTitle

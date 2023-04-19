@@ -11,6 +11,7 @@ final class AvailableMusicTableViewCell: UITableViewCell {
     static let identifier = "AvailableMusicTableViewCell"
     
     private var isBookmarked = false
+    var cellCallback: () -> () = {}
     var bookmarkCallback: () -> () = {}
     var trashCallback: () -> () = {}
     
@@ -111,6 +112,15 @@ final class AvailableMusicTableViewCell: UITableViewCell {
         return label
     }()
     
+    private let cellButton: UIButton = {
+        let button = UIButton(type: .custom)
+        button.isUserInteractionEnabled = true
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.layer.masksToBounds = true
+        button.backgroundColor = UIColor.clear
+        return button
+    }()
+    
     override init(style: UITableViewCell.CellStyle, reuseIdentifier: String?) {
         super.init(style: style, reuseIdentifier: reuseIdentifier)
         self.configure()
@@ -129,6 +139,7 @@ final class AvailableMusicTableViewCell: UITableViewCell {
         
         self.bookmarkButton.addTarget(self, action: #selector(didTapBookmark), for: .touchUpInside)
         self.trashcanButton.addTarget(self, action: #selector(didTapTrash), for: .touchUpInside)
+        self.cellButton.addTarget(self, action: #selector(didTapCell), for: .touchUpInside)
     }
     
     private func layoutUI() {
@@ -164,6 +175,12 @@ final class AvailableMusicTableViewCell: UITableViewCell {
         self.addSubview(self.durationLabel)
         self.durationLabel.leftToRight(of: self.seperatorView, offset: 6)
         self.durationLabel.centerY(to: self.artistNameLabel)
+        
+        self.addSubview(self.cellButton)
+        self.cellButton.left(to: self.songTitleLabel)
+        self.cellButton.topToSuperview()
+        self.cellButton.rightToSuperview(offset: -30)
+        self.cellButton.bottomToSuperview()
     }
     
     func configure(with music: Music) {
@@ -195,5 +212,9 @@ final class AvailableMusicTableViewCell: UITableViewCell {
     
     @objc func didTapTrash() {
         trashCallback()
+    }
+    
+    @objc func didTapCell() {
+        cellCallback()
     }
 }

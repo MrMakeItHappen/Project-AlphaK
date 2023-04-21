@@ -94,6 +94,8 @@
 		CABACC2629D8936B00026CAE /* SoloVideoCallController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABACC2529D8936B00026CAE /* SoloVideoCallController.swift */; };
 		CABACC2829DA175D00026CAE /* AddParticipantsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABACC2729DA175D00026CAE /* AddParticipantsController.swift */; };
 		CABACC2A29DA211F00026CAE /* AddParticipantsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABACC2929DA211F00026CAE /* AddParticipantsCell.swift */; };
+		CAE3955F29F046C200ECB758 /* KwiksSaleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE3955E29F046C200ECB758 /* KwiksSaleController.swift */; };
+		CAE3956129F04CB100ECB758 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE3956029F04CB100ECB758 /* CategoryCollectionViewCell.swift */; };
 		EF86A0944B731027427F297D /* Pods_Project_Kwicky.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FF4CC60EA800B5EA4493BF7 /* Pods_Project_Kwicky.framework */; };
 /* End PBXBuildFile section */
 
@@ -188,6 +190,8 @@
 		CABACC2529D8936B00026CAE /* SoloVideoCallController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoloVideoCallController.swift; sourceTree = "<group>"; };
 		CABACC2729DA175D00026CAE /* AddParticipantsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddParticipantsController.swift; sourceTree = "<group>"; };
 		CABACC2929DA211F00026CAE /* AddParticipantsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddParticipantsCell.swift; sourceTree = "<group>"; };
+		CAE3955E29F046C200ECB758 /* KwiksSaleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KwiksSaleController.swift; sourceTree = "<group>"; };
+		CAE3956029F04CB100ECB758 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -215,6 +219,7 @@
 				CABAA31929A2CB8000C5EBC6 /* VideoController.swift */,
 				CA55DF5429C3C54E00C54B35 /* VideoShareController.swift */,
 				CA20FE2229EDA4560089A6B8 /* TagPeopleController.swift */,
+				CAE3955E29F046C200ECB758 /* KwiksSaleController.swift */,
 			);
 			path = Video;
 			sourceTree = "<group>";
@@ -229,6 +234,7 @@
 				CA8D700A29E36DA1008A11C0 /* BeautifyCollectionViewCell.swift */,
 				CA8D702629E8A680008A11C0 /* StickerCollectionViewCell.swift */,
 				CA20FE1F29ED8A590089A6B8 /* FeaturedMusicCollectionViewCell.swift */,
+				CAE3956029F04CB100ECB758 /* CategoryCollectionViewCell.swift */,
 			);
 			path = "Collection View Cells";
 			sourceTree = "<group>";
@@ -606,6 +612,7 @@
 				CA55DF2A29AA966A00C54B35 /* ProfileController.swift in Sources */,
 				CA55DF3A29AF9E9100C54B35 /* KwiksNotification.swift in Sources */,
 				CA55DFA429D11D8D00C54B35 /* AvailableMusicTableViewCell.swift in Sources */,
+				CAE3956129F04CB100ECB758 /* CategoryCollectionViewCell.swift in Sources */,
 				CA8D700F29E44D1B008A11C0 /* Enums.swift in Sources */,
 				CA55DF2829AA94EF00C54B35 /* SettingsController.swift in Sources */,
 				CAA90C9B29941ACD0013A654 /* UIColor+Ext.swift in Sources */,
@@ -652,6 +659,7 @@
 				CABACC2829DA175D00026CAE /* AddParticipantsController.swift in Sources */,
 				CABAA31C29A3104100C5EBC6 /* SettingsCollectionViewCell.swift in Sources */,
 				CABACC2629D8936B00026CAE /* SoloVideoCallController.swift in Sources */,
+				CAE3955F29F046C200ECB758 /* KwiksSaleController.swift in Sources */,
 				CABAA2F52994493200C5EBC6 /* SignUpController.swift in Sources */,
 				CA55DF9F29D1127100C54B35 /* KwiksSaleProduct.swift in Sources */,
 				CA55DF4529B27CAC00C54B35 /* ServiceProvider.swift in Sources */,

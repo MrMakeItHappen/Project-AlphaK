@@ -226,6 +226,16 @@ final class AvailableMusicTableViewCell: UITableViewCell {
         }
     }
     
+    func showTrashCan() {
+        self.bookmarkButton.isHidden = true
+        self.trashcanButton.isHidden = false
+    }
+    
+    func hideTrashCan() {
+        self.bookmarkButton.isHidden = false
+        self.trashcanButton.isHidden = true
+    }
+    
     @objc func didTapBookmark() {
         bookmarkCallback()
     }

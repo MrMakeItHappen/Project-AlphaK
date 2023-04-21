@@ -11,6 +11,7 @@ final class AddMusicToVideoController: UIViewController {
     private var filteredSongs: [Music] = []
     private var savedSongs: [Music] = []
     private var featuredMusic: [Music] = Music.allTempFeatured
+    private var songIDs: [String] = []
     private var searchCategories: String?
     private var isShowingSaved = false
 
@@ -510,31 +511,49 @@ extension AddMusicToVideoController: UITableViewDelegate, UITableViewDataSource 
         cell.bookmarkCallback = {
             print("Bookmark This Song - ", selectedSong.songTitle ?? "Song Error")
             
-            if self.savedSongs.contains(selectedSong) {
-                cell.toggleBookmark()
-                return
-                
+            if self.songIDs.contains(selectedSong.uuid!) {
+                //Remove
+                if let index = self.songIDs.firstIndex(of: selectedSong.uuid!) {
+                    self.songIDs.remove(at: index)
+                    tableView.reloadData()
+                }
             } else {
+                //Add
+                self.songIDs.append(selectedSong.uuid!)
                 self.savedSongs.append(selectedSong)
-                cell.toggleBookmark()
-                return
+                tableView.reloadData()
             }
         }
         
         cell.trashCallback = {
             //TODO: Remove song and remove bookmark
             print("Delete This Song - ", selectedSong.songTitle ?? "Song Error")
+            
+            if let index = self.songIDs.firstIndex(of: selectedSong.uuid!) {
+                self.songIDs.remove(at: index)
+            }
+            
             self.savedSongs.remove(at: indexPath.item)
             tableView.reloadData()
         }
         
+        if self.songIDs.contains(selectedSong.uuid!) {
+            cell.bookmarkButton.setImage(UIImage(named: "BookmarkSelectedIcon"), for: .normal)
+        } else {
+            cell.bookmarkButton.setImage(UIImage(named: "BookmarkIcon"), for: .normal)
+        }
+        
         if isShowingSaved {
-            cell.bookmarkButton.isHidden = true
-            cell.trashcanButton.isHidden = false
+            cell.showTrashCan()
+            
+            let selectedSong = self.savedSongs[indexPath.item]
+            cell.configure(with: selectedSong)
             
         } else {
-            cell.bookmarkButton.isHidden = false
-            cell.trashcanButton.isHidden = true
+            cell.hideTrashCan()
+            
+            let selectedSong = self.filteredSongs[indexPath.item]
+            cell.configure(with: selectedSong)
         }
         
         return cell
@@ -542,11 +561,14 @@ extension AddMusicToVideoController: UITableViewDelegate, UITableViewDataSource 
     
     //TODO: Show music playing icon on cell tap.
     func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
-        if let cell = tableView.cellForRow(at: indexPath) as? AddParticipantsCell {
-            let selectedSong = self.filteredSongs[indexPath.item]
-            let songTitle = selectedSong.songTitle
-            print(songTitle ?? "Error")
-        }
+//        if let cell = tableView.cellForRow(at: indexPath) as? AddParticipantsCell {
+//            let selectedSong = self.filteredSongs[indexPath.item]
+//            let songTitle = selectedSong.songTitle
+//            print(songTitle ?? "Error")
+//        }
+        
+//        let selectedButtonCell = sender.superview as! UITableViewCell
+//        guard let indexPath = tableView.indexPath(for: selectedButtonCell) else {return}
     }
 }
 //MARK: - UISearchBar Delegate

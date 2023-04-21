@@ -19,7 +19,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let window = UIWindow(windowScene: sceneWindow)
         
-        let decisionController = VideoShareController()
+        let decisionController = AddMusicToVideoController()
 //        let decisionController = DecisionController()
 //        let decisionController = TabViewController()
         let navigationController = UINavigationController(rootViewController: decisionController)
@@ -50,7 +50,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         // iPhone Dimensions
 //        let height = UIScreen.main.bounds.height
 //        let width = UIScreen.main.bounds.width
-//        
+//
 //        print("-Simulator Device Dimensions-\nDevice Height - \(height)\nDevice Width - \(width)")
     }
 

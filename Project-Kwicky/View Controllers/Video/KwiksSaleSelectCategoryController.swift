@@ -44,7 +44,7 @@ final class KwiksSaleSelectCategoryController: UIViewController {
         label.text = "Sale"
         label.translatesAutoresizingMaskIntoConstraints = false
         label.backgroundColor = .clear
-        label.font = UIFont.segoeUIRegular(size: 20)
+        label.font = UIFont.segoeUIBold(size: 20)
         label.numberOfLines = 1
         label.adjustsFontSizeToFitWidth = true
         label.textAlignment = .left

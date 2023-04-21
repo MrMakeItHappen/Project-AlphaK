@@ -46,7 +46,7 @@ final class KwikSaleSelectProductController: UIViewController {
         label.text = "Sale"
         label.translatesAutoresizingMaskIntoConstraints = false
         label.backgroundColor = .clear
-        label.font = UIFont.segoeUIRegular(size: 20)
+        label.font = UIFont.segoeUIBold(size: 20)
         label.numberOfLines = 1
         label.adjustsFontSizeToFitWidth = true
         label.textAlignment = .left
@@ -126,7 +126,7 @@ final class KwikSaleSelectProductController: UIViewController {
         collectionView.register(ProductHeaderCollectionReusableView.self, forSupplementaryViewOfKind: UICollectionView.elementKindSectionHeader, withReuseIdentifier: ProductHeaderCollectionReusableView.identifier)
         return collectionView
     }()
-
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configure()
@@ -206,8 +206,8 @@ extension KwikSaleSelectProductController: UICollectionViewDelegate, UICollectio
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductCollectionViewCell.identifier, for: indexPath) as! ProductCollectionViewCell
-//        let product = self.filteredCategories[indexPath.item]
-//        cell.configure(with: category)
+        //        let product = self.filteredCategories[indexPath.item]
+        //        cell.configure(with: category)
         return cell
     }
     

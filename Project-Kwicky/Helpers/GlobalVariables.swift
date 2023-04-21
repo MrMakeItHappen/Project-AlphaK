@@ -22,7 +22,7 @@ var _userAddedMusic: String?
 var _userTaggedPeople: [String]?
 
 ///Set only on AddProductToVideo Controller
-var _userAddedProduct: KwiksSaleProduct?
+var _userAddedProduct: KwiksSaleItem?
 
 ///Never set this value. Retrieve only.
 var _allAvailableVideoMusic: [Music] = []

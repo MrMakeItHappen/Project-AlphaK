@@ -341,7 +341,7 @@ extension VideoShareController {
     }
     
     @objc func didTapSale() {
-        let saleVC = KwiksSaleController()
+        let saleVC = KwiksSaleSelectCategoryController()
         self.navigationController?.pushViewController(saleVC, animated: true)
     }
     

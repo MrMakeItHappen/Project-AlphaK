@@ -39,7 +39,7 @@
 		CA55DF5929C649D100C54B35 /* KwiksLiveTestVideo.mp4 in Resources */ = {isa = PBXBuildFile; fileRef = CA55DF5829C649D100C54B35 /* KwiksLiveTestVideo.mp4 */; };
 		CA55DF5B29C66AFC00C54B35 /* GoLiveCommentCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA55DF5A29C66AFC00C54B35 /* GoLiveCommentCollectionViewCell.swift */; };
 		CA55DF9D29D110FE00C54B35 /* AddMusicToVideoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA55DF9C29D110FE00C54B35 /* AddMusicToVideoController.swift */; };
-		CA55DF9F29D1127100C54B35 /* KwiksSaleProduct.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA55DF9E29D1127100C54B35 /* KwiksSaleProduct.swift */; };
+		CA55DF9F29D1127100C54B35 /* KwiksSaleItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA55DF9E29D1127100C54B35 /* KwiksSaleItem.swift */; };
 		CA55DFA129D1140400C54B35 /* GlobalVariables.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA55DFA029D1140400C54B35 /* GlobalVariables.swift */; };
 		CA55DFA429D11D8D00C54B35 /* AvailableMusicTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA55DFA329D11D8D00C54B35 /* AvailableMusicTableViewCell.swift */; };
 		CA55DFA629D1234000C54B35 /* Music.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA55DFA529D1234000C54B35 /* Music.swift */; };
@@ -94,8 +94,12 @@
 		CABACC2629D8936B00026CAE /* SoloVideoCallController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABACC2529D8936B00026CAE /* SoloVideoCallController.swift */; };
 		CABACC2829DA175D00026CAE /* AddParticipantsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABACC2729DA175D00026CAE /* AddParticipantsController.swift */; };
 		CABACC2A29DA211F00026CAE /* AddParticipantsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CABACC2929DA211F00026CAE /* AddParticipantsCell.swift */; };
-		CAE3955F29F046C200ECB758 /* KwiksSaleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE3955E29F046C200ECB758 /* KwiksSaleController.swift */; };
+		CAE3955F29F046C200ECB758 /* KwiksSaleSelectCategoryController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE3955E29F046C200ECB758 /* KwiksSaleSelectCategoryController.swift */; };
 		CAE3956129F04CB100ECB758 /* CategoryCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE3956029F04CB100ECB758 /* CategoryCollectionViewCell.swift */; };
+		CAE3956529F2E0E500ECB758 /* KwikSaleSelectProductController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE3956429F2E0E500ECB758 /* KwikSaleSelectProductController.swift */; };
+		CAE3956729F2E70B00ECB758 /* ProductCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE3956629F2E70B00ECB758 /* ProductCollectionViewCell.swift */; };
+		CAE3956A29F32BAB00ECB758 /* ProductHeaderCollectionReusableView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE3956929F32BAB00ECB758 /* ProductHeaderCollectionReusableView.swift */; };
+		CAE3956C29F33D4400ECB758 /* KwiksSaleReviewSelectedProductViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE3956B29F33D4400ECB758 /* KwiksSaleReviewSelectedProductViewController.swift */; };
 		EF86A0944B731027427F297D /* Pods_Project_Kwicky.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FF4CC60EA800B5EA4493BF7 /* Pods_Project_Kwicky.framework */; };
 /* End PBXBuildFile section */
 
@@ -135,7 +139,7 @@
 		CA55DF5829C649D100C54B35 /* KwiksLiveTestVideo.mp4 */ = {isa = PBXFileReference; lastKnownFileType = file; path = KwiksLiveTestVideo.mp4; sourceTree = "<group>"; };
 		CA55DF5A29C66AFC00C54B35 /* GoLiveCommentCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GoLiveCommentCollectionViewCell.swift; sourceTree = "<group>"; };
 		CA55DF9C29D110FE00C54B35 /* AddMusicToVideoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddMusicToVideoController.swift; sourceTree = "<group>"; };
-		CA55DF9E29D1127100C54B35 /* KwiksSaleProduct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KwiksSaleProduct.swift; sourceTree = "<group>"; };
+		CA55DF9E29D1127100C54B35 /* KwiksSaleItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KwiksSaleItem.swift; sourceTree = "<group>"; };
 		CA55DFA029D1140400C54B35 /* GlobalVariables.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GlobalVariables.swift; sourceTree = "<group>"; };
 		CA55DFA329D11D8D00C54B35 /* AvailableMusicTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AvailableMusicTableViewCell.swift; sourceTree = "<group>"; };
 		CA55DFA529D1234000C54B35 /* Music.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Music.swift; sourceTree = "<group>"; };
@@ -190,8 +194,12 @@
 		CABACC2529D8936B00026CAE /* SoloVideoCallController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SoloVideoCallController.swift; sourceTree = "<group>"; };
 		CABACC2729DA175D00026CAE /* AddParticipantsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddParticipantsController.swift; sourceTree = "<group>"; };
 		CABACC2929DA211F00026CAE /* AddParticipantsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddParticipantsCell.swift; sourceTree = "<group>"; };
-		CAE3955E29F046C200ECB758 /* KwiksSaleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KwiksSaleController.swift; sourceTree = "<group>"; };
+		CAE3955E29F046C200ECB758 /* KwiksSaleSelectCategoryController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KwiksSaleSelectCategoryController.swift; sourceTree = "<group>"; };
 		CAE3956029F04CB100ECB758 /* CategoryCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryCollectionViewCell.swift; sourceTree = "<group>"; };
+		CAE3956429F2E0E500ECB758 /* KwikSaleSelectProductController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KwikSaleSelectProductController.swift; sourceTree = "<group>"; };
+		CAE3956629F2E70B00ECB758 /* ProductCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductCollectionViewCell.swift; sourceTree = "<group>"; };
+		CAE3956929F32BAB00ECB758 /* ProductHeaderCollectionReusableView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductHeaderCollectionReusableView.swift; sourceTree = "<group>"; };
+		CAE3956B29F33D4400ECB758 /* KwiksSaleReviewSelectedProductViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KwiksSaleReviewSelectedProductViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -219,7 +227,9 @@
 				CABAA31929A2CB8000C5EBC6 /* VideoController.swift */,
 				CA55DF5429C3C54E00C54B35 /* VideoShareController.swift */,
 				CA20FE2229EDA4560089A6B8 /* TagPeopleController.swift */,
-				CAE3955E29F046C200ECB758 /* KwiksSaleController.swift */,
+				CAE3955E29F046C200ECB758 /* KwiksSaleSelectCategoryController.swift */,
+				CAE3956429F2E0E500ECB758 /* KwikSaleSelectProductController.swift */,
+				CAE3956B29F33D4400ECB758 /* KwiksSaleReviewSelectedProductViewController.swift */,
 			);
 			path = Video;
 			sourceTree = "<group>";
@@ -235,6 +245,7 @@
 				CA8D702629E8A680008A11C0 /* StickerCollectionViewCell.swift */,
 				CA20FE1F29ED8A590089A6B8 /* FeaturedMusicCollectionViewCell.swift */,
 				CAE3956029F04CB100ECB758 /* CategoryCollectionViewCell.swift */,
+				CAE3956629F2E70B00ECB758 /* ProductCollectionViewCell.swift */,
 			);
 			path = "Collection View Cells";
 			sourceTree = "<group>";
@@ -325,6 +336,7 @@
 		CAA90C91299419810013A654 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				CAE3956829F32B8600ECB758 /* Views */,
 				CA55DFA229D11D7000C54B35 /* TableView Cells */,
 				CA55DF4129B16A3100C54B35 /* Collection View Cells */,
 			);
@@ -376,7 +388,7 @@
 				CA8D701029E6F59A008A11C0 /* Beautify.swift */,
 				CA55DF5029BCFA7900C54B35 /* Effect.swift */,
 				CA55DF3929AF9E9100C54B35 /* KwiksNotification.swift */,
-				CA55DF9E29D1127100C54B35 /* KwiksSaleProduct.swift */,
+				CA55DF9E29D1127100C54B35 /* KwiksSaleItem.swift */,
 				CA55DF3D29AFA13100C54B35 /* KwiksUserAnalytics.swift */,
 				CA55DF3329AF9B0500C54B35 /* KwiksVideo.swift */,
 				CA55DF3729AF9DB700C54B35 /* KwiksVideoAnalytics.swift */,
@@ -439,6 +451,14 @@
 				CABACC2729DA175D00026CAE /* AddParticipantsController.swift */,
 			);
 			path = VoiceVideoCalls;
+			sourceTree = "<group>";
+		};
+		CAE3956829F32B8600ECB758 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				CAE3956929F32BAB00ECB758 /* ProductHeaderCollectionReusableView.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		D9943AAC69A05A6526816BD5 /* Frameworks */ = {
@@ -627,6 +647,8 @@
 				CAA90C7E2994171C0013A654 /* SceneDelegate.swift in Sources */,
 				CABAA305299BCEE100C5EBC6 /* String+Ext.swift in Sources */,
 				CA55DF3629AF9D7E00C54B35 /* KwiksWallet.swift in Sources */,
+				CAE3956729F2E70B00ECB758 /* ProductCollectionViewCell.swift in Sources */,
+				CAE3956A29F32BAB00ECB758 /* ProductHeaderCollectionReusableView.swift in Sources */,
 				CA55DF1E29A6CBCA00C54B35 /* AccountController.swift in Sources */,
 				CAA90C9D29941AEE0013A654 /* UIFont+Ext.swift in Sources */,
 				CA55DF3429AF9B0500C54B35 /* KwiksVideo.swift in Sources */,
@@ -634,7 +656,9 @@
 				CA55DF4029B16A1400C54B35 /* ForYouCollectionViewCell.swift in Sources */,
 				CABAA31629A2C9C300C5EBC6 /* InboxController.swift in Sources */,
 				CA55DF1C29A674F000C54B35 /* FollowInviteFriendsController.swift in Sources */,
+				CAE3956529F2E0E500ECB758 /* KwikSaleSelectProductController.swift in Sources */,
 				CA55DF5329BD2AFE00C54B35 /* KwikyController.swift in Sources */,
+				CAE3956C29F33D4400ECB758 /* KwiksSaleReviewSelectedProductViewController.swift in Sources */,
 				CA55DF2429A7E8CF00C54B35 /* UILabel+Ext.swift in Sources */,
 				CA55DF2E29AC06F600C54B35 /* UploadImageController.swift in Sources */,
 				CABAA3032999609200C5EBC6 /* UIView+Ext.swift in Sources */,
@@ -659,9 +683,9 @@
 				CABACC2829DA175D00026CAE /* AddParticipantsController.swift in Sources */,
 				CABAA31C29A3104100C5EBC6 /* SettingsCollectionViewCell.swift in Sources */,
 				CABACC2629D8936B00026CAE /* SoloVideoCallController.swift in Sources */,
-				CAE3955F29F046C200ECB758 /* KwiksSaleController.swift in Sources */,
+				CAE3955F29F046C200ECB758 /* KwiksSaleSelectCategoryController.swift in Sources */,
 				CABAA2F52994493200C5EBC6 /* SignUpController.swift in Sources */,
-				CA55DF9F29D1127100C54B35 /* KwiksSaleProduct.swift in Sources */,
+				CA55DF9F29D1127100C54B35 /* KwiksSaleItem.swift in Sources */,
 				CA55DF4529B27CAC00C54B35 /* ServiceProvider.swift in Sources */,
 				CA55DF3229AF9A9B00C54B35 /* User.swift in Sources */,
 				CA55DF3C29AF9FBF00C54B35 /* SocialMediaLink.swift in Sources */,

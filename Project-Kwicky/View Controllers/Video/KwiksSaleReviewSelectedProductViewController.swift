@@ -63,16 +63,16 @@ final class KwiksSaleReviewSelectedProductViewController: UIViewController {
         return label
     }()
     
-    private lazy var nextButton: UIButton = {
+    private lazy var addButton: UIButton = {
         var attributeContainer = AttributeContainer()
         attributeContainer.font = .segoeUISemiBold(size: 15)
         
         var configuration = UIButton.Configuration.plain()
         configuration.cornerStyle = .capsule
-        configuration.attributedTitle = AttributedString("Next", attributes: attributeContainer)
+        configuration.attributedTitle = AttributedString("Add", attributes: attributeContainer)
         
         let button = UIButton(configuration: configuration, primaryAction: UIAction(handler: { _ in
-            self.didTapNext()
+            self.didTapAdd()
         }))
         
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -224,10 +224,10 @@ extension KwiksSaleReviewSelectedProductViewController {
         self.saleLabel.leftToRight(of: self.kwikLabel)
         self.saleLabel.centerY(to: self.kwikLabel)
         
-        self.view.addSubview(self.nextButton)
-        self.nextButton.bottomToSuperview(offset: -10, usingSafeArea: true)
-        self.nextButton.leftToSuperview(offset: 30)
-        self.nextButton.rightToSuperview(offset: -30)
+        self.view.addSubview(self.addButton)
+        self.addButton.bottomToSuperview(offset: -10, usingSafeArea: true)
+        self.addButton.leftToSuperview(offset: 30)
+        self.addButton.rightToSuperview(offset: -30)
         
         self.view.addSubview(self.chooseLabel)
         self.chooseLabel.topToBottom(of: self.kwikLabel, offset: 21)
@@ -276,7 +276,8 @@ extension KwiksSaleReviewSelectedProductViewController {
         self.navigationController?.popViewController(animated: true)
     }
     
-    @objc func didTapNext() {
-        print(#function)
+    @objc func didTapAdd() {
+        let popUpVC = ProductAddedController()
+        self.navigationController?.pushViewController(popUpVC, animated: true)
     }
 }

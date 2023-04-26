@@ -23,3 +23,9 @@ enum BeautifyType {
     case contour
     case none
 }
+
+enum PrivacyType {
+    case everyone
+    case friends
+    case onlyMe
+}

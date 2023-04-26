@@ -39,7 +39,7 @@ final class HomeController: UIViewController {
         imageView.backgroundColor = .clear
         imageView.layer.masksToBounds = true
         
-        let image = UIImage(named: "PlaceholderVideoImage05")
+        let image = UIImage(named: "HomePlaceholder")
         imageView.image = image
         return imageView
     }()
@@ -263,7 +263,7 @@ final class HomeController: UIViewController {
     
     private let viewCountLabel: UILabel = {
         let label = UILabel()
-        label.text = "13 M"
+        label.text = "44 B"
         label.translatesAutoresizingMaskIntoConstraints = false
         label.backgroundColor = .clear
         label.font = UIFont.segoeUISemiBold(size: 13)
@@ -293,7 +293,7 @@ final class HomeController: UIViewController {
     
     private let uploadTimeLabel: UILabel = {
         let label = UILabel()
-        label.text = "36 Min Ago"
+        label.text = "7 Min Ago"
         label.translatesAutoresizingMaskIntoConstraints = false
         label.backgroundColor = .clear
         label.font = UIFont.segoeUISemiBold(size: 13)
@@ -306,7 +306,7 @@ final class HomeController: UIViewController {
     
     private let mainVideoTitleLabel: UILabel = {
         let label = UILabel()
-        label.text = "Fortnite Themepark??? How big can this game get?"
+        label.text = "Taylor is Back! New songs, new tour....new man?"
         label.translatesAutoresizingMaskIntoConstraints = false
         label.backgroundColor = .clear
         label.font = UIFont.segoeUISemiBold(size: 18)
@@ -325,7 +325,7 @@ final class HomeController: UIViewController {
         button.backgroundColor = UIColor.clear
         button.height(85)
         button.width(85)
-        button.setImage(UIImage(named: "KwiksPlayButton"), for: .normal)
+        button.setImage(UIImage(named: "KwiksWhitePlayButton"), for: .normal)
         return button
     }()
     
@@ -435,10 +435,10 @@ extension HomeController {
         
         self.view.addSubview(self.viewsIconImageView)
         self.viewsIconImageView.left(to: self.seperatorLineView)
-        self.viewsIconImageView.bottomToTop(of: self.forYouLabel, offset: -39)
+        self.viewsIconImageView.bottomToTop(of: self.forYouLabel, offset: -30)
         
         self.view.addSubview(self.viewCountLabel)
-        self.viewCountLabel.leftToRight(of: self.viewsIconImageView, offset: 6)
+        self.viewCountLabel.leftToRight(of: self.viewsIconImageView, offset: 10)
         self.viewCountLabel.centerY(to: self.viewsIconImageView)
         
         self.view.addSubview(self.uploadTimeIconImageView)
@@ -446,7 +446,7 @@ extension HomeController {
         self.uploadTimeIconImageView.centerY(to: self.viewsIconImageView)
         
         self.view.addSubview(self.uploadTimeLabel)
-        self.uploadTimeLabel.leftToRight(of: self.uploadTimeIconImageView, offset: 6)
+        self.uploadTimeLabel.leftToRight(of: self.uploadTimeIconImageView, offset: 10)
         self.uploadTimeLabel.centerY(to: self.uploadTimeIconImageView)
         
         self.view.addSubview(self.mainVideoTitleLabel)
@@ -456,7 +456,7 @@ extension HomeController {
         
         self.view.addSubview(self.mainVideoPlayButton)
         self.mainVideoPlayButton.left(to: self.seperatorLineView)
-        self.mainVideoPlayButton.bottomToTop(of: self.mainVideoTitleLabel, offset: -22)
+        self.mainVideoPlayButton.bottomToTop(of: self.mainVideoTitleLabel, offset: -10)
     }
 }
 //MARK: - Helpers

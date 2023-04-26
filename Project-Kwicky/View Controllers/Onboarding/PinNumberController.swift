@@ -261,7 +261,7 @@ extension PinNumberController {
 extension PinNumberController {
     private func layoutUI() {
         self.view.addSubview(self.mainTitleLabel)
-        self.mainTitleLabel.topToSuperview(offset: 40)
+        self.mainTitleLabel.topToSuperview(offset: 40, usingSafeArea: true)
         self.mainTitleLabel.leftToSuperview(offset: 40)
         self.mainTitleLabel.rightToSuperview(offset: -40)
         

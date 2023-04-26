@@ -11,9 +11,18 @@ import Lottie
 final class SignUpDetailController: UIViewController {
     var isPathFromLogin = false
     
-    private let background: UIView = {
-        let view = UIView(frame: .zero)
-        return view
+    private let backgroundImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.backgroundColor = .clear
+        imageView.contentMode = .scaleAspectFill
+        imageView.isUserInteractionEnabled = false
+        imageView.backgroundColor = .clear
+        imageView.layer.masksToBounds = true
+        
+        let image = UIImage(named: "SimpleLoginBackground")
+        imageView.image = image
+        return imageView
     }()
     
     private let backgroundArrowImageView: UIImageView = {
@@ -190,15 +199,15 @@ final class SignUpDetailController: UIViewController {
     
     private let emailLabel: UILabel = {
         let label = UILabel()
-        label.text = "Email ID"
+        label.text = "Email or Phone number"
         label.translatesAutoresizingMaskIntoConstraints = false
         label.backgroundColor = .white
         label.font = UIFont.interRegular(size: 13)
         label.numberOfLines = 1
-        label.adjustsFontSizeToFitWidth = true
+        label.adjustsFontSizeToFitWidth = false
         label.textAlignment = .center
         label.textColor = #colorLiteral(red: 0.6392156863, green: 0.6392156863, blue: 0.6392156863, alpha: 1)
-        label.width(78)
+        label.width(150)
         return label
     }()
     
@@ -417,10 +426,8 @@ final class SignUpDetailController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configure()
-        self.addGradientBackground()
         self.layoutUI()
     }
-    
 }
 //MARK: - Configure Controller
 extension SignUpDetailController {
@@ -440,27 +447,13 @@ extension SignUpDetailController {
         self.view.isUserInteractionEnabled = true
         self.view.addGestureRecognizer(tapGesture)
     }
-    
-    private func addGradientBackground() {
-        let gradientLayer = CAGradientLayer()
-        gradientLayer.colors = [
-            UIColor(red: 0.537, green: 0.839, blue: 0.345, alpha: 1).cgColor,
-            UIColor(red: 0.443, green: 0.733, blue: 0.259, alpha: 1).cgColor
-        ]
-        gradientLayer.locations = [0, 1]
-        gradientLayer.startPoint = CGPoint(x: 0.25, y: 0.5)
-        gradientLayer.endPoint = CGPoint(x: 0.75, y: 0.5)
-        gradientLayer.bounds = view.bounds.insetBy(dx: -0.5 * view.bounds.size.width, dy: -0.5 * view.bounds.size.height)
-        gradientLayer.position = view.center
-        self.background.layer.addSublayer(gradientLayer)
-        
-        self.view.addSubview(self.background)
-        self.background.edgesToSuperview()
-    }
 }
 //MARK: - Layout UI
 extension SignUpDetailController {
     private func layoutUI() {
+        self.view.addSubview(self.backgroundImageView)
+        self.backgroundImageView.edgesToSuperview()
+        
         self.view.addSubview(self.titleLabel)
         self.titleLabel.topToSuperview(usingSafeArea: true)
         self.titleLabel.leftToSuperview(offset: 40)
@@ -516,7 +509,7 @@ extension SignUpDetailController {
         
         self.scrollViewContentView.addSubview(self.emailLabel)
         self.emailLabel.top(to: self.emailTextField, offset: -8)
-        self.emailLabel.left(to: self.emailTextField, offset: 18)
+        self.emailLabel.left(to: self.emailTextField, offset: 25)
         
         self.scrollViewContentView.addSubview(self.emailErrorLabel)
         self.emailErrorLabel.topToBottom(of: self.emailTextField, offset: 4)
@@ -601,7 +594,7 @@ extension SignUpDetailController {
     }
     
     @objc func didTapSignUp() {
-        //Check if all fields are valid before submitting to backend.
+        //TODO: Check if all fields are valid before submitting to backend.
         
         print(#function)
         
@@ -627,6 +620,7 @@ extension SignUpDetailController {
             self.birthdateErrorLabel.isHidden = false
         }
         
+        //TODO: Need to check if this is a phone number or email address before pinging backend.
         let values = ["email":"\(emailText)"]
         
         //Display Loading Screen
@@ -659,6 +653,10 @@ extension SignUpDetailController {
                         self.emailTextField.layer.borderColor = UIColor.systemRed.cgColor
                         self.emailErrorLabel.isHidden = false
                         self.emailErrorLabel.text = "Sorry, email already exists."
+                        
+                        self.loadingScreen.alpha = 0
+                        self.lottieAnimation.alpha = 0
+                        self.lottieAnimation.stop()
                     }
                     
                     return

@@ -13,16 +13,16 @@ final class KwiksSaleSelectCategoryController: UIViewController {
     private var searchCategories: String?
     private var selectedCategory: String = ""
     
-    private lazy var customBackButton: UIButton = {
+    private lazy var closeButton: UIButton = {
         let button = UIButton(type: .system)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.layer.masksToBounds = true
-        button.tintColor = UIColor.kwiksTextBlack
-        button.backgroundColor = UIColor.clear
-        button.addTarget(self, action: #selector(didTapBack), for: .touchUpInside)
-        button.height(23)
-        button.width(33)
-        button.setImage(UIImage(named: "KwiksBackArrow"), for: .normal)
+        button.backgroundColor = .clear
+        button.contentMode = .scaleAspectFit
+        button.clipsToBounds = true
+        button.tintColor = .kwiksTextBlack
+        button.setImage(UIImage(named: "CloseIcon"), for: .normal)
+        button.addTarget(self, action: #selector(didTapClose), for: .touchUpInside)
+        button.width(16)
+        button.height(16)
         return button
     }()
     
@@ -155,17 +155,17 @@ extension KwiksSaleSelectCategoryController {
 //MARK: - Layout UI
 extension KwiksSaleSelectCategoryController {
     private func layoutUI() {
-        self.view.addSubview(self.customBackButton)
-        self.customBackButton.topToSuperview(offset: 22, usingSafeArea: true)
-        self.customBackButton.leftToSuperview(offset: 22)
-        
         self.view.addSubview(self.kwikLabel)
-        self.kwikLabel.centerY(to: self.customBackButton, offset: -2)
-        self.kwikLabel.leftToRight(of: self.customBackButton, offset: 18)
+        self.kwikLabel.topToSuperview(offset: 22, usingSafeArea: true)
+        self.kwikLabel.leftToSuperview(offset: 30)
         
         self.view.addSubview(self.saleLabel)
         self.saleLabel.leftToRight(of: self.kwikLabel)
         self.saleLabel.centerY(to: self.kwikLabel)
+        
+        self.view.addSubview(self.closeButton)
+        self.closeButton.centerY(to: self.kwikLabel)
+        self.closeButton.rightToSuperview(offset: -30)
         
         self.view.addSubview(self.nextButton)
         self.nextButton.bottomToSuperview(offset: -10, usingSafeArea: true)
@@ -197,7 +197,8 @@ extension KwiksSaleSelectCategoryController {
 
 //MARK: - @objc
 extension KwiksSaleSelectCategoryController {
-    @objc func didTapBack() {
+    @objc func didTapClose() {
+        self.dismiss(animated: true)
         self.navigationController?.popViewController(animated: true)
     }
     

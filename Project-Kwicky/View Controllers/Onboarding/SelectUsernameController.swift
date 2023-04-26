@@ -164,8 +164,12 @@ extension SelectUsernameController {
     }
     
     @objc func didTapConfirm() {
-        print(#function)
         self.usernameTextField.resignFirstResponder()
+        
+        let homeVC = TabViewController()
+        homeVC.modalPresentationStyle = .fullScreen
+        
+        self.present(homeVC, animated: true)
     }
 }
 //MARK: - UITextField Delegates

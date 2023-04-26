@@ -519,9 +519,7 @@ extension LoginController {
     }
     
     @objc func didTapRegisterNow() {
-        let signUpDetails = SignUpDetailController()
-        signUpDetails.isPathFromLogin = true
-        self.navigationController?.pushViewController(signUpDetails, animated: true)
+        self.dismiss(animated: true)
     }
     
     @objc func didTapShow() {

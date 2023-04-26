@@ -28,10 +28,10 @@ final class VideoController: UIViewController {
     private var isShowingTimer = false
     private var isShowingBeautify = false
     private var isShowingStickers = false
+    private var isShowingTextOptions = false
     private var isRecording = false
     private var mainContainerBottomConstraint: NSLayoutConstraint?
     private var popUpAlert = KwiksSystemPopups()
-    private var beautifyIndexPath: IndexPath?
     
     private let containerView: UIView = {
         let view = UIView()
@@ -443,9 +443,9 @@ final class VideoController: UIViewController {
         return collectionView
     }()
     
-    private let cropLabel: UILabel = {
+    private let textLabel: UILabel = {
         let label = UILabel()
-        label.text = "Crop"
+        label.text = "Text"
         label.translatesAutoresizingMaskIntoConstraints = false
         label.backgroundColor = .clear
         label.font = UIFont.segoeUISemiBold(size: 12)
@@ -456,7 +456,7 @@ final class VideoController: UIViewController {
         return label
     }()
     
-    private let cropIconImageView: UIImageView = {
+    private let textIconImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
         imageView.contentMode = .scaleAspectFit
@@ -466,12 +466,40 @@ final class VideoController: UIViewController {
         imageView.height(28)
         imageView.width(28)
         
-        let image = UIImage(named: "CropIcon")
+        let image = UIImage(named: "TextIcon")
         imageView.image = image
         return imageView
     }()
     
-    private let hiddenCropButton: UIButton = {
+    private let textAButton: UIButton = {
+        let button = UIButton(type: .custom)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.layer.masksToBounds = true
+        button.tintColor = UIColor.white
+        button.backgroundColor = UIColor.clear
+        button.setImage(UIImage(named: "AIcon"), for: .normal)
+        button.height(34)
+        button.width(22)
+        button.alpha = 0
+        return button
+    }()
+    
+    private let selectTextColorButton: UIButton = {
+        let button = UIButton(type: .custom)
+        let size: CGFloat = 28
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.layer.masksToBounds = true
+        button.layer.cornerRadius = size / 2
+        button.layer.borderColor = UIColor.white.cgColor
+        button.layer.borderWidth = 1.5
+        button.backgroundColor = UIColor.systemRed
+        button.height(size)
+        button.width(size)
+        button.alpha = 0
+        return button
+    }()
+    
+    private let hiddenTextButton: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
         button.layer.masksToBounds = true
@@ -536,11 +564,12 @@ final class VideoController: UIViewController {
         imageView.contentMode = .scaleAspectFit
         imageView.isUserInteractionEnabled = false
         imageView.backgroundColor = .clear
+        imageView.tintColor = .white
         imageView.layer.masksToBounds = true
         imageView.height(28)
         imageView.width(28)
         
-        let image = UIImage(named: "TimerIcon")
+        let image = UIImage(named: "TimerIcon")?.withRenderingMode(.alwaysTemplate)
         imageView.image = image
         return imageView
     }()
@@ -859,13 +888,14 @@ extension VideoController {
         
         self.closeButton.addTarget(self, action: #selector(didTapClose), for: .touchUpInside)
         self.cameraLightButton.addTarget(self, action: #selector(didTapCameraLight), for: .touchDown)
+        self.textAButton.addTarget(self, action: #selector(didTapAText), for: .touchUpInside)
         
         self.hiddenAddMusicButton.addTarget(self, action: #selector(didTapAddMusic), for: .touchDown)
         self.recordButton.addTarget(self, action: #selector(didTapRecord), for: .touchDown)
         
         self.hiddenLiveButton.addTarget(self, action: #selector(didTapLive), for: .touchDown)
         self.hiddenStickersButton.addTarget(self, action: #selector(didTapSticker), for: .touchDown)
-        self.hiddenCropButton.addTarget(self, action: #selector(didTapCrop), for: .touchDown)
+        self.hiddenTextButton.addTarget(self, action: #selector(didTapText), for: .touchDown)
         
         self.hiddenBeautifyButton.addTarget(self, action: #selector(didTapBeautify), for: .touchDown)
         self.hiddenTimerButton.addTarget(self, action: #selector(didTapTimer), for: .touchDown)
@@ -873,6 +903,7 @@ extension VideoController {
         
         self.effectsButton.addTarget(self, action: #selector(didTapEffects), for: .touchDown)
         self.uploadVideoButton.addTarget(self, action: #selector(didTapUpload), for: .touchDown)
+        self.selectTextColorButton.addTarget(self, action: #selector(didTapSelectTextColor), for: .touchUpInside)
     }
 }
 //MARK: - Layout UI
@@ -927,6 +958,14 @@ extension VideoController {
         self.containerView.addSubview(self.cameraLightButton)
         self.cameraLightButton.centerY(to: self.addMusicContainerView)
         self.cameraLightButton.leftToRight(of: self.addMusicContainerView, offset: 80)
+        
+        self.containerView.addSubview(self.textAButton)
+        self.textAButton.topToBottom(of: self.cameraLightButton, offset: 26)
+        self.textAButton.centerX(to: self.cameraLightButton)
+        
+        self.containerView.addSubview(self.selectTextColorButton)
+        self.selectTextColorButton.topToBottom(of: self.textAButton, offset: 20)
+        self.selectTextColorButton.centerX(to: self.cameraLightButton)
     }
     
     private func layoutBottomUI() {
@@ -1054,23 +1093,23 @@ extension VideoController {
         self.stickerCollectionView.right(to: self.animalCategoryButton)
         self.stickerCollectionView.bottomToSuperview(offset: -20)
         
-        self.containerView.addSubview(self.cropLabel)
-        self.cropLabel.centerX(to: self.stickersLabel)
-        self.cropLabel.bottomToTop(of: self.stickersIconImageView, offset: -28)
+        self.containerView.addSubview(self.textLabel)
+        self.textLabel.centerX(to: self.stickersLabel)
+        self.textLabel.bottomToTop(of: self.stickersIconImageView, offset: -28)
         
-        self.containerView.addSubview(self.cropIconImageView)
-        self.cropIconImageView.bottomToTop(of: self.cropLabel, offset: -8)
-        self.cropIconImageView.centerX(to: self.stickersLabel)
+        self.containerView.addSubview(self.textIconImageView)
+        self.textIconImageView.bottomToTop(of: self.textLabel, offset: -8)
+        self.textIconImageView.centerX(to: self.stickersLabel)
         
-        self.containerView.addSubview(self.hiddenCropButton)
-        self.hiddenCropButton.top(to: self.cropIconImageView, offset: -2)
-        self.hiddenCropButton.right(to: self.cropLabel, offset: 2)
-        self.hiddenCropButton.left(to: self.cropLabel, offset: -2)
-        self.hiddenCropButton.bottom(to: self.cropLabel, offset: 2)
+        self.containerView.addSubview(self.hiddenTextButton)
+        self.hiddenTextButton.top(to: self.textIconImageView, offset: -2)
+        self.hiddenTextButton.right(to: self.textLabel, offset: 2)
+        self.hiddenTextButton.left(to: self.textLabel, offset: -2)
+        self.hiddenTextButton.bottom(to: self.textLabel, offset: 2)
         
         self.containerView.addSubview(self.beautifyLabel)
         self.beautifyLabel.centerX(to: self.stickersLabel)
-        self.beautifyLabel.bottomToTop(of: self.cropIconImageView, offset: -28)
+        self.beautifyLabel.bottomToTop(of: self.textIconImageView, offset: -28)
         
         self.containerView.addSubview(self.beautifyIconImageView)
         self.beautifyIconImageView.bottomToTop(of: self.beautifyLabel, offset: -8)
@@ -1218,9 +1257,9 @@ extension VideoController {
             self.timerLabel.alpha = 0
             self.hiddenTimerButton.isUserInteractionEnabled = false
             
-            self.cropIconImageView.alpha = 0
-            self.cropLabel.alpha = 0
-            self.hiddenCropButton.isUserInteractionEnabled = false
+            self.textIconImageView.alpha = 0
+            self.textLabel.alpha = 0
+            self.hiddenTextButton.isUserInteractionEnabled = false
             
             self.stickersIconImageView.alpha = 0
             self.stickersLabel.alpha = 0
@@ -1263,7 +1302,6 @@ extension VideoController {
                 self.beautifyCollectionView.alpha = 1
                 self.faceLabel.alpha = 1
             }
-            
         }
     }
     
@@ -1278,9 +1316,9 @@ extension VideoController {
             self.timerLabel.alpha = 0
             self.hiddenTimerButton.isUserInteractionEnabled = false
             
-            self.cropIconImageView.alpha = 0
-            self.cropLabel.alpha = 0
-            self.hiddenCropButton.isUserInteractionEnabled = false
+            self.textIconImageView.alpha = 0
+            self.textLabel.alpha = 0
+            self.hiddenTextButton.isUserInteractionEnabled = false
             
             self.beautifyIconImageView.alpha = 0
             self.beautifyLabel.alpha = 0
@@ -1323,6 +1361,56 @@ extension VideoController {
         }
     }
     
+    private func hideNonTextOptions() {
+        
+        UIView.animate(withDuration: 0.75) {
+            
+            self.flipIconImageView.alpha = 0
+            self.flipLabel.alpha = 0
+            self.hiddenFlipButton.isUserInteractionEnabled = false
+            
+            self.timerIconImageView.alpha = 0
+            self.timerLabel.alpha = 0
+            self.hiddenTimerButton.isUserInteractionEnabled = false
+            
+            self.stickersIconImageView.alpha = 0
+            self.stickersLabel.alpha = 0
+            self.hiddenStickersButton.isUserInteractionEnabled = false
+            
+            self.beautifyIconImageView.alpha = 0
+            self.beautifyLabel.alpha = 0
+            self.hiddenBeautifyButton.isUserInteractionEnabled = false
+            
+            self.cameraSelectionView.alpha = 0
+            self.recordButton.alpha = 0
+            self.recordButton.isUserInteractionEnabled = false
+            
+            self.shapeLayer.isHidden = true
+            self.trackLayer.isHidden = true
+            
+            self.cameraLabel.alpha = 0
+            self.liveLabel.alpha = 0
+            self.hiddenLiveButton.alpha = 0
+            self.hiddenLiveButton.isUserInteractionEnabled = false
+            
+            self.effectsLabel.alpha = 0
+            self.effectsIconImageView.alpha = 0
+            self.effectsButton.alpha = 0
+            self.effectsButton.isUserInteractionEnabled = false
+            
+            self.uploadLabel.alpha = 0
+            self.uploadIconImageView.alpha = 0
+            self.uploadVideoButton.alpha = 0
+            self.uploadVideoButton.isUserInteractionEnabled = false
+            
+        } completion: { success in
+            UIView.animate(withDuration: 0.70) {
+                self.textAButton.alpha = 1
+                self.selectTextColorButton.alpha = 1
+            }
+        }
+    }
+    
     private func showAllOptions() {
         self.faceLabel.alpha = 0
         self.faceLabel.isUserInteractionEnabled = false
@@ -1349,9 +1437,9 @@ extension VideoController {
             self.beautifyLabel.alpha = 1
             self.hiddenBeautifyButton.isUserInteractionEnabled = true
             
-            self.cropIconImageView.alpha = 1
-            self.cropLabel.alpha = 1
-            self.hiddenCropButton.isUserInteractionEnabled = true
+            self.textIconImageView.alpha = 1
+            self.textLabel.alpha = 1
+            self.hiddenTextButton.isUserInteractionEnabled = true
             
             self.stickersIconImageView.alpha = 1
             self.stickersLabel.alpha = 1
@@ -1385,6 +1473,9 @@ extension VideoController {
             self.uploadVideoButton.alpha = 1
             self.uploadVideoButton.isUserInteractionEnabled = true
             
+            self.textAButton.alpha = 0
+            self.selectTextColorButton.alpha = 0
+            
             self.shapeLayer.isHidden = false
             self.trackLayer.isHidden = false
         }
@@ -1405,9 +1496,9 @@ extension VideoController {
         self.beautifyIconImageView.isHidden = true
         self.hiddenBeautifyButton.isHidden = true
         
-        self.cropLabel.isHidden = true
-        self.cropIconImageView.isHidden = true
-        self.hiddenCropButton.isHidden = true
+        self.textLabel.isHidden = true
+        self.textIconImageView.isHidden = true
+        self.hiddenTextButton.isHidden = true
         
         self.stickersLabel.isHidden = true
         self.stickersIconImageView.isHidden = true
@@ -1461,10 +1552,12 @@ extension VideoController {
         
         if isShowingTimer {
             UIView.animate(withDuration: 0.75) {
+                self.timerIconImageView.tintColor = .kwiksGreen
                 self.timerContainer.alpha = 1
             }
         } else {
             UIView.animate(withDuration: 0.75) {
+                self.timerIconImageView.tintColor = .white
                 self.timerContainer.alpha = 0
             }
         }
@@ -1607,7 +1700,23 @@ extension VideoController {
         }
     }
     
-    @objc func didTapCrop() {
+    @objc func didTapText() {
+        self.isShowingTextOptions.toggle()
+        
+        if isShowingTextOptions {
+            self.hideNonTextOptions()
+            
+        } else {
+            self.showAllOptions()
+        }
+        
+    }
+    
+    @objc func didTapAText() {
+        print(#function)
+    }
+    
+    @objc func didTapSelectTextColor() {
         print(#function)
     }
     

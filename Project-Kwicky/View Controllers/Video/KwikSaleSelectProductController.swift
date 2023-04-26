@@ -10,7 +10,7 @@ import UIKit
 final class KwikSaleSelectProductController: UIViewController {
     var selectedCategory: String!
     
-    private var allProducts: [KwiksSaleItem] = []
+    private var allProducts: [KwiksSaleItem] = KwiksSaleItem.allTempItems
     private var filteredProducts: [KwiksSaleItem] = []
     private var searchCategories: String?
     private var featuredItems: [KwiksSaleItem] = KwiksSaleItem.tempFeaturedItems
@@ -137,6 +137,7 @@ final class KwikSaleSelectProductController: UIViewController {
 extension KwikSaleSelectProductController {
     private func configure() {
         self.view.backgroundColor = .white
+        self.filteredProducts = self.allProducts
     }
 }
 
@@ -201,13 +202,13 @@ extension KwikSaleSelectProductController {
 //MARK: - CollectionView DataSource & Delegate
 extension KwikSaleSelectProductController: UICollectionViewDelegate, UICollectionViewDataSource, UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return 12
+        return self.filteredProducts.count
     }
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: ProductCollectionViewCell.identifier, for: indexPath) as! ProductCollectionViewCell
-        //        let product = self.filteredCategories[indexPath.item]
-        //        cell.configure(with: category)
+        let item = self.filteredProducts[indexPath.item]
+        cell.configure(with: item)
         return cell
     }
     
@@ -227,25 +228,33 @@ extension KwikSaleSelectProductController: UICollectionViewDelegate, UICollectio
         let width = self.productCollectionView.frame.size.width
         return CGSize(width: width, height: 195)
     }
+    
+    func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
+        let reviewProductVC = KwiksSaleReviewSelectedProductViewController()
+        let selectedItem = self.filteredProducts[indexPath.item]
+        
+        reviewProductVC.selectedItem = selectedItem
+        self.navigationController?.pushViewController(reviewProductVC, animated: true)
+    }
 }
 
 //MARK: - UISearchBar Delegate
 extension KwikSaleSelectProductController: UISearchBarDelegate {
     func searchBar(_ searchBar: UISearchBar, textDidChange searchText: String) {
         
-//        if searchText != "" {
-//            self.filteredCategories = (tempCategories.filter { category in
-//
-//                self.searchCategories = category
-//                return searchCategories!.contains(searchText)
-//            })
-//
-//            self.categoryCollectionView.reloadData()
-//
-//        } else {
-//            self.filteredCategories = self.tempCategories
-//            self.categoryCollectionView.reloadData()
-//        }
+        if searchText != "" {
+            self.filteredProducts = (allProducts.filter { item in
+                
+                self.searchCategories = item.productName
+                return searchCategories!.contains(searchText)
+            })
+            
+            self.productCollectionView.reloadData()
+            
+        } else {
+            self.filteredProducts = self.allProducts
+            self.productCollectionView.reloadData()
+        }
     }
     
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {

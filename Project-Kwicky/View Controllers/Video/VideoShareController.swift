@@ -7,6 +7,7 @@
 
 import UIKit
 
+//TODO: Add global reference to Tagged People, Added Music, Privacy Settings & Sale item. Load those items here on viewDidAppear.
 final class VideoShareController: UIViewController {
     
     private lazy var customBackButton: UIButton = {
@@ -317,7 +318,8 @@ extension VideoShareController {
     }
     
     @objc func didTapEditPrivacy() {
-        print(#function)
+        let privacyVC = EditPrivacyController()
+        self.navigationController?.pushViewController(privacyVC, animated: true)
     }
     
     @objc func didTapTag() {
@@ -342,7 +344,10 @@ extension VideoShareController {
     
     @objc func didTapSale() {
         let saleVC = KwiksSaleSelectCategoryController()
-        self.navigationController?.pushViewController(saleVC, animated: true)
+        let navVC = UINavigationController(rootViewController: saleVC)
+        
+        navVC.navigationBar.isHidden = true
+        self.present(navVC, animated: true)
     }
     
     @objc func didTapShareNow() {

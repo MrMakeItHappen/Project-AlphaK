@@ -87,7 +87,7 @@ final class KwikSaleSelectProductController: UIViewController {
         
         var paragraphStyle = NSMutableParagraphStyle()
         paragraphStyle.lineHeightMultiple = 0.85
-        label.attributedText = NSMutableAttributedString(string: "Choose your \nproduct", attributes: [NSAttributedString.Key.paragraphStyle: paragraphStyle])
+        label.attributedText = NSMutableAttributedString(string: "Choose your product", attributes: [NSAttributedString.Key.paragraphStyle: paragraphStyle])
         
         return label
     }()
@@ -167,7 +167,7 @@ extension KwikSaleSelectProductController {
         self.chooseLabel.rightToSuperview(offset: -30)
         
         self.view.addSubview(self.searchBar)
-        self.searchBar.topToBottom(of: self.chooseLabel, offset: 22)
+        self.searchBar.topToBottom(of: self.chooseLabel, offset: 20)
         self.searchBar.left(to: self.chooseLabel)
         self.searchBar.right(to: self.chooseLabel)
         
@@ -224,10 +224,10 @@ extension KwikSaleSelectProductController: UICollectionViewDelegate, UICollectio
         return UICollectionReusableView()
     }
     
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
-        let width = self.productCollectionView.frame.size.width
-        return CGSize(width: width, height: 195)
-    }
+//    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, referenceSizeForHeaderInSection section: Int) -> CGSize {
+//        let width = self.productCollectionView.frame.size.width
+//        return CGSize(width: width, height: 195)
+//    }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         let reviewProductVC = KwiksSaleReviewSelectedProductViewController()

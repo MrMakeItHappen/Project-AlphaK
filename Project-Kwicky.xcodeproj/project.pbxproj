@@ -225,19 +225,19 @@
 		CA20FE2129EDA3FB0089A6B8 /* Video */ = {
 			isa = PBXGroup;
 			children = (
+				CA55DF9C29D110FE00C54B35 /* AddMusicToVideoController.swift */,
+				CAE3956F29F6105200ECB758 /* EditPrivacyController.swift */,
 				CA55DF5629C4D59800C54B35 /* GoLiveVideoController.swift */,
+				CAE3956429F2E0E500ECB758 /* KwikSaleSelectProductController.swift */,
 				CA55DF4829B8DE4A00C54B35 /* KwiksLiveVideoPlayerController.swift */,
+				CAE3956B29F33D4400ECB758 /* KwiksSaleReviewSelectedProductViewController.swift */,
+				CAE3955E29F046C200ECB758 /* KwiksSaleSelectCategoryController.swift */,
 				CA55DF4629B8DE3A00C54B35 /* KwiksVideoPlayerController.swift */,
 				CA55DF5229BD2AFE00C54B35 /* KwikyController.swift */,
-				CA55DF9C29D110FE00C54B35 /* AddMusicToVideoController.swift */,
+				CAE3956D29F6014A00ECB758 /* ProductAddedController.swift */,
+				CA20FE2229EDA4560089A6B8 /* TagPeopleController.swift */,
 				CABAA31929A2CB8000C5EBC6 /* VideoController.swift */,
 				CA55DF5429C3C54E00C54B35 /* VideoShareController.swift */,
-				CA20FE2229EDA4560089A6B8 /* TagPeopleController.swift */,
-				CAE3955E29F046C200ECB758 /* KwiksSaleSelectCategoryController.swift */,
-				CAE3956D29F6014A00ECB758 /* ProductAddedController.swift */,
-				CAE3956429F2E0E500ECB758 /* KwikSaleSelectProductController.swift */,
-				CAE3956B29F33D4400ECB758 /* KwiksSaleReviewSelectedProductViewController.swift */,
-				CAE3956F29F6105200ECB758 /* EditPrivacyController.swift */,
 			);
 			path = Video;
 			sourceTree = "<group>";

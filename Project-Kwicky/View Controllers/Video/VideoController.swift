@@ -871,7 +871,7 @@ final class VideoController: UIViewController {
         self.configure()
         self.layoutTopUI()
         self.layoutBottomUI()
-        self.layoutLeadingUI()
+        self.layoutTrailingUI()
         
         _allAvailableVideoMusic = Music.allTempSongs
     }
@@ -917,7 +917,7 @@ extension VideoController {
         self.mainContainerBottomConstraint?.isActive = true
         
         //Temp. Remove after testing
-        let backgroundImage = UIImage(named: "FemalePlaceholder02")
+        let backgroundImage = UIImage(named: "FemalePlaceholder05")
         let backgroundImageView = UIImageView(frame: .zero)
         backgroundImageView.contentMode = .scaleAspectFill
         backgroundImageView.image = backgroundImage
@@ -1042,9 +1042,9 @@ extension VideoController {
         self.videoSetupButton.bottomToSuperview(usingSafeArea: true)
     }
     
-    private func layoutLeadingUI() {
+    private func layoutTrailingUI() {
         self.containerView.addSubview(self.stickersLabel)
-        self.stickersLabel.leftToSuperview(offset: 23)
+        self.stickersLabel.rightToSuperview(offset: -23)
         self.stickersLabel.bottomToTop(of: self.recordButton, offset: -80)
         
         self.containerView.addSubview(self.stickersIconImageView)
@@ -1137,7 +1137,7 @@ extension VideoController {
         
         self.containerView.addSubview(self.timerContainer)
         self.timerContainer.top(to: self.timerIconImageView, offset: -4)
-        self.timerContainer.leftToRight(of: self.timerIconImageView, offset: 20)
+        self.timerContainer.rightToLeft(of: self.timerIconImageView, offset: -20)
         
         self.timerContainer.addSubview(self.tenSecondButton)
         self.tenSecondButton.topToSuperview(offset: 8)

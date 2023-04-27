@@ -20,6 +20,20 @@ extension UIButton {
         button.height(16)
         return button
     }
+    
+    static func createSettingsToggleButton(with selector: Selector, for controller: UIViewController) -> UIButton {
+        let button = UIButton(type: .custom)
+        button.translatesAutoresizingMaskIntoConstraints = false
+        button.layer.masksToBounds = true
+        button.isSelected = false
+        button.backgroundColor = .clear
+        button.setImage(UIImage(named: "IsOnIcon"), for: .selected)
+        button.setImage(UIImage(named: "IsOffIcon"), for: .normal)
+        button.addTarget(controller, action: selector, for: .touchUpInside)
+        button.height(26)
+        button.width(48)
+        return button
+    }
 }
 
 final class AnimatedButton: UIButton {

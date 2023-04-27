@@ -34,34 +34,18 @@ final class PrivacyController: UIViewController {
         return label
     }()
     
-    private let privateContainerView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.clipsToBounds = true
-        view.backgroundColor = .settingsContainer
-        view.layer.cornerRadius = 9
-        return view
-    }()
+    //Private Account Section
+    private let privateContainerView = UIView.createSettingsContainer()
+    private let privateLabel = UILabel.createSettingsLabel(with: "Private Account")
+    private let privateSublabel = UILabel.createSettingsSublabel(with: "Only friends will be able to view your videos.")
+    private lazy var privateToggle = UIButton.createSettingsToggleButton(with: #selector(didTapPrivate), for: self)
     
-    private let activityContainerView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.clipsToBounds = true
-        view.backgroundColor = .settingsContainer
-        view.layer.cornerRadius = 9
-        return view
-    }()
+    //Activity Status Section
+    private let activityContainerView = UIView.createSettingsContainer()
     
-    
-    
-    private let interactionsContainerView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.clipsToBounds = true
-        view.backgroundColor = .settingsContainer
-        view.layer.cornerRadius = 9
-        return view
-    }()
+    //Interactions Section
+    private let interactionsHeader = UILabel.createSettingsHeaderLabel(with: "Interactions")
+    private let interactionsContainerView = UIView.createSettingsContainer()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -99,5 +83,29 @@ extension PrivacyController {
 extension PrivacyController {
     @objc func didTapBack() {
         self.navigationController?.popViewController(animated: true)
+    }
+    
+    @objc func didTapPrivate() {
+        print(#function)
+    }
+    
+    @objc func didTapActivity() {
+        print(#function)
+    }
+    
+    @objc func didTapPost() {
+        print(#function)
+    }
+    
+    @objc func didTapComments() {
+        print(#function)
+    }
+    
+    @objc func didTapMentions() {
+        print(#function)
+    }
+    
+    @objc func didTapDirect() {
+        print(#function)
     }
 }

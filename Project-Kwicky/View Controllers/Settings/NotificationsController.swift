@@ -74,42 +74,42 @@ final class NotificationsController: UIViewController {
     private let interactionContainerView = UIView.createSettingsContainer()
     
     private let likeLabel = UILabel.createSettingsLabel(with: "Likes")
-    private lazy var likeToggle = self.createToggleButton(with: #selector(didTapLikes))
+    private lazy var likeToggle = UIButton.createSettingsToggleButton(with: #selector(didTapLikes), for: self)
     
     private let commentsLabel = UILabel.createSettingsLabel(with: "Comments")
-    private lazy var commentToggle = self.createToggleButton(with: #selector(didTapComments))
+    private lazy var commentToggle = UIButton.createSettingsToggleButton(with: #selector(didTapComments), for: self)
     
     private let newFollowersLabel = UILabel.createSettingsLabel(with: "New Followers")
-    private lazy var followerToggle = self.createToggleButton(with: #selector(didTapNewFollowers))
+    private lazy var followerToggle = UIButton.createSettingsToggleButton(with: #selector(didTapNewFollowers), for: self)
     
     private let mentionsLabel = UILabel.createSettingsLabel(with: "Mentions and tags")
-    private lazy var mentionsToggle = self.createToggleButton(with: #selector(didTapMentions))
+    private lazy var mentionsToggle = UIButton.createSettingsToggleButton(with: #selector(didTapMentions), for: self)
     
     private let repostLabel = UILabel.createSettingsLabel(with: "Reposts")
-    private lazy var repostToggle = self.createToggleButton(with: #selector(didTapRepost))
+    private lazy var repostToggle = UIButton.createSettingsToggleButton(with: #selector(didTapRepost), for: self)
     
     //Messages Section
     private let messagesHeaderLabel = UILabel.createSettingsHeaderLabel(with: "Messages")
     private let messagesContainerView = UIView.createSettingsContainer()
     
     private let directMessageLabel = UILabel.createSettingsLabel(with: "Direct messages")
-    private lazy var directToggle = self.createToggleButton(with: #selector(didTapDirectMessages))
+    private lazy var directToggle = UIButton.createSettingsToggleButton(with: #selector(didTapDirectMessages), for: self)
     
     private let previewLabel = UILabel.createSettingsLabel(with: "Direct Messages Preview")
-    private lazy var previewToggle = self.createToggleButton(with: #selector(didTapDirectPreview))
+    private lazy var previewToggle = UIButton.createSettingsToggleButton(with: #selector(didTapDirectPreview), for: self)
     
     private let callingLabel = UILabel.createSettingsLabel(with: "Calling")
-    private lazy var callingToggle = self.createToggleButton(with: #selector(didTapCalling))
+    private lazy var callingToggle = UIButton.createSettingsToggleButton(with: #selector(didTapCalling), for: self)
     
     //Friends Section
     private let friendsHeaderLabel = UILabel.createSettingsHeaderLabel(with: "Friends")
     private let friendsContainerView = UIView.createSettingsContainer()
     
     private let newVideosLabel = UILabel.createSettingsLabel(with: "New Videos")
-    private lazy var newVideoToggle = self.createToggleButton(with: #selector(didTapNewVideos))
+    private lazy var newVideoToggle = UIButton.createSettingsToggleButton(with: #selector(didTapNewVideos), for: self)
     
     private let liveVideoLabel = UILabel.createSettingsLabel(with: "LIVE Videos")
-    private lazy var liveVideoToggle = self.createToggleButton(with: #selector(didTapLiveVideos))
+    private lazy var liveVideoToggle = UIButton.createSettingsToggleButton(with: #selector(didTapLiveVideos), for: self)
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -291,20 +291,6 @@ extension NotificationsController {
         button.tintColor = UIColor.clear
         button.backgroundColor = UIColor.clear
         button.addTarget(self, action: selector, for: .touchUpInside)
-        return button
-    }
-    
-    private func createToggleButton(with selector: Selector) -> UIButton {
-        let button = UIButton(type: .custom)
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.layer.masksToBounds = true
-        button.isSelected = false
-        button.backgroundColor = .clear
-        button.setImage(UIImage(named: "IsOnIcon"), for: .selected)
-        button.setImage(UIImage(named: "IsOffIcon"), for: .normal)
-        button.addTarget(self, action: selector, for: .touchUpInside)
-        button.height(26)
-        button.width(48)
         return button
     }
 }

@@ -41,28 +41,17 @@ final class AccountController: UIViewController {
     private let downloadLabel = UILabel.createSettingsLabel(with: "Download Your Data")
     private let deactivateLabel = UILabel.createSettingsLabel(with: "Deactivate Or Delete Account")
     
-    private lazy var accountChevron = UIImageView.createChevron()
-    private lazy var passwordChevron = UIImageView.createChevron()
-    private lazy var downloadChevron = UIImageView.createChevron()
-    private lazy var deactivateChevron = UIImageView.createChevron()
+    private let accountChevron = UIImageView.createChevron()
+    private let passwordChevron = UIImageView.createChevron()
+    private let downloadChevron = UIImageView.createChevron()
+    private let deactivateChevron = UIImageView.createChevron()
     
     private lazy var hiddenAccountButton = self.createHiddenButton(with: #selector(didTapAccountInfo))
     private lazy var hiddenPasswordButton = self.createHiddenButton(with: #selector(didTapPassword))
     private lazy var hiddenDownloadButton = self.createHiddenButton(with: #selector(didTapDownloadData))
     private lazy var hiddenDeactivateButton = self.createHiddenButton(with: #selector(didTapDeactivate))
     
-    private let subTitleLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Get a copy of your KWIKS data"
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.backgroundColor = .clear
-        label.font = UIFont.segoeUISemiBold(size: 14)
-        label.numberOfLines = 1
-        label.adjustsFontSizeToFitWidth = false
-        label.textAlignment = .left
-        label.textColor = UIColor(hexString: "#A9A9A9")
-        return label
-    }()
+    private let subTitleLabel = UILabel.createSettingsSublabel(with: "Get a copy of your KWIKS data")
     
     override func viewDidLoad() {
         super.viewDidLoad()

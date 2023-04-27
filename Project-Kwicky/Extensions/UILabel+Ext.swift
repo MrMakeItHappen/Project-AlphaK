@@ -34,4 +34,17 @@ extension UILabel {
         label.textColor = UIColor.black
         return label
     }
+    
+    static func createSettingsSublabel(with text: String) -> UILabel {
+        let label = UILabel()
+        label.text = text
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.backgroundColor = .clear
+        label.font = UIFont.segoeUISemiBold(size: 14)
+        label.numberOfLines = 0
+        label.adjustsFontSizeToFitWidth = false
+        label.textAlignment = .left
+        label.textColor = UIColor(hexString: "#A9A9A9")
+        return label
+    }
 }

@@ -110,7 +110,7 @@ final class SettingsController: UIViewController {
     private let settingsCollectionView: UICollectionView = {
         let layout = UICollectionViewFlowLayout()
         layout.scrollDirection = .vertical
-        layout.itemSize = CGSize(width: 360, height: 60)
+        layout.itemSize = CGSize(width: 360, height: 50)
         layout.minimumInteritemSpacing = 1
         layout.minimumLineSpacing = 1
         
@@ -120,8 +120,21 @@ final class SettingsController: UIViewController {
         collectionView.showsHorizontalScrollIndicator = false
         collectionView.showsVerticalScrollIndicator = false
         collectionView.register(SettingsCollectionViewCell.self, forCellWithReuseIdentifier: SettingsCollectionViewCell.identifier)
-        
+        collectionView.height(352)
         return collectionView
+    }()
+    
+    private let versionLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Version\n0.1"
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.backgroundColor = .clear
+        label.font = UIFont.segoeUIRegular(size: 14)
+        label.numberOfLines = 2
+        label.adjustsFontSizeToFitWidth = false
+        label.textAlignment = .left
+        label.textColor = UIColor.kwiksTextBlack
+        return label
     }()
 
     override func viewDidLoad() {
@@ -177,7 +190,10 @@ extension SettingsController {
         self.settingsCollectionView.topToBottom(of: self.searchBar, offset: 6)
         self.settingsCollectionView.leftToSuperview(offset: 13)
         self.settingsCollectionView.rightToSuperview(offset: -13)
-        self.settingsCollectionView.bottomToSuperview()
+        
+        self.contentContainerView.addSubview(self.versionLabel)
+        self.versionLabel.leftToSuperview(offset: 34)
+        self.versionLabel.bottomToSuperview(offset: -20, usingSafeArea: true)
     }
 }
 //MARK: - @objc
@@ -210,31 +226,19 @@ extension SettingsController: UICollectionViewDelegate, UICollectionViewDataSour
             self.navigationController?.pushViewController(notificationsVC, animated: true)
             
         case 2:
-            print("Creator Tapped")
-            
-        case 3:
             print("Privacy Tapped")
             
-        case 4:
-            print("Supervision Tapped")
-            
-        case 5:
+        case 3:
             print("Security Tapped")
             
-        case 6:
-            print("Payments Tapped")
-            
-        case 7:
-            print("Ads Tapped")
-            
-        case 8:
+        case 4:
             let accountVC = AccountController()
             self.navigationController?.pushViewController(accountVC, animated: true)
             
-        case 9:
+        case 5:
             print("Help Tapped")
             
-        case 10:
+        case 6:
             print("About Tapped")
             
         default:

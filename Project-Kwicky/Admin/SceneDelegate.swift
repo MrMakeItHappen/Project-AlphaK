@@ -19,7 +19,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let window = UIWindow(windowScene: sceneWindow)
         
-        let decisionController = NotificationsController()
+        let decisionController = SettingsController()
 //        let decisionController = DecisionController()
 //        let decisionController = TabViewController()
         let navigationController = UINavigationController(rootViewController: decisionController)

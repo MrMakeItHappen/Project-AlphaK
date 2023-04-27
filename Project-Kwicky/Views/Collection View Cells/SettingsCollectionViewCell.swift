@@ -14,11 +14,11 @@ final class SettingsCollectionViewCell: UICollectionViewCell {
         let label = UILabel()
         label.translatesAutoresizingMaskIntoConstraints = false
         label.backgroundColor = .clear
-        label.font = .segoeUIRegular(size: 20)
+        label.font = .segoeUIRegular(size: 18)
         label.numberOfLines = 1
         label.adjustsFontSizeToFitWidth = true
         label.textAlignment = .left
-        label.textColor = .black
+        label.textColor = .kwiksTextBlack
         return label
     }()
     
@@ -31,8 +31,8 @@ final class SettingsCollectionViewCell: UICollectionViewCell {
         imageView.backgroundColor = .clear
         imageView.layer.masksToBounds = true
         imageView.clipsToBounds = true
-        imageView.height(18)
-        imageView.width(18)
+        imageView.height(14)
+        imageView.width(14)
         return imageView
     }()
     

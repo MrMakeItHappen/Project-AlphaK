@@ -10,6 +10,8 @@ import KwiksSystemsPopups
 
 //TODO: Fetch any available music here. Can be processed in the background while user makes video adjustments.
 //TODO: Convert timerCount to date. Default countdown should be 3 minutes.
+//TODO: Fix edge case where a user can tap beautify, and then tap timer.
+//TODO: Fix edge case where a user can still interact with Text Box after setting location
 
 final class VideoController: UIViewController {
     var userCreatedVideo: KwiksVideo?
@@ -30,6 +32,7 @@ final class VideoController: UIViewController {
     private var isShowingStickers = false
     private var isShowingTextOptions = false
     private var isRecording = false
+    private var isDraggingView = false
     private var mainContainerBottomConstraint: NSLayoutConstraint?
     private var popUpAlert = KwiksSystemPopups()
     
@@ -188,8 +191,9 @@ final class VideoController: UIViewController {
         imageView.layer.masksToBounds = true
         imageView.height(20)
         imageView.width(20)
+        imageView.tintColor = .white
         
-        let image = UIImage(named: "EffectsIcon")
+        let image = UIImage(named: "EffectsIcon")?.withTintColor(.white, renderingMode: .alwaysTemplate)
         imageView.image = image
         return imageView
     }()
@@ -202,7 +206,7 @@ final class VideoController: UIViewController {
         button.backgroundColor = UIColor.clear
         button.layer.cornerRadius = 14
         button.layer.borderWidth = 1
-        button.layer.borderColor = UIColor(hexString: "#575757").cgColor
+        button.layer.borderColor = UIColor.white.cgColor
         return button
     }()
     
@@ -228,8 +232,9 @@ final class VideoController: UIViewController {
         imageView.layer.masksToBounds = true
         imageView.height(20)
         imageView.width(20)
+        imageView.tintColor = .white
         
-        let image = UIImage(named: "UploadImageIcon")
+        let image = UIImage(named: "UploadImageIcon")?.withRenderingMode(.alwaysTemplate)
         imageView.image = image
         return imageView
     }()
@@ -242,7 +247,7 @@ final class VideoController: UIViewController {
         button.backgroundColor = UIColor.clear
         button.layer.cornerRadius = 14
         button.layer.borderWidth = 1
-        button.layer.borderColor = UIColor(hexString: "#575757").cgColor
+        button.layer.borderColor = UIColor.white.cgColor
         return button
     }()
     
@@ -465,8 +470,9 @@ final class VideoController: UIViewController {
         imageView.layer.masksToBounds = true
         imageView.height(28)
         imageView.width(28)
+        imageView.tintColor = .white
         
-        let image = UIImage(named: "TextIcon")
+        let image = UIImage(named: "TextIcon")?.withRenderingMode(.alwaysTemplate)
         imageView.image = image
         return imageView
     }()
@@ -508,6 +514,21 @@ final class VideoController: UIViewController {
         return button
     }()
     
+    private let addedTextLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Added My Text "
+        label.isUserInteractionEnabled = false
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.backgroundColor = .black
+        label.font = UIFont.segoeUIBold(size: 30)
+        label.numberOfLines = 0
+        label.adjustsFontSizeToFitWidth = false
+        label.textAlignment = .center
+        label.textColor = UIColor.white
+        label.alpha = 0
+        return label
+    }()
+    
     private let beautifyLabel: UILabel = {
         let label = UILabel()
         label.text = "Beautify"
@@ -530,8 +551,9 @@ final class VideoController: UIViewController {
         imageView.layer.masksToBounds = true
         imageView.height(28)
         imageView.width(28)
+        imageView.tintColor = .white
         
-        let image = UIImage(named: "BeautifyIcon")
+        let image = UIImage(named: "BeautifyIcon")?.withRenderingMode(.alwaysTemplate)
         imageView.image = image
         return imageView
     }()
@@ -960,12 +982,12 @@ extension VideoController {
         self.cameraLightButton.leftToRight(of: self.addMusicContainerView, offset: 80)
         
         self.containerView.addSubview(self.textAButton)
-        self.textAButton.topToBottom(of: self.cameraLightButton, offset: 26)
-        self.textAButton.centerX(to: self.cameraLightButton)
+        self.textAButton.topToBottom(of: self.closeButton, offset: 26)
+        self.textAButton.centerX(to: self.closeButton)
         
         self.containerView.addSubview(self.selectTextColorButton)
         self.selectTextColorButton.topToBottom(of: self.textAButton, offset: 20)
-        self.selectTextColorButton.centerX(to: self.cameraLightButton)
+        self.selectTextColorButton.centerX(to: self.closeButton)
     }
     
     private func layoutBottomUI() {
@@ -1106,6 +1128,9 @@ extension VideoController {
         self.hiddenTextButton.right(to: self.textLabel, offset: 2)
         self.hiddenTextButton.left(to: self.textLabel, offset: -2)
         self.hiddenTextButton.bottom(to: self.textLabel, offset: 2)
+        
+        self.containerView.addSubview(self.addedTextLabel)
+        self.addedTextLabel.centerInSuperview()
         
         self.containerView.addSubview(self.beautifyLabel)
         self.beautifyLabel.centerX(to: self.stickersLabel)
@@ -1249,31 +1274,6 @@ extension VideoController {
     private func hideNonBeautifyOptions() {
         
         UIView.animate(withDuration: 0.75) {
-            self.flipIconImageView.alpha = 0
-            self.flipLabel.alpha = 0
-            self.hiddenFlipButton.isUserInteractionEnabled = false
-            
-            self.timerIconImageView.alpha = 0
-            self.timerLabel.alpha = 0
-            self.hiddenTimerButton.isUserInteractionEnabled = false
-            
-            self.textIconImageView.alpha = 0
-            self.textLabel.alpha = 0
-            self.hiddenTextButton.isUserInteractionEnabled = false
-            
-            self.stickersIconImageView.alpha = 0
-            self.stickersLabel.alpha = 0
-            self.hiddenStickersButton.isUserInteractionEnabled = false
-            
-            self.closeButton.alpha = 0
-            self.closeButton.isUserInteractionEnabled = false
-            
-            self.addMusicContainerView.alpha = 0
-            self.addMusicContainerView.isUserInteractionEnabled = false
-            
-            self.cameraLightButton.alpha = 0
-            self.cameraLightButton.isUserInteractionEnabled = false
-            
             self.cameraSelectionView.alpha = 0
             self.recordButton.alpha = 0
             self.recordButton.isUserInteractionEnabled = false
@@ -1364,22 +1364,6 @@ extension VideoController {
     private func hideNonTextOptions() {
         
         UIView.animate(withDuration: 0.75) {
-            
-            self.flipIconImageView.alpha = 0
-            self.flipLabel.alpha = 0
-            self.hiddenFlipButton.isUserInteractionEnabled = false
-            
-            self.timerIconImageView.alpha = 0
-            self.timerLabel.alpha = 0
-            self.hiddenTimerButton.isUserInteractionEnabled = false
-            
-            self.stickersIconImageView.alpha = 0
-            self.stickersLabel.alpha = 0
-            self.hiddenStickersButton.isUserInteractionEnabled = false
-            
-            self.beautifyIconImageView.alpha = 0
-            self.beautifyLabel.alpha = 0
-            self.hiddenBeautifyButton.isUserInteractionEnabled = false
             
             self.cameraSelectionView.alpha = 0
             self.recordButton.alpha = 0
@@ -1655,8 +1639,17 @@ extension VideoController {
         
         if isShowingBeautify {
             self.hideNonBeautifyOptions()
+            
+            UIView.animate(withDuration: 0.60) {
+                self.beautifyIconImageView.tintColor = .kwiksGreen
+            }
+            
         } else {
             self.showAllOptions()
+            
+            UIView.animate(withDuration: 0.60) {
+                self.beautifyIconImageView.tintColor = .white
+            }
         }
     }
     
@@ -1706,10 +1699,19 @@ extension VideoController {
         if isShowingTextOptions {
             self.hideNonTextOptions()
             
+            UIView.animate(withDuration: 0.60) {
+                self.textIconImageView.tintColor = .kwiksGreen
+                self.addedTextLabel.alpha = 1
+            }
+            
         } else {
             self.showAllOptions()
+            
+            UIView.animate(withDuration: 0.60) {
+                self.textIconImageView.tintColor = .white
+                self.addedTextLabel.alpha = 0
+            }
         }
-        
     }
     
     @objc func didTapAText() {
@@ -2024,5 +2026,32 @@ extension VideoController: UICollectionViewDataSource, UICollectionViewDelegate 
             cell.iconImageView.tintColor = UIColor.white
             cell.iconImageView.layer.borderWidth = 1
         }
+    }
+}
+//MARK: - UITouch Events
+extension VideoController {
+    override func touchesBegan(_ touches: Set<UITouch>, with event: UIEvent?) {
+        guard let touch = touches.first else { return }
+        
+        let location = touch.location(in: self.addedTextLabel)
+        
+        if self.addedTextLabel.bounds.contains(location) {
+            self.isDraggingView = true
+        }
+    }
+    
+    override func touchesMoved(_ touches: Set<UITouch>, with event: UIEvent?) {
+        guard self.isDraggingView, let touch = touches.first else { return }
+        
+        let viewControllerLocation = touch.location(in: self.view)
+        let xCenter = self.addedTextLabel.frame.size.width / 2
+        let yCenter = self.addedTextLabel.frame.size.height / 2
+        
+        self.addedTextLabel.frame.origin.x = viewControllerLocation.x - xCenter
+        self.addedTextLabel.frame.origin.y = viewControllerLocation.y - yCenter
+    }
+    
+    override func touchesEnded(_ touches: Set<UITouch>, with event: UIEvent?) {
+        self.isDraggingView = false
     }
 }

@@ -240,6 +240,8 @@ extension SettingsController: UICollectionViewDelegate, UICollectionViewDataSour
             
         case 6:
             print("About Tapped")
+            let aboutVC = AboutController()
+            self.navigationController?.pushViewController(aboutVC, animated: true)
             
         default:
             print("Something went wrong!")

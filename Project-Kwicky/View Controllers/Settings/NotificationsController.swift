@@ -417,9 +417,11 @@ extension NotificationsController {
     
     @objc func didTapNewVideos() {
         print(#function)
+        self.newVideoToggle.isSelected.toggle()
     }
     
     @objc func didTapLiveVideos() {
         print(#function)
+        self.liveVideoToggle.isSelected.toggle()
     }
 }

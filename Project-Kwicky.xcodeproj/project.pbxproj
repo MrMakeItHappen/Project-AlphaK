@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		CA1D1A3D29FB02780015F1A2 /* AboutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1D1A3C29FB02780015F1A2 /* AboutController.swift */; };
+		CA1D1A3F29FB02880015F1A2 /* FAQController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1D1A3E29FB02880015F1A2 /* FAQController.swift */; };
 		CA20FE2029ED8A590089A6B8 /* FeaturedMusicCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA20FE1F29ED8A590089A6B8 /* FeaturedMusicCollectionViewCell.swift */; };
 		CA20FE2329EDA4560089A6B8 /* TagPeopleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA20FE2229EDA4560089A6B8 /* TagPeopleController.swift */; };
 		CA55DF1C29A674F000C54B35 /* FollowInviteFriendsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA55DF1B29A674F000C54B35 /* FollowInviteFriendsController.swift */; };
@@ -110,6 +112,8 @@
 		044932EAEBFED5A84724F8CC /* Pods-Project-Kwicky.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Project-Kwicky.debug.xcconfig"; path = "Target Support Files/Pods-Project-Kwicky/Pods-Project-Kwicky.debug.xcconfig"; sourceTree = "<group>"; };
 		3A10B6F05DB8FEB45B77C9FE /* Pods-Project-Kwicky.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Project-Kwicky.release.xcconfig"; path = "Target Support Files/Pods-Project-Kwicky/Pods-Project-Kwicky.release.xcconfig"; sourceTree = "<group>"; };
 		3FF4CC60EA800B5EA4493BF7 /* Pods_Project_Kwicky.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_Project_Kwicky.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		CA1D1A3C29FB02780015F1A2 /* AboutController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutController.swift; sourceTree = "<group>"; };
+		CA1D1A3E29FB02880015F1A2 /* FAQController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQController.swift; sourceTree = "<group>"; };
 		CA20FE1F29ED8A590089A6B8 /* FeaturedMusicCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedMusicCollectionViewCell.swift; sourceTree = "<group>"; };
 		CA20FE2229EDA4560089A6B8 /* TagPeopleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagPeopleController.swift; sourceTree = "<group>"; };
 		CA55DF1B29A674F000C54B35 /* FollowInviteFriendsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowInviteFriendsController.swift; sourceTree = "<group>"; };
@@ -229,6 +233,8 @@
 				CA55DF1B29A674F000C54B35 /* FollowInviteFriendsController.swift */,
 				CA55DF1F29A7D32100C54B35 /* NotificationsController.swift */,
 				CA55DF2729AA94EF00C54B35 /* SettingsController.swift */,
+				CA1D1A3C29FB02780015F1A2 /* AboutController.swift */,
+				CA1D1A3E29FB02880015F1A2 /* FAQController.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -333,7 +339,6 @@
 		CAA90C902994197A0013A654 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				CA1D1A3B29FB02080015F1A2 /* Settings */,
 				CAA90C7F2994171C0013A654 /* DecisionController.swift */,
 				CABAA31129A2C95A00C5EBC6 /* HomeController.swift */,
 				CABAA31529A2C9C300C5EBC6 /* InboxController.swift */,
@@ -343,6 +348,7 @@
 				CA55DF2D29AC06F600C54B35 /* UploadImageController.swift */,
 				CABAA31729A2C9D000C5EBC6 /* WalletController.swift */,
 				CABAA31029A2C92000C5EBC6 /* Onboarding */,
+				CA1D1A3B29FB02080015F1A2 /* Settings */,
 				CA20FE2129EDA3FB0089A6B8 /* Video */,
 				CABACC2429D8929700026CAE /* VoiceVideoCalls */,
 			);
@@ -677,6 +683,7 @@
 				CA55DF1C29A674F000C54B35 /* FollowInviteFriendsController.swift in Sources */,
 				CAE3956529F2E0E500ECB758 /* KwikSaleSelectProductController.swift in Sources */,
 				CA55DF5329BD2AFE00C54B35 /* KwikyController.swift in Sources */,
+				CA1D1A3F29FB02880015F1A2 /* FAQController.swift in Sources */,
 				CAE3956C29F33D4400ECB758 /* KwiksSaleReviewSelectedProductViewController.swift in Sources */,
 				CA55DF2429A7E8CF00C54B35 /* UILabel+Ext.swift in Sources */,
 				CA55DF2E29AC06F600C54B35 /* UploadImageController.swift in Sources */,
@@ -687,6 +694,7 @@
 				CA20FE2329EDA4560089A6B8 /* TagPeopleController.swift in Sources */,
 				CA55DF3829AF9DB700C54B35 /* KwiksVideoAnalytics.swift in Sources */,
 				CAE3957229F97D3D00ECB758 /* SimpleLoginController.swift in Sources */,
+				CA1D1A3D29FB02780015F1A2 /* AboutController.swift in Sources */,
 				CA8D702929E8A96F008A11C0 /* Sticker.swift in Sources */,
 				CA55DF4929B8DE4A00C54B35 /* KwiksLiveVideoPlayerController.swift in Sources */,
 				CABACC2A29DA211F00026CAE /* AddParticipantsCell.swift in Sources */,

@@ -18,7 +18,7 @@ final class SettingsController: UIViewController {
         imageView.isUserInteractionEnabled = false
         imageView.backgroundColor = .clear
         imageView.layer.masksToBounds = true
-        imageView.layer.cornerRadius = 0
+        imageView.layer.cornerRadius = 30
         
         let image = UIImage(named: "SettingsBackground")
         imageView.image = image
@@ -66,7 +66,7 @@ final class SettingsController: UIViewController {
         button.layer.masksToBounds = true
         button.clipsToBounds = true
         button.addTarget(self, action: #selector(didTapClose), for: .touchUpInside)
-        button.setImage(UIImage(named: "CloseButton")?.withTintColor(.white), for: .normal)
+        button.setImage(UIImage(named: "CloseButton")?.withTintColor(.black), for: .normal)
         button.height(buttonSize)
         button.width(buttonSize)
         return button
@@ -148,7 +148,7 @@ extension SettingsController {
         
         self.backgroundImageView.addSubview(self.userProfileImageView)
         self.userProfileImageView.topToSuperview(offset: 28)
-        self.userProfileImageView.leftToSuperview(offset: 49)
+        self.userProfileImageView.leftToSuperview(offset: 31)
         
         self.backgroundImageView.addSubview(self.userNameLabel)
         self.userNameLabel.centerY(to: self.userProfileImageView)
@@ -156,10 +156,10 @@ extension SettingsController {
         
         self.view.addSubview(self.closeButton)
         self.closeButton.centerY(to: self.userProfileImageView)
-        self.closeButton.rightToSuperview(offset: -49)
+        self.closeButton.rightToSuperview(offset: -31)
         
         self.backgroundImageView.addSubview(self.settingsLabel)
-        self.settingsLabel.topToBottom(of: self.userProfileImageView, offset: 10)
+        self.settingsLabel.topToBottom(of: self.userProfileImageView, offset: 5)
         self.settingsLabel.left(to: self.userProfileImageView)
         
         self.view.addSubview(self.contentContainerView)
@@ -202,7 +202,6 @@ extension SettingsController: UICollectionViewDelegate, UICollectionViewDataSour
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         switch indexPath.item {
         case 0:
-            print(#function)
             let followInviteVC = FollowInviteFriendsController()
             self.navigationController?.pushViewController(followInviteVC, animated: true)
             

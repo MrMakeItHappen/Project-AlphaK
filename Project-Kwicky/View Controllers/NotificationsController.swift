@@ -64,10 +64,12 @@ final class NotificationsController: UIViewController {
         return view
     }()
     
+    //In-App Section
     private let inAppLabel = UILabel.createSettingsLabel(with: "In-app notifications")
     private let inAppChevron = UIImageView.createChevron()
     private lazy var inAppHiddenButton = self.createHiddenButton(with: #selector(didTapInApp))
     
+    //Interactions Section
     private let likeLabel = UILabel.createSettingsLabel(with: "Likes")
     private lazy var likeToggle = self.createToggleButton(with: #selector(didTapLikes))
     
@@ -80,19 +82,27 @@ final class NotificationsController: UIViewController {
     private let mentionsLabel = UILabel.createSettingsLabel(with: "Mentions and tags")
     private lazy var mentionsToggle = self.createToggleButton(with: #selector(didTapMentions))
     
-    private let profileViewsLabel = UILabel.createSettingsLabel(with: "Profile views")
-    private lazy var profileToggle = self.createToggleButton(with: #selector(didTapProfile))
-    
     private let repostLabel = UILabel.createSettingsLabel(with: "Reposts")
     private lazy var repostToggle = self.createToggleButton(with: #selector(didTapRepost))
     
+    //Messages Section
     private let directMessageLabel = UILabel.createSettingsLabel(with: "Direct messages")
     private lazy var directToggle = self.createToggleButton(with: #selector(didTapDirectMessages))
     
     private let previewLabel = UILabel.createSettingsLabel(with: "Direct Messages Preview")
     private lazy var previewToggle = self.createToggleButton(with: #selector(didTapDirectPreview))
     
-    private let interactionLabel: UILabel = {
+    private let callingLabel = UILabel.createSettingsLabel(with: "Calling")
+    private lazy var callingToggle = self.createToggleButton(with: #selector(didTapCalling))
+    
+    //Friends Section
+    private let newVideosLabel = UILabel.createSettingsLabel(with: "New Videos")
+    private lazy var newVideoToggle = self.createToggleButton(with: #selector(didTapNewVideos))
+    
+    private let liveVideoLabel = UILabel.createSettingsLabel(with: "LIVE Videos")
+    private lazy var liveVideoToggle = self.createToggleButton(with: #selector(didTapLiveVideos))
+    
+    private let interactionHeaderLabel: UILabel = {
         let label = UILabel()
         label.text = "Interactions"
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -111,11 +121,10 @@ final class NotificationsController: UIViewController {
         view.clipsToBounds = true
         view.backgroundColor = #colorLiteral(red: 0.9450980392, green: 0.9450980392, blue: 0.9450980392, alpha: 1)
         view.layer.cornerRadius = 9
-        view.height(388)
         return view
     }()
     
-    private let messagesLabel: UILabel = {
+    private let messagesHeaderLabel: UILabel = {
         let label = UILabel()
         label.text = "Messages"
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -134,7 +143,28 @@ final class NotificationsController: UIViewController {
         view.clipsToBounds = true
         view.backgroundColor = #colorLiteral(red: 0.9450980392, green: 0.9450980392, blue: 0.9450980392, alpha: 1)
         view.layer.cornerRadius = 9
-        view.height(122)
+        return view
+    }()
+    
+    private let friendsHeaderLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Friends"
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.backgroundColor = .clear
+        label.font = UIFont.segoeUIRegular(size: 15)
+        label.numberOfLines = 1
+        label.adjustsFontSizeToFitWidth = true
+        label.textAlignment = .left
+        label.textColor = UIColor.black
+        return label
+    }()
+    
+    private let friendsContainerView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.clipsToBounds = true
+        view.backgroundColor = #colorLiteral(red: 0.9450980392, green: 0.9450980392, blue: 0.9450980392, alpha: 1)
+        view.layer.cornerRadius = 9
         return view
     }()
 
@@ -144,6 +174,7 @@ final class NotificationsController: UIViewController {
         self.layoutInAppUI()
         self.layoutInteractionUI()
         self.layoutMessageUI()
+        self.layoutFriendsUI()
     }
 }
 //MARK: - Layout UI
@@ -186,13 +217,13 @@ extension NotificationsController {
     }
     
     private func layoutInteractionUI() {
-        self.scrollViewContentView.addSubview(self.interactionLabel)
-        self.interactionLabel.topToBottom(of: self.inAppBackgroundView, offset: 26)
-        self.interactionLabel.leftToSuperview(offset: 21)
-        self.interactionLabel.rightToSuperview(offset: -21)
+        self.scrollViewContentView.addSubview(self.interactionHeaderLabel)
+        self.interactionHeaderLabel.topToBottom(of: self.inAppBackgroundView, offset: 26)
+        self.interactionHeaderLabel.leftToSuperview(offset: 21)
+        self.interactionHeaderLabel.rightToSuperview(offset: -21)
 
         self.scrollViewContentView.addSubview(self.interactionContainerView)
-        self.interactionContainerView.topToBottom(of: self.interactionLabel, offset: 10)
+        self.interactionContainerView.topToBottom(of: self.interactionHeaderLabel, offset: 10)
         self.interactionContainerView.left(to: self.inAppBackgroundView)
         self.interactionContainerView.right(to: self.inAppBackgroundView)
         
@@ -228,31 +259,25 @@ extension NotificationsController {
         self.mentionsLabel.left(to: self.likeLabel)
         self.mentionsLabel.centerY(to: self.mentionsToggle)
         
-        self.interactionContainerView.addSubview(self.profileToggle)
-        self.profileToggle.topToBottom(of: self.mentionsToggle, offset: 35)
-        self.profileToggle.right(to: self.likeToggle)
-        
-        self.interactionContainerView.addSubview(self.profileViewsLabel)
-        self.profileViewsLabel.left(to: self.likeLabel)
-        self.profileViewsLabel.centerY(to: self.profileToggle)
-        
         self.interactionContainerView.addSubview(self.repostToggle)
-        self.repostToggle.topToBottom(of: self.profileToggle, offset: 35)
+        self.repostToggle.topToBottom(of: self.mentionsToggle, offset: 35)
         self.repostToggle.right(to: self.likeToggle)
 
         self.interactionContainerView.addSubview(self.repostLabel)
         self.repostLabel.left(to: self.likeLabel)
         self.repostLabel.centerY(to: self.repostToggle)
+        
+        self.interactionContainerView.bottom(to: self.repostLabel, offset: 30)
     }
     
     private func layoutMessageUI() {
-        self.scrollViewContentView.addSubview(self.messagesLabel)
-        self.messagesLabel.topToBottom(of: self.interactionContainerView, offset: 26)
-        self.messagesLabel.left(to: self.interactionLabel)
-        self.messagesLabel.right(to: self.interactionLabel)
+        self.scrollViewContentView.addSubview(self.messagesHeaderLabel)
+        self.messagesHeaderLabel.topToBottom(of: self.interactionContainerView, offset: 26)
+        self.messagesHeaderLabel.left(to: self.interactionHeaderLabel)
+        self.messagesHeaderLabel.right(to: self.interactionHeaderLabel)
         
         self.scrollViewContentView.addSubview(self.messagesContainerView)
-        self.messagesContainerView.topToBottom(of: self.messagesLabel, offset: 10)
+        self.messagesContainerView.topToBottom(of: self.messagesHeaderLabel, offset: 10)
         self.messagesContainerView.left(to: self.inAppBackgroundView)
         self.messagesContainerView.right(to: self.inAppBackgroundView)
         
@@ -272,7 +297,46 @@ extension NotificationsController {
         self.previewLabel.centerY(to: self.previewToggle)
         self.previewLabel.left(to: self.directMessageLabel)
         
-        self.scrollViewContentView.bottom(to: self.messagesContainerView, offset: 30)
+        self.messagesContainerView.addSubview(self.callingToggle)
+        self.callingToggle.topToBottom(of: self.previewToggle, offset: 40)
+        self.callingToggle.right(to: self.previewToggle)
+        
+        self.messagesContainerView.addSubview(self.callingLabel)
+        self.callingLabel.centerY(to: self.callingToggle)
+        self.callingLabel.left(to: self.directMessageLabel)
+        
+        self.messagesContainerView.bottom(to: self.callingLabel, offset: 30)
+    }
+    
+    private func layoutFriendsUI() {
+        self.scrollViewContentView.addSubview(self.friendsHeaderLabel)
+        self.friendsHeaderLabel.topToBottom(of: self.messagesContainerView, offset: 26)
+        self.friendsHeaderLabel.left(to: self.interactionHeaderLabel)
+        self.friendsHeaderLabel.right(to: self.interactionHeaderLabel)
+        
+        self.scrollViewContentView.addSubview(self.friendsContainerView)
+        self.friendsContainerView.topToBottom(of: self.friendsHeaderLabel, offset: 10)
+        self.friendsContainerView.left(to: self.inAppBackgroundView)
+        self.friendsContainerView.right(to: self.inAppBackgroundView)
+        
+        self.friendsContainerView.addSubview(self.newVideoToggle)
+        self.newVideoToggle.topToSuperview(offset: 14)
+        self.newVideoToggle.rightToSuperview(offset: -14)
+        
+        self.friendsContainerView.addSubview(self.newVideosLabel)
+        self.newVideosLabel.centerY(to: self.newVideoToggle)
+        self.newVideosLabel.leftToSuperview(offset: 14)
+        
+        self.friendsContainerView.addSubview(self.liveVideoToggle)
+        self.liveVideoToggle.topToBottom(of: self.newVideoToggle, offset: 40)
+        self.liveVideoToggle.right(to: self.newVideoToggle)
+        
+        self.friendsContainerView.addSubview(self.liveVideoLabel)
+        self.liveVideoLabel.centerY(to: self.liveVideoToggle)
+        self.liveVideoLabel.left(to: self.newVideosLabel)
+        
+        self.friendsContainerView.bottom(to: self.liveVideoLabel, offset: 30)
+        self.scrollViewContentView.bottom(to: self.friendsContainerView, offset: 30)
     }
 }
 //MARK: - Helpers
@@ -331,11 +395,6 @@ extension NotificationsController {
         self.mentionsToggle.isSelected.toggle()
     }
     
-    @objc func didTapProfile() {
-        print(#function)
-        self.profileToggle.isSelected.toggle()
-    }
-    
     @objc func didTapRepost() {
         print(#function)
         self.repostToggle.isSelected.toggle()
@@ -349,5 +408,18 @@ extension NotificationsController {
     @objc func didTapDirectPreview() {
         print(#function)
         self.previewToggle.isSelected.toggle()
+    }
+    
+    @objc func didTapCalling() {
+        print(#function)
+        self.callingToggle.isSelected.toggle()
+    }
+    
+    @objc func didTapNewVideos() {
+        print(#function)
+    }
+    
+    @objc func didTapLiveVideos() {
+        print(#function)
     }
 }

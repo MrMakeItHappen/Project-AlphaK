@@ -45,21 +45,31 @@ final class AccountController: UIViewController {
     
     private let accountInfoLabel = UILabel.createSettingsLabel(with: "Account Information")
     private let passwordLabel = UILabel.createSettingsLabel(with: "Password")
-    private let switchLabel = UILabel.createSettingsLabel(with: "Switch To Business Account")
     private let downloadLabel = UILabel.createSettingsLabel(with: "Download Your Data")
     private let deactivateLabel = UILabel.createSettingsLabel(with: "Deactivate Or Delete Account")
     
     private lazy var accountChevron = UIImageView.createChevron()
     private lazy var passwordChevron = UIImageView.createChevron()
-    private lazy var switchChevron = UIImageView.createChevron()
     private lazy var downloadChevron = UIImageView.createChevron()
     private lazy var deactivateChevron = UIImageView.createChevron()
     
     private lazy var hiddenAccountButton = self.createHiddenButton(with: #selector(didTapAccountInfo))
     private lazy var hiddenPasswordButton = self.createHiddenButton(with: #selector(didTapPassword))
-    private lazy var hiddenSwitchButton = self.createHiddenButton(with: #selector(didTapSwitch))
     private lazy var hiddenDownloadButton = self.createHiddenButton(with: #selector(didTapDownloadData))
     private lazy var hiddenDeactivateButton = self.createHiddenButton(with: #selector(didTapDeactivate))
+    
+    private let subTitleLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Get a copy of your KWIKS data"
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.backgroundColor = .clear
+        label.font = UIFont.segoeUISemiBold(size: 14)
+        label.numberOfLines = 1
+        label.adjustsFontSizeToFitWidth = false
+        label.textAlignment = .left
+        label.textColor = UIColor(hexString: "#A9A9A9")
+        return label
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -82,7 +92,6 @@ extension AccountController {
         self.containerView.topToBottom(of: self.customBackButton, offset: 35)
         self.containerView.leftToSuperview(offset: 6)
         self.containerView.rightToSuperview(offset: -6)
-        self.containerView.height(332)
         
         self.containerView.addSubview(self.accountInfoLabel)
         self.accountInfoLabel.topToSuperview(offset: 25)
@@ -112,22 +121,8 @@ extension AccountController {
         self.hiddenPasswordButton.bottom(to: self.passwordLabel, offset: 4)
         self.hiddenPasswordButton.right(to: self.passwordChevron)
         
-        self.containerView.addSubview(self.switchLabel)
-        self.switchLabel.topToBottom(of: self.passwordLabel, offset: 35)
-        self.switchLabel.left(to: self.accountInfoLabel)
-        
-        self.containerView.addSubview(self.switchChevron)
-        self.switchChevron.centerY(to: self.switchLabel)
-        self.switchChevron.right(to: self.accountChevron)
-        
-        self.containerView.addSubview(self.hiddenSwitchButton)
-        self.hiddenSwitchButton.top(to: self.switchLabel, offset: -4)
-        self.hiddenSwitchButton.left(to: self.switchLabel)
-        self.hiddenSwitchButton.bottom(to: self.switchLabel, offset: 4)
-        self.hiddenSwitchButton.right(to: self.switchChevron)
-        
         self.containerView.addSubview(self.downloadLabel)
-        self.downloadLabel.topToBottom(of: self.switchLabel, offset: 35)
+        self.downloadLabel.topToBottom(of: self.passwordLabel, offset: 35)
         self.downloadLabel.left(to: self.accountInfoLabel)
 
         self.containerView.addSubview(self.downloadChevron)
@@ -138,10 +133,15 @@ extension AccountController {
         self.hiddenDownloadButton.top(to: self.downloadLabel, offset: -4)
         self.hiddenDownloadButton.left(to: self.downloadLabel)
         self.hiddenDownloadButton.bottom(to: self.downloadLabel, offset: 4)
-        self.hiddenDownloadButton.right(to: self.switchChevron)
+        self.hiddenDownloadButton.right(to: self.accountChevron)
+        
+        self.containerView.addSubview(self.subTitleLabel)
+        self.subTitleLabel.topToBottom(of: self.hiddenDownloadButton, offset: 4)
+        self.subTitleLabel.left(to: self.downloadLabel, offset: 1)
+        self.subTitleLabel.right(to: self.downloadChevron)
         
         self.containerView.addSubview(self.deactivateLabel)
-        self.deactivateLabel.topToBottom(of: self.downloadLabel, offset: 35)
+        self.deactivateLabel.topToBottom(of: self.subTitleLabel, offset: 35)
         self.deactivateLabel.left(to: self.accountInfoLabel)
 
         self.containerView.addSubview(self.deactivateChevron)
@@ -152,7 +152,9 @@ extension AccountController {
         self.hiddenDeactivateButton.top(to: self.deactivateLabel, offset: -4)
         self.hiddenDeactivateButton.left(to: self.deactivateLabel)
         self.hiddenDeactivateButton.bottom(to: self.deactivateLabel, offset: 4)
-        self.hiddenDeactivateButton.right(to: self.switchChevron)
+        self.hiddenDeactivateButton.right(to: self.accountChevron)
+        
+        self.containerView.bottom(to: self.hiddenDeactivateButton, offset: 30)
     }
 }
 //MARK: - Helpers
@@ -178,10 +180,6 @@ extension AccountController {
     }
     
     @objc func didTapPassword() {
-        print(#function)
-    }
-    
-    @objc func didTapSwitch() {
         print(#function)
     }
     

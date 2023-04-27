@@ -226,7 +226,8 @@ extension SettingsController: UICollectionViewDelegate, UICollectionViewDataSour
             self.navigationController?.pushViewController(notificationsVC, animated: true)
             
         case 2:
-            print("Privacy Tapped")
+            let privacyVC = PrivacyController()
+            self.navigationController?.pushViewController(privacyVC, animated: true)
             
         case 3:
             print("Security Tapped")

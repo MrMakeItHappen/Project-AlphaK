@@ -34,14 +34,7 @@ final class AccountController: UIViewController {
         return label
     }()
     
-    private let containerView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.clipsToBounds = true
-        view.backgroundColor = .settingsContainer
-        view.layer.cornerRadius = 9
-        return view
-    }()
+    private let containerView = UIView.createSettingsContainer()
     
     private let accountInfoLabel = UILabel.createSettingsLabel(with: "Account Information")
     private let passwordLabel = UILabel.createSettingsLabel(with: "Password")

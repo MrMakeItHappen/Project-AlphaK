@@ -70,6 +70,9 @@ final class NotificationsController: UIViewController {
     private lazy var inAppHiddenButton = self.createHiddenButton(with: #selector(didTapInApp))
     
     //Interactions Section
+    private let interactionHeaderLabel = UILabel.createSettingsHeaderLabel(with: "Interactions")
+    private let interactionContainerView = UIView.createSettingsContainer()
+    
     private let likeLabel = UILabel.createSettingsLabel(with: "Likes")
     private lazy var likeToggle = self.createToggleButton(with: #selector(didTapLikes))
     
@@ -86,6 +89,9 @@ final class NotificationsController: UIViewController {
     private lazy var repostToggle = self.createToggleButton(with: #selector(didTapRepost))
     
     //Messages Section
+    private let messagesHeaderLabel = UILabel.createSettingsHeaderLabel(with: "Messages")
+    private let messagesContainerView = UIView.createSettingsContainer()
+    
     private let directMessageLabel = UILabel.createSettingsLabel(with: "Direct messages")
     private lazy var directToggle = self.createToggleButton(with: #selector(didTapDirectMessages))
     
@@ -96,77 +102,14 @@ final class NotificationsController: UIViewController {
     private lazy var callingToggle = self.createToggleButton(with: #selector(didTapCalling))
     
     //Friends Section
+    private let friendsHeaderLabel = UILabel.createSettingsHeaderLabel(with: "Friends")
+    private let friendsContainerView = UIView.createSettingsContainer()
+    
     private let newVideosLabel = UILabel.createSettingsLabel(with: "New Videos")
     private lazy var newVideoToggle = self.createToggleButton(with: #selector(didTapNewVideos))
     
     private let liveVideoLabel = UILabel.createSettingsLabel(with: "LIVE Videos")
     private lazy var liveVideoToggle = self.createToggleButton(with: #selector(didTapLiveVideos))
-    
-    private let interactionHeaderLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Interactions"
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.backgroundColor = .clear
-        label.font = UIFont.segoeUIRegular(size: 15)
-        label.numberOfLines = 1
-        label.adjustsFontSizeToFitWidth = true
-        label.textAlignment = .left
-        label.textColor = UIColor.black
-        return label
-    }()
-    
-    private let interactionContainerView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.clipsToBounds = true
-        view.backgroundColor = .settingsContainer
-        view.layer.cornerRadius = 9
-        return view
-    }()
-    
-    private let messagesHeaderLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Messages"
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.backgroundColor = .clear
-        label.font = UIFont.segoeUIRegular(size: 15)
-        label.numberOfLines = 1
-        label.adjustsFontSizeToFitWidth = true
-        label.textAlignment = .left
-        label.textColor = UIColor.black
-        return label
-    }()
-    
-    private let messagesContainerView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.clipsToBounds = true
-        view.backgroundColor = .settingsContainer
-        view.layer.cornerRadius = 9
-        return view
-    }()
-    
-    private let friendsHeaderLabel: UILabel = {
-        let label = UILabel()
-        label.text = "Friends"
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.backgroundColor = .clear
-        label.font = UIFont.segoeUIRegular(size: 15)
-        label.numberOfLines = 1
-        label.adjustsFontSizeToFitWidth = true
-        label.textAlignment = .left
-        label.textColor = UIColor.black
-        return label
-    }()
-    
-    private let friendsContainerView: UIView = {
-        let view = UIView()
-        view.translatesAutoresizingMaskIntoConstraints = false
-        view.clipsToBounds = true
-        view.backgroundColor = .settingsContainer
-        view.layer.cornerRadius = 9
-        return view
-    }()
 
     override func viewDidLoad() {
         super.viewDidLoad()

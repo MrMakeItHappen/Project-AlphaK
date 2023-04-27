@@ -28,6 +28,9 @@ extension UIColor {
     
     /// #686868
     static let musicTextColor = #colorLiteral(red: 0.4078431373, green: 0.4078431373, blue: 0.4078431373, alpha: 1)
+    
+    /// #F1F1F1
+    static let settingsContainer = #colorLiteral(red: 0.9450980392, green: 0.9450980392, blue: 0.9450980392, alpha: 1)
 }
 
 //Convert Hex Color to UIColor

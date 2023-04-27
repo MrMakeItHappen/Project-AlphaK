@@ -58,7 +58,7 @@ final class NotificationsController: UIViewController {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.clipsToBounds = true
-        view.backgroundColor = #colorLiteral(red: 0.9450980392, green: 0.9450980392, blue: 0.9450980392, alpha: 1)
+        view.backgroundColor = .settingsContainer
         view.layer.cornerRadius = 9
         view.height(78)
         return view
@@ -119,7 +119,7 @@ final class NotificationsController: UIViewController {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.clipsToBounds = true
-        view.backgroundColor = #colorLiteral(red: 0.9450980392, green: 0.9450980392, blue: 0.9450980392, alpha: 1)
+        view.backgroundColor = .settingsContainer
         view.layer.cornerRadius = 9
         return view
     }()
@@ -141,7 +141,7 @@ final class NotificationsController: UIViewController {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.clipsToBounds = true
-        view.backgroundColor = #colorLiteral(red: 0.9450980392, green: 0.9450980392, blue: 0.9450980392, alpha: 1)
+        view.backgroundColor = .settingsContainer
         view.layer.cornerRadius = 9
         return view
     }()
@@ -163,7 +163,7 @@ final class NotificationsController: UIViewController {
         let view = UIView()
         view.translatesAutoresizingMaskIntoConstraints = false
         view.clipsToBounds = true
-        view.backgroundColor = #colorLiteral(red: 0.9450980392, green: 0.9450980392, blue: 0.9450980392, alpha: 1)
+        view.backgroundColor = .settingsContainer
         view.layer.cornerRadius = 9
         return view
     }()

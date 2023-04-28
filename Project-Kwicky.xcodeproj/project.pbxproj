@@ -10,6 +10,8 @@
 		CA1D1A3D29FB02780015F1A2 /* AboutController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1D1A3C29FB02780015F1A2 /* AboutController.swift */; };
 		CA1D1A3F29FB02880015F1A2 /* FAQController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1D1A3E29FB02880015F1A2 /* FAQController.swift */; };
 		CA1D1A4129FB15520015F1A2 /* PrivacyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1D1A4029FB15520015F1A2 /* PrivacyController.swift */; };
+		CA1D1A4329FC52FD0015F1A2 /* QuestionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1D1A4229FC52FD0015F1A2 /* QuestionTableViewCell.swift */; };
+		CA1D1A4529FC53600015F1A2 /* FAQ.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1D1A4429FC53600015F1A2 /* FAQ.swift */; };
 		CA20FE2029ED8A590089A6B8 /* FeaturedMusicCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA20FE1F29ED8A590089A6B8 /* FeaturedMusicCollectionViewCell.swift */; };
 		CA20FE2329EDA4560089A6B8 /* TagPeopleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA20FE2229EDA4560089A6B8 /* TagPeopleController.swift */; };
 		CA55DF1C29A674F000C54B35 /* FollowInviteFriendsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA55DF1B29A674F000C54B35 /* FollowInviteFriendsController.swift */; };
@@ -116,6 +118,8 @@
 		CA1D1A3C29FB02780015F1A2 /* AboutController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AboutController.swift; sourceTree = "<group>"; };
 		CA1D1A3E29FB02880015F1A2 /* FAQController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQController.swift; sourceTree = "<group>"; };
 		CA1D1A4029FB15520015F1A2 /* PrivacyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyController.swift; sourceTree = "<group>"; };
+		CA1D1A4229FC52FD0015F1A2 /* QuestionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionTableViewCell.swift; sourceTree = "<group>"; };
+		CA1D1A4429FC53600015F1A2 /* FAQ.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQ.swift; sourceTree = "<group>"; };
 		CA20FE1F29ED8A590089A6B8 /* FeaturedMusicCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedMusicCollectionViewCell.swift; sourceTree = "<group>"; };
 		CA20FE2229EDA4560089A6B8 /* TagPeopleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagPeopleController.swift; sourceTree = "<group>"; };
 		CA55DF1B29A674F000C54B35 /* FollowInviteFriendsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowInviteFriendsController.swift; sourceTree = "<group>"; };
@@ -281,6 +285,7 @@
 		CA55DFA229D11D7000C54B35 /* TableView Cells */ = {
 			isa = PBXGroup;
 			children = (
+				CA1D1A4229FC52FD0015F1A2 /* QuestionTableViewCell.swift */,
 				CA55DFA329D11D8D00C54B35 /* AvailableMusicTableViewCell.swift */,
 				CABACC2929DA211F00026CAE /* AddParticipantsCell.swift */,
 			);
@@ -422,6 +427,7 @@
 				CA55DF3B29AF9FBF00C54B35 /* SocialMediaLink.swift */,
 				CA8D702829E8A96F008A11C0 /* Sticker.swift */,
 				CA55DF3129AF9A9B00C54B35 /* User.swift */,
+				CA1D1A4429FC53600015F1A2 /* FAQ.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -650,6 +656,7 @@
 				CA1D1A4129FB15520015F1A2 /* PrivacyController.swift in Sources */,
 				CAA90C802994171C0013A654 /* DecisionController.swift in Sources */,
 				CA55DFA129D1140400C54B35 /* GlobalVariables.swift in Sources */,
+				CA1D1A4529FC53600015F1A2 /* FAQ.swift in Sources */,
 				CABAA2FF2998340800C5EBC6 /* SignUpDetailController.swift in Sources */,
 				CA55DF5B29C66AFC00C54B35 /* GoLiveCommentCollectionViewCell.swift in Sources */,
 				CA8D701129E6F59A008A11C0 /* Beautify.swift in Sources */,
@@ -662,6 +669,7 @@
 				CA55DFA429D11D8D00C54B35 /* AvailableMusicTableViewCell.swift in Sources */,
 				CAE3956129F04CB100ECB758 /* CategoryCollectionViewCell.swift in Sources */,
 				CA8D700F29E44D1B008A11C0 /* Enums.swift in Sources */,
+				CA1D1A4329FC52FD0015F1A2 /* QuestionTableViewCell.swift in Sources */,
 				CA55DF2829AA94EF00C54B35 /* SettingsController.swift in Sources */,
 				CAA90C9B29941ACD0013A654 /* UIColor+Ext.swift in Sources */,
 				CA55DF3E29AFA13100C54B35 /* KwiksUserAnalytics.swift in Sources */,

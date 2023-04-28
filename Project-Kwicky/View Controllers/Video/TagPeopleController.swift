@@ -190,8 +190,8 @@ extension TagPeopleController: UISearchBarDelegate {
         if searchText != "" {
             self.filteredUsers = (tempUsers.filter { person in
                 
-                self.searchCategories = person.name
-                return searchCategories!.contains(searchText)
+                self.searchCategories = person.name.lowercased()
+                return searchCategories!.contains(searchText.lowercased())
             })
 
             self.addParticipantsTableView.reloadData()

@@ -7,6 +7,8 @@
 
 import UIKit
 
+//TODO: For each toggle, create tappable area for entire container
+
 final class SettingsController: UIViewController {
     private let settingsItem: [SettingsItem] = SettingsItem.allItems
     
@@ -237,7 +239,8 @@ extension SettingsController: UICollectionViewDelegate, UICollectionViewDataSour
             self.navigationController?.pushViewController(accountVC, animated: true)
             
         case 5:
-            print("Help Tapped")
+            let faqVC = FAQController()
+            self.navigationController?.pushViewController(faqVC, animated: true)
             
         case 6:
             print("About Tapped")

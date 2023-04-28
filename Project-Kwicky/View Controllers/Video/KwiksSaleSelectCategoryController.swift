@@ -245,8 +245,8 @@ extension KwiksSaleSelectCategoryController: UISearchBarDelegate {
         if searchText != "" {
             self.filteredCategories = (tempCategories.filter { category in
                 
-                self.searchCategories = category
-                return searchCategories!.contains(searchText)
+                self.searchCategories = category.lowercased()
+                return searchCategories!.contains(searchText.lowercased())
             })
             
             self.categoryCollectionView.reloadData()

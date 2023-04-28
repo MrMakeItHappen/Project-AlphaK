@@ -207,10 +207,10 @@ extension AddParticipantsController: UISearchBarDelegate {
         if searchText != "" {
             self.filteredUsers = (self.tempUsers.filter { user in
                 
-                let username = user.name
+                let username = user.name.lowercased()
                 
                 self.searchCategories = username
-                return searchCategories!.contains(searchText)
+                return searchCategories!.contains(searchText.lowercased())
             })
             
             self.addParticipantsTableView.reloadData()

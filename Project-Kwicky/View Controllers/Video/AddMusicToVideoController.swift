@@ -578,11 +578,11 @@ extension AddMusicToVideoController: UISearchBarDelegate {
         if searchText != "" {
             self.filteredSongs = (_allAvailableVideoMusic.filter { song in
                 
-                let songTitle = song.songTitle ?? ""
-                let artistName = song.artistName ?? ""
+                let songTitle = song.songTitle?.lowercased() ?? ""
+                let artistName = song.artistName?.lowercased() ?? ""
                 
                 self.searchCategories = songTitle + " " + artistName
-                return searchCategories!.contains(searchText)
+                return searchCategories!.contains(searchText.lowercased())
             })
             
             self.availableMusicTableView.reloadData()

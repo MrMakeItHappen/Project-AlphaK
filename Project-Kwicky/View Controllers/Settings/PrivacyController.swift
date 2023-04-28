@@ -42,11 +42,18 @@ final class PrivacyController: UIViewController {
     
     //Activity Status Section
     private let activityContainerView = UIView.createSettingsContainer()
+    private let activityLabel = UILabel.createSettingsLabel(with: "Activity Status")
+    private let activitySublabel = UILabel.createSettingsSublabel(with: "If the activity status feature is enabled, both you and your followers can view each other's activity status. ")
+    private lazy var activityToggle = UIButton.createSettingsToggleButton(with: #selector(didTapActivity), for: self)
     
     //Interactions Section
     private let interactionsHeader = UILabel.createSettingsHeaderLabel(with: "Interactions")
     private let interactionsContainerView = UIView.createSettingsContainer()
-
+    private let postLabel = UILabel.createSettingsLabel(with: "Post")
+    private let commentLabel = UILabel.createSettingsLabel(with: "Comments")
+    private let mentionLabel = UILabel.createSettingsLabel(with: "Mentions")
+    private let directLabel = UILabel.createSettingsLabel(with: "Direct Messages")
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configure()

@@ -34,6 +34,14 @@ extension UIButton {
         button.width(48)
         return button
     }
+    
+    static func createHiddenButton(with selector: Selector, for controller: UIViewController) -> UIButton {
+        let button = UIButton(frame: .zero)
+        button.backgroundColor = .clear
+        button.tintColor = .clear
+        button.addTarget(controller, action: selector, for: .touchUpInside)
+        return button
+    }
 }
 
 final class AnimatedButton: UIButton {

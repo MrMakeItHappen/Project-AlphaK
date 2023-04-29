@@ -12,6 +12,7 @@
 		CA1D1A4129FB15520015F1A2 /* PrivacyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1D1A4029FB15520015F1A2 /* PrivacyController.swift */; };
 		CA1D1A4329FC52FD0015F1A2 /* QuestionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1D1A4229FC52FD0015F1A2 /* QuestionTableViewCell.swift */; };
 		CA1D1A4529FC53600015F1A2 /* FAQ.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1D1A4429FC53600015F1A2 /* FAQ.swift */; };
+		CA1D1A4929FD7B810015F1A2 /* VisibilityPopUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1D1A4829FD7B810015F1A2 /* VisibilityPopUpController.swift */; };
 		CA20FE2029ED8A590089A6B8 /* FeaturedMusicCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA20FE1F29ED8A590089A6B8 /* FeaturedMusicCollectionViewCell.swift */; };
 		CA20FE2329EDA4560089A6B8 /* TagPeopleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA20FE2229EDA4560089A6B8 /* TagPeopleController.swift */; };
 		CA55DF1C29A674F000C54B35 /* FollowInviteFriendsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA55DF1B29A674F000C54B35 /* FollowInviteFriendsController.swift */; };
@@ -120,6 +121,7 @@
 		CA1D1A4029FB15520015F1A2 /* PrivacyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PrivacyController.swift; sourceTree = "<group>"; };
 		CA1D1A4229FC52FD0015F1A2 /* QuestionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionTableViewCell.swift; sourceTree = "<group>"; };
 		CA1D1A4429FC53600015F1A2 /* FAQ.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQ.swift; sourceTree = "<group>"; };
+		CA1D1A4829FD7B810015F1A2 /* VisibilityPopUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisibilityPopUpController.swift; sourceTree = "<group>"; };
 		CA20FE1F29ED8A590089A6B8 /* FeaturedMusicCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedMusicCollectionViewCell.swift; sourceTree = "<group>"; };
 		CA20FE2229EDA4560089A6B8 /* TagPeopleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagPeopleController.swift; sourceTree = "<group>"; };
 		CA55DF1B29A674F000C54B35 /* FollowInviteFriendsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowInviteFriendsController.swift; sourceTree = "<group>"; };
@@ -242,6 +244,7 @@
 				CA1D1A3C29FB02780015F1A2 /* AboutController.swift */,
 				CA1D1A3E29FB02880015F1A2 /* FAQController.swift */,
 				CA1D1A4029FB15520015F1A2 /* PrivacyController.swift */,
+				CA1D1A4829FD7B810015F1A2 /* VisibilityPopUpController.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -658,6 +661,7 @@
 				CA55DFA129D1140400C54B35 /* GlobalVariables.swift in Sources */,
 				CA1D1A4529FC53600015F1A2 /* FAQ.swift in Sources */,
 				CABAA2FF2998340800C5EBC6 /* SignUpDetailController.swift in Sources */,
+				CA1D1A4929FD7B810015F1A2 /* VisibilityPopUpController.swift in Sources */,
 				CA55DF5B29C66AFC00C54B35 /* GoLiveCommentCollectionViewCell.swift in Sources */,
 				CA8D701129E6F59A008A11C0 /* Beautify.swift in Sources */,
 				CABAA31E29A311AC00C5EBC6 /* SettingsItem.swift in Sources */,

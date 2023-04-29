@@ -29,3 +29,10 @@ enum PrivacyType {
     case friends
     case onlyMe
 }
+
+enum PrivacyPath {
+    case posts
+    case comments
+    case mentions
+    case directMessages
+}

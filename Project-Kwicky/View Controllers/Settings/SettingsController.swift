@@ -148,7 +148,7 @@ final class SettingsController: UIViewController {
 //MARK: - Configure
 extension SettingsController {
     private func configure() {
-        self.view.backgroundColor = .white
+        self.view.backgroundColor = .kwiksGreen
         self.settingsCollectionView.dataSource = self
         self.settingsCollectionView.delegate = self
     }
@@ -232,7 +232,8 @@ extension SettingsController: UICollectionViewDelegate, UICollectionViewDataSour
             self.navigationController?.pushViewController(privacyVC, animated: true)
             
         case 3:
-            print("Security Tapped")
+            let securityVC = SecurityController()
+            self.navigationController?.pushViewController(securityVC, animated: true)
             
         case 4:
             let accountVC = AccountController()
@@ -243,7 +244,6 @@ extension SettingsController: UICollectionViewDelegate, UICollectionViewDataSour
             self.navigationController?.pushViewController(faqVC, animated: true)
             
         case 6:
-            print("About Tapped")
             let aboutVC = AboutController()
             self.navigationController?.pushViewController(aboutVC, animated: true)
             

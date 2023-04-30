@@ -36,3 +36,9 @@ enum PrivacyPath {
     case mentions
     case directMessages
 }
+
+enum VerifyType {
+    case sms
+    case email
+    case none
+}

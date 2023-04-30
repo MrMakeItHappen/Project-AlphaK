@@ -352,13 +352,3 @@ extension VisibilityPopUpController {
         self.friendsButton.layer.borderColor = UIColor.kwiksTextBlack.cgColor
     }
 }
-
-//MARK: - CollectionView DataSource & Delegate
-extension VisibilityPopUpController {
-    
-}
-
-//MARK: - TableView DataSource & Delegate
-extension VisibilityPopUpController {
-    
-}

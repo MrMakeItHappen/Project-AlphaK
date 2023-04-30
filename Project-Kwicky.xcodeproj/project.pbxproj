@@ -13,6 +13,8 @@
 		CA1D1A4329FC52FD0015F1A2 /* QuestionTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1D1A4229FC52FD0015F1A2 /* QuestionTableViewCell.swift */; };
 		CA1D1A4529FC53600015F1A2 /* FAQ.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1D1A4429FC53600015F1A2 /* FAQ.swift */; };
 		CA1D1A4929FD7B810015F1A2 /* VisibilityPopUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1D1A4829FD7B810015F1A2 /* VisibilityPopUpController.swift */; };
+		CA1D1A4B29FEE50A0015F1A2 /* SecurityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1D1A4A29FEE50A0015F1A2 /* SecurityController.swift */; };
+		CA1D1A4D29FEEDDF0015F1A2 /* TwoFactorPopUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1D1A4C29FEEDDF0015F1A2 /* TwoFactorPopUpController.swift */; };
 		CA20FE2029ED8A590089A6B8 /* FeaturedMusicCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA20FE1F29ED8A590089A6B8 /* FeaturedMusicCollectionViewCell.swift */; };
 		CA20FE2329EDA4560089A6B8 /* TagPeopleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA20FE2229EDA4560089A6B8 /* TagPeopleController.swift */; };
 		CA55DF1C29A674F000C54B35 /* FollowInviteFriendsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA55DF1B29A674F000C54B35 /* FollowInviteFriendsController.swift */; };
@@ -122,6 +124,8 @@
 		CA1D1A4229FC52FD0015F1A2 /* QuestionTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuestionTableViewCell.swift; sourceTree = "<group>"; };
 		CA1D1A4429FC53600015F1A2 /* FAQ.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FAQ.swift; sourceTree = "<group>"; };
 		CA1D1A4829FD7B810015F1A2 /* VisibilityPopUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisibilityPopUpController.swift; sourceTree = "<group>"; };
+		CA1D1A4A29FEE50A0015F1A2 /* SecurityController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurityController.swift; sourceTree = "<group>"; };
+		CA1D1A4C29FEEDDF0015F1A2 /* TwoFactorPopUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoFactorPopUpController.swift; sourceTree = "<group>"; };
 		CA20FE1F29ED8A590089A6B8 /* FeaturedMusicCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedMusicCollectionViewCell.swift; sourceTree = "<group>"; };
 		CA20FE2229EDA4560089A6B8 /* TagPeopleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagPeopleController.swift; sourceTree = "<group>"; };
 		CA55DF1B29A674F000C54B35 /* FollowInviteFriendsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowInviteFriendsController.swift; sourceTree = "<group>"; };
@@ -245,6 +249,8 @@
 				CA1D1A3E29FB02880015F1A2 /* FAQController.swift */,
 				CA1D1A4029FB15520015F1A2 /* PrivacyController.swift */,
 				CA1D1A4829FD7B810015F1A2 /* VisibilityPopUpController.swift */,
+				CA1D1A4A29FEE50A0015F1A2 /* SecurityController.swift */,
+				CA1D1A4C29FEEDDF0015F1A2 /* TwoFactorPopUpController.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -669,6 +675,7 @@
 				CA55DF4729B8DE3A00C54B35 /* KwiksVideoPlayerController.swift in Sources */,
 				CA20FE2029ED8A590089A6B8 /* FeaturedMusicCollectionViewCell.swift in Sources */,
 				CA55DF2A29AA966A00C54B35 /* ProfileController.swift in Sources */,
+				CA1D1A4D29FEEDDF0015F1A2 /* TwoFactorPopUpController.swift in Sources */,
 				CA55DF3A29AF9E9100C54B35 /* KwiksNotification.swift in Sources */,
 				CA55DFA429D11D8D00C54B35 /* AvailableMusicTableViewCell.swift in Sources */,
 				CAE3956129F04CB100ECB758 /* CategoryCollectionViewCell.swift in Sources */,
@@ -714,6 +721,7 @@
 				CA8D702929E8A96F008A11C0 /* Sticker.swift in Sources */,
 				CA55DF4929B8DE4A00C54B35 /* KwiksLiveVideoPlayerController.swift in Sources */,
 				CABACC2A29DA211F00026CAE /* AddParticipantsCell.swift in Sources */,
+				CA1D1A4B29FEE50A0015F1A2 /* SecurityController.swift in Sources */,
 				CA55DFAA29D6350C00C54B35 /* Mixpanel.swift in Sources */,
 				CA55DF2229A7E87C00C54B35 /* UIImageView+Ext.swift in Sources */,
 				CA8D700B29E36DA1008A11C0 /* BeautifyCollectionViewCell.swift in Sources */,

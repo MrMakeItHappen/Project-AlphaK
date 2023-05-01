@@ -9,6 +9,8 @@ import UIKit
 import TinyConstraints
 import Lottie
 
+//Apple Development Team ID - 3BU6AC5CFB
+
 class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 
     var window: UIWindow?

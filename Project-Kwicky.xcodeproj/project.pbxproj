@@ -900,7 +900,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = F5J6ZLKCR8;
+				DEVELOPMENT_TEAM = 3BU6AC5CFB;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "/Users/smiller/Downloads/Project-Kwicky/Project-Kwicky/Admin/Info.plist";
 				INFOPLIST_KEY_NSAppleMusicUsageDescription = "Please allow access to upload media.";
@@ -914,7 +914,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.clearsyntax.Project-Kwicky";
+				PRODUCT_BUNDLE_IDENTIFIER = com.kwiks.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;
@@ -930,7 +930,7 @@
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
-				DEVELOPMENT_TEAM = F5J6ZLKCR8;
+				DEVELOPMENT_TEAM = 3BU6AC5CFB;
 				GENERATE_INFOPLIST_FILE = YES;
 				INFOPLIST_FILE = "/Users/smiller/Downloads/Project-Kwicky/Project-Kwicky/Admin/Info.plist";
 				INFOPLIST_KEY_NSAppleMusicUsageDescription = "Please allow access to upload media.";
@@ -944,7 +944,7 @@
 					"@executable_path/Frameworks",
 				);
 				MARKETING_VERSION = 1.0;
-				PRODUCT_BUNDLE_IDENTIFIER = "com.clearsyntax.Project-Kwicky";
+				PRODUCT_BUNDLE_IDENTIFIER = com.kwiks.app;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_EMIT_LOC_STRINGS = YES;
 				SWIFT_VERSION = 5.0;

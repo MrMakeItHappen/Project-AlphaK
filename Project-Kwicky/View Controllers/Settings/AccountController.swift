@@ -36,10 +36,10 @@ final class AccountController: UIViewController {
     
     private let containerView = UIView.createSettingsContainer()
     
-    private let accountInfoLabel = UILabel.createSettingsLabel(with: "Account Information")
-    private let passwordLabel = UILabel.createSettingsLabel(with: "Password")
-    private let downloadLabel = UILabel.createSettingsLabel(with: "Download Your Data")
-    private let deactivateLabel = UILabel.createSettingsLabel(with: "Deactivate Or Delete Account")
+    private let accountInfoLabel = UILabel.createSettingsTitleLabel(with: "Account Information")
+    private let passwordLabel = UILabel.createSettingsTitleLabel(with: "Password")
+    private let downloadLabel = UILabel.createSettingsTitleLabel(with: "Download Your Data")
+    private let deactivateLabel = UILabel.createSettingsTitleLabel(with: "Deactivate Or Delete Account")
     
     private let accountChevron = UIImageView.createChevron()
     private let passwordChevron = UIImageView.createChevron()
@@ -158,7 +158,8 @@ extension AccountController {
     }
     
     @objc func didTapAccountInfo() {
-        print(#function)
+        let infoVC = AccountInfoController()
+        self.navigationController?.pushViewController(infoVC, animated: true)
     }
     
     @objc func didTapPassword() {

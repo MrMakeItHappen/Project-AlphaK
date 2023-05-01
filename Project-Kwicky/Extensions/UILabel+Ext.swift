@@ -9,7 +9,7 @@ import Foundation
 import UIKit
 
 extension UILabel {
-    static func createSettingsHeaderLabel(with name: String) -> UILabel {
+    static func createSettingsSectionHeader(with name: String) -> UILabel {
         let label = UILabel()
         label.text = name
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -22,7 +22,7 @@ extension UILabel {
         return label
     }
     
-    static func createSettingsLabel(with name: String) -> UILabel {
+    static func createSettingsTitleLabel(with name: String) -> UILabel {
         let label = UILabel()
         label.text = name
         label.translatesAutoresizingMaskIntoConstraints = false

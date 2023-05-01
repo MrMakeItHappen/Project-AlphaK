@@ -65,50 +65,50 @@ final class NotificationsController: UIViewController {
     }()
     
     //In-App Section
-    private let inAppLabel = UILabel.createSettingsLabel(with: "In-app notifications")
+    private let inAppLabel = UILabel.createSettingsTitleLabel(with: "In-app notifications")
     private let inAppChevron = UIImageView.createChevron()
     private lazy var inAppHiddenButton = self.createHiddenButton(with: #selector(didTapInApp))
     
     //Interactions Section
-    private let interactionHeaderLabel = UILabel.createSettingsHeaderLabel(with: "Interactions")
+    private let interactionHeaderLabel = UILabel.createSettingsSectionHeader(with: "Interactions")
     private let interactionContainerView = UIView.createSettingsContainer()
     
-    private let likeLabel = UILabel.createSettingsLabel(with: "Likes")
+    private let likeLabel = UILabel.createSettingsTitleLabel(with: "Likes")
     private lazy var likeToggle = UIButton.createSettingsToggleButton(with: #selector(didTapLikes), for: self)
     
-    private let commentsLabel = UILabel.createSettingsLabel(with: "Comments")
+    private let commentsLabel = UILabel.createSettingsTitleLabel(with: "Comments")
     private lazy var commentToggle = UIButton.createSettingsToggleButton(with: #selector(didTapComments), for: self)
     
-    private let newFollowersLabel = UILabel.createSettingsLabel(with: "New Followers")
+    private let newFollowersLabel = UILabel.createSettingsTitleLabel(with: "New Followers")
     private lazy var followerToggle = UIButton.createSettingsToggleButton(with: #selector(didTapNewFollowers), for: self)
     
-    private let mentionsLabel = UILabel.createSettingsLabel(with: "Mentions and tags")
+    private let mentionsLabel = UILabel.createSettingsTitleLabel(with: "Mentions and tags")
     private lazy var mentionsToggle = UIButton.createSettingsToggleButton(with: #selector(didTapMentions), for: self)
     
-    private let repostLabel = UILabel.createSettingsLabel(with: "Reposts")
+    private let repostLabel = UILabel.createSettingsTitleLabel(with: "Reposts")
     private lazy var repostToggle = UIButton.createSettingsToggleButton(with: #selector(didTapRepost), for: self)
     
     //Messages Section
-    private let messagesHeaderLabel = UILabel.createSettingsHeaderLabel(with: "Messages")
+    private let messagesHeaderLabel = UILabel.createSettingsSectionHeader(with: "Messages")
     private let messagesContainerView = UIView.createSettingsContainer()
     
-    private let directMessageLabel = UILabel.createSettingsLabel(with: "Direct messages")
+    private let directMessageLabel = UILabel.createSettingsTitleLabel(with: "Direct messages")
     private lazy var directToggle = UIButton.createSettingsToggleButton(with: #selector(didTapDirectMessages), for: self)
     
-    private let previewLabel = UILabel.createSettingsLabel(with: "Direct Messages Preview")
+    private let previewLabel = UILabel.createSettingsTitleLabel(with: "Direct Messages Preview")
     private lazy var previewToggle = UIButton.createSettingsToggleButton(with: #selector(didTapDirectPreview), for: self)
     
-    private let callingLabel = UILabel.createSettingsLabel(with: "Calling")
+    private let callingLabel = UILabel.createSettingsTitleLabel(with: "Calling")
     private lazy var callingToggle = UIButton.createSettingsToggleButton(with: #selector(didTapCalling), for: self)
     
     //Friends Section
-    private let friendsHeaderLabel = UILabel.createSettingsHeaderLabel(with: "Friends")
+    private let friendsHeaderLabel = UILabel.createSettingsSectionHeader(with: "Friends")
     private let friendsContainerView = UIView.createSettingsContainer()
     
-    private let newVideosLabel = UILabel.createSettingsLabel(with: "New Videos")
+    private let newVideosLabel = UILabel.createSettingsTitleLabel(with: "New Videos")
     private lazy var newVideoToggle = UIButton.createSettingsToggleButton(with: #selector(didTapNewVideos), for: self)
     
-    private let liveVideoLabel = UILabel.createSettingsLabel(with: "LIVE Videos")
+    private let liveVideoLabel = UILabel.createSettingsTitleLabel(with: "LIVE Videos")
     private lazy var liveVideoToggle = UIButton.createSettingsToggleButton(with: #selector(didTapLiveVideos), for: self)
 
     override func viewDidLoad() {

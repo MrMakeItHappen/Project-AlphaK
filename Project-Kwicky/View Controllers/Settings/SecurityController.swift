@@ -51,7 +51,7 @@ final class SecurityController: UIViewController {
     }()
     
     private let twoFactorContainer = UIView.createSettingsContainer()
-    private let twoFactorTitleLabel = UILabel.createSettingsLabel(with: "Two Factor Authentication")
+    private let twoFactorTitleLabel = UILabel.createSettingsTitleLabel(with: "Two Factor Authentication")
     private let twoFactorSubtitleLabel = UILabel.createSettingsSublabel(with: "We will ask for a code for every unrecognised device or browser login.")
     private let twoFactorChevron = UIImageView.createChevron()
     private lazy var hiddenTwoFactorButton = UIButton.createHiddenButton(with: #selector(didTapTwoFactor), for: self)
@@ -70,7 +70,7 @@ final class SecurityController: UIViewController {
     }()
     
     private let unrecognisedContainer = UIView.createSettingsContainer()
-    private let unrecognisedTitleLabel = UILabel.createSettingsLabel(with: "Unrecognised Login Alert")
+    private let unrecognisedTitleLabel = UILabel.createSettingsTitleLabel(with: "Unrecognised Login Alert")
     private let unrecognisedSubtitleLabel = UILabel.createSettingsSublabel(with: "We will notify you if anyone logs in from a device or browser you don't usually use.")
     private lazy var unrecognisedToggle = UIButton.createSettingsToggleButton(with: #selector(didTapAlertMe), for: self)
     

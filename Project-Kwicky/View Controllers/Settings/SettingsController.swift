@@ -8,6 +8,7 @@
 import UIKit
 
 //TODO: For each toggle, create tappable area for entire container
+//TODO: Ping database here for all editable user information
 
 final class SettingsController: UIViewController {
     private let settingsItem: [SettingsItem] = SettingsItem.allItems

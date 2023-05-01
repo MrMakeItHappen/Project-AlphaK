@@ -19,8 +19,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let window = UIWindow(windowScene: sceneWindow)
         
-        let decisionController = SettingsController()
-//        let decisionController = DecisionController()
+//        let decisionController = AccountInfoController()
+        let decisionController = SimpleLoginController()
 //        let decisionController = TabViewController()
         let navigationController = UINavigationController(rootViewController: decisionController)
         navigationController.navigationBar.isHidden = true

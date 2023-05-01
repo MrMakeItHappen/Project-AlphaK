@@ -15,6 +15,11 @@
 		CA1D1A4929FD7B810015F1A2 /* VisibilityPopUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1D1A4829FD7B810015F1A2 /* VisibilityPopUpController.swift */; };
 		CA1D1A4B29FEE50A0015F1A2 /* SecurityController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1D1A4A29FEE50A0015F1A2 /* SecurityController.swift */; };
 		CA1D1A4D29FEEDDF0015F1A2 /* TwoFactorPopUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1D1A4C29FEEDDF0015F1A2 /* TwoFactorPopUpController.swift */; };
+		CA1D1A4F2A00051A0015F1A2 /* AccountInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1D1A4E2A00051A0015F1A2 /* AccountInfoController.swift */; };
+		CA1D1A512A0005350015F1A2 /* EditPhoneNumberController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1D1A502A0005350015F1A2 /* EditPhoneNumberController.swift */; };
+		CA1D1A532A0005B90015F1A2 /* EditEmailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1D1A522A0005B90015F1A2 /* EditEmailController.swift */; };
+		CA1D1A552A0005F60015F1A2 /* InfoUpdatedPopUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1D1A542A0005F60015F1A2 /* InfoUpdatedPopUpController.swift */; };
+		CA1D1A572A0006B20015F1A2 /* EditPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1D1A562A0006B20015F1A2 /* EditPasswordController.swift */; };
 		CA20FE2029ED8A590089A6B8 /* FeaturedMusicCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA20FE1F29ED8A590089A6B8 /* FeaturedMusicCollectionViewCell.swift */; };
 		CA20FE2329EDA4560089A6B8 /* TagPeopleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA20FE2229EDA4560089A6B8 /* TagPeopleController.swift */; };
 		CA55DF1C29A674F000C54B35 /* FollowInviteFriendsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA55DF1B29A674F000C54B35 /* FollowInviteFriendsController.swift */; };
@@ -126,6 +131,11 @@
 		CA1D1A4829FD7B810015F1A2 /* VisibilityPopUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VisibilityPopUpController.swift; sourceTree = "<group>"; };
 		CA1D1A4A29FEE50A0015F1A2 /* SecurityController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecurityController.swift; sourceTree = "<group>"; };
 		CA1D1A4C29FEEDDF0015F1A2 /* TwoFactorPopUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TwoFactorPopUpController.swift; sourceTree = "<group>"; };
+		CA1D1A4E2A00051A0015F1A2 /* AccountInfoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInfoController.swift; sourceTree = "<group>"; };
+		CA1D1A502A0005350015F1A2 /* EditPhoneNumberController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPhoneNumberController.swift; sourceTree = "<group>"; };
+		CA1D1A522A0005B90015F1A2 /* EditEmailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditEmailController.swift; sourceTree = "<group>"; };
+		CA1D1A542A0005F60015F1A2 /* InfoUpdatedPopUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoUpdatedPopUpController.swift; sourceTree = "<group>"; };
+		CA1D1A562A0006B20015F1A2 /* EditPasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPasswordController.swift; sourceTree = "<group>"; };
 		CA20FE1F29ED8A590089A6B8 /* FeaturedMusicCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedMusicCollectionViewCell.swift; sourceTree = "<group>"; };
 		CA20FE2229EDA4560089A6B8 /* TagPeopleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagPeopleController.swift; sourceTree = "<group>"; };
 		CA55DF1B29A674F000C54B35 /* FollowInviteFriendsController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FollowInviteFriendsController.swift; sourceTree = "<group>"; };
@@ -251,6 +261,11 @@
 				CA1D1A4829FD7B810015F1A2 /* VisibilityPopUpController.swift */,
 				CA1D1A4A29FEE50A0015F1A2 /* SecurityController.swift */,
 				CA1D1A4C29FEEDDF0015F1A2 /* TwoFactorPopUpController.swift */,
+				CA1D1A4E2A00051A0015F1A2 /* AccountInfoController.swift */,
+				CA1D1A502A0005350015F1A2 /* EditPhoneNumberController.swift */,
+				CA1D1A522A0005B90015F1A2 /* EditEmailController.swift */,
+				CA1D1A542A0005F60015F1A2 /* InfoUpdatedPopUpController.swift */,
+				CA1D1A562A0006B20015F1A2 /* EditPasswordController.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -663,11 +678,13 @@
 				CABAA2F929945D1C00C5EBC6 /* UIImage+Ext.swift in Sources */,
 				CAE3957029F6105200ECB758 /* EditPrivacyController.swift in Sources */,
 				CA1D1A4129FB15520015F1A2 /* PrivacyController.swift in Sources */,
+				CA1D1A4F2A00051A0015F1A2 /* AccountInfoController.swift in Sources */,
 				CAA90C802994171C0013A654 /* DecisionController.swift in Sources */,
 				CA55DFA129D1140400C54B35 /* GlobalVariables.swift in Sources */,
 				CA1D1A4529FC53600015F1A2 /* FAQ.swift in Sources */,
 				CABAA2FF2998340800C5EBC6 /* SignUpDetailController.swift in Sources */,
 				CA1D1A4929FD7B810015F1A2 /* VisibilityPopUpController.swift in Sources */,
+				CA1D1A572A0006B20015F1A2 /* EditPasswordController.swift in Sources */,
 				CA55DF5B29C66AFC00C54B35 /* GoLiveCommentCollectionViewCell.swift in Sources */,
 				CA8D701129E6F59A008A11C0 /* Beautify.swift in Sources */,
 				CABAA31E29A311AC00C5EBC6 /* SettingsItem.swift in Sources */,
@@ -684,6 +701,7 @@
 				CA55DF2829AA94EF00C54B35 /* SettingsController.swift in Sources */,
 				CAA90C9B29941ACD0013A654 /* UIColor+Ext.swift in Sources */,
 				CA55DF3E29AFA13100C54B35 /* KwiksUserAnalytics.swift in Sources */,
+				CA1D1A552A0005F60015F1A2 /* InfoUpdatedPopUpController.swift in Sources */,
 				CAE3956E29F6014A00ECB758 /* ProductAddedController.swift in Sources */,
 				CA55DF4329B17FAA00C54B35 /* UITextField+Ext.swift in Sources */,
 				CABAA30B29A19EB900C5EBC6 /* UIButton+Ext.swift in Sources */,
@@ -717,6 +735,8 @@
 				CA20FE2329EDA4560089A6B8 /* TagPeopleController.swift in Sources */,
 				CA55DF3829AF9DB700C54B35 /* KwiksVideoAnalytics.swift in Sources */,
 				CAE3957229F97D3D00ECB758 /* SimpleLoginController.swift in Sources */,
+				CA1D1A532A0005B90015F1A2 /* EditEmailController.swift in Sources */,
+				CA1D1A512A0005350015F1A2 /* EditPhoneNumberController.swift in Sources */,
 				CA1D1A3D29FB02780015F1A2 /* AboutController.swift in Sources */,
 				CA8D702929E8A96F008A11C0 /* Sticker.swift in Sources */,
 				CA55DF4929B8DE4A00C54B35 /* KwiksLiveVideoPlayerController.swift in Sources */,

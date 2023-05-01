@@ -36,17 +36,17 @@ final class PrivacyController: UIViewController {
     
     //MARK: - Private Account Section
     private let privateContainerView = UIView.createSettingsContainer()
-    private let privateLabel = UILabel.createSettingsLabel(with: "Private Account")
+    private let privateLabel = UILabel.createSettingsTitleLabel(with: "Private Account")
     private let privateSublabel = UILabel.createSettingsSublabel(with: "Only friends will be able to view your videos.")
     private lazy var privateToggle = UIButton.createSettingsToggleButton(with: #selector(didTapPrivate), for: self)
     
     //MARK: - Activity Status Section
     private let activityContainerView = UIView.createSettingsContainer()
-    private let activityLabel = UILabel.createSettingsLabel(with: "Activity Status")
+    private let activityLabel = UILabel.createSettingsTitleLabel(with: "Activity Status")
     private let activitySublabel = UILabel.createSettingsSublabel(with: "If the activity status feature is enabled, both you and your followers can view each other's activity status. ")
     private lazy var activityToggle = UIButton.createSettingsToggleButton(with: #selector(didTapActivity), for: self)
     
-    private let interactionsHeader = UILabel.createSettingsHeaderLabel(with: "Interactions")
+    private let interactionsHeader = UILabel.createSettingsSectionHeader(with: "Interactions")
     private let interactionsContainerView = UIView.createSettingsContainer()
     
     //MARK: - Post Section
@@ -66,7 +66,7 @@ final class PrivacyController: UIViewController {
         }
     }
     
-    private let postLabel = UILabel.createSettingsLabel(with: "Post")
+    private let postLabel = UILabel.createSettingsTitleLabel(with: "Post")
     private let postChevron = UIImageView.createChevron()
     private lazy var postVisibilityLabel = self.createVisibilityLabel(with: "Everyone")
     private lazy var postHiddenButton = UIButton.createHiddenButton(with: #selector(didTapPost), for: self)
@@ -88,7 +88,7 @@ final class PrivacyController: UIViewController {
         }
     }
     
-    private let commentLabel = UILabel.createSettingsLabel(with: "Comments")
+    private let commentLabel = UILabel.createSettingsTitleLabel(with: "Comments")
     private let commentChevron = UIImageView.createChevron()
     private lazy var commentVisibilityLabel = self.createVisibilityLabel(with: "Everyone")
     private lazy var commentHiddenButton = UIButton.createHiddenButton(with: #selector(didTapComments), for: self)
@@ -110,7 +110,7 @@ final class PrivacyController: UIViewController {
         }
     }
     
-    private let mentionLabel = UILabel.createSettingsLabel(with: "Mentions")
+    private let mentionLabel = UILabel.createSettingsTitleLabel(with: "Mentions")
     private let mentionChevron = UIImageView.createChevron()
     private lazy var mentionVisibilityLabel = self.createVisibilityLabel(with: "Everyone")
     private lazy var mentionHiddenButton = UIButton.createHiddenButton(with: #selector(didTapMentions), for: self)
@@ -132,7 +132,7 @@ final class PrivacyController: UIViewController {
         }
     }
     
-    private let directLabel = UILabel.createSettingsLabel(with: "Direct Messages")
+    private let directLabel = UILabel.createSettingsTitleLabel(with: "Direct Messages")
     private let directChevron = UIImageView.createChevron()
     private lazy var diretVisibilityLabel = self.createVisibilityLabel(with: "Friends")
     private lazy var diretHiddenButton = UIButton.createHiddenButton(with: #selector(didTapDirect), for: self)

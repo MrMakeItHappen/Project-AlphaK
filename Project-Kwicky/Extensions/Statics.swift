@@ -39,8 +39,6 @@ struct Statics {
     static let JSONFailedToLoad = "JSON FETCHING FAILED!"
     static let unknownError = "Something Went Wrong!"
     static let invalidParameters = "Check the parameters. Something is incorrect!"
-    
-    
-    
-    static let MIXPANEL_AUTH_TOKEN = ""
+
+    static let mixpanelAuthToken = "c0ef9a6d40f11836eed4e8f27fbe678f"
 }

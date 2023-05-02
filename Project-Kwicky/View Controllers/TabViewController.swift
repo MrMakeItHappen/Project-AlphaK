@@ -78,7 +78,7 @@ extension TabViewController {
         tabFive.tabBarItem.imageInsets = UIEdgeInsets(top: 0, left: 0, bottom: 0, right: 0)
 
         self.viewControllers = [tabOne, tabTwo, tabThree, tabFour, tabFive]
-//        self.switchTabs(tabIndex: 0)
+        self.switchTabs(tabIndex: 0)//starts at 0 by default
     }
 }
 //MARK: - Helpers

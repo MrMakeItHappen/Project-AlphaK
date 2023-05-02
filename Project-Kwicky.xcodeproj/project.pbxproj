@@ -116,7 +116,40 @@
 		CAE3956E29F6014A00ECB758 /* ProductAddedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE3956D29F6014A00ECB758 /* ProductAddedController.swift */; };
 		CAE3957029F6105200ECB758 /* EditPrivacyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE3956F29F6105200ECB758 /* EditPrivacyController.swift */; };
 		CAE3957229F97D3D00ECB758 /* SimpleLoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE3957129F97D3D00ECB758 /* SimpleLoginController.swift */; };
-		E3AB41622A008E2F00EB9AA3 /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3AB41612A008E2F00EB9AA3 /* Globals.swift */; };
+		E349C9A42A01582800E03120 /* WalletCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E349C9A32A01582800E03120 /* WalletCell.swift */; };
+		E349C9A92A016E8500E03120 /* icon@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = E349C9A62A016E8500E03120 /* icon@1x.png */; };
+		E349C9AA2A016E8500E03120 /* icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E349C9A72A016E8500E03120 /* icon@3x.png */; };
+		E349C9AB2A016E8500E03120 /* icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E349C9A82A016E8500E03120 /* icon@2x.png */; };
+		E349C9AF2A016E8F00E03120 /* bank_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E349C9AC2A016E8E00E03120 /* bank_icon@2x.png */; };
+		E349C9B02A016E8F00E03120 /* bank_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E349C9AD2A016E8F00E03120 /* bank_icon@3x.png */; };
+		E349C9B12A016E8F00E03120 /* bank_icon@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = E349C9AE2A016E8F00E03120 /* bank_icon@1x.png */; };
+		E349C9C72A016EA300E03120 /* question_mark_no_shadow_kwiks_green@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E349C9B22A016EA100E03120 /* question_mark_no_shadow_kwiks_green@2x.png */; };
+		E349C9C82A016EA300E03120 /* kwiks_vector_arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E349C9B32A016EA100E03120 /* kwiks_vector_arrow@2x.png */; };
+		E349C9C92A016EA300E03120 /* kwiks_money_crown@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = E349C9B42A016EA100E03120 /* kwiks_money_crown@1x.png */; };
+		E349C9CA2A016EA300E03120 /* kwiks_vector_arrow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E349C9B52A016EA100E03120 /* kwiks_vector_arrow@3x.png */; };
+		E349C9CB2A016EA300E03120 /* kwiks_cashout_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E349C9B62A016EA100E03120 /* kwiks_cashout_icon@2x.png */; };
+		E349C9CC2A016EA300E03120 /* kwiks_money_crown@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E349C9B72A016EA100E03120 /* kwiks_money_crown@3x.png */; };
+		E349C9CD2A016EA300E03120 /* kwiks_green_money_sign@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E349C9B82A016EA100E03120 /* kwiks_green_money_sign@2x.png */; };
+		E349C9CE2A016EA300E03120 /* kwiks_vector_arrow@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = E349C9B92A016EA100E03120 /* kwiks_vector_arrow@1x.png */; };
+		E349C9CF2A016EA300E03120 /* kwiks_money_dolla_sign@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E349C9BA2A016EA200E03120 /* kwiks_money_dolla_sign@2x.png */; };
+		E349C9D02A016EA300E03120 /* kwiks_cashout_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E349C9BB2A016EA200E03120 /* kwiks_cashout_icon@3x.png */; };
+		E349C9D12A016EA300E03120 /* kwiks_money_crown@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E349C9BC2A016EA200E03120 /* kwiks_money_crown@2x.png */; };
+		E349C9D22A016EA300E03120 /* kwiks_add_money_wallet_icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E349C9BD2A016EA200E03120 /* kwiks_add_money_wallet_icon@3x.png */; };
+		E349C9D32A016EA300E03120 /* kwiks_add_money_wallet_icon@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = E349C9BE2A016EA200E03120 /* kwiks_add_money_wallet_icon@1x.png */; };
+		E349C9D42A016EA300E03120 /* kwiks_add_money_wallet_icon@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E349C9BF2A016EA200E03120 /* kwiks_add_money_wallet_icon@2x.png */; };
+		E349C9D52A016EA300E03120 /* kwiks_green_money_sign@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = E349C9C02A016EA200E03120 /* kwiks_green_money_sign@1x.png */; };
+		E349C9D62A016EA300E03120 /* kwiks_green_money_sign@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E349C9C12A016EA200E03120 /* kwiks_green_money_sign@3x.png */; };
+		E349C9D72A016EA300E03120 /* kwiks_cashout_icon@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = E349C9C22A016EA200E03120 /* kwiks_cashout_icon@1x.png */; };
+		E349C9D82A016EA300E03120 /* kwiks_money_dolla_sign@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = E349C9C32A016EA200E03120 /* kwiks_money_dolla_sign@1x.png */; };
+		E349C9D92A016EA300E03120 /* kwiks_money_dolla_sign@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E349C9C42A016EA300E03120 /* kwiks_money_dolla_sign@3x.png */; };
+		E349C9DA2A016EA300E03120 /* question_mark_no_shadow_kwiks_green@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = E349C9C52A016EA300E03120 /* question_mark_no_shadow_kwiks_green@1x.png */; };
+		E349C9DB2A016EA300E03120 /* question_mark_no_shadow_kwiks_green@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E349C9C62A016EA300E03120 /* question_mark_no_shadow_kwiks_green@3x.png */; };
+		E349C9DF2A01714E00E03120 /* settings_icon_profile_no_shadow@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = E349C9DC2A01714E00E03120 /* settings_icon_profile_no_shadow@1x.png */; };
+		E349C9E02A01714E00E03120 /* settings_icon_profile_no_shadow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E349C9DD2A01714E00E03120 /* settings_icon_profile_no_shadow@2x.png */; };
+		E349C9E12A01714E00E03120 /* settings_icon_profile_no_shadow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E349C9DE2A01714E00E03120 /* settings_icon_profile_no_shadow@3x.png */; };
+		E349C9E52A0172DC00E03120 /* long_back_arrow@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = E349C9E22A0172DB00E03120 /* long_back_arrow@1x.png */; };
+		E349C9E62A0172DC00E03120 /* long_back_arrow@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = E349C9E32A0172DB00E03120 /* long_back_arrow@2x.png */; };
+		E349C9E72A0172DC00E03120 /* long_back_arrow@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E349C9E42A0172DC00E03120 /* long_back_arrow@3x.png */; };
 		E3AB41642A008E7F00EB9AA3 /* Application+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3AB41632A008E7F00EB9AA3 /* Application+Ext.swift */; };
 		E3AB41662A0090EA00EB9AA3 /* CashoutConfirmationPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3AB41652A0090EA00EB9AA3 /* CashoutConfirmationPopup.swift */; };
 		E3AB41682A0092EE00EB9AA3 /* DrawRect+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3AB41672A0092EE00EB9AA3 /* DrawRect+Ext.swift */; };
@@ -245,7 +278,40 @@
 		CAE3956D29F6014A00ECB758 /* ProductAddedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductAddedController.swift; sourceTree = "<group>"; };
 		CAE3956F29F6105200ECB758 /* EditPrivacyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPrivacyController.swift; sourceTree = "<group>"; };
 		CAE3957129F97D3D00ECB758 /* SimpleLoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleLoginController.swift; sourceTree = "<group>"; };
-		E3AB41612A008E2F00EB9AA3 /* Globals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
+		E349C9A32A01582800E03120 /* WalletCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletCell.swift; sourceTree = "<group>"; };
+		E349C9A62A016E8500E03120 /* icon@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@1x.png"; sourceTree = "<group>"; };
+		E349C9A72A016E8500E03120 /* icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@3x.png"; sourceTree = "<group>"; };
+		E349C9A82A016E8500E03120 /* icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@2x.png"; sourceTree = "<group>"; };
+		E349C9AC2A016E8E00E03120 /* bank_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bank_icon@2x.png"; sourceTree = "<group>"; };
+		E349C9AD2A016E8F00E03120 /* bank_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bank_icon@3x.png"; sourceTree = "<group>"; };
+		E349C9AE2A016E8F00E03120 /* bank_icon@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "bank_icon@1x.png"; sourceTree = "<group>"; };
+		E349C9B22A016EA100E03120 /* question_mark_no_shadow_kwiks_green@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "question_mark_no_shadow_kwiks_green@2x.png"; sourceTree = "<group>"; };
+		E349C9B32A016EA100E03120 /* kwiks_vector_arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "kwiks_vector_arrow@2x.png"; sourceTree = "<group>"; };
+		E349C9B42A016EA100E03120 /* kwiks_money_crown@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "kwiks_money_crown@1x.png"; sourceTree = "<group>"; };
+		E349C9B52A016EA100E03120 /* kwiks_vector_arrow@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "kwiks_vector_arrow@3x.png"; sourceTree = "<group>"; };
+		E349C9B62A016EA100E03120 /* kwiks_cashout_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "kwiks_cashout_icon@2x.png"; sourceTree = "<group>"; };
+		E349C9B72A016EA100E03120 /* kwiks_money_crown@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "kwiks_money_crown@3x.png"; sourceTree = "<group>"; };
+		E349C9B82A016EA100E03120 /* kwiks_green_money_sign@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "kwiks_green_money_sign@2x.png"; sourceTree = "<group>"; };
+		E349C9B92A016EA100E03120 /* kwiks_vector_arrow@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "kwiks_vector_arrow@1x.png"; sourceTree = "<group>"; };
+		E349C9BA2A016EA200E03120 /* kwiks_money_dolla_sign@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "kwiks_money_dolla_sign@2x.png"; sourceTree = "<group>"; };
+		E349C9BB2A016EA200E03120 /* kwiks_cashout_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "kwiks_cashout_icon@3x.png"; sourceTree = "<group>"; };
+		E349C9BC2A016EA200E03120 /* kwiks_money_crown@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "kwiks_money_crown@2x.png"; sourceTree = "<group>"; };
+		E349C9BD2A016EA200E03120 /* kwiks_add_money_wallet_icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "kwiks_add_money_wallet_icon@3x.png"; sourceTree = "<group>"; };
+		E349C9BE2A016EA200E03120 /* kwiks_add_money_wallet_icon@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "kwiks_add_money_wallet_icon@1x.png"; sourceTree = "<group>"; };
+		E349C9BF2A016EA200E03120 /* kwiks_add_money_wallet_icon@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "kwiks_add_money_wallet_icon@2x.png"; sourceTree = "<group>"; };
+		E349C9C02A016EA200E03120 /* kwiks_green_money_sign@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "kwiks_green_money_sign@1x.png"; sourceTree = "<group>"; };
+		E349C9C12A016EA200E03120 /* kwiks_green_money_sign@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "kwiks_green_money_sign@3x.png"; sourceTree = "<group>"; };
+		E349C9C22A016EA200E03120 /* kwiks_cashout_icon@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "kwiks_cashout_icon@1x.png"; sourceTree = "<group>"; };
+		E349C9C32A016EA200E03120 /* kwiks_money_dolla_sign@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "kwiks_money_dolla_sign@1x.png"; sourceTree = "<group>"; };
+		E349C9C42A016EA300E03120 /* kwiks_money_dolla_sign@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "kwiks_money_dolla_sign@3x.png"; sourceTree = "<group>"; };
+		E349C9C52A016EA300E03120 /* question_mark_no_shadow_kwiks_green@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "question_mark_no_shadow_kwiks_green@1x.png"; sourceTree = "<group>"; };
+		E349C9C62A016EA300E03120 /* question_mark_no_shadow_kwiks_green@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "question_mark_no_shadow_kwiks_green@3x.png"; sourceTree = "<group>"; };
+		E349C9DC2A01714E00E03120 /* settings_icon_profile_no_shadow@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings_icon_profile_no_shadow@1x.png"; sourceTree = "<group>"; };
+		E349C9DD2A01714E00E03120 /* settings_icon_profile_no_shadow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings_icon_profile_no_shadow@2x.png"; sourceTree = "<group>"; };
+		E349C9DE2A01714E00E03120 /* settings_icon_profile_no_shadow@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "settings_icon_profile_no_shadow@3x.png"; sourceTree = "<group>"; };
+		E349C9E22A0172DB00E03120 /* long_back_arrow@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "long_back_arrow@1x.png"; sourceTree = "<group>"; };
+		E349C9E32A0172DB00E03120 /* long_back_arrow@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "long_back_arrow@2x.png"; sourceTree = "<group>"; };
+		E349C9E42A0172DC00E03120 /* long_back_arrow@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "long_back_arrow@3x.png"; sourceTree = "<group>"; };
 		E3AB41632A008E7F00EB9AA3 /* Application+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Application+Ext.swift"; sourceTree = "<group>"; };
 		E3AB41652A0090EA00EB9AA3 /* CashoutConfirmationPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashoutConfirmationPopup.swift; sourceTree = "<group>"; };
 		E3AB41672A0092EE00EB9AA3 /* DrawRect+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DrawRect+Ext.swift"; sourceTree = "<group>"; };
@@ -338,6 +404,7 @@
 				CA1D1A4229FC52FD0015F1A2 /* QuestionTableViewCell.swift */,
 				CA55DFA329D11D8D00C54B35 /* AvailableMusicTableViewCell.swift */,
 				CABACC2929DA211F00026CAE /* AddParticipantsCell.swift */,
+				E349C9A32A01582800E03120 /* WalletCell.swift */,
 			);
 			path = "TableView Cells";
 			sourceTree = "<group>";
@@ -397,6 +464,8 @@
 		CAA90C902994197A0013A654 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
+				E3AB41692A00939D00EB9AA3 /* BaseViewController.swift */,
+				E3AB41742A0097F200EB9AA3 /* CashOutMain.swift */,
 				CAA90C7F2994171C0013A654 /* DecisionController.swift */,
 				CABAA31129A2C95A00C5EBC6 /* HomeController.swift */,
 				CABAA31529A2C9C300C5EBC6 /* InboxController.swift */,
@@ -409,8 +478,6 @@
 				CA1D1A3B29FB02080015F1A2 /* Settings */,
 				CA20FE2129EDA3FB0089A6B8 /* Video */,
 				CABACC2429D8929700026CAE /* VoiceVideoCalls */,
-				E3AB41692A00939D00EB9AA3 /* BaseViewController.swift */,
-				E3AB41742A0097F200EB9AA3 /* CashOutMain.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -429,6 +496,7 @@
 		CAA90C92299419890013A654 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				E349C9A52A016D6800E03120 /* WalletAssets */,
 				CA55DF5829C649D100C54B35 /* KwiksLiveTestVideo.mp4 */,
 				CA55DF4C29BAC9A000C54B35 /* KwiksTestVideo.mp4 */,
 				CAA90C842994171E0013A654 /* Assets.xcassets */,
@@ -452,7 +520,6 @@
 				CA55DF2329A7E8CF00C54B35 /* UILabel+Ext.swift */,
 				CA55DF4229B17FAA00C54B35 /* UITextField+Ext.swift */,
 				CABAA3022999609200C5EBC6 /* UIView+Ext.swift */,
-				E3AB41612A008E2F00EB9AA3 /* Globals.swift */,
 				E3AB41632A008E7F00EB9AA3 /* Application+Ext.swift */,
 				E3AB41672A0092EE00EB9AA3 /* DrawRect+Ext.swift */,
 			);
@@ -564,6 +631,46 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		E349C9A52A016D6800E03120 /* WalletAssets */ = {
+			isa = PBXGroup;
+			children = (
+				E349C9E22A0172DB00E03120 /* long_back_arrow@1x.png */,
+				E349C9E32A0172DB00E03120 /* long_back_arrow@2x.png */,
+				E349C9E42A0172DC00E03120 /* long_back_arrow@3x.png */,
+				E349C9DC2A01714E00E03120 /* settings_icon_profile_no_shadow@1x.png */,
+				E349C9DD2A01714E00E03120 /* settings_icon_profile_no_shadow@2x.png */,
+				E349C9DE2A01714E00E03120 /* settings_icon_profile_no_shadow@3x.png */,
+				E349C9BE2A016EA200E03120 /* kwiks_add_money_wallet_icon@1x.png */,
+				E349C9BF2A016EA200E03120 /* kwiks_add_money_wallet_icon@2x.png */,
+				E349C9BD2A016EA200E03120 /* kwiks_add_money_wallet_icon@3x.png */,
+				E349C9C22A016EA200E03120 /* kwiks_cashout_icon@1x.png */,
+				E349C9B62A016EA100E03120 /* kwiks_cashout_icon@2x.png */,
+				E349C9BB2A016EA200E03120 /* kwiks_cashout_icon@3x.png */,
+				E349C9C02A016EA200E03120 /* kwiks_green_money_sign@1x.png */,
+				E349C9B82A016EA100E03120 /* kwiks_green_money_sign@2x.png */,
+				E349C9C12A016EA200E03120 /* kwiks_green_money_sign@3x.png */,
+				E349C9B42A016EA100E03120 /* kwiks_money_crown@1x.png */,
+				E349C9BC2A016EA200E03120 /* kwiks_money_crown@2x.png */,
+				E349C9B72A016EA100E03120 /* kwiks_money_crown@3x.png */,
+				E349C9C32A016EA200E03120 /* kwiks_money_dolla_sign@1x.png */,
+				E349C9BA2A016EA200E03120 /* kwiks_money_dolla_sign@2x.png */,
+				E349C9C42A016EA300E03120 /* kwiks_money_dolla_sign@3x.png */,
+				E349C9B92A016EA100E03120 /* kwiks_vector_arrow@1x.png */,
+				E349C9B32A016EA100E03120 /* kwiks_vector_arrow@2x.png */,
+				E349C9B52A016EA100E03120 /* kwiks_vector_arrow@3x.png */,
+				E349C9C52A016EA300E03120 /* question_mark_no_shadow_kwiks_green@1x.png */,
+				E349C9B22A016EA100E03120 /* question_mark_no_shadow_kwiks_green@2x.png */,
+				E349C9C62A016EA300E03120 /* question_mark_no_shadow_kwiks_green@3x.png */,
+				E349C9AE2A016E8F00E03120 /* bank_icon@1x.png */,
+				E349C9AC2A016E8E00E03120 /* bank_icon@2x.png */,
+				E349C9AD2A016E8F00E03120 /* bank_icon@3x.png */,
+				E349C9A62A016E8500E03120 /* icon@1x.png */,
+				E349C9A82A016E8500E03120 /* icon@2x.png */,
+				E349C9A72A016E8500E03120 /* icon@3x.png */,
+			);
+			path = WalletAssets;
+			sourceTree = "<group>";
+		};
 		E3AB41712A00969000EB9AA3 /* TableViews */ = {
 			isa = PBXGroup;
 			children = (
@@ -649,10 +756,21 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E349C9C92A016EA300E03120 /* kwiks_money_crown@1x.png in Resources */,
+				E349C9B12A016E8F00E03120 /* bank_icon@1x.png in Resources */,
+				E349C9D02A016EA300E03120 /* kwiks_cashout_icon@3x.png in Resources */,
 				CAA90C882994171E0013A654 /* LaunchScreen.storyboard in Resources */,
+				E349C9CF2A016EA300E03120 /* kwiks_money_dolla_sign@2x.png in Resources */,
+				E349C9AF2A016E8F00E03120 /* bank_icon@2x.png in Resources */,
+				E349C9CA2A016EA300E03120 /* kwiks_vector_arrow@3x.png in Resources */,
 				CABAA2F3299430DD00C5EBC6 /* segoeui-semibold.ttf in Resources */,
+				E349C9AA2A016E8500E03120 /* icon@3x.png in Resources */,
 				CAA90CB42994205B0013A654 /* Inter-Regular.ttf in Resources */,
 				CAA90CB62994205B0013A654 /* Inter-Bold.ttf in Resources */,
+				E349C9D62A016EA300E03120 /* kwiks_green_money_sign@3x.png in Resources */,
+				E349C9D82A016EA300E03120 /* kwiks_money_dolla_sign@1x.png in Resources */,
+				E349C9D72A016EA300E03120 /* kwiks_cashout_icon@1x.png in Resources */,
+				E349C9E12A01714E00E03120 /* settings_icon_profile_no_shadow@3x.png in Resources */,
 				CAA90CB12994205B0013A654 /* Inter-ExtraLight.ttf in Resources */,
 				CAA90CB52994205B0013A654 /* Inter-ExtraBold.ttf in Resources */,
 				CA55DF5929C649D100C54B35 /* KwiksLiveTestVideo.mp4 in Resources */,
@@ -662,11 +780,33 @@
 				CABAA2EE29942F9300C5EBC6 /* segoeui.ttf in Resources */,
 				CA55DF4D29BAC9A000C54B35 /* KwiksTestVideo.mp4 in Resources */,
 				CABAA2F029942FCD00C5EBC6 /* segoeui-bold.ttf in Resources */,
+				E349C9AB2A016E8500E03120 /* icon@2x.png in Resources */,
 				CAA90CB82994205B0013A654 /* Inter-Medium.ttf in Resources */,
 				CAA90CB72994205B0013A654 /* Inter-Light.ttf in Resources */,
+				E349C9E52A0172DC00E03120 /* long_back_arrow@1x.png in Resources */,
+				E349C9DF2A01714E00E03120 /* settings_icon_profile_no_shadow@1x.png in Resources */,
+				E349C9D42A016EA300E03120 /* kwiks_add_money_wallet_icon@2x.png in Resources */,
+				E349C9C82A016EA300E03120 /* kwiks_vector_arrow@2x.png in Resources */,
+				E349C9E62A0172DC00E03120 /* long_back_arrow@2x.png in Resources */,
+				E349C9D12A016EA300E03120 /* kwiks_money_crown@2x.png in Resources */,
+				E349C9E02A01714E00E03120 /* settings_icon_profile_no_shadow@2x.png in Resources */,
+				E349C9B02A016E8F00E03120 /* bank_icon@3x.png in Resources */,
+				E349C9E72A0172DC00E03120 /* long_back_arrow@3x.png in Resources */,
 				CAA90CB32994205B0013A654 /* Inter-Black.ttf in Resources */,
+				E349C9CC2A016EA300E03120 /* kwiks_money_crown@3x.png in Resources */,
+				E349C9D32A016EA300E03120 /* kwiks_add_money_wallet_icon@1x.png in Resources */,
+				E349C9DB2A016EA300E03120 /* question_mark_no_shadow_kwiks_green@3x.png in Resources */,
+				E349C9D22A016EA300E03120 /* kwiks_add_money_wallet_icon@3x.png in Resources */,
 				CA8D702529E72A47008A11C0 /* .gitignore in Resources */,
+				E349C9CE2A016EA300E03120 /* kwiks_vector_arrow@1x.png in Resources */,
+				E349C9CD2A016EA300E03120 /* kwiks_green_money_sign@2x.png in Resources */,
+				E349C9D92A016EA300E03120 /* kwiks_money_dolla_sign@3x.png in Resources */,
+				E349C9CB2A016EA300E03120 /* kwiks_cashout_icon@2x.png in Resources */,
 				CA8D700929E097A1008A11C0 /* Rocket-Morphing.json in Resources */,
+				E349C9C72A016EA300E03120 /* question_mark_no_shadow_kwiks_green@2x.png in Resources */,
+				E349C9DA2A016EA300E03120 /* question_mark_no_shadow_kwiks_green@1x.png in Resources */,
+				E349C9D52A016EA300E03120 /* kwiks_green_money_sign@1x.png in Resources */,
+				E349C9A92A016E8500E03120 /* icon@1x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -727,7 +867,6 @@
 				CA1D1A4129FB15520015F1A2 /* PrivacyController.swift in Sources */,
 				CA1D1A4F2A00051A0015F1A2 /* AccountInfoController.swift in Sources */,
 				CAA90C802994171C0013A654 /* DecisionController.swift in Sources */,
-				E3AB41622A008E2F00EB9AA3 /* Globals.swift in Sources */,
 				CA55DFA129D1140400C54B35 /* GlobalVariables.swift in Sources */,
 				CA1D1A4529FC53600015F1A2 /* FAQ.swift in Sources */,
 				CABAA2FF2998340800C5EBC6 /* SignUpDetailController.swift in Sources */,
@@ -738,6 +877,7 @@
 				E3AB41682A0092EE00EB9AA3 /* DrawRect+Ext.swift in Sources */,
 				CABAA31E29A311AC00C5EBC6 /* SettingsItem.swift in Sources */,
 				CA55DF4F29BCF7F100C54B35 /* EffectsCollectionViewCell.swift in Sources */,
+				E349C9A42A01582800E03120 /* WalletCell.swift in Sources */,
 				E3AB41792A00982A00EB9AA3 /* CashOutTextContainer.swift in Sources */,
 				CA55DF4729B8DE3A00C54B35 /* KwiksVideoPlayerController.swift in Sources */,
 				CA20FE2029ED8A590089A6B8 /* FeaturedMusicCollectionViewCell.swift in Sources */,

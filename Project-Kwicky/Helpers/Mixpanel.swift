@@ -3,40 +3,24 @@
 //  Project-Kwicky
 //
 //  Created by Stanley Miller on 3/30/23.
-//
+
+//Token: c0ef9a6d40f11836eed4e8f27fbe678f
+//API SECRET: 008089d61e1ba60fd8597650284ce8c4
+//Access URL: https://mixpanel.com/project/2978384
+//Project ID: 2978384
 
 import Foundation
-//import Mixpanel
+import Mixpanel
 
-//class MixpanelManager: NSObject {
-//
-//  static let shared = MixpanelManager()
-//
-//  func updateKey(key: String) {
-//    Mixpanel.mainInstance().track(event:key)
-//  }
-//
-//  func updateCounts(key: String, counts: Double) {
-//    Mixpanel.mainInstance().people.increment(property: key, by: counts)
-//  }
-//}
+class MixpanelManager: NSObject {
 
-///mixpanel integration - only track for production
-//if EnvironemntModeHelper.isCurrentEnvironmentDebug() {
-//    Mixpanel.initialize(token: "")
-//} else {
-//    Mixpanel.initialize(token: K.MIXPANEL_TOKEN)
-//    Mixpanel.mainInstance().loggingEnabled = false
-//}
-//
-//class EnvironemntModeHelper: NSObject {
-//
-//    static func isCurrentEnvironmentDebug() -> Bool {
-//
-//#if DEBUG
-//        return true
-//#else
-//        return false
-//#endif
-//    }
-//}
+  static let shared = MixpanelManager()
+
+  func updateKey(key: String) {
+    Mixpanel.mainInstance().track(event:key)
+  }
+
+  func updateCounts(key: String, counts: Double) {
+    Mixpanel.mainInstance().people.increment(property: key, by: counts)
+  }
+}

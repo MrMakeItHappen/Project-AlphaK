@@ -38,6 +38,15 @@ extension UIColor {
     /// #F9F9F9
     static let backgroundWhiteishGrey = UIColor(hexString: "F9F9F9")
     
+    /// #757575
+    static let fontBrown = UIColor(hexString: "757575")
+    
+    /// #4F4F4F
+    static let emblemBrown = UIColor(hexString: "4F4F4F")
+    
+    /// #616167
+    static let walletBrown = UIColor(hexString: "616167")
+    
 }
 
 //Convert Hex Color to UIColor

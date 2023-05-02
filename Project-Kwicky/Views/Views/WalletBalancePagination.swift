@@ -60,7 +60,7 @@ class WalletBalancePagination : BaseView {
         cbf.titleLabel?.numberOfLines = 1
         cbf.titleLabel?.adjustsFontForContentSizeCategory = true
         cbf.backgroundColor = UIColor.white
-        cbf.tintColor = UIColor.brown
+        cbf.tintColor = UIColor.walletBrown
         cbf.tag = 2
         
         return cbf
@@ -84,7 +84,7 @@ class WalletBalancePagination : BaseView {
         
         let hfl = UILabel()
         hfl.translatesAutoresizingMaskIntoConstraints = false
-        hfl.backgroundColor = UIColor.brown.withAlphaComponent(0.6)
+        hfl.backgroundColor = UIColor.emblemBrown.withAlphaComponent(0.6)
         hfl.text = "USD"
         hfl.textColor = UIColor.white
         hfl.textAlignment = .center
@@ -301,9 +301,16 @@ class WalletBalancePagination : BaseView {
         self.perform(#selector(self.handleProgression), with: nil, afterDelay: 0.1)
         
     }
+    
+    var hasBeenLaidOut : Bool = false
    
     @objc func handleProgression() {
-        self.addTheBezierCircle()
+        if self.hasBeenLaidOut == false {
+            if self.dummyContainer.frame.height > 0.0 {
+                self.hasBeenLaidOut = true
+                self.addTheBezierCircle()
+            }
+        }
     }
     
     @objc func handleCashOutButton(sender:UIButton) {
@@ -323,7 +330,7 @@ extension WalletBalancePagination {
     @objc func addTheBezierCircle() {
         
         let center = CGPoint(x: dummyContainer.bounds.midX, y: dummyContainer.bounds.midY)
-        print("CENTER IS and im called right off the bar: \(center)" )
+        print("BEZIER: \(center)" )
 
         let circularPath = UIBezierPath(arcCenter: .zero, radius: 43, startAngle: 0, endAngle: 2*CGFloat.pi, clockwise: true)
         let shadowPath = UIBezierPath(arcCenter: .zero, radius: 41, startAngle: 0, endAngle: 2*CGFloat.pi, clockwise: true)

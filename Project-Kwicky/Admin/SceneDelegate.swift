@@ -38,6 +38,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         UINavigationBar.appearance().scrollEdgeAppearance = appearance
         UINavigationBar.appearance().tintColor = .white
         
+        //TODO: Can we increase spacing from the left edge? They almost touch the device bezel
         UINavigationBar.appearance().backIndicatorImage = UIImage(named: "KwiksBackArrow")
         UINavigationBar.appearance().backIndicatorTransitionMaskImage = UIImage(named: "KwiksBackArrow")
 

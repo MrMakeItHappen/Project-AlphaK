@@ -63,7 +63,7 @@ class CashOutTextContainer : BaseView, UITextFieldDelegate {
         
         let hfl = UILabel()
         hfl.translatesAutoresizingMaskIntoConstraints = false
-        hfl.backgroundColor = UIColor.brown.withAlphaComponent(0.6)
+        hfl.backgroundColor = UIColor.emblemBrown.withAlphaComponent(0.6)
         hfl.text = "USD"
         hfl.textColor = UIColor.white
         hfl.textAlignment = .center

@@ -96,7 +96,7 @@ class WalletController : BaseViewController, UIScrollViewDelegate {
     }
     
     func fillValues() {
-        let image = UIImage(named: "stock_photo_man")?.withRenderingMode(.alwaysOriginal)
+        let image = UIImage(named: "FemalePlaceholder")?.withRenderingMode(.alwaysOriginal)
         self.walletHeader.profileButton.setImage(image, for: .normal)
         self.walletHeader.nameLabel.text = "Charlie"
         self.walletBalancePagination.balanceLabel.text = "113.67"
@@ -105,12 +105,14 @@ class WalletController : BaseViewController, UIScrollViewDelegate {
         //set the default font style above, then change the bold text here or vice versa works also
         self.walletBalancePagination.priceContainerLabel.colorFontString(text: "47.26  This Week", coloredText: "47.26", color: UIColor.kwiksTextBlack, fontName: UIFont.segoeBold, fontSize: 15)
         //control progree '0.0-> 1.0 and use the percentage here'
-        self.walletBalancePagination.adjustStroke(end: 0.75)
     }
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
         self.fillValues()
+        self.walletBalancePagination.handleProgression()
+        self.walletBalancePagination.adjustStroke(end: 0.75)
+
     }
     
     func updateHeight() {

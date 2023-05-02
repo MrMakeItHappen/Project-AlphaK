@@ -83,13 +83,13 @@ class CashOutMain : BaseViewController {
         self.cashOutTextContainer.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
         self.cashOutTextContainer.heightAnchor.constraint(equalToConstant: 265).isActive = true
         
-        self.nextButton.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: -50).isActive = true
+        self.nextButton.bottomAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.bottomAnchor, constant: -30).isActive = true
         self.nextButton.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 30).isActive = true
         self.nextButton.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -30).isActive = true
         self.nextButton.heightAnchor.constraint(equalToConstant: 50).isActive = true
         self.nextButton.layer.cornerRadius = 25
         
-        self.cashOutBodyBank.topAnchor.constraint(equalTo: self.cashOutTextContainer.bottomAnchor, constant: 60).isActive = true
+        self.cashOutBodyBank.topAnchor.constraint(equalTo: self.cashOutTextContainer.bottomAnchor, constant: 40).isActive = true
         self.cashOutBodyBank.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
         self.cashOutBodyBank.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
         self.cashOutBodyBank.bottomAnchor.constraint(equalTo: self.nextButton.topAnchor, constant: -30).isActive = true

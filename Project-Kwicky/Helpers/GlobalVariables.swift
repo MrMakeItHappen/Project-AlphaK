@@ -27,12 +27,10 @@ var _userAddedProduct: KwiksSaleItem?
 ///Never set this value. Retrieve only.
 var _allAvailableVideoMusic: [Music] = []
 
-
-
-
-
-
+//set on app load
+var globalDeviceWidth : CGFloat = 0.0,
+    globalDeviceHeight : CGFloat = 0.0
 
 ///Kwiks Podfile Pop Up Alert Example
-//self.popUpAlert = KwiksSystemPopups(presentingViewController: self, popupType: .UpdateKwiks)
+//self.popUpAlert = KwiksSystemPopups(presentingViewController: self, popupType: .updateKwiks)
 //self.popUpAlert.engagePopup()

@@ -21,8 +21,10 @@ class WalletMainHeader : BaseView {
         sii.isUserInteractionEnabled = true
         sii.translatesAutoresizingMaskIntoConstraints = false
         sii.isUserInteractionEnabled = true
-        sii.imageView?.contentMode = .scaleAspectFit
+        sii.imageView?.contentMode = .scaleAspectFill
         sii.backgroundColor = UIColor.kwiksGrey
+        sii.imageView?.clipsToBounds = true
+        sii.layer.masksToBounds = true
         
         return sii
         

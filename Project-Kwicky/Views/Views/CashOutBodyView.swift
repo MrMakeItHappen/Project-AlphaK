@@ -49,7 +49,7 @@ class CashOutBodyBank : BaseView {
         hfl.translatesAutoresizingMaskIntoConstraints = false
         hfl.backgroundColor = .clear
         hfl.text = "Account ending with 6374"
-        hfl.textColor = UIColor.brown
+        hfl.textColor = UIColor.fontBrown
         hfl.textAlignment = .left
         hfl.adjustsFontSizeToFitWidth = true //with right anchor on screen width
         hfl.font = UIFont.segoeUIRegular(size: 14)

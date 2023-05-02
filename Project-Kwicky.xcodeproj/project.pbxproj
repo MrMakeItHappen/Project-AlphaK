@@ -116,6 +116,19 @@
 		CAE3956E29F6014A00ECB758 /* ProductAddedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE3956D29F6014A00ECB758 /* ProductAddedController.swift */; };
 		CAE3957029F6105200ECB758 /* EditPrivacyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE3956F29F6105200ECB758 /* EditPrivacyController.swift */; };
 		CAE3957229F97D3D00ECB758 /* SimpleLoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE3957129F97D3D00ECB758 /* SimpleLoginController.swift */; };
+		E3AB41622A008E2F00EB9AA3 /* Globals.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3AB41612A008E2F00EB9AA3 /* Globals.swift */; };
+		E3AB41642A008E7F00EB9AA3 /* Application+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3AB41632A008E7F00EB9AA3 /* Application+Ext.swift */; };
+		E3AB41662A0090EA00EB9AA3 /* CashoutConfirmationPopup.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3AB41652A0090EA00EB9AA3 /* CashoutConfirmationPopup.swift */; };
+		E3AB41682A0092EE00EB9AA3 /* DrawRect+Ext.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3AB41672A0092EE00EB9AA3 /* DrawRect+Ext.swift */; };
+		E3AB416A2A00939D00EB9AA3 /* BaseViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3AB41692A00939D00EB9AA3 /* BaseViewController.swift */; };
+		E3AB416C2A00944400EB9AA3 /* WalletMainHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3AB416B2A00944400EB9AA3 /* WalletMainHeader.swift */; };
+		E3AB416E2A00946000EB9AA3 /* WalletBalancePagination.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3AB416D2A00946000EB9AA3 /* WalletBalancePagination.swift */; };
+		E3AB41702A00947800EB9AA3 /* BaseView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3AB416F2A00947800EB9AA3 /* BaseView.swift */; };
+		E3AB41732A00969F00EB9AA3 /* WalletTable.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3AB41722A00969F00EB9AA3 /* WalletTable.swift */; };
+		E3AB41752A0097F200EB9AA3 /* CashOutMain.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3AB41742A0097F200EB9AA3 /* CashOutMain.swift */; };
+		E3AB41772A00981400EB9AA3 /* CashoutMainHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3AB41762A00981400EB9AA3 /* CashoutMainHeader.swift */; };
+		E3AB41792A00982A00EB9AA3 /* CashOutTextContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3AB41782A00982A00EB9AA3 /* CashOutTextContainer.swift */; };
+		E3AB417B2A00984000EB9AA3 /* CashOutBodyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3AB417A2A00984000EB9AA3 /* CashOutBodyView.swift */; };
 		EF86A0944B731027427F297D /* Pods_Project_Kwicky.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FF4CC60EA800B5EA4493BF7 /* Pods_Project_Kwicky.framework */; };
 /* End PBXBuildFile section */
 
@@ -232,6 +245,19 @@
 		CAE3956D29F6014A00ECB758 /* ProductAddedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductAddedController.swift; sourceTree = "<group>"; };
 		CAE3956F29F6105200ECB758 /* EditPrivacyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPrivacyController.swift; sourceTree = "<group>"; };
 		CAE3957129F97D3D00ECB758 /* SimpleLoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleLoginController.swift; sourceTree = "<group>"; };
+		E3AB41612A008E2F00EB9AA3 /* Globals.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Globals.swift; sourceTree = "<group>"; };
+		E3AB41632A008E7F00EB9AA3 /* Application+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Application+Ext.swift"; sourceTree = "<group>"; };
+		E3AB41652A0090EA00EB9AA3 /* CashoutConfirmationPopup.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashoutConfirmationPopup.swift; sourceTree = "<group>"; };
+		E3AB41672A0092EE00EB9AA3 /* DrawRect+Ext.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "DrawRect+Ext.swift"; sourceTree = "<group>"; };
+		E3AB41692A00939D00EB9AA3 /* BaseViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseViewController.swift; sourceTree = "<group>"; };
+		E3AB416B2A00944400EB9AA3 /* WalletMainHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletMainHeader.swift; sourceTree = "<group>"; };
+		E3AB416D2A00946000EB9AA3 /* WalletBalancePagination.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletBalancePagination.swift; sourceTree = "<group>"; };
+		E3AB416F2A00947800EB9AA3 /* BaseView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BaseView.swift; sourceTree = "<group>"; };
+		E3AB41722A00969F00EB9AA3 /* WalletTable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletTable.swift; sourceTree = "<group>"; };
+		E3AB41742A0097F200EB9AA3 /* CashOutMain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashOutMain.swift; sourceTree = "<group>"; };
+		E3AB41762A00981400EB9AA3 /* CashoutMainHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashoutMainHeader.swift; sourceTree = "<group>"; };
+		E3AB41782A00982A00EB9AA3 /* CashOutTextContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashOutTextContainer.swift; sourceTree = "<group>"; };
+		E3AB417A2A00984000EB9AA3 /* CashOutBodyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashOutBodyView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -383,6 +409,8 @@
 				CA1D1A3B29FB02080015F1A2 /* Settings */,
 				CA20FE2129EDA3FB0089A6B8 /* Video */,
 				CABACC2429D8929700026CAE /* VoiceVideoCalls */,
+				E3AB41692A00939D00EB9AA3 /* BaseViewController.swift */,
+				E3AB41742A0097F200EB9AA3 /* CashOutMain.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -390,6 +418,7 @@
 		CAA90C91299419810013A654 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				E3AB41712A00969000EB9AA3 /* TableViews */,
 				CAE3956829F32B8600ECB758 /* Views */,
 				CA55DFA229D11D7000C54B35 /* TableView Cells */,
 				CA55DF4129B16A3100C54B35 /* Collection View Cells */,
@@ -423,6 +452,9 @@
 				CA55DF2329A7E8CF00C54B35 /* UILabel+Ext.swift */,
 				CA55DF4229B17FAA00C54B35 /* UITextField+Ext.swift */,
 				CABAA3022999609200C5EBC6 /* UIView+Ext.swift */,
+				E3AB41612A008E2F00EB9AA3 /* Globals.swift */,
+				E3AB41632A008E7F00EB9AA3 /* Application+Ext.swift */,
+				E3AB41672A0092EE00EB9AA3 /* DrawRect+Ext.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -513,6 +545,13 @@
 			isa = PBXGroup;
 			children = (
 				CAE3956929F32BAB00ECB758 /* ProductHeaderCollectionReusableView.swift */,
+				E3AB41652A0090EA00EB9AA3 /* CashoutConfirmationPopup.swift */,
+				E3AB416B2A00944400EB9AA3 /* WalletMainHeader.swift */,
+				E3AB416D2A00946000EB9AA3 /* WalletBalancePagination.swift */,
+				E3AB416F2A00947800EB9AA3 /* BaseView.swift */,
+				E3AB41762A00981400EB9AA3 /* CashoutMainHeader.swift */,
+				E3AB41782A00982A00EB9AA3 /* CashOutTextContainer.swift */,
+				E3AB417A2A00984000EB9AA3 /* CashOutBodyView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -523,6 +562,14 @@
 				3FF4CC60EA800B5EA4493BF7 /* Pods_Project_Kwicky.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E3AB41712A00969000EB9AA3 /* TableViews */ = {
+			isa = PBXGroup;
+			children = (
+				E3AB41722A00969F00EB9AA3 /* WalletTable.swift */,
+			);
+			path = TableViews;
 			sourceTree = "<group>";
 		};
 		FABF11DD4CAE7222961B4C18 /* Pods */ = {
@@ -680,6 +727,7 @@
 				CA1D1A4129FB15520015F1A2 /* PrivacyController.swift in Sources */,
 				CA1D1A4F2A00051A0015F1A2 /* AccountInfoController.swift in Sources */,
 				CAA90C802994171C0013A654 /* DecisionController.swift in Sources */,
+				E3AB41622A008E2F00EB9AA3 /* Globals.swift in Sources */,
 				CA55DFA129D1140400C54B35 /* GlobalVariables.swift in Sources */,
 				CA1D1A4529FC53600015F1A2 /* FAQ.swift in Sources */,
 				CABAA2FF2998340800C5EBC6 /* SignUpDetailController.swift in Sources */,
@@ -687,8 +735,10 @@
 				CA1D1A572A0006B20015F1A2 /* EditPasswordController.swift in Sources */,
 				CA55DF5B29C66AFC00C54B35 /* GoLiveCommentCollectionViewCell.swift in Sources */,
 				CA8D701129E6F59A008A11C0 /* Beautify.swift in Sources */,
+				E3AB41682A0092EE00EB9AA3 /* DrawRect+Ext.swift in Sources */,
 				CABAA31E29A311AC00C5EBC6 /* SettingsItem.swift in Sources */,
 				CA55DF4F29BCF7F100C54B35 /* EffectsCollectionViewCell.swift in Sources */,
+				E3AB41792A00982A00EB9AA3 /* CashOutTextContainer.swift in Sources */,
 				CA55DF4729B8DE3A00C54B35 /* KwiksVideoPlayerController.swift in Sources */,
 				CA20FE2029ED8A590089A6B8 /* FeaturedMusicCollectionViewCell.swift in Sources */,
 				CA55DF2A29AA966A00C54B35 /* ProfileController.swift in Sources */,
@@ -700,10 +750,12 @@
 				CA1D1A4329FC52FD0015F1A2 /* QuestionTableViewCell.swift in Sources */,
 				CA55DF2829AA94EF00C54B35 /* SettingsController.swift in Sources */,
 				CAA90C9B29941ACD0013A654 /* UIColor+Ext.swift in Sources */,
+				E3AB41662A0090EA00EB9AA3 /* CashoutConfirmationPopup.swift in Sources */,
 				CA55DF3E29AFA13100C54B35 /* KwiksUserAnalytics.swift in Sources */,
 				CA1D1A552A0005F60015F1A2 /* InfoUpdatedPopUpController.swift in Sources */,
 				CAE3956E29F6014A00ECB758 /* ProductAddedController.swift in Sources */,
 				CA55DF4329B17FAA00C54B35 /* UITextField+Ext.swift in Sources */,
+				E3AB41772A00981400EB9AA3 /* CashoutMainHeader.swift in Sources */,
 				CABAA30B29A19EB900C5EBC6 /* UIButton+Ext.swift in Sources */,
 				CAA90C7C2994171C0013A654 /* AppDelegate.swift in Sources */,
 				CA55DF4B29BA268100C54B35 /* Statics.swift in Sources */,
@@ -713,6 +765,7 @@
 				CAA90C7E2994171C0013A654 /* SceneDelegate.swift in Sources */,
 				CABAA305299BCEE100C5EBC6 /* String+Ext.swift in Sources */,
 				CA55DF3629AF9D7E00C54B35 /* KwiksWallet.swift in Sources */,
+				E3AB41752A0097F200EB9AA3 /* CashOutMain.swift in Sources */,
 				CAE3956729F2E70B00ECB758 /* ProductCollectionViewCell.swift in Sources */,
 				CAE3956A29F32BAB00ECB758 /* ProductHeaderCollectionReusableView.swift in Sources */,
 				CA55DF1E29A6CBCA00C54B35 /* AccountController.swift in Sources */,
@@ -728,10 +781,13 @@
 				CAE3956C29F33D4400ECB758 /* KwiksSaleReviewSelectedProductViewController.swift in Sources */,
 				CA55DF2429A7E8CF00C54B35 /* UILabel+Ext.swift in Sources */,
 				CA55DF2E29AC06F600C54B35 /* UploadImageController.swift in Sources */,
+				E3AB416A2A00939D00EB9AA3 /* BaseViewController.swift in Sources */,
 				CABAA3032999609200C5EBC6 /* UIView+Ext.swift in Sources */,
+				E3AB41732A00969F00EB9AA3 /* WalletTable.swift in Sources */,
 				CABAA30F29A2C8EE00C5EBC6 /* TabViewController.swift in Sources */,
 				CA55DFA629D1234000C54B35 /* Music.swift in Sources */,
 				CABAA31A29A2CB8000C5EBC6 /* VideoController.swift in Sources */,
+				E3AB41702A00947800EB9AA3 /* BaseView.swift in Sources */,
 				CA20FE2329EDA4560089A6B8 /* TagPeopleController.swift in Sources */,
 				CA55DF3829AF9DB700C54B35 /* KwiksVideoAnalytics.swift in Sources */,
 				CAE3957229F97D3D00ECB758 /* SimpleLoginController.swift in Sources */,
@@ -742,11 +798,15 @@
 				CA55DF4929B8DE4A00C54B35 /* KwiksLiveVideoPlayerController.swift in Sources */,
 				CABACC2A29DA211F00026CAE /* AddParticipantsCell.swift in Sources */,
 				CA1D1A4B29FEE50A0015F1A2 /* SecurityController.swift in Sources */,
+				E3AB416C2A00944400EB9AA3 /* WalletMainHeader.swift in Sources */,
 				CA55DFAA29D6350C00C54B35 /* Mixpanel.swift in Sources */,
 				CA55DF2229A7E87C00C54B35 /* UIImageView+Ext.swift in Sources */,
 				CA8D700B29E36DA1008A11C0 /* BeautifyCollectionViewCell.swift in Sources */,
 				CABAA31229A2C95A00C5EBC6 /* HomeController.swift in Sources */,
+				E3AB417B2A00984000EB9AA3 /* CashOutBodyView.swift in Sources */,
+				E3AB41642A008E7F00EB9AA3 /* Application+Ext.swift in Sources */,
 				CA55DF2029A7D32100C54B35 /* NotificationsController.swift in Sources */,
+				E3AB416E2A00946000EB9AA3 /* WalletBalancePagination.swift in Sources */,
 				CABAA30D29A2AED600C5EBC6 /* SelectUsernameController.swift in Sources */,
 				CA55DF5729C4D59800C54B35 /* GoLiveVideoController.swift in Sources */,
 				CABAA31829A2C9D000C5EBC6 /* WalletController.swift in Sources */,
@@ -902,13 +962,14 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 3BU6AC5CFB;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "/Users/smiller/Downloads/Project-Kwicky/Project-Kwicky/Admin/Info.plist";
+				INFOPLIST_FILE = "/Users/charlie_account/Desktop/projects.nosync/ProjectKwiky/Project-AlphaK/Project-Kwicky/Admin/Info.plist";
 				INFOPLIST_KEY_NSAppleMusicUsageDescription = "Please allow access to upload media.";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Please allow access to take pictures.";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Please allow access to upload photos.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -932,13 +993,14 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 3BU6AC5CFB;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "/Users/smiller/Downloads/Project-Kwicky/Project-Kwicky/Admin/Info.plist";
+				INFOPLIST_FILE = "/Users/charlie_account/Desktop/projects.nosync/ProjectKwiky/Project-AlphaK/Project-Kwicky/Admin/Info.plist";
 				INFOPLIST_KEY_NSAppleMusicUsageDescription = "Please allow access to upload media.";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Please allow access to take pictures.";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Please allow access to upload photos.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

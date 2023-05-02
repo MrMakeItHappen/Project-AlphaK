@@ -139,8 +139,12 @@ final class DecisionController: UIViewController {
         self.addGradientBackground()
         self.layoutUI()
         self.addHoverAnimation()
+        
+        //setting here and in app delegate
+        globalDeviceWidth = UIScreen.main.bounds.width
+        globalDeviceHeight = UIScreen.main.bounds.height
+        
     }
-    
 }
 
 //Mark: - Layout UI

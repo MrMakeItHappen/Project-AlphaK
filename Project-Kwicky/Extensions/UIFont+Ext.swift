@@ -13,6 +13,8 @@ extension UIFont {
         return UIFont(name: "segoeui-bold", size: fontSize)!
     }
     
+    static let segoeBold = "segoeui-bold"
+    
     static func segoeUIRegular(size fontSize: CGFloat) -> UIFont {
         return UIFont(name: "segoeui", size: fontSize)!
     }

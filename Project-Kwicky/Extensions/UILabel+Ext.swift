@@ -47,4 +47,18 @@ extension UILabel {
         label.textColor = UIColor(hexString: "#A9A9A9")
         return label
     }
+    
+}
+
+extension UILabel { //color parts of a string, set the default on the label then adjust the word/phrase with the parameters
+    func colorFontString(text: String?, coloredText: String?, color: UIColor? = .red, fontName : String? = "Arial", fontSize : Double? = 13) {
+        
+        let attributedString = NSMutableAttributedString(string: text!)
+        let range = (text! as NSString).range(of: coloredText!)
+        
+        attributedString.setAttributes([NSAttributedString.Key.foregroundColor: color!, NSAttributedString.Key.font: UIFont(name: fontName!, size: fontSize!) as Any],
+                                       range: range)
+        
+        self.attributedText = attributedString
+    }
 }

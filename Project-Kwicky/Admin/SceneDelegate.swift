@@ -22,8 +22,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         let window = UIWindow(windowScene: sceneWindow)
         
 //        let decisionController = AccountInfoController()
-        let decisionController = SimpleLoginController()
-//        let decisionController = TabViewController()
+//        let decisionController = SimpleLoginController()
+        let decisionController = TabViewController()
         let navigationController = UINavigationController(rootViewController: decisionController)
         navigationController.navigationBar.isHidden = true
         
@@ -49,11 +49,6 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         window.makeKeyAndVisible()
         self.window = window
         
-        // iPhone Dimensions
-//        let height = UIScreen.main.bounds.height
-//        let width = UIScreen.main.bounds.width
-//
-//        print("-Simulator Device Dimensions-\nDevice Height - \(height)\nDevice Width - \(width)")
     }
 
     func sceneDidDisconnect(_ scene: UIScene) { }

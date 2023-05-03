@@ -12,6 +12,21 @@ final class FAQController: UIViewController {
     private var filterQuestions: [FAQ] = []
     private var searchCategories: String?
     
+    private let backgroundImageView: UIImageView = {
+        let imageView = UIImageView()
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.backgroundColor = .clear
+        imageView.contentMode = .scaleAspectFill
+        imageView.isUserInteractionEnabled = false
+        imageView.backgroundColor = .clear
+        imageView.layer.masksToBounds = true
+        imageView.layer.cornerRadius = 30
+        
+        let image = UIImage(named: "SettingsBackground")
+        imageView.image = image
+        return imageView
+    }()
+    
     private lazy var customBackButton: UIButton = {
         let button = UIButton(type: .system)
         button.translatesAutoresizingMaskIntoConstraints = false
@@ -30,12 +45,39 @@ final class FAQController: UIViewController {
         label.text = "FAQs"
         label.translatesAutoresizingMaskIntoConstraints = false
         label.backgroundColor = .clear
-        label.font = UIFont.segoeUIBold(size: 19)
+        label.font = UIFont.segoeUIBold(size: 40)
         label.numberOfLines = 1
         label.adjustsFontSizeToFitWidth = true
         label.textAlignment = .center
         label.textColor = UIColor.black
         return label
+    }()
+    
+    private let iconImageView: UIImageView = {
+        let imageView = UIImageView()
+        let size: CGFloat = 40
+        imageView.translatesAutoresizingMaskIntoConstraints = false
+        imageView.backgroundColor = .clear
+        imageView.contentMode = .scaleAspectFit
+        imageView.isUserInteractionEnabled = false
+        imageView.backgroundColor = .clear
+        imageView.layer.masksToBounds = true
+        imageView.height(size)
+        imageView.width(size)
+        imageView.layer.cornerRadius = size / 2
+        
+        let image = UIImage(named: "settings_icon_personal_no_shadow")
+        imageView.image = image
+        return imageView
+    }()
+    
+    private let contentContainerView: UIView = {
+        let view = UIView()
+        view.translatesAutoresizingMaskIntoConstraints = false
+        view.clipsToBounds = true
+        view.backgroundColor = .white
+        view.layer.cornerRadius = 30
+        return view
     }()
     
     private lazy var searchBar: UISearchBar = {
@@ -83,20 +125,35 @@ extension FAQController {
 //MARK: - Layout UI
 extension FAQController {
     private func layoutUI() {
+        self.view.addSubview(self.backgroundImageView)
+        self.backgroundImageView.topToSuperview(usingSafeArea: true)
+        self.backgroundImageView.leftToSuperview()
+        self.backgroundImageView.rightToSuperview()
+        
         self.view.addSubview(self.customBackButton)
-        self.customBackButton.topToSuperview(offset: 22, usingSafeArea: true)
-        self.customBackButton.leftToSuperview(offset: 22)
+        self.customBackButton.top(to: self.backgroundImageView, offset: 35)
+        self.customBackButton.leftToSuperview(offset: 17)
         
         self.view.addSubview(self.titleLabel)
-        self.titleLabel.centerY(to: self.customBackButton)
-        self.titleLabel.centerXToSuperview()
+        self.titleLabel.leftToRight(of: self.customBackButton, offset: 18)
+        self.titleLabel.centerY(to: self.customBackButton, offset: -3)
         
-        self.view.addSubview(self.searchBar)
-        self.searchBar.topToBottom(of: self.titleLabel, offset: 40)
-        self.searchBar.leftToSuperview(offset: 30)
-        self.searchBar.rightToSuperview(offset: -30)
+        self.view.addSubview(self.iconImageView)
+        self.iconImageView.right(to: self.backgroundImageView, offset: -30)
+        self.iconImageView.centerY(to: self.customBackButton)
         
-        self.view.addSubview(self.questionTableView)
+        self.view.addSubview(self.contentContainerView)
+        self.contentContainerView.topToBottom(of: self.titleLabel, offset: 28)
+        self.contentContainerView.leftToSuperview()
+        self.contentContainerView.rightToSuperview()
+        self.contentContainerView.bottomToSuperview(usingSafeArea: false)
+        
+        self.contentContainerView.addSubview(self.searchBar)
+        self.searchBar.topToSuperview(offset: 22)
+        self.searchBar.leftToSuperview(offset: 25)
+        self.searchBar.rightToSuperview(offset: -25)
+        
+        self.contentContainerView.addSubview(self.questionTableView)
         self.questionTableView.topToBottom(of: self.searchBar, offset: 20)
         self.questionTableView.leftToSuperview()
         self.questionTableView.rightToSuperview()

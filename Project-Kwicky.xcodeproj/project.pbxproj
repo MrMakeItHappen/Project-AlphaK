@@ -20,6 +20,9 @@
 		CA1D1A532A0005B90015F1A2 /* EditEmailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1D1A522A0005B90015F1A2 /* EditEmailController.swift */; };
 		CA1D1A552A0005F60015F1A2 /* InfoUpdatedPopUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1D1A542A0005F60015F1A2 /* InfoUpdatedPopUpController.swift */; };
 		CA1D1A572A0006B20015F1A2 /* EditPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1D1A562A0006B20015F1A2 /* EditPasswordController.swift */; };
+		CA1D1A5A2A02B6190015F1A2 /* Mixpanel in Frameworks */ = {isa = PBXBuildFile; productRef = CA1D1A592A02B6190015F1A2 /* Mixpanel */; };
+		CA1D1A5D2A02B6620015F1A2 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = CA1D1A5C2A02B6620015F1A2 /* SDWebImage */; };
+		CA1D1A5F2A02B6620015F1A2 /* SDWebImageMapKit in Frameworks */ = {isa = PBXBuildFile; productRef = CA1D1A5E2A02B6620015F1A2 /* SDWebImageMapKit */; };
 		CA20FE2029ED8A590089A6B8 /* FeaturedMusicCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA20FE1F29ED8A590089A6B8 /* FeaturedMusicCollectionViewCell.swift */; };
 		CA20FE2329EDA4560089A6B8 /* TagPeopleController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA20FE2229EDA4560089A6B8 /* TagPeopleController.swift */; };
 		CA55DF1C29A674F000C54B35 /* FollowInviteFriendsController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA55DF1B29A674F000C54B35 /* FollowInviteFriendsController.swift */; };
@@ -333,7 +336,10 @@
 			files = (
 				CAA90C98299419BE0013A654 /* TinyConstraints in Frameworks */,
 				EF86A0944B731027427F297D /* Pods_Project_Kwicky.framework in Frameworks */,
+				CA1D1A5A2A02B6190015F1A2 /* Mixpanel in Frameworks */,
 				CA8D700629E09677008A11C0 /* Lottie in Frameworks */,
+				CA1D1A5F2A02B6620015F1A2 /* SDWebImageMapKit in Frameworks */,
+				CA1D1A5D2A02B6620015F1A2 /* SDWebImage in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -709,6 +715,9 @@
 			packageProductDependencies = (
 				CAA90C97299419BE0013A654 /* TinyConstraints */,
 				CA8D700529E09677008A11C0 /* Lottie */,
+				CA1D1A592A02B6190015F1A2 /* Mixpanel */,
+				CA1D1A5C2A02B6620015F1A2 /* SDWebImage */,
+				CA1D1A5E2A02B6620015F1A2 /* SDWebImageMapKit */,
 			);
 			productName = "Project-Kwicky";
 			productReference = CAA90C782994171C0013A654 /* Project-Kwicky.app */;
@@ -741,6 +750,8 @@
 			packageReferences = (
 				CAA90C96299419BE0013A654 /* XCRemoteSwiftPackageReference "TinyConstraints" */,
 				CA8D700429E09677008A11C0 /* XCRemoteSwiftPackageReference "lottie-ios" */,
+				CA1D1A582A02B6190015F1A2 /* XCRemoteSwiftPackageReference "mixpanel-swift" */,
+				CA1D1A5B2A02B6620015F1A2 /* XCRemoteSwiftPackageReference "SDWebImage" */,
 			);
 			productRefGroup = CAA90C792994171C0013A654 /* Products */;
 			projectDirPath = "";
@@ -1102,7 +1113,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 3BU6AC5CFB;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "/Users/charlie_account/Desktop/projects.nosync/ProjectKwiky/Project-AlphaK/Project-Kwicky/Admin/Info.plist";
+				INFOPLIST_FILE = "/Users/smiller/Downloads/Project-Kwicky/Project-Kwicky/Admin/Info.plist";
 				INFOPLIST_KEY_NSAppleMusicUsageDescription = "Please allow access to upload media.";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Please allow access to take pictures.";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Please allow access to upload photos.";
@@ -1133,7 +1144,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 3BU6AC5CFB;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "/Users/charlie_account/Desktop/projects.nosync/ProjectKwiky/Project-AlphaK/Project-Kwicky/Admin/Info.plist";
+				INFOPLIST_FILE = "/Users/smiller/Downloads/Project-Kwicky/Project-Kwicky/Admin/Info.plist";
 				INFOPLIST_KEY_NSAppleMusicUsageDescription = "Please allow access to upload media.";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Please allow access to take pictures.";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Please allow access to upload photos.";
@@ -1178,6 +1189,22 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		CA1D1A582A02B6190015F1A2 /* XCRemoteSwiftPackageReference "mixpanel-swift" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/mixpanel/mixpanel-swift.git";
+			requirement = {
+				branch = master;
+				kind = branch;
+			};
+		};
+		CA1D1A5B2A02B6620015F1A2 /* XCRemoteSwiftPackageReference "SDWebImage" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/SDWebImage/SDWebImage.git";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.0.0;
+			};
+		};
 		CA8D700429E09677008A11C0 /* XCRemoteSwiftPackageReference "lottie-ios" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/airbnb/lottie-ios";
@@ -1197,6 +1224,21 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		CA1D1A592A02B6190015F1A2 /* Mixpanel */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CA1D1A582A02B6190015F1A2 /* XCRemoteSwiftPackageReference "mixpanel-swift" */;
+			productName = Mixpanel;
+		};
+		CA1D1A5C2A02B6620015F1A2 /* SDWebImage */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CA1D1A5B2A02B6620015F1A2 /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImage;
+		};
+		CA1D1A5E2A02B6620015F1A2 /* SDWebImageMapKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = CA1D1A5B2A02B6620015F1A2 /* XCRemoteSwiftPackageReference "SDWebImage" */;
+			productName = SDWebImageMapKit;
+		};
 		CA8D700529E09677008A11C0 /* Lottie */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = CA8D700429E09677008A11C0 /* XCRemoteSwiftPackageReference "lottie-ios" */;

@@ -34,6 +34,20 @@ final class EditPhoneNumberController: UIViewController {
         return label
     }()
     
+    private let phoneNumberContainer = UIView.createSettingsContainer()
+    
+    private let phoneNumberLabel: UILabel = {
+        let label = UILabel()
+        label.text = "Phone Number"
+        label.translatesAutoresizingMaskIntoConstraints = false
+        label.backgroundColor = .clear
+        label.font = UIFont.segoeUISemiBold(size: 16)
+        label.numberOfLines = 1
+        label.adjustsFontSizeToFitWidth = true
+        label.textAlignment = .center
+        label.textColor = UIColor.kwiksTextBlack
+        return label
+    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()

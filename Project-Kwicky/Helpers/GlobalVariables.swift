@@ -7,7 +7,7 @@
 
 import Foundation
 
-//MARK: - Global Variables for user created video.
+//MARK: - Global Variables for User.
 
 ///Set only on VideoFileSave Controller
 var _userCreatedVideo: KwiksVideo?
@@ -27,9 +27,17 @@ var _userAddedProduct: KwiksSaleItem?
 ///Never set this value. Retrieve only.
 var _allAvailableVideoMusic: [Music] = []
 
-//set on app load
-var globalDeviceWidth : CGFloat = 0.0,
-    globalDeviceHeight : CGFloat = 0.0
+///Set only on Edit Phone Number Controller
+var _userPhoneNumber: String? = "(999) 123-8800"
+
+///Set only on Edit Email Controller
+var _userEmailAddress: String? = "kwiks@kwiky.com"
+
+//MARK: - Globals
+
+///Set on app load
+var globalDeviceWidth: CGFloat = 0.0
+var globalDeviceHeight: CGFloat = 0.0
 
 ///Kwiks Podfile Pop Up Alert Example
 //self.popUpAlert = KwiksSystemPopups(presentingViewController: self, popupType: .updateKwiks)

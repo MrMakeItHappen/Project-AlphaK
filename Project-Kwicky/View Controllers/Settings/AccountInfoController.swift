@@ -37,12 +37,12 @@ final class AccountInfoController: UIViewController {
     private let infoContainer = UIView.createSettingsContainer()
     
     private let phoneNumberHeaderLabel = UILabel.createSettingsTitleLabel(with: "Phone Number")
-    private let phoneNumberSubLabel = UILabel.createSettingsSublabel(with: "(999) 123-4567")
+    private let phoneNumberSubLabel = UILabel.createSettingsSublabel(with: _userPhoneNumber!)
     private let phoneNumberChevron = UIImageView.createChevron()
     private lazy var hiddenPhoneNumberButton = UIButton.createHiddenButton(with: #selector(didTapPhoneNumber), for: self)
     
     private let emailHeaderLabel = UILabel.createSettingsTitleLabel(with: "Email")
-    private let emailSubLabel = UILabel.createSettingsSublabel(with: "kwiks@kwiky.com")
+    private let emailSubLabel = UILabel.createSettingsSublabel(with: _userEmailAddress!)
     private let emailChevron = UIImageView.createChevron()
     private lazy var hiddenEmailButton = UIButton.createHiddenButton(with: #selector(didTapEmail), for: self)
 
@@ -50,6 +50,13 @@ final class AccountInfoController: UIViewController {
         super.viewDidLoad()
         self.configure()
         self.layoutUI()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+        super.viewWillAppear(animated)
+        
+        self.phoneNumberSubLabel.text = _userPhoneNumber
+        self.emailSubLabel.text = _userEmailAddress
     }
 }
 //MARK: - Configure Controller

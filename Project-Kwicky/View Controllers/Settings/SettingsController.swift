@@ -9,6 +9,7 @@ import UIKit
 
 //TODO: For each toggle, create tappable area for entire container
 //TODO: Ping database here for all editable user information
+//TODO: Check all settings containers. Should be a left/right spacing of 6pts.
 
 final class SettingsController: UIViewController {
     private let settingsItem: [SettingsItem] = SettingsItem.allItems

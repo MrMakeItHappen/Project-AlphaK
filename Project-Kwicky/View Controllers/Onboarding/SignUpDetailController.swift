@@ -594,34 +594,35 @@ extension SignUpDetailController {
     }
     
     @objc func didTapSignUp() {
+        
         //TODO: Check if all fields are valid before submitting to backend.
-        
-        print(#function)
-        
-        guard let emailText = self.emailTextField.text, let passwordText = self.passwordTextField.text, let fullNameText = self.fullNameTextField.text, let dateText = self.birthdateTextField.text else { return }
+       guard let emailText = self.emailTextField.text, let passwordText = self.passwordTextField.text, let fullNameText = self.fullNameTextField.text, let dateText = self.birthdateTextField.text else { return }
         
         if fullNameText.isEmpty {
             self.fullNameTextField.layer.borderColor = UIColor.systemRed.cgColor
             self.fullNameErrorLabel.isHidden = false
+            return
         }
         
         if emailText.isEmpty {
             self.emailTextField.layer.borderColor = UIColor.systemRed.cgColor
             self.emailErrorLabel.isHidden = false
+            return
         }
         
         if passwordText.isEmpty {
             self.passwordTextField.layer.borderColor = UIColor.systemRed.cgColor
             self.passwordErrorLabel.isHidden = false
+            return
         }
         
         if dateText.isEmpty {
             self.birthdateTextField.layer.borderColor = UIColor.systemRed.cgColor
             self.birthdateErrorLabel.isHidden = false
+            return
         }
         
         //TODO: Need to check if this is a phone number or email address before pinging backend.
-        let values = ["email":"\(emailText)"]
         
         //Display Loading Screen
         DispatchQueue.main.async {
@@ -632,39 +633,24 @@ extension SignUpDetailController {
             }
         }
         
-        ServiceProvider.shared.serviceRequest(typeOfRequest: .POST, passedParameters: values, endpoint: Statics.signUpEndpoint) { JSON, error in
-            
-            if error != nil {
-                if let error = error {
-                    print(error.localizedDescription)
+        let values = ["email":"\(emailText)"]
+
+        //serverkit can manage all https calls so if a backend changes, one file changes
+        ServerKit().onRegister(values: values) { onSuccess, object in
+
+            if onSuccess == false {//flag error
+                DispatchQueue.main.async {
+                    print("🔴 Registration failed")
+                   self.emailTextField.layer.borderColor = UIColor.systemRed.cgColor
+                   self.emailErrorLabel.isHidden = false
+                   self.emailErrorLabel.text = "Sorry, email already exists."
+
+                   self.loadingScreen.alpha = 0
+                   self.lottieAnimation.alpha = 0
+                   self.lottieAnimation.stop()
                 }
-                return
-            }
-            
-            if let JSON = JSON {
-                let errors = JSON["errors"] as? [String] ?? ["nil"]
-                let pinNumber = JSON["data"] as? String ?? "This is a hard NULL from the server"
-                
-                if errors != [] {
-                    guard let error = errors.first else { return }
-                    print("ERROR - ", error)
-                    
-                    DispatchQueue.main.async {
-                        self.emailTextField.layer.borderColor = UIColor.systemRed.cgColor
-                        self.emailErrorLabel.isHidden = false
-                        self.emailErrorLabel.text = "Sorry, email already exists."
-                        
-                        self.loadingScreen.alpha = 0
-                        self.lottieAnimation.alpha = 0
-                        self.lottieAnimation.stop()
-                    }
-                    
-                    return
-                }
-                
-                print("SUCCESSFUL SIGN UP!")
-                print("JSON Response - ", pinNumber)
-                
+            } else {
+                print("🟢 Registration success")
                 if !fullNameText.isEmpty && !emailText.isEmpty && !passwordText.isEmpty && !dateText.isEmpty {
                     //Remove Loading Screen
                     DispatchQueue.main.async {
@@ -673,16 +659,20 @@ extension SignUpDetailController {
                             self.lottieAnimation.alpha = 0
                             self.lottieAnimation.stop()
                         }
-                        
+
                         let pinVC = PinNumberController()
-                        pinVC.pinNumber = pinNumber
-                        pinVC.tempPinNumberDisplay.text = pinNumber
-                        self.navigationController?.pushViewController(pinVC, animated: true)
+                        let pinNumber = object["data"] as? String ?? "This is a hard NULL from the server"
+
+                        if pinNumber != "This is a hard NULL from the server" {
+                            pinVC.pinNumber = pinNumber
+                            pinVC.tempPinNumberDisplay.text = pinNumber
+                            self.navigationController?.pushViewController(pinVC, animated: true)
+                        } else {
+                            //missing pin but we should not get it here
+                            print("THIS IS OKAY")
+                        }
                     }
                 }
-                
-            } else {
-                print(Statics.JSONFailedToLoad)
             }
         }
     }
@@ -744,3 +734,60 @@ extension SignUpDetailController: UITextFieldDelegate {
         }
     }
 }
+
+
+//TODO: inspect me
+//graveyard
+//        ServiceProvider.shared.serviceRequest(typeOfRequest: .POST, passedParameters: values, endpoint: Statics.signUpEndpoint) { JSON, error in
+//
+//            if error != nil {
+//                if let error = error {
+//                    print(error.localizedDescription)
+//                }
+//                return
+//            }
+//
+//            if let JSON = JSON {
+//                let errors = JSON["errors"] as? [String] ?? ["nil"]
+//                let pinNumber = JSON["data"] as? String ?? "This is a hard NULL from the server"
+//
+//                if errors != [] {
+//                    guard let error = errors.first else { return }
+//                    print("ERROR - ", error)
+//
+//                    DispatchQueue.main.async {
+//                        self.emailTextField.layer.borderColor = UIColor.systemRed.cgColor
+//                        self.emailErrorLabel.isHidden = false
+//                        self.emailErrorLabel.text = "Sorry, email already exists."
+//
+//                        self.loadingScreen.alpha = 0
+//                        self.lottieAnimation.alpha = 0
+//                        self.lottieAnimation.stop()
+//                    }
+//
+//                    return
+//                }
+//
+//                print("SUCCESSFUL SIGN UP!")
+//                print("JSON Response - ", pinNumber)
+//
+//                if !fullNameText.isEmpty && !emailText.isEmpty && !passwordText.isEmpty && !dateText.isEmpty {
+//                    //Remove Loading Screen
+//                    DispatchQueue.main.async {
+//                        UIView.animate(withDuration: 0.50) {
+//                            self.loadingScreen.alpha = 0
+//                            self.lottieAnimation.alpha = 0
+//                            self.lottieAnimation.stop()
+//                        }
+//
+//                        let pinVC = PinNumberController()
+//                        pinVC.pinNumber = pinNumber
+//                        pinVC.tempPinNumberDisplay.text = pinNumber
+//                        self.navigationController?.pushViewController(pinVC, animated: true)
+//                    }
+//                }
+//
+//            } else {
+//                print(Statics.JSONFailedToLoad)
+//            }
+//        }

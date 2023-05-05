@@ -17,11 +17,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        print("🟢 DEVICE HEIGHT: \(globalDeviceHeight)")
+        print("🟢 DEVICE HEIGHT: \(_globalDeviceHeight)")
         
         //setting here and in decision controller
-        globalDeviceWidth = UIScreen.main.bounds.width//requires scene window now when you update
-        globalDeviceHeight = UIScreen.main.bounds.height
+        _globalDeviceWidth = UIScreen.main.bounds.width//requires scene window now when you update
+        _globalDeviceHeight = UIScreen.main.bounds.height
         
         //mixpanel integration - only track for production, no need to track debug keys
         if EnvironemntModeHelper.isCurrentEnvironmentDebug() {

@@ -91,7 +91,7 @@ class WalletController : BaseViewController, UIScrollViewDelegate {
         self.walletTable.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 0).isActive = true
         
         let offSet : CGFloat = 60.0 + 200.0 //taken from main header, the actual heights - leave a little room at the top to swipe down and take off tabbar
-        self.scrollView.contentSize = CGSize(width: globalDeviceWidth, height: UIScreen.main.bounds.height + offSet)
+        self.scrollView.contentSize = CGSize(width: _globalDeviceWidth, height: UIScreen.main.bounds.height + offSet)
         
     }
     

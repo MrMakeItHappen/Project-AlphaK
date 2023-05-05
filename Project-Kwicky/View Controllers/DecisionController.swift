@@ -141,8 +141,8 @@ final class DecisionController: UIViewController {
         self.addHoverAnimation()
         
         //setting here and in app delegate
-        globalDeviceWidth = UIScreen.main.bounds.width
-        globalDeviceHeight = UIScreen.main.bounds.height
+        _globalDeviceWidth = UIScreen.main.bounds.width
+        _globalDeviceHeight = UIScreen.main.bounds.height
         
     }
 }

@@ -42,3 +42,8 @@ enum VerifyType {
     case email
     case none
 }
+
+enum AuthType {
+    case phone
+    case email
+}

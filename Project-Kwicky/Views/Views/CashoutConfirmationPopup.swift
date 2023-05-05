@@ -19,7 +19,7 @@ class CashoutConfirmationPopUp : UIView {
         let bc = UIView()
         bc.translatesAutoresizingMaskIntoConstraints = true
         bc.layer.masksToBounds = true
-        bc.frame = CGRect(x: 0, y: 0, width: globalDeviceWidth, height: globalDeviceHeight)
+        bc.frame = CGRect(x: 0, y: 0, width: _globalDeviceWidth, height: _globalDeviceHeight)
         bc.backgroundColor = UIColor.kwiksPopupTint
         bc.isUserInteractionEnabled = true
         bc.alpha = 0.0
@@ -272,7 +272,7 @@ class CashoutConfirmationPopUp : UIView {
         self.addSubview(self.totalAmountNumberLabel)
 
 
-        self.popupContainer.frame = CGRect(x: ((globalDeviceWidth - (globalDeviceWidth - 60)) / 2), y: globalDeviceHeight, width: globalDeviceWidth - 60, height: self.popupHeight)
+        self.popupContainer.frame = CGRect(x: ((_globalDeviceWidth - (_globalDeviceWidth - 60)) / 2), y: _globalDeviceHeight, width: _globalDeviceWidth - 60, height: self.popupHeight)
         ///convenient dismiss action
         self.swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(self.closeFlag))
         self.swipeDown.direction = .down
@@ -362,7 +362,7 @@ class CashoutConfirmationPopUp : UIView {
             self.smokeView.alpha = 1.0
         } completion: { complete in
             UIView.animate(withDuration: 0.15, delay: 0, options: .curveLinear) {
-                self.popupContainer.frame = CGRect(x: ((globalDeviceWidth - (globalDeviceWidth - 60)) / 2), y: (0), width: globalDeviceWidth - 60, height: self.popupHeight)
+                self.popupContainer.frame = CGRect(x: ((_globalDeviceWidth - (_globalDeviceWidth - 60)) / 2), y: (0), width: _globalDeviceWidth - 60, height: self.popupHeight)
                 self.popupContainer.center.y = self.center.y
                 self.layoutIfNeeded()
             } completion: { complete in
@@ -376,7 +376,7 @@ class CashoutConfirmationPopUp : UIView {
         UIDevice.vibrateLight()
         
         UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseInOut) {
-            self.popupContainer.frame = CGRect(x: ((globalDeviceWidth - (globalDeviceWidth - 60)) / 2), y: globalDeviceHeight, width: globalDeviceWidth - 60, height: self.popupHeight)
+            self.popupContainer.frame = CGRect(x: ((_globalDeviceWidth - (_globalDeviceWidth - 60)) / 2), y: _globalDeviceHeight, width: _globalDeviceWidth - 60, height: self.popupHeight)
             self.smokeView.alpha = 0.0
             self.layoutIfNeeded()
         } completion: { complete in
@@ -385,7 +385,6 @@ class CashoutConfirmationPopUp : UIView {
     }
     
     @objc func handleSendNowButton() {
-//        self.walletController?.handleSendNowButton()
         self.closeFlag()
     }
     

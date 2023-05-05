@@ -165,6 +165,8 @@
 		E3AB41772A00981400EB9AA3 /* CashoutMainHeader.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3AB41762A00981400EB9AA3 /* CashoutMainHeader.swift */; };
 		E3AB41792A00982A00EB9AA3 /* CashOutTextContainer.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3AB41782A00982A00EB9AA3 /* CashOutTextContainer.swift */; };
 		E3AB417B2A00984000EB9AA3 /* CashOutBodyView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3AB417A2A00984000EB9AA3 /* CashOutBodyView.swift */; };
+		E3CB789B2A05529A00A2A25E /* 1024_app_icon@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = E3CB789A2A05529A00A2A25E /* 1024_app_icon@1x.png */; };
+		E3CB789D2A05552800A2A25E /* ServerKit.swift in Sources */ = {isa = PBXBuildFile; fileRef = E3CB789C2A05552800A2A25E /* ServerKit.swift */; };
 		EF86A0944B731027427F297D /* Pods_Project_Kwicky.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3FF4CC60EA800B5EA4493BF7 /* Pods_Project_Kwicky.framework */; };
 /* End PBXBuildFile section */
 
@@ -327,6 +329,8 @@
 		E3AB41762A00981400EB9AA3 /* CashoutMainHeader.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashoutMainHeader.swift; sourceTree = "<group>"; };
 		E3AB41782A00982A00EB9AA3 /* CashOutTextContainer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashOutTextContainer.swift; sourceTree = "<group>"; };
 		E3AB417A2A00984000EB9AA3 /* CashOutBodyView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CashOutBodyView.swift; sourceTree = "<group>"; };
+		E3CB789A2A05529A00A2A25E /* 1024_app_icon@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "1024_app_icon@1x.png"; sourceTree = "<group>"; };
+		E3CB789C2A05552800A2A25E /* ServerKit.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ServerKit.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -502,6 +506,7 @@
 		CAA90C92299419890013A654 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				E3CB78992A05528B00A2A25E /* AppIcons */,
 				E349C9A52A016D6800E03120 /* WalletAssets */,
 				CA55DF5829C649D100C54B35 /* KwiksLiveTestVideo.mp4 */,
 				CA55DF4C29BAC9A000C54B35 /* KwiksTestVideo.mp4 */,
@@ -528,6 +533,7 @@
 				CABAA3022999609200C5EBC6 /* UIView+Ext.swift */,
 				E3AB41632A008E7F00EB9AA3 /* Application+Ext.swift */,
 				E3AB41672A0092EE00EB9AA3 /* DrawRect+Ext.swift */,
+				E3CB789C2A05552800A2A25E /* ServerKit.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -685,6 +691,14 @@
 			path = TableViews;
 			sourceTree = "<group>";
 		};
+		E3CB78992A05528B00A2A25E /* AppIcons */ = {
+			isa = PBXGroup;
+			children = (
+				E3CB789A2A05529A00A2A25E /* 1024_app_icon@1x.png */,
+			);
+			path = AppIcons;
+			sourceTree = "<group>";
+		};
 		FABF11DD4CAE7222961B4C18 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -810,6 +824,7 @@
 				E349C9D22A016EA300E03120 /* kwiks_add_money_wallet_icon@3x.png in Resources */,
 				CA8D702529E72A47008A11C0 /* .gitignore in Resources */,
 				E349C9CE2A016EA300E03120 /* kwiks_vector_arrow@1x.png in Resources */,
+				E3CB789B2A05529A00A2A25E /* 1024_app_icon@1x.png in Resources */,
 				E349C9CD2A016EA300E03120 /* kwiks_green_money_sign@2x.png in Resources */,
 				E349C9D92A016EA300E03120 /* kwiks_money_dolla_sign@3x.png in Resources */,
 				E349C9CB2A016EA300E03120 /* kwiks_cashout_icon@2x.png in Resources */,
@@ -896,6 +911,7 @@
 				CA1D1A4D29FEEDDF0015F1A2 /* TwoFactorPopUpController.swift in Sources */,
 				CA55DF3A29AF9E9100C54B35 /* KwiksNotification.swift in Sources */,
 				CA55DFA429D11D8D00C54B35 /* AvailableMusicTableViewCell.swift in Sources */,
+				E3CB789D2A05552800A2A25E /* ServerKit.swift in Sources */,
 				CAE3956129F04CB100ECB758 /* CategoryCollectionViewCell.swift in Sources */,
 				CA8D700F29E44D1B008A11C0 /* Enums.swift in Sources */,
 				CA1D1A4329FC52FD0015F1A2 /* QuestionTableViewCell.swift in Sources */,
@@ -1113,14 +1129,17 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 3BU6AC5CFB;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "/Users/smiller/Downloads/Project-Kwicky/Project-Kwicky/Admin/Info.plist";
+				INFOPLIST_FILE = "/Users/charlie_account/Desktop/projects.nosync/ProjectKwiky/Project-AlphaK/Project-Kwicky/Admin/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = Kwiks;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.social-networking";
 				INFOPLIST_KEY_NSAppleMusicUsageDescription = "Please allow access to upload media.";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Please allow access to take pictures.";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Please allow access to upload photos.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",
@@ -1144,14 +1163,17 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 3BU6AC5CFB;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "/Users/smiller/Downloads/Project-Kwicky/Project-Kwicky/Admin/Info.plist";
+				INFOPLIST_FILE = "/Users/charlie_account/Desktop/projects.nosync/ProjectKwiky/Project-AlphaK/Project-Kwicky/Admin/Info.plist";
+				INFOPLIST_KEY_CFBundleDisplayName = Kwiks;
+				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.social-networking";
 				INFOPLIST_KEY_NSAppleMusicUsageDescription = "Please allow access to upload media.";
 				INFOPLIST_KEY_NSCameraUsageDescription = "Please allow access to take pictures.";
 				INFOPLIST_KEY_NSPhotoLibraryUsageDescription = "Please allow access to upload photos.";
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchStoryboardName = LaunchScreen;
 				INFOPLIST_KEY_UISupportedInterfaceOrientations = UIInterfaceOrientationPortrait;
-				IPHONEOS_DEPLOYMENT_TARGET = 16.0;
+				INFOPLIST_KEY_UIUserInterfaceStyle = Light;
+				IPHONEOS_DEPLOYMENT_TARGET = 16.1;
 				LD_RUNPATH_SEARCH_PATHS = (
 					"$(inherited)",
 					"@executable_path/Frameworks",

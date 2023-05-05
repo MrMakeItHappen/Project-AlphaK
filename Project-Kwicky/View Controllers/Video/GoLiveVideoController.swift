@@ -547,7 +547,6 @@ extension GoLiveVideoController {
     
     private func registerForKeyboardNotifications() {
         NotificationCenter.default.addObserver(self, selector:#selector(keyboardWillBeShown(_:)), name: UIResponder.keyboardWillShowNotification, object: nil)
-        
         NotificationCenter.default.addObserver(self, selector: #selector(keyboardWillBeHidden(_:)), name: UIResponder.keyboardWillHideNotification, object: nil)
     }
     

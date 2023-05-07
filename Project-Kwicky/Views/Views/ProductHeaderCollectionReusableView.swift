@@ -11,7 +11,7 @@ final class ProductHeaderCollectionReusableView: UICollectionReusableView {
     static let identifier = "ProductHeaderCollectionReusableView"
     
     var featuredItems: [KwiksSaleItem] = []
-    var homeController: KwikSaleSelectProductController?
+    weak var homeController: KwikSaleSelectProductController?
     
     private let containerView: UIView = {
         let view = UIView()

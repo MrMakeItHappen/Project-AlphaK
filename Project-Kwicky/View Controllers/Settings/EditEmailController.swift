@@ -83,7 +83,7 @@ final class EditEmailController: UIViewController {
         textField.delegate = self
         textField.backgroundColor = .clear
         textField.returnKeyType = .done
-        textField.keyboardType = .phonePad
+        textField.keyboardType = .emailAddress
         textField.layer.masksToBounds = true
         textField.leftViewMode = .always
         textField.clipsToBounds = true
@@ -104,6 +104,7 @@ extension EditEmailController {
     private func configure() {
         self.view.backgroundColor = .white
         self.updateButton.addTarget(self, action: #selector(didTapUpdate), for: .touchUpInside)
+        self.emailTextField.becomeFirstResponder()
     }
 }
 
@@ -153,6 +154,7 @@ extension EditEmailController {
 //MARK: - @objc
 extension EditEmailController {
     @objc func didTapBack() {
+        self.view.endEditing(true)
         self.navigationController?.popViewController(animated: true)
     }
     
@@ -163,14 +165,24 @@ extension EditEmailController {
         }
         
         _userEmailAddress = text
-        self.navigationController?.popViewController(animated: true)
+        
+        let confirmVC = ConfirmationLinkController()
+        confirmVC.isModalInPresentation = true
+        confirmVC.entryPath = .email
+        confirmVC.delegate = self
+        
+        //TODO: Remember to pass value from here.
+        self.view.endEditing(true)
+        self.emailTextField.text = nil
+        self.present(confirmVC, animated: true)
     }
 }
 //MARK: - UITextField Delegate
 extension EditEmailController: UITextFieldDelegate {
-//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-//
-//    }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.didTapUpdate()
+        return true
+    }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
@@ -187,7 +199,10 @@ extension EditEmailController: UITextFieldDelegate {
         return true
     }
     
-//    func textFieldDidBeginEditing(_ textField: UITextField) {
-//
-//    }
+}
+//MARK: Confirmation Delegate
+extension EditEmailController: ConfirmationDelegate {
+    func updateGlobal() {
+        self.emailTextField.placeholder = _userEmailAddress
+    }
 }

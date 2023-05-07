@@ -163,7 +163,8 @@ extension AccountController {
     }
     
     @objc func didTapPassword() {
-        print(#function)
+        let editPasswordVC = EditPasswordController()
+        self.navigationController?.pushViewController(editPasswordVC, animated: true)
     }
     
     @objc func didTapDownloadData() {

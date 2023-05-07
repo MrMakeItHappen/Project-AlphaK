@@ -10,7 +10,7 @@ import UIKit
 final class VisibilityPopUpController: UIViewController {
     private let selectedImage = UIImage(named: "Checkmark")
     
-    var homeController: PrivacyController!
+    weak var homeController: PrivacyController!
     var visibility: PrivacyType = .everyone
     var entryPath: PrivacyPath = .posts
     

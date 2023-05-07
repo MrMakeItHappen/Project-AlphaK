@@ -10,7 +10,7 @@ import UIKit
 final class TwoFactorPopUpController: UIViewController {
     private let selectedImage = UIImage(named: "Checkmark")
     
-    var homeController: SecurityController!
+    weak var homeController: SecurityController!
     var method: VerifyType = .sms
     
     private let contentContainerView: UIView = {

@@ -39,7 +39,7 @@ var _userEmailAddress: String? = "kwiks@kwiky.com"
 var _globalDeviceWidth: CGFloat = 0.0
 var _globalDeviceHeight: CGFloat = 0.0
 
-var _authType = AuthType.email //decision for auth whether email / phone
+var _authType = PathType.email //decision for auth whether email / phone
 
 ///Kwiks Podfile Pop Up Alert Example
 //self.popUpAlert = KwiksSystemPopups(presentingViewController: self, popupType: .updateKwiks)

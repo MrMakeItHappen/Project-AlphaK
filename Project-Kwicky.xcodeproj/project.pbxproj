@@ -18,7 +18,7 @@
 		CA1D1A4F2A00051A0015F1A2 /* AccountInfoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1D1A4E2A00051A0015F1A2 /* AccountInfoController.swift */; };
 		CA1D1A512A0005350015F1A2 /* EditPhoneNumberController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1D1A502A0005350015F1A2 /* EditPhoneNumberController.swift */; };
 		CA1D1A532A0005B90015F1A2 /* EditEmailController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1D1A522A0005B90015F1A2 /* EditEmailController.swift */; };
-		CA1D1A552A0005F60015F1A2 /* InfoUpdatedPopUpController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1D1A542A0005F60015F1A2 /* InfoUpdatedPopUpController.swift */; };
+		CA1D1A552A0005F60015F1A2 /* InfoUpdatedPopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1D1A542A0005F60015F1A2 /* InfoUpdatedPopUpView.swift */; };
 		CA1D1A572A0006B20015F1A2 /* EditPasswordController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA1D1A562A0006B20015F1A2 /* EditPasswordController.swift */; };
 		CA1D1A5A2A02B6190015F1A2 /* Mixpanel in Frameworks */ = {isa = PBXBuildFile; productRef = CA1D1A592A02B6190015F1A2 /* Mixpanel */; };
 		CA1D1A5D2A02B6620015F1A2 /* SDWebImage in Frameworks */ = {isa = PBXBuildFile; productRef = CA1D1A5C2A02B6620015F1A2 /* SDWebImage */; };
@@ -61,6 +61,7 @@
 		CA55DFA629D1234000C54B35 /* Music.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA55DFA529D1234000C54B35 /* Music.swift */; };
 		CA55DFA829D6339200C54B35 /* StreamingVideoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA55DFA729D6339200C54B35 /* StreamingVideoController.swift */; };
 		CA55DFAA29D6350C00C54B35 /* Mixpanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA55DFA929D6350C00C54B35 /* Mixpanel.swift */; };
+		CA5CD7102A05979700CCCCEE /* ConfirmationLinkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5CD70F2A05979700CCCCEE /* ConfirmationLinkController.swift */; };
 		CA8D700629E09677008A11C0 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = CA8D700529E09677008A11C0 /* Lottie */; };
 		CA8D700929E097A1008A11C0 /* Rocket-Morphing.json in Resources */ = {isa = PBXBuildFile; fileRef = CA8D700829E097A1008A11C0 /* Rocket-Morphing.json */; };
 		CA8D700B29E36DA1008A11C0 /* BeautifyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8D700A29E36DA1008A11C0 /* BeautifyCollectionViewCell.swift */; };
@@ -185,7 +186,7 @@
 		CA1D1A4E2A00051A0015F1A2 /* AccountInfoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountInfoController.swift; sourceTree = "<group>"; };
 		CA1D1A502A0005350015F1A2 /* EditPhoneNumberController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPhoneNumberController.swift; sourceTree = "<group>"; };
 		CA1D1A522A0005B90015F1A2 /* EditEmailController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditEmailController.swift; sourceTree = "<group>"; };
-		CA1D1A542A0005F60015F1A2 /* InfoUpdatedPopUpController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoUpdatedPopUpController.swift; sourceTree = "<group>"; };
+		CA1D1A542A0005F60015F1A2 /* InfoUpdatedPopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = InfoUpdatedPopUpView.swift; sourceTree = "<group>"; };
 		CA1D1A562A0006B20015F1A2 /* EditPasswordController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPasswordController.swift; sourceTree = "<group>"; };
 		CA20FE1F29ED8A590089A6B8 /* FeaturedMusicCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FeaturedMusicCollectionViewCell.swift; sourceTree = "<group>"; };
 		CA20FE2229EDA4560089A6B8 /* TagPeopleController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TagPeopleController.swift; sourceTree = "<group>"; };
@@ -225,6 +226,7 @@
 		CA55DFA529D1234000C54B35 /* Music.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Music.swift; sourceTree = "<group>"; };
 		CA55DFA729D6339200C54B35 /* StreamingVideoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamingVideoController.swift; sourceTree = "<group>"; };
 		CA55DFA929D6350C00C54B35 /* Mixpanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mixpanel.swift; sourceTree = "<group>"; };
+		CA5CD70F2A05979700CCCCEE /* ConfirmationLinkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationLinkController.swift; sourceTree = "<group>"; };
 		CA8D700829E097A1008A11C0 /* Rocket-Morphing.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "Rocket-Morphing.json"; sourceTree = "<group>"; };
 		CA8D700A29E36DA1008A11C0 /* BeautifyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeautifyCollectionViewCell.swift; sourceTree = "<group>"; };
 		CA8D700E29E44D1B008A11C0 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
@@ -366,8 +368,8 @@
 				CA1D1A4E2A00051A0015F1A2 /* AccountInfoController.swift */,
 				CA1D1A502A0005350015F1A2 /* EditPhoneNumberController.swift */,
 				CA1D1A522A0005B90015F1A2 /* EditEmailController.swift */,
-				CA1D1A542A0005F60015F1A2 /* InfoUpdatedPopUpController.swift */,
 				CA1D1A562A0006B20015F1A2 /* EditPasswordController.swift */,
+				CA5CD70F2A05979700CCCCEE /* ConfirmationLinkController.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -630,6 +632,7 @@
 				E3AB416F2A00947800EB9AA3 /* BaseView.swift */,
 				E3AB41762A00981400EB9AA3 /* CashoutMainHeader.swift */,
 				E3AB41782A00982A00EB9AA3 /* CashOutTextContainer.swift */,
+				CA1D1A542A0005F60015F1A2 /* InfoUpdatedPopUpView.swift */,
 				E3AB417A2A00984000EB9AA3 /* CashOutBodyView.swift */,
 			);
 			path = Views;
@@ -919,7 +922,7 @@
 				CAA90C9B29941ACD0013A654 /* UIColor+Ext.swift in Sources */,
 				E3AB41662A0090EA00EB9AA3 /* CashoutConfirmationPopup.swift in Sources */,
 				CA55DF3E29AFA13100C54B35 /* KwiksUserAnalytics.swift in Sources */,
-				CA1D1A552A0005F60015F1A2 /* InfoUpdatedPopUpController.swift in Sources */,
+				CA1D1A552A0005F60015F1A2 /* InfoUpdatedPopUpView.swift in Sources */,
 				CAE3956E29F6014A00ECB758 /* ProductAddedController.swift in Sources */,
 				CA55DF4329B17FAA00C54B35 /* UITextField+Ext.swift in Sources */,
 				E3AB41772A00981400EB9AA3 /* CashoutMainHeader.swift in Sources */,
@@ -937,6 +940,7 @@
 				CAE3956A29F32BAB00ECB758 /* ProductHeaderCollectionReusableView.swift in Sources */,
 				CA55DF1E29A6CBCA00C54B35 /* AccountController.swift in Sources */,
 				CAA90C9D29941AEE0013A654 /* UIFont+Ext.swift in Sources */,
+				CA5CD7102A05979700CCCCEE /* ConfirmationLinkController.swift in Sources */,
 				CA55DF3429AF9B0500C54B35 /* KwiksVideo.swift in Sources */,
 				CABAA30929A1941600C5EBC6 /* TermsController.swift in Sources */,
 				CA55DF4029B16A1400C54B35 /* ForYouCollectionViewCell.swift in Sources */,
@@ -1129,7 +1133,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 3BU6AC5CFB;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "/Users/charlie_account/Desktop/projects.nosync/ProjectKwiky/Project-AlphaK/Project-Kwicky/Admin/Info.plist";
+				INFOPLIST_FILE = "/Users/smiller/Downloads/Project-Kwicky/Project-Kwicky/Admin/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Kwiks;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.social-networking";
 				INFOPLIST_KEY_NSAppleMusicUsageDescription = "Please allow access to upload media.";
@@ -1163,7 +1167,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 3BU6AC5CFB;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "/Users/charlie_account/Desktop/projects.nosync/ProjectKwiky/Project-AlphaK/Project-Kwicky/Admin/Info.plist";
+				INFOPLIST_FILE = "/Users/smiller/Downloads/Project-Kwicky/Project-Kwicky/Admin/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Kwiks;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.social-networking";
 				INFOPLIST_KEY_NSAppleMusicUsageDescription = "Please allow access to upload media.";

@@ -10,6 +10,8 @@ import UIKit
 
 class BaseViewController : UIViewController {
     
+    let mainLoadingScreen = MainLoadingScreen()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = UIColor.white

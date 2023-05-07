@@ -7,8 +7,9 @@
 
 import UIKit
 
-final class PinNumberController: UIViewController {
+final class PinNumberController: BaseViewController {
     var pinNumber: String?
+    var passedAuthValue:String?
     
     private let mainTitleLabel: UILabel = {
         let label = UILabel()
@@ -304,13 +305,18 @@ extension PinNumberController {
 //MARK: - @objc
 extension PinNumberController {
     @objc func didTapConfirm() {
-        let selectUsernameVC = SelectUsernameController()
-        selectUsernameVC.modalPresentationStyle = .fullScreen
-        selectUsernameVC.navigationController?.navigationBar.isHidden = true
+        //this was already blocked against - have some repeating here, TODO: clean me up DRY
+        let firstDigit = self.digitOneTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+        let secondDigit = self.digitTwoTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+        let thirdDigit = self.digitThreeTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+        let fourthDigit = self.digitFourTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
         
-        self.present(selectUsernameVC, animated: true)
+        let pin = "\(firstDigit)\(secondDigit)\(thirdDigit)\(fourthDigit)"
+        self.firePin(pin: pin)
+        
     }
     
+   
     @objc func didTapResend() {
         print(#function)
     }
@@ -321,26 +327,29 @@ extension PinNumberController {
         self.digitThreeTextField.resignFirstResponder()
         self.digitFourTextField.resignFirstResponder()
     }
+    //resign all responders
+    func resignation() {
+        self.digitOneTextField.resignFirstResponder()
+        self.digitTwoTextField.resignFirstResponder()
+        self.digitThreeTextField.resignFirstResponder()
+        self.digitFourTextField.resignFirstResponder()
+    }
     
     @objc func handlePinNumber(for textField : UITextField) {
-        let firstDigit = self.digitOneTextField.text ?? ""
-        let secondDigit = self.digitTwoTextField.text ?? ""
-        let thirdDigit = self.digitThreeTextField.text ?? ""
-        let fourthDigit = self.digitFourTextField.text ?? ""
-        
+        let firstDigit = self.digitOneTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+        let secondDigit = self.digitTwoTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+        let thirdDigit = self.digitThreeTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+        let fourthDigit = self.digitFourTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
         
         if self.digitOneTextField.isFirstResponder && firstDigit.count > 0 {
             self.digitTwoTextField.becomeFirstResponder()
-            
         } else if digitTwoTextField.isFirstResponder && secondDigit.count > 0 {
             self.digitThreeTextField.becomeFirstResponder()
-            
         } else if digitThreeTextField.isFirstResponder && thirdDigit.count > 0 {
             self.digitFourTextField.becomeFirstResponder()
-            
         } else if self.digitFourTextField.isFirstResponder && fourthDigit.count > 0 {
             //TODO: Handle Pin Completion Flow Here. If all fields are not complete, present error message. Otherwise store JWT token in user defaults to confirm authorization and login.
-            self.digitFourTextField.resignFirstResponder()
+            self.resignation()
             self.confirmButton.isEnabled = true
             self.confirmButton.backgroundColor = .kwiksGreen
         }
@@ -381,5 +390,41 @@ extension PinNumberController: UITextFieldDelegate {
     
     func textFieldDidEndEditing(_ textField: UITextField) {
         textField.layer.borderColor = UIColor.kwiksGreen.cgColor
+    }
+    
+    func firePin(pin:String) {
+        var key = "email"
+
+        self.mainLoadingScreen.callMainLoadingScreen(lottiAnimationName: Statics.mainLoadingScreen, isCentered: true)
+        if _loginTrajectory == .fromEmail {
+            key = "email"
+        } else if _loginTrajectory == .fromPhone {
+            key = "phone"
+        }
+                    
+        if self.passedAuthValue != nil {
+            let values : [String:Any] = ["\(key)": self.passedAuthValue!, "code":pin]
+            ServerKit().onVerify(values: values) { onSuccess, object in
+                if onSuccess == false {
+                    Printer().print(message: "Error - wrong pin || pin timed out")
+                } else {
+                    Printer().print(message: "🟢 SUCCESS VERIFY")
+                    //next to username, store their info in a model then blast it all with the username to save up top then into the application
+                    
+                    
+                    
+                    
+                }
+            }
+        }
+    }
+    
+    //once pin is confirmed, set username and the remaining user object info such as name
+    func handleUserNameController() {
+        let selectUsernameVC = SelectUsernameController()
+        selectUsernameVC.modalPresentationStyle = .fullScreen
+        selectUsernameVC.navigationController?.navigationBar.isHidden = true
+
+        self.present(selectUsernameVC, animated: true)
     }
 }

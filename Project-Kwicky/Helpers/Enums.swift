@@ -57,3 +57,8 @@ enum DownloadType {
     case activity
     case none
 }
+
+enum LoginTrajectory {
+    case fromPhone
+    case fromEmail
+}

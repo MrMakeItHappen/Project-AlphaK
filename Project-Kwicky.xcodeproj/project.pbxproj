@@ -125,6 +125,9 @@
 		CAE3956E29F6014A00ECB758 /* ProductAddedController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE3956D29F6014A00ECB758 /* ProductAddedController.swift */; };
 		CAE3957029F6105200ECB758 /* EditPrivacyController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE3956F29F6105200ECB758 /* EditPrivacyController.swift */; };
 		CAE3957229F97D3D00ECB758 /* SimpleLoginController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CAE3957129F97D3D00ECB758 /* SimpleLoginController.swift */; };
+		E337BB9F2A081222005BC538 /* DebugPrinter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E337BB9E2A081222005BC538 /* DebugPrinter.swift */; };
+		E337BBA12A0840B2005BC538 /* MainLoadingScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = E337BBA02A0840B2005BC538 /* MainLoadingScreen.swift */; };
+		E337BBA42A08417B005BC538 /* kwiks_main_loading_screen.json in Resources */ = {isa = PBXBuildFile; fileRef = E337BBA32A08417B005BC538 /* kwiks_main_loading_screen.json */; };
 		E349C9A42A01582800E03120 /* WalletCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E349C9A32A01582800E03120 /* WalletCell.swift */; };
 		E349C9A92A016E8500E03120 /* icon@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = E349C9A62A016E8500E03120 /* icon@1x.png */; };
 		E349C9AA2A016E8500E03120 /* icon@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = E349C9A72A016E8500E03120 /* icon@3x.png */; };
@@ -295,6 +298,9 @@
 		CAE3956D29F6014A00ECB758 /* ProductAddedController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProductAddedController.swift; sourceTree = "<group>"; };
 		CAE3956F29F6105200ECB758 /* EditPrivacyController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditPrivacyController.swift; sourceTree = "<group>"; };
 		CAE3957129F97D3D00ECB758 /* SimpleLoginController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SimpleLoginController.swift; sourceTree = "<group>"; };
+		E337BB9E2A081222005BC538 /* DebugPrinter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DebugPrinter.swift; sourceTree = "<group>"; };
+		E337BBA02A0840B2005BC538 /* MainLoadingScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainLoadingScreen.swift; sourceTree = "<group>"; };
+		E337BBA32A08417B005BC538 /* kwiks_main_loading_screen.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = kwiks_main_loading_screen.json; sourceTree = "<group>"; };
 		E349C9A32A01582800E03120 /* WalletCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WalletCell.swift; sourceTree = "<group>"; };
 		E349C9A62A016E8500E03120 /* icon@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@1x.png"; sourceTree = "<group>"; };
 		E349C9A72A016E8500E03120 /* icon@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "icon@3x.png"; sourceTree = "<group>"; };
@@ -523,6 +529,7 @@
 		CAA90C92299419890013A654 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				E337BBA22A084161005BC538 /* Animations */,
 				E3CB78992A05528B00A2A25E /* AppIcons */,
 				E349C9A52A016D6800E03120 /* WalletAssets */,
 				CA55DF5829C649D100C54B35 /* KwiksLiveTestVideo.mp4 */,
@@ -551,6 +558,8 @@
 				E3AB41632A008E7F00EB9AA3 /* Application+Ext.swift */,
 				E3AB41672A0092EE00EB9AA3 /* DrawRect+Ext.swift */,
 				E3CB789C2A05552800A2A25E /* ServerKit.swift */,
+				E337BB9E2A081222005BC538 /* DebugPrinter.swift */,
+				E337BBA02A0840B2005BC538 /* MainLoadingScreen.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -659,6 +668,14 @@
 				3FF4CC60EA800B5EA4493BF7 /* Pods_Project_Kwicky.framework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		E337BBA22A084161005BC538 /* Animations */ = {
+			isa = PBXGroup;
+			children = (
+				E337BBA32A08417B005BC538 /* kwiks_main_loading_screen.json */,
+			);
+			path = Animations;
 			sourceTree = "<group>";
 		};
 		E349C9A52A016D6800E03120 /* WalletAssets */ = {
@@ -818,6 +835,7 @@
 				CAA90CB52994205B0013A654 /* Inter-ExtraBold.ttf in Resources */,
 				CA55DF5929C649D100C54B35 /* KwiksLiveTestVideo.mp4 in Resources */,
 				CAA90CB02994205B0013A654 /* Inter-SemiBold.ttf in Resources */,
+				E337BBA42A08417B005BC538 /* kwiks_main_loading_screen.json in Resources */,
 				CAA90C852994171E0013A654 /* Assets.xcassets in Resources */,
 				CAA90CB22994205B0013A654 /* Inter-Thin.ttf in Resources */,
 				CABAA2EE29942F9300C5EBC6 /* segoeui.ttf in Resources */,
@@ -907,6 +925,7 @@
 				CABAA31429A2C9B500C5EBC6 /* SearchController.swift in Sources */,
 				CA55DF5129BCFA7900C54B35 /* Effect.swift in Sources */,
 				CABAA2F929945D1C00C5EBC6 /* UIImage+Ext.swift in Sources */,
+				E337BBA12A0840B2005BC538 /* MainLoadingScreen.swift in Sources */,
 				CAE3957029F6105200ECB758 /* EditPrivacyController.swift in Sources */,
 				CA1D1A4129FB15520015F1A2 /* PrivacyController.swift in Sources */,
 				CA1D1A4F2A00051A0015F1A2 /* AccountInfoController.swift in Sources */,
@@ -1005,6 +1024,7 @@
 				CABAA2FB299805F600C5EBC6 /* LoginController.swift in Sources */,
 				CABACC2829DA175D00026CAE /* AddParticipantsController.swift in Sources */,
 				CABAA31C29A3104100C5EBC6 /* SettingsCollectionViewCell.swift in Sources */,
+				E337BB9F2A081222005BC538 /* DebugPrinter.swift in Sources */,
 				CABACC2629D8936B00026CAE /* SoloVideoCallController.swift in Sources */,
 				CAE3955F29F046C200ECB758 /* KwiksSaleSelectCategoryController.swift in Sources */,
 				CABAA2F52994493200C5EBC6 /* SignUpController.swift in Sources */,
@@ -1153,7 +1173,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 3BU6AC5CFB;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "/Users/smiller/Downloads/Project-Kwicky/Project-Kwicky/Admin/Info.plist";
+				INFOPLIST_FILE = "/Users/charlie_account/Desktop/projects.nosync/ProjectKwiky/Project-AlphaK/Project-Kwicky/Admin/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Kwiks;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.social-networking";
 				INFOPLIST_KEY_NSAppleMusicUsageDescription = "Please allow access to upload media.";
@@ -1190,7 +1210,7 @@
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 3BU6AC5CFB;
 				GENERATE_INFOPLIST_FILE = YES;
-				INFOPLIST_FILE = "/Users/smiller/Downloads/Project-Kwicky/Project-Kwicky/Admin/Info.plist";
+				INFOPLIST_FILE = "/Users/charlie_account/Desktop/projects.nosync/ProjectKwiky/Project-AlphaK/Project-Kwicky/Admin/Info.plist";
 				INFOPLIST_KEY_CFBundleDisplayName = Kwiks;
 				INFOPLIST_KEY_LSApplicationCategoryType = "public.app-category.social-networking";
 				INFOPLIST_KEY_NSAppleMusicUsageDescription = "Please allow access to upload media.";

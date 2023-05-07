@@ -33,6 +33,8 @@ var _userPhoneNumber: String? = "(999) 123-8800"
 ///Set only on Edit Email Controller
 var _userEmailAddress: String? = "kwiks@kwiky.com"
 
+var _loginTrajectory = LoginTrajectory.fromEmail
+
 //MARK: - Globals
 
 ///Set on app load

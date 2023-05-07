@@ -218,11 +218,13 @@ extension SimpleLoginController {
     
     @objc func didTapPhone() {
         let signUpVC = SignUpDetailController()
+        _loginTrajectory = .fromPhone
         self.navigationController?.pushViewController(signUpVC, animated: true)
     }
     
     @objc func didTapEmail() {
         let signUpVC = SignUpDetailController()
+        _loginTrajectory = .fromEmail
         self.navigationController?.pushViewController(signUpVC, animated: true)
     }
 }

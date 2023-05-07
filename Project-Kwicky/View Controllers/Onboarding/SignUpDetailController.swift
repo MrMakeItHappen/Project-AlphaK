@@ -8,7 +8,7 @@
 import UIKit
 import Lottie
 
-final class SignUpDetailController: UIViewController {
+final class SignUpDetailController: BaseViewController {
     var isPathFromLogin = false
     
     private let backgroundImageView: UIImageView = {
@@ -117,7 +117,7 @@ final class SignUpDetailController: UIViewController {
     
     private lazy var fullNameTextField: UITextField = {
         let textField = UITextField(frame: .zero)
-        let placeholder = "ex. Mark Blum"
+        let placeholder = "ex. John Smith"
         textField.placeholder = placeholder
         textField.textAlignment = .left
         textField.textColor = .black
@@ -360,6 +360,7 @@ final class SignUpDetailController: UIViewController {
         let button = UIButton(configuration: configuration, primaryAction: UIAction(handler: { _ in
             self.didTapSignUp()
         }))
+        
         button.translatesAutoresizingMaskIntoConstraints = false
         button.layer.masksToBounds = true
         button.backgroundColor = #colorLiteral(red: 0.7764705882, green: 0.7764705882, blue: 0.7764705882, alpha: 1)
@@ -573,105 +574,116 @@ extension SignUpDetailController {
 }
 //MARK: - Helpers
 extension SignUpDetailController {
-    private func removeTextFieldErrors() {
-        self.fullNameTextField.layer.borderColor = UIColor.borderGrey.cgColor
-        self.fullNameErrorLabel.isHidden = true
+    private func removeTextFieldErrors(withDelay:Bool) { //dry is bad here
         
-        self.emailTextField.layer.borderColor = UIColor.borderGrey.cgColor
-        self.emailErrorLabel.isHidden = true
-        
-        self.passwordTextField.layer.borderColor = UIColor.borderGrey.cgColor
-        self.passwordErrorLabel.isHidden = true
-        
-        self.birthdateTextField.layer.borderColor = UIColor.borderGrey.cgColor
-        self.birthdateErrorLabel.isHidden = true
+        if withDelay == false {
+            self.clearBorders()//remove red
+            self.fullNameErrorLabel.isHidden = true
+            self.emailErrorLabel.isHidden = true
+            self.passwordErrorLabel.isHidden = true
+            self.birthdateErrorLabel.isHidden = true
+        } else {
+            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                self.clearBorders()//remove red
+                self.fullNameErrorLabel.isHidden = true
+                self.emailErrorLabel.isHidden = true
+                self.passwordErrorLabel.isHidden = true
+                self.birthdateErrorLabel.isHidden = true
+            }
+        }
     }
 }
+
 //MARK: - @objc
 extension SignUpDetailController {
     @objc func tapGesture(_ sender: UITapGestureRecognizer) {
         self.view.endEditing(true)
     }
     
+    func clearBorders() {//replace red with grey border for textfields
+        for view in self.scrollViewContentView.subviews {
+            if let textField = view as? UITextField {
+                textField.layer.borderColor = UIColor.borderGrey.cgColor
+            }
+        }
+    }
+
     @objc func didTapSignUp() {
         
         //TODO: Check if all fields are valid before submitting to backend.
-       guard let emailText = self.emailTextField.text, let passwordText = self.passwordTextField.text, let fullNameText = self.fullNameTextField.text, let dateText = self.birthdateTextField.text else { return }
+       guard let emailText = self.emailTextField.text, let passwordText = self.passwordTextField.text, let fullNameText = self.fullNameTextField.text, let dateText = self.birthdateTextField.text else {
+           Printer().print(message: "🔴 Textfield inputs are nil - onboarding")
+           self.removeTextFieldErrors(withDelay: true)
+           return
+       }
         
         if fullNameText.isEmpty {
             self.fullNameTextField.layer.borderColor = UIColor.systemRed.cgColor
             self.fullNameErrorLabel.isHidden = false
+            Printer().print(message: "🔴 fullNameText is missing - onboarding")
+            self.removeTextFieldErrors(withDelay: true)
             return
         }
         
         if emailText.isEmpty {
             self.emailTextField.layer.borderColor = UIColor.systemRed.cgColor
             self.emailErrorLabel.isHidden = false
+            Printer().print(message: "🔴 emailText is missing - onboarding")
+            self.removeTextFieldErrors(withDelay: true)
             return
         }
         
         if passwordText.isEmpty {
             self.passwordTextField.layer.borderColor = UIColor.systemRed.cgColor
             self.passwordErrorLabel.isHidden = false
+            Printer().print(message: "🔴 passwordText is missing - onboarding")
+            self.removeTextFieldErrors(withDelay: true)
             return
         }
         
         if dateText.isEmpty {
             self.birthdateTextField.layer.borderColor = UIColor.systemRed.cgColor
             self.birthdateErrorLabel.isHidden = false
+            Printer().print(message: "🔴 dateText is missing - onboarding")
+            self.removeTextFieldErrors(withDelay: true)
+
             return
         }
         
-        //TODO: Need to check if this is a phone number or email address before pinging backend.
+        self.mainLoadingScreen.callMainLoadingScreen(lottiAnimationName: Statics.mainLoadingScreen, isCentered: true)
         
-        //Display Loading Screen
-        DispatchQueue.main.async {
-            UIView.animate(withDuration: 0.50) {
-                self.loadingScreen.alpha = 1
-                self.lottieAnimation.alpha = 1
-                self.lottieAnimation.play()
-            }
+        //clean values with no white space on left or right or beginning/sentence end
+        let cleanEmail = emailText.trimmingCharacters(in: .whitespacesAndNewlines)
+       
+        var values = [String:Any]()
+        
+        if _loginTrajectory == .fromEmail { //change the key
+            values["email"] = "\(cleanEmail)"
+        } else {
+            values["phone"] = "\(cleanEmail)"
         }
-        
-        let values = ["email":"\(emailText)"]
-
+ 
         //serverkit can manage all https calls so if a backend changes, one file changes
-        ServerKit().onRegister(values: values) { onSuccess, object in
-
+        ServerKit().onRegister(values: values) { onSuccess, object in //returns from background thread, move to main
+            //pin is sent if success is returned
             if onSuccess == false {//flag error
                 DispatchQueue.main.async {
-                    print("🔴 Registration failed")
-                   self.emailTextField.layer.borderColor = UIColor.systemRed.cgColor
-                   self.emailErrorLabel.isHidden = false
-                   self.emailErrorLabel.text = "Sorry, email already exists."
-
-                   self.loadingScreen.alpha = 0
-                   self.lottieAnimation.alpha = 0
-                   self.lottieAnimation.stop()
+                    self.mainLoadingScreen.cancelMainLoadingScreen()
+                        print("🔴 Registration failed")
+                        self.emailTextField.layer.borderColor = UIColor.systemRed.cgColor
+                        self.emailErrorLabel.isHidden = false
+                        self.emailErrorLabel.text = "Please try aagin"
+                        
+                        self.loadingScreen.alpha = 0
+                        self.lottieAnimation.alpha = 0
+                        self.lottieAnimation.stop()
                 }
             } else {
+                self.mainLoadingScreen.cancelMainLoadingScreen()
                 print("🟢 Registration success")
-                if !fullNameText.isEmpty && !emailText.isEmpty && !passwordText.isEmpty && !dateText.isEmpty {
-                    //Remove Loading Screen
-                    DispatchQueue.main.async {
-                        UIView.animate(withDuration: 0.50) {
-                            self.loadingScreen.alpha = 0
-                            self.lottieAnimation.alpha = 0
-                            self.lottieAnimation.stop()
-                        }
-
-                        let pinVC = PinNumberController()
-                        let pinNumber = object["data"] as? String ?? "This is a hard NULL from the server"
-
-                        if pinNumber != "This is a hard NULL from the server" {
-                            pinVC.pinNumber = pinNumber
-                            pinVC.tempPinNumberDisplay.text = pinNumber
-                            self.navigationController?.pushViewController(pinVC, animated: true)
-                        } else {
-                            //missing pin but we should not get it here
-                            print("THIS IS OKAY")
-                        }
-                    }
+                DispatchQueue.main.async {
+                    let pinVC = PinNumberController()
+                    self.navigationController?.pushViewController(pinVC, animated: true)
                 }
             }
         }
@@ -723,8 +735,8 @@ extension SignUpDetailController: UITextFieldDelegate {
     }
     
     func textFieldDidBeginEditing(_ textField: UITextField) {
-        self.removeTextFieldErrors()
-        
+        self.removeTextFieldErrors(withDelay: false)
+
         guard let emailText = self.emailTextField.text, let passwordText = self.passwordTextField.text, let fullNameText = self.fullNameTextField.text, let dateText = self.birthdateTextField.text else { return }
         
         if !emailText.isEmpty && !passwordText.isEmpty && !fullNameText.isEmpty && !dateText.isEmpty {

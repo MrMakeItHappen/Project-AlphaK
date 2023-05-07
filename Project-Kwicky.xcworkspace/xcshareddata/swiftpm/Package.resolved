@@ -1,0 +1,41 @@
+{
+  "pins" : [
+    {
+      "identity" : "lottie-ios",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/airbnb/lottie-ios",
+      "state" : {
+        "revision" : "4e51b71c6ef1b645c9a83de112d627c919143137",
+        "version" : "4.1.3"
+      }
+    },
+    {
+      "identity" : "mixpanel-swift",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/mixpanel/mixpanel-swift.git",
+      "state" : {
+        "branch" : "master",
+        "revision" : "a2924a404f3931e1bcefb2719c5d1ddd145541c8"
+      }
+    },
+    {
+      "identity" : "sdwebimage",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/SDWebImage/SDWebImage.git",
+      "state" : {
+        "revision" : "20df851f2ae27efbaeeff73e9babdf4fd839a144",
+        "version" : "5.15.6"
+      }
+    },
+    {
+      "identity" : "tinyconstraints",
+      "kind" : "remoteSourceControl",
+      "location" : "https://github.com/roberthein/TinyConstraints",
+      "state" : {
+        "revision" : "3262e5c591d4ab6272255df2087a01bbebd138dc",
+        "version" : "4.0.2"
+      }
+    }
+  ],
+  "version" : 2
+}

@@ -10,7 +10,7 @@ import UIKit
 final class VisibilityPopUpController: UIViewController {
     private let selectedImage = UIImage(named: "Checkmark")
     
-    var homeController: PrivacyController!
+    weak var homeController: PrivacyController!
     var visibility: PrivacyType = .everyone
     var entryPath: PrivacyPath = .posts
     
@@ -133,10 +133,10 @@ final class VisibilityPopUpController: UIViewController {
             self.headerLabel.text = "Who can see your comments?"
             
         case .mentions:
-            self.headerLabel.text = "Who can see your mentions?"
+            self.headerLabel.text = "Who can mention you?"
             
         case .directMessages:
-            self.headerLabel.text = "Who can see your DMs?"
+            self.headerLabel.text = "Who can send you DMs?"
             
             self.onlyMeImageView.isHidden = true
             self.onlyMeTitleLabel.isHidden = true

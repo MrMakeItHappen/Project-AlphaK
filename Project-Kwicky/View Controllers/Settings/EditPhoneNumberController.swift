@@ -72,7 +72,7 @@ final class EditPhoneNumberController: UIViewController {
         return button
     }()
     
-    private lazy var phoneTextField: UITextField = {
+    lazy var phoneTextField: UITextField = {
         let textField = UITextField(frame: .zero)
         textField.placeholder = _userPhoneNumber
         textField.textAlignment = .left
@@ -84,7 +84,7 @@ final class EditPhoneNumberController: UIViewController {
         textField.delegate = self
         textField.backgroundColor = .clear
         textField.returnKeyType = .done
-        textField.keyboardType = .phonePad
+        textField.keyboardType = .numbersAndPunctuation
         textField.layer.masksToBounds = true
         textField.leftViewMode = .always
         textField.clipsToBounds = true
@@ -105,6 +105,7 @@ extension EditPhoneNumberController {
     private func configure() {
         self.view.backgroundColor = .white
         self.updateButton.addTarget(self, action: #selector(didTapUpdate), for: .touchUpInside)
+        self.phoneTextField.becomeFirstResponder()
     }
 }
 
@@ -154,6 +155,7 @@ extension EditPhoneNumberController {
 //MARK: - @objc
 extension EditPhoneNumberController {
     @objc func didTapBack() {
+        self.view.endEditing(true)
         self.navigationController?.popViewController(animated: true)
     }
     
@@ -162,15 +164,26 @@ extension EditPhoneNumberController {
             //Handle text field error
             return
         }
+        
         _userPhoneNumber = text
-        self.navigationController?.popViewController(animated: true)
+        
+        let confirmVC = ConfirmationLinkController()
+        confirmVC.isModalInPresentation = true
+        confirmVC.entryPath = .phone
+        confirmVC.delegate = self
+        //TODO: Remember to pass value from here.
+        
+        self.view.endEditing(true)
+        self.phoneTextField.text = nil
+        self.present(confirmVC, animated: true)
     }
 }
 //MARK: - UITextField Delegate
 extension EditPhoneNumberController: UITextFieldDelegate {
-//    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
-//
-//    }
+    func textFieldShouldReturn(_ textField: UITextField) -> Bool {
+        self.didTapUpdate()
+        return true
+    }
     
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
@@ -186,8 +199,10 @@ extension EditPhoneNumberController: UITextFieldDelegate {
 
         return true
     }
-    
-//    func textFieldDidBeginEditing(_ textField: UITextField) {
-//
-//    }
+}
+//MARK: Confirmation Delegate
+extension EditPhoneNumberController: ConfirmationDelegate {
+    func updateGlobal() {
+        self.phoneTextField.placeholder = _userPhoneNumber
+    }
 }

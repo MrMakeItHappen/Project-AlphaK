@@ -1,0 +1,4 @@
+${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KwiksSystemsAlerts.framework
+${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/KwiksSystemsPopups.framework
+${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/Mixpanel.framework
+${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/SDWebImage.framework

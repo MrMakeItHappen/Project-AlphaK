@@ -21,7 +21,7 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
         
         let window = UIWindow(windowScene: sceneWindow)
         
-//        let decisionController = AccountInfoController()
+        let decisionController = SettingsController()
 //        let decisionController = SimpleLoginController()
 //        let decisionController = TabViewController()
           let decisionController = DecisionController()

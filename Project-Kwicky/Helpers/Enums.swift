@@ -43,7 +43,17 @@ enum VerifyType {
     case none
 }
 
-enum AuthType {
+enum PathType {
     case phone
     case email
+    case password
+    case deactivate
+    case delete
+    case none
+}
+
+enum DownloadType {
+    case profile
+    case activity
+    case none
 }

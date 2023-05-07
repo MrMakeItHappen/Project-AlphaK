@@ -1,0 +1,32 @@
+PODS:
+  - KwiksSystemsAlerts (0.1.1)
+  - KwiksSystemsPopups (0.1.2)
+  - Mixpanel-swift (4.1.0):
+    - Mixpanel-swift/Complete (= 4.1.0)
+  - Mixpanel-swift/Complete (4.1.0)
+  - SDWebImage (5.15.5):
+    - SDWebImage/Core (= 5.15.5)
+  - SDWebImage/Core (5.15.5)
+
+DEPENDENCIES:
+  - KwiksSystemsAlerts
+  - KwiksSystemsPopups
+  - Mixpanel-swift
+  - SDWebImage
+
+SPEC REPOS:
+  trunk:
+    - KwiksSystemsAlerts
+    - KwiksSystemsPopups
+    - Mixpanel-swift
+    - SDWebImage
+
+SPEC CHECKSUMS:
+  KwiksSystemsAlerts: 21f8fbc8e13f891cdc73e4f60f1083eaaca72627
+  KwiksSystemsPopups: d63ee5c8ccb76235bbe27ab2d5ec06ef3601fbac
+  Mixpanel-swift: 7b46c63259dec8398a7df9f8a1298fd00b6b3cb3
+  SDWebImage: fd7e1a22f00303e058058278639bf6196ee431fe
+
+PODFILE CHECKSUM: 16cccc8038cfc4ecfafe5505e06f003d60c01bd0
+
+COCOAPODS: 1.12.0

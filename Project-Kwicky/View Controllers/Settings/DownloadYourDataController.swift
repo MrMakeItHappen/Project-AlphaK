@@ -95,6 +95,7 @@ final class DownloadYourDataController: UIViewController {
     private let downloadProfileButton: UIButton = {
         let button = UIButton(type: .custom)
         button.setTitle("Download", for: .normal)
+        button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 2, right: 0)
         button.titleLabel?.font = .segoeUISemiBold(size: 14)
         button.tintColor = .white
         button.isUserInteractionEnabled = true
@@ -149,6 +150,7 @@ final class DownloadYourDataController: UIViewController {
     private let downloadActivityButton: UIButton = {
         let button = UIButton(type: .custom)
         button.setTitle("Pending", for: .normal)
+        button.titleEdgeInsets = UIEdgeInsets(top: 0, left: 0, bottom: 2, right: 0)
         button.titleLabel?.font = .segoeUISemiBold(size: 14)
         button.tintColor = .white
         button.isUserInteractionEnabled = true

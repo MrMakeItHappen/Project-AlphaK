@@ -622,8 +622,8 @@
 				CABAA30C29A2AED600C5EBC6 /* SelectUsernameController.swift */,
 				CABAA2F42994493200C5EBC6 /* SignUpController.swift */,
 				CABAA2FE2998340800C5EBC6 /* SignUpDetailController.swift */,
-				CABAA30829A1941600C5EBC6 /* TermsController.swift */,
 				CAE3957129F97D3D00ECB758 /* SimpleLoginController.swift */,
+				CABAA30829A1941600C5EBC6 /* TermsController.swift */,
 			);
 			path = Onboarding;
 			sourceTree = "<group>";

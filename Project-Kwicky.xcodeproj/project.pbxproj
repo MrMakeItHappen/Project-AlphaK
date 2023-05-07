@@ -62,6 +62,11 @@
 		CA55DFA829D6339200C54B35 /* StreamingVideoController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA55DFA729D6339200C54B35 /* StreamingVideoController.swift */; };
 		CA55DFAA29D6350C00C54B35 /* Mixpanel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA55DFA929D6350C00C54B35 /* Mixpanel.swift */; };
 		CA5CD7102A05979700CCCCEE /* ConfirmationLinkController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5CD70F2A05979700CCCCEE /* ConfirmationLinkController.swift */; };
+		CA5CD7122A07DD5400CCCCEE /* RequestDataDownloadController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5CD7112A07DD5400CCCCEE /* RequestDataDownloadController.swift */; };
+		CA5CD7142A07DD6500CCCCEE /* DownloadYourDataController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5CD7132A07DD6500CCCCEE /* DownloadYourDataController.swift */; };
+		CA5CD7162A07DDB600CCCCEE /* DeleteOrDeactivateController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5CD7152A07DDB600CCCCEE /* DeleteOrDeactivateController.swift */; };
+		CA5CD7182A07DDCD00CCCCEE /* DeactivateAccountController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5CD7172A07DDCD00CCCCEE /* DeactivateAccountController.swift */; };
+		CA5CD71A2A07DDE600CCCCEE /* DeleteAccountController.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA5CD7192A07DDE600CCCCEE /* DeleteAccountController.swift */; };
 		CA8D700629E09677008A11C0 /* Lottie in Frameworks */ = {isa = PBXBuildFile; productRef = CA8D700529E09677008A11C0 /* Lottie */; };
 		CA8D700929E097A1008A11C0 /* Rocket-Morphing.json in Resources */ = {isa = PBXBuildFile; fileRef = CA8D700829E097A1008A11C0 /* Rocket-Morphing.json */; };
 		CA8D700B29E36DA1008A11C0 /* BeautifyCollectionViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CA8D700A29E36DA1008A11C0 /* BeautifyCollectionViewCell.swift */; };
@@ -227,6 +232,11 @@
 		CA55DFA729D6339200C54B35 /* StreamingVideoController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StreamingVideoController.swift; sourceTree = "<group>"; };
 		CA55DFA929D6350C00C54B35 /* Mixpanel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Mixpanel.swift; sourceTree = "<group>"; };
 		CA5CD70F2A05979700CCCCEE /* ConfirmationLinkController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationLinkController.swift; sourceTree = "<group>"; };
+		CA5CD7112A07DD5400CCCCEE /* RequestDataDownloadController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RequestDataDownloadController.swift; sourceTree = "<group>"; };
+		CA5CD7132A07DD6500CCCCEE /* DownloadYourDataController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DownloadYourDataController.swift; sourceTree = "<group>"; };
+		CA5CD7152A07DDB600CCCCEE /* DeleteOrDeactivateController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteOrDeactivateController.swift; sourceTree = "<group>"; };
+		CA5CD7172A07DDCD00CCCCEE /* DeactivateAccountController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeactivateAccountController.swift; sourceTree = "<group>"; };
+		CA5CD7192A07DDE600CCCCEE /* DeleteAccountController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DeleteAccountController.swift; sourceTree = "<group>"; };
 		CA8D700829E097A1008A11C0 /* Rocket-Morphing.json */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.json; path = "Rocket-Morphing.json"; sourceTree = "<group>"; };
 		CA8D700A29E36DA1008A11C0 /* BeautifyCollectionViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BeautifyCollectionViewCell.swift; sourceTree = "<group>"; };
 		CA8D700E29E44D1B008A11C0 /* Enums.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Enums.swift; sourceTree = "<group>"; };
@@ -355,21 +365,26 @@
 		CA1D1A3B29FB02080015F1A2 /* Settings */ = {
 			isa = PBXGroup;
 			children = (
-				CA55DF1D29A6CBCA00C54B35 /* AccountController.swift */,
-				CA55DF1B29A674F000C54B35 /* FollowInviteFriendsController.swift */,
-				CA55DF1F29A7D32100C54B35 /* NotificationsController.swift */,
-				CA55DF2729AA94EF00C54B35 /* SettingsController.swift */,
 				CA1D1A3C29FB02780015F1A2 /* AboutController.swift */,
-				CA1D1A3E29FB02880015F1A2 /* FAQController.swift */,
-				CA1D1A4029FB15520015F1A2 /* PrivacyController.swift */,
-				CA1D1A4829FD7B810015F1A2 /* VisibilityPopUpController.swift */,
-				CA1D1A4A29FEE50A0015F1A2 /* SecurityController.swift */,
-				CA1D1A4C29FEEDDF0015F1A2 /* TwoFactorPopUpController.swift */,
+				CA55DF1D29A6CBCA00C54B35 /* AccountController.swift */,
 				CA1D1A4E2A00051A0015F1A2 /* AccountInfoController.swift */,
-				CA1D1A502A0005350015F1A2 /* EditPhoneNumberController.swift */,
+				CA5CD70F2A05979700CCCCEE /* ConfirmationLinkController.swift */,
+				CA5CD7172A07DDCD00CCCCEE /* DeactivateAccountController.swift */,
+				CA5CD7192A07DDE600CCCCEE /* DeleteAccountController.swift */,
+				CA5CD7152A07DDB600CCCCEE /* DeleteOrDeactivateController.swift */,
+				CA5CD7132A07DD6500CCCCEE /* DownloadYourDataController.swift */,
 				CA1D1A522A0005B90015F1A2 /* EditEmailController.swift */,
 				CA1D1A562A0006B20015F1A2 /* EditPasswordController.swift */,
-				CA5CD70F2A05979700CCCCEE /* ConfirmationLinkController.swift */,
+				CA1D1A502A0005350015F1A2 /* EditPhoneNumberController.swift */,
+				CA1D1A3E29FB02880015F1A2 /* FAQController.swift */,
+				CA55DF1B29A674F000C54B35 /* FollowInviteFriendsController.swift */,
+				CA55DF1F29A7D32100C54B35 /* NotificationsController.swift */,
+				CA1D1A4029FB15520015F1A2 /* PrivacyController.swift */,
+				CA5CD7112A07DD5400CCCCEE /* RequestDataDownloadController.swift */,
+				CA1D1A4A29FEE50A0015F1A2 /* SecurityController.swift */,
+				CA55DF2729AA94EF00C54B35 /* SettingsController.swift */,
+				CA1D1A4C29FEEDDF0015F1A2 /* TwoFactorPopUpController.swift */,
+				CA1D1A4829FD7B810015F1A2 /* VisibilityPopUpController.swift */,
 			);
 			path = Settings;
 			sourceTree = "<group>";
@@ -910,6 +925,7 @@
 				E3AB41792A00982A00EB9AA3 /* CashOutTextContainer.swift in Sources */,
 				CA55DF4729B8DE3A00C54B35 /* KwiksVideoPlayerController.swift in Sources */,
 				CA20FE2029ED8A590089A6B8 /* FeaturedMusicCollectionViewCell.swift in Sources */,
+				CA5CD7122A07DD5400CCCCEE /* RequestDataDownloadController.swift in Sources */,
 				CA55DF2A29AA966A00C54B35 /* ProfileController.swift in Sources */,
 				CA1D1A4D29FEEDDF0015F1A2 /* TwoFactorPopUpController.swift in Sources */,
 				CA55DF3A29AF9E9100C54B35 /* KwiksNotification.swift in Sources */,
@@ -919,6 +935,7 @@
 				CA8D700F29E44D1B008A11C0 /* Enums.swift in Sources */,
 				CA1D1A4329FC52FD0015F1A2 /* QuestionTableViewCell.swift in Sources */,
 				CA55DF2829AA94EF00C54B35 /* SettingsController.swift in Sources */,
+				CA5CD7142A07DD6500CCCCEE /* DownloadYourDataController.swift in Sources */,
 				CAA90C9B29941ACD0013A654 /* UIColor+Ext.swift in Sources */,
 				E3AB41662A0090EA00EB9AA3 /* CashoutConfirmationPopup.swift in Sources */,
 				CA55DF3E29AFA13100C54B35 /* KwiksUserAnalytics.swift in Sources */,
@@ -931,6 +948,8 @@
 				CA55DF4B29BA268100C54B35 /* Statics.swift in Sources */,
 				CA55DF9D29D110FE00C54B35 /* AddMusicToVideoController.swift in Sources */,
 				CA55DFA829D6339200C54B35 /* StreamingVideoController.swift in Sources */,
+				CA5CD7182A07DDCD00CCCCEE /* DeactivateAccountController.swift in Sources */,
+				CA5CD7162A07DDB600CCCCEE /* DeleteOrDeactivateController.swift in Sources */,
 				CA55DF5529C3C54E00C54B35 /* VideoShareController.swift in Sources */,
 				CAA90C7E2994171C0013A654 /* SceneDelegate.swift in Sources */,
 				CABAA305299BCEE100C5EBC6 /* String+Ext.swift in Sources */,
@@ -965,6 +984,7 @@
 				CA1D1A532A0005B90015F1A2 /* EditEmailController.swift in Sources */,
 				CA1D1A512A0005350015F1A2 /* EditPhoneNumberController.swift in Sources */,
 				CA1D1A3D29FB02780015F1A2 /* AboutController.swift in Sources */,
+				CA5CD71A2A07DDE600CCCCEE /* DeleteAccountController.swift in Sources */,
 				CA8D702929E8A96F008A11C0 /* Sticker.swift in Sources */,
 				CA55DF4929B8DE4A00C54B35 /* KwiksLiveVideoPlayerController.swift in Sources */,
 				CABACC2A29DA211F00026CAE /* AddParticipantsCell.swift in Sources */,

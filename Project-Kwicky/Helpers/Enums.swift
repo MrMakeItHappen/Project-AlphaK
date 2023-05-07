@@ -51,3 +51,9 @@ enum PathType {
     case delete
     case none
 }
+
+enum DownloadType {
+    case profile
+    case activity
+    case none
+}

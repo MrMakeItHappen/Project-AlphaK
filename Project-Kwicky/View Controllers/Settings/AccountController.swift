@@ -168,10 +168,12 @@ extension AccountController {
     }
     
     @objc func didTapDownloadData() {
-        print(#function)
+        let requestDataVC = RequestDataDownloadController()
+        self.navigationController?.pushViewController(requestDataVC, animated: true)
     }
     
     @objc func didTapDeactivate() {
-        print(#function)
+        let deleteOrDeactivateVC = DeleteOrDeactivateController()
+        self.navigationController?.pushViewController(deleteOrDeactivateVC, animated: true)
     }
 }

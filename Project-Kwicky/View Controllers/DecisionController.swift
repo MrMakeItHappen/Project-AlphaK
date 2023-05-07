@@ -5,15 +5,6 @@
 //  Created by Stanley Miller on 2/8/23.
 //
 
-/*
- controller checks for authentication through JWT -
- should mimic launch screen with logo then can animate here is necessary
- if auth
-    tabview
- else
-    simplelogin
- */
-
 import UIKit
 
 final class DecisionController: BaseViewController {//final - no outside access
@@ -40,6 +31,33 @@ final class DecisionController: BaseViewController {//final - no outside access
         _globalDeviceWidth = UIScreen.main.bounds.width
         _globalDeviceHeight = UIScreen.main.bounds.height
         
+        //user onboarding model only
+        userOnboardingStruct = UserOnboardingStruct()//reset model
+        userProfileStruct = UserProfileStruct()//reset model
+        
+        //check for authentication - stored jwt token in user pref fetched from verify
+        ServerKit().onAuth { hasAuth in
+            
+            if hasAuth {//user has auth - show animation and load user model then tabbarview
+                self.logoAnimationTwo { isComplete in
+                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                        self.logoAnimationTwo { isComplete in
+                            DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                                self.handleTabView()//first load the main user model then handle tabbarview
+                            }
+                        }
+                    }
+                }
+            } else { //user has no auth, animation then simple controller for email/phone selection
+                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                    self.logoAnimationTwo { isComplete in
+                        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+                            self.handleSimpleLoginController()
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 
@@ -54,14 +72,7 @@ extension DecisionController {
         self.logo.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: -44).isActive = true
         self.logo.centerYAnchor.constraint(equalTo: self.view.centerYAnchor, constant: 0).isActive = true
         self.logo.heightAnchor.constraint(equalToConstant: 128).isActive = true
-        
-        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-            self.logoAnimationTwo { isComplete in
-                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                    self.handleSimpleLoginController()
-                }
-            }
-        }
+      
     }
     
     @objc func logoAnimationTwo(completion : @escaping ( _ isComplete : Bool)->()) {
@@ -108,8 +119,15 @@ extension DecisionController {
         nav.modalPresentationStyle = .fullScreen
         self.present(nav, animated: true)
     }
+    
+    //this is the tab bar
+    @objc func handleTabView() {
+        let tabViewController = TabViewController()
+        let nav = UINavigationController(rootViewController: tabViewController)
+        nav.modalPresentationStyle = .fullScreen
+        self.present(nav, animated: true)
+    }
 }
-
 
 
 

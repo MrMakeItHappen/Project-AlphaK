@@ -34,6 +34,15 @@ var _userPhoneNumber: String? = "(999) 123-8800"
 var _userEmailAddress: String? = "kwiks@kwiky.com"
 
 var _loginTrajectory = LoginTrajectory.fromEmail
+///onboarding only
+var userOnboardingStruct = UserOnboardingStruct()
+///everytime a user enters the app with auth
+var userProfileStruct = UserProfileStruct()
+
+var _jwtToken : String?
+
+
+
 
 //MARK: - Globals
 

@@ -7,9 +7,11 @@
 
 import UIKit
 import Lottie
+import KwiksSystemsPopups
 
 final class SignUpDetailController: BaseViewController {
     var isPathFromLogin = false
+    let kwiksPopUp = KwiksSystemPopups()
     
     private let backgroundImageView: UIImageView = {
         let imageView = UIImageView()
@@ -611,7 +613,7 @@ extension SignUpDetailController {
     @objc func didTapSignUp() {
         
         //TODO: Check if all fields are valid before submitting to backend.
-       guard let emailText = self.emailTextField.text, let passwordText = self.passwordTextField.text, let fullNameText = self.fullNameTextField.text, let dateText = self.birthdateTextField.text else {
+       guard let emailText = self.emailTextField.text, let fullNameText = self.fullNameTextField.text, let dateText = self.birthdateTextField.text else {
            Printer().print(message: "🔴 Textfield inputs are nil - onboarding")
            self.removeTextFieldErrors(withDelay: true)
            return
@@ -632,15 +634,7 @@ extension SignUpDetailController {
             self.removeTextFieldErrors(withDelay: true)
             return
         }
-        
-        if passwordText.isEmpty {
-            self.passwordTextField.layer.borderColor = UIColor.systemRed.cgColor
-            self.passwordErrorLabel.isHidden = false
-            Printer().print(message: "🔴 passwordText is missing - onboarding")
-            self.removeTextFieldErrors(withDelay: true)
-            return
-        }
-        
+     
         if dateText.isEmpty {
             self.birthdateTextField.layer.borderColor = UIColor.systemRed.cgColor
             self.birthdateErrorLabel.isHidden = false
@@ -653,7 +647,7 @@ extension SignUpDetailController {
         self.mainLoadingScreen.callMainLoadingScreen(lottiAnimationName: Statics.mainLoadingScreen, isCentered: true)
         
         //clean values with no white space on left or right or beginning/sentence end
-        let cleanEmail = emailText.trimmingCharacters(in: .whitespacesAndNewlines)
+        let cleanEmail = emailText.trimmingCharacters(in: .whitespacesAndNewlines) //phone/email
        
         var values = [String:Any]()
         
@@ -662,7 +656,12 @@ extension SignUpDetailController {
         } else {
             values["phone"] = "\(cleanEmail)"
         }
- 
+        
+        //this model is only for onboarding - should be nil after
+        userOnboardingStruct.full_name = fullNameText
+        userOnboardingStruct.date = dateText
+        userOnboardingStruct.email = emailText
+
         //serverkit can manage all https calls so if a backend changes, one file changes
         ServerKit().onRegister(values: values) { onSuccess, object in //returns from background thread, move to main
             //pin is sent if success is returned
@@ -673,16 +672,20 @@ extension SignUpDetailController {
                         self.emailTextField.layer.borderColor = UIColor.systemRed.cgColor
                         self.emailErrorLabel.isHidden = false
                         self.emailErrorLabel.text = "Please try aagin"
-                        
+                        //dont give the why for error when onboarding/signin - social engineers can use that information, dont let them :)
                         self.loadingScreen.alpha = 0
                         self.lottieAnimation.alpha = 0
                         self.lottieAnimation.stop()
+                    
+                        //throw kiwks error flag
+                        self.kwiksPopUp.copyDecision(popupType: .unknownError)
                 }
             } else {
                 self.mainLoadingScreen.cancelMainLoadingScreen()
                 print("🟢 Registration success")
                 DispatchQueue.main.async {
                     let pinVC = PinNumberController()
+                    pinVC.passedAuthValue = cleanEmail //this could be a phone number also - needs area code
                     self.navigationController?.pushViewController(pinVC, animated: true)
                 }
             }
@@ -746,6 +749,12 @@ extension SignUpDetailController: UITextFieldDelegate {
         }
     }
 }
+
+
+
+
+
+
 
 
 //TODO: inspect me

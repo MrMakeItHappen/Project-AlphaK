@@ -10,6 +10,8 @@ import UIKit
 final class SelectUsernameController: UIViewController {
     private let availableIcon = UIImage(named: "CheckmarkSelected")
     private let unavailableIcon = UIImage(systemName: "x.circle.fill")?.withTintColor(.systemRed, renderingMode: .alwaysOriginal)
+    var isApproved:Bool = false
+    let mainLoadingScreen = MainLoadingScreen()
     
     private let titleLabel: UILabel = {
         let label = UILabel()
@@ -58,10 +60,10 @@ final class SelectUsernameController: UIViewController {
         textField.height(60)
         textField.setLeftPaddingPoints(30)
         textField.setRightPaddingPoints(40)
-        textField.addTarget(self, action: #selector(textFieldDidChange(textField:)), for: .editingChanged)
+        textField.addTarget(self, action: #selector(forceLowerCase(sender:)), for: .editingChanged)
         return textField
     }()
-    
+   
     private let checkmarkImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -104,6 +106,7 @@ final class SelectUsernameController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.view.backgroundColor = .white
+        self.enableConfirmButton(should: false)//default - not enabled
         self.layoutUI()
     }
 }
@@ -136,40 +139,61 @@ extension SelectUsernameController {
 }
 //MARK: - @objc
 extension SelectUsernameController {
-    @objc func textFieldDidChange(textField: UITextField) {
-        //TODO: Implement profanity/vulgar checks.
-        let availableUsernames = ["MarkBlum", "MarkGlixman", "Davidi", "Mark", "Blum", "Glixman"]
-        let cleanNames = availableUsernames.map { $0.lowercased() }
-        guard let username = textField.text?.lowercased() else { return }
-        
-        if cleanNames.contains(username) {
-            UIView.animate(withDuration: 0.15, delay: 0.1, options: .curveLinear, animations: {
-                self.checkmarkImageView.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
-                
-            }) { (success) in
-                UIView.animate(withDuration: 0.15, delay: 0, options: .curveLinear, animations: {
-                    self.checkmarkImageView.transform = .identity
-                    self.checkmarkImageView.image = self.availableIcon
-                    
-                    self.confirmButton.isEnabled = true
-                    self.confirmButton.backgroundColor = .kwiksGreen
-                })
-            }
-            
-        } else {
-            self.checkmarkImageView.image = self.unavailableIcon
-            self.confirmButton.isEnabled = false
-            self.confirmButton.backgroundColor = #colorLiteral(red: 0.7764705882, green: 0.7764705882, blue: 0.7764705882, alpha: 1)
-        }
-    }
-    
+   
     @objc func didTapConfirm() {
+        //resignation()
         self.usernameTextField.resignFirstResponder()
         
-        let homeVC = TabViewController()
-        homeVC.modalPresentationStyle = .fullScreen
-        
-        self.present(homeVC, animated: true)
+        if isApproved {//bool to toggle whether request was good/bad
+            
+            self.mainLoadingScreen.callMainLoadingScreen(lottiAnimationName: Statics.mainLoadingScreen, isCentered: true)
+            
+            let full_name = userOnboardingStruct.full_name ?? "nil"
+            let dateText = userOnboardingStruct.date ?? "nil"
+            var email = userOnboardingStruct.email ?? "nil"
+            let userName = userOnboardingStruct.user_name ?? "nil"
+            
+            var type:String = ""
+            
+            if full_name != "nil" &&
+                dateText != "nil" &&
+                email != "nil" &&
+                userName != "nil" {
+                
+                if _loginTrajectory == .fromEmail {
+                    type="email"
+                } else {
+                    type="phone"
+                }
+                
+                var values : [String:String] = [
+                    "name":full_name,
+                    "\(type)":email,//this could be phone or email in the email node which has both :)
+                    "birthdate":dateText,
+                    "username":userName
+                ]
+                
+                ServerKit().onUserObjectUpdate(values: values) { onSuccess, object in
+                    
+                    if onSuccess {//we are now fully finished, update the users real model and go to the tab bar view
+                        self.mainLoadingScreen.cancelMainLoadingScreen()
+
+                        
+                    } else {
+                        self.mainLoadingScreen.cancelMainLoadingScreen()
+                        
+                        
+                    }
+                }
+                
+            } else {
+                Printer().print(message: "🔴 Data missing - 1")
+                self.mainLoadingScreen.cancelMainLoadingScreen()
+            }
+        } else {
+            Printer().print(message: "🔴 Data missing - 2")
+            self.mainLoadingScreen.cancelMainLoadingScreen()
+        }
     }
 }
 //MARK: - UITextField Delegates
@@ -177,16 +201,153 @@ extension SelectUsernameController {
 extension SelectUsernameController: UITextFieldDelegate {
     func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
         
-        if let text = textField.text {
+        if textField == self.usernameTextField {
             
-            let maxLength = 24
-            let currentString: NSString = textField.text! as NSString
-            let newString: NSString = currentString.replacingCharacters(in: range, with: string) as NSString
-            
-            textField.text = text
-            return newString.length <= maxLength
+            if (string == " ") {
+                return false
+            } else {
+                let cs = NSCharacterSet(charactersIn: Statics.approved_username_characters).inverted//restrict to lower case, underscores and numbers/letters upper and lower only
+                let filtered = string.components(separatedBy: cs).joined(separator: "")
+                return (string == filtered)
+            }
         }
-        
         return true
     }
+    
+    //force lower and check for username after 3 every letter
+    @objc func forceLowerCase(sender: UITextField) {
+        
+        if sender == self.usernameTextField {
+            guard let text = self.usernameTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) else {return}
+            if text.count > 0 {
+                let lowerText = text.lowercased()
+                self.usernameTextField.text = lowerText
+                
+                if text.count > 2 {
+                    self.enableConfirmButton(should:true)
+                    //start polling and using the activity/check
+                    
+                    let userNameToCheck = text
+                    ServerKit().onUsernameVerify(passedUserName: userNameToCheck) { onSuccess, object in
+                        
+                        if !onSuccess {//failed
+                            self.userNameFailed()
+                            userOnboardingStruct.user_name = "nil"
+                        } else {
+                            let isAvailable = object["data"] as? Bool ?? false
+                            
+                            if isAvailable {
+                                self.userNameSuccess()
+                                userOnboardingStruct.user_name = userNameToCheck
+                            } else {
+                                self.userNameFailed()
+                                userOnboardingStruct.user_name = "nil"
+                            }
+                        }
+                    }
+                    
+                } else {
+                    self.enableConfirmButton(should:false)
+                }
+            } else {
+                self.enableConfirmButton(should:false)
+            }
+        }
+    }
+    
+    //toggle for confirmation button
+    func enableConfirmButton(should:Bool) {
+        if should {
+            self.confirmButton.isEnabled = true
+            self.confirmButton.backgroundColor = .kwiksGreen
+        } else {
+            self.confirmButton.backgroundColor = #colorLiteral(red: 0.7764705882, green: 0.7764705882, blue: 0.7764705882, alpha: 1)
+            self.confirmButton.tintColor = .black
+            self.confirmButton.isEnabled = false
+        }
+    }
+    func userNameFailed() {
+        self.isApproved = false
+        self.checkmarkImageView.image = self.unavailableIcon
+        self.confirmButton.isEnabled = false
+        self.confirmButton.backgroundColor = #colorLiteral(red: 0.7764705882, green: 0.7764705882, blue: 0.7764705882, alpha: 1)
+    }
+    func userNameSuccess() {
+        self.isApproved = true
+        UIView.animate(withDuration: 0.15, delay: 0.1, options: .curveLinear, animations: {
+            self.checkmarkImageView.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
+
+        }) { (success) in
+            UIView.animate(withDuration: 0.15, delay: 0, options: .curveLinear, animations: {
+                self.checkmarkImageView.transform = .identity
+                self.checkmarkImageView.image = self.availableIcon
+
+                self.confirmButton.isEnabled = true
+                self.confirmButton.backgroundColor = .kwiksGreen
+            })
+        }
+    }
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+//graveyard
+//
+//@objc func textFieldDidChange(textField: UITextField) {
+//
+//    //TODO: Implement profanity/vulgar checks.
+//    let availableUsernames = ["MarkBlum", "MarkGlixman", "Davidi", "Mark", "Blum", "Glixman"]
+//    let cleanNames = availableUsernames.map { $0.lowercased() }
+//    guard let username = textField.text?.lowercased() else { return }
+//
+//    if cleanNames.contains(username) {
+//        UIView.animate(withDuration: 0.15, delay: 0.1, options: .curveLinear, animations: {
+//            self.checkmarkImageView.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
+//
+//        }) { (success) in
+//            UIView.animate(withDuration: 0.15, delay: 0, options: .curveLinear, animations: {
+//                self.checkmarkImageView.transform = .identity
+//                self.checkmarkImageView.image = self.availableIcon
+//
+//                self.confirmButton.isEnabled = true
+//                self.confirmButton.backgroundColor = .kwiksGreen
+//            })
+//        }
+//
+//    } else {
+//        self.checkmarkImageView.image = self.unavailableIcon
+//        self.confirmButton.isEnabled = false
+//        self.confirmButton.backgroundColor = #colorLiteral(red: 0.7764705882, green: 0.7764705882, blue: 0.7764705882, alpha: 1)
+//    }
+//}

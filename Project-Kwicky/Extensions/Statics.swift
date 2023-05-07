@@ -34,7 +34,7 @@ struct Statics {
     /// GET Request. Returns
     /// ["data" : "<boolean>",
     /// "errors" : [] ]
-    static let userNameAvailability = "/user/available/:username"
+    static let userNameAvailability = "/user/available/"
     
     static let JSONFailedToLoad = "JSON FETCHING FAILED!"
     static let unknownError = "Something Went Wrong!"
@@ -42,4 +42,7 @@ struct Statics {
 
     static let mixpanelAuthToken = "c0ef9a6d40f11836eed4e8f27fbe678f"
     static let mainLoadingScreen = "kwiks_main_loading_screen"
+    
+    static let approved_username_characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_" //for usernames
+
 }

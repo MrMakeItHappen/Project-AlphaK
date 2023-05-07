@@ -6,10 +6,12 @@
 //
 
 import UIKit
+import KwiksSystemsPopups
 
 final class PinNumberController: BaseViewController {
-    var pinNumber: String?
+    
     var passedAuthValue:String?
+    let kwiksPopUp = KwiksSystemPopups()
     
     private let mainTitleLabel: UILabel = {
         let label = UILabel()
@@ -229,18 +231,18 @@ final class PinNumberController: BaseViewController {
         return stackView
     }()
     
-    var tempPinNumberDisplay: UILabel = {
-        let label = UILabel()
-        label.text = "0000"
-        label.translatesAutoresizingMaskIntoConstraints = false
-        label.backgroundColor = .clear
-        label.font = UIFont.interRegular(size: 18)
-        label.numberOfLines = 1
-        label.adjustsFontSizeToFitWidth = true
-        label.textAlignment = .center
-        label.textColor = UIColor.kwiksTextBlack
-        return label
-    }()
+//    var tempPinNumberDisplay: UILabel = {
+//        let label = UILabel()
+//        label.text = "0000"
+//        label.translatesAutoresizingMaskIntoConstraints = false
+//        label.backgroundColor = .clear
+//        label.font = UIFont.interRegular(size: 18)
+//        label.numberOfLines = 1
+//        label.adjustsFontSizeToFitWidth = true
+//        label.textAlignment = .center
+//        label.textColor = UIColor.kwiksTextBlack
+//        return label
+//    }()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -280,10 +282,10 @@ extension PinNumberController {
         self.pinStackView.topToBottom(of: self.subTitleLabel, offset: 49)
         self.pinStackView.centerXToSuperview()
         
-        self.view.addSubview(self.tempPinNumberDisplay)
-        self.tempPinNumberDisplay.topToBottom(of: self.pinStackView, offset: 20)
-        self.tempPinNumberDisplay.left(to: self.pinStackView)
-        self.tempPinNumberDisplay.right(to: self.pinStackView)
+//        self.view.addSubview(self.tempPinNumberDisplay)
+//        self.tempPinNumberDisplay.topToBottom(of: self.pinStackView, offset: 20)
+//        self.tempPinNumberDisplay.left(to: self.pinStackView)
+//        self.tempPinNumberDisplay.right(to: self.pinStackView)
         
         self.view.addSubview(self.confirmButton)
         self.confirmButton.topToBottom(of: self.pinStackView, offset: 114)
@@ -401,19 +403,28 @@ extension PinNumberController: UITextFieldDelegate {
         } else if _loginTrajectory == .fromPhone {
             key = "phone"
         }
-                    
         if self.passedAuthValue != nil {
             let values : [String:Any] = ["\(key)": self.passedAuthValue!, "code":pin]
             ServerKit().onVerify(values: values) { onSuccess, object in
                 if onSuccess == false {
+                    self.mainLoadingScreen.cancelMainLoadingScreen()
                     Printer().print(message: "Error - wrong pin || pin timed out")
+                    self.kwiksPopUp.copyDecision(popupType: .unknownError)
                 } else {
+                    self.mainLoadingScreen.cancelMainLoadingScreen()
                     Printer().print(message: "🟢 SUCCESS VERIFY")
                     //next to username, store their info in a model then blast it all with the username to save up top then into the application
                     
-                    
-                    
-                    
+                    let jwtToken = object["data"] as? String ?? "nil"
+
+                    //grab the token and store it
+                    if jwtToken != "nil" {
+                        Printer().print(message: "🟢 JWT Fetch success: \(jwtToken)")
+                        Preferences().addJwtToken(jwtToken: jwtToken, key: UserPrefStatics.USER_HAS_AUTHENTICATION)
+                        self.handleUserNameController()
+                    } else {
+                        Printer().print(message: "🔴 Token received is nil")
+                    }
                 }
             }
         }
@@ -424,7 +435,6 @@ extension PinNumberController: UITextFieldDelegate {
         let selectUsernameVC = SelectUsernameController()
         selectUsernameVC.modalPresentationStyle = .fullScreen
         selectUsernameVC.navigationController?.navigationBar.isHidden = true
-
         self.present(selectUsernameVC, animated: true)
     }
 }

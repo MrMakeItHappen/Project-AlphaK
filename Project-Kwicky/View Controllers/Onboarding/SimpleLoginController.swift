@@ -16,7 +16,7 @@ final class SimpleLoginController: UIViewController {
         imageView.isUserInteractionEnabled = false
         imageView.backgroundColor = .clear
         imageView.layer.masksToBounds = true
-        
+        imageView.clipsToBounds = true
         let image = UIImage(named: "SimpleLoginBackground")
         imageView.image = image
         return imageView

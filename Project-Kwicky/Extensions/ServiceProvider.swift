@@ -23,7 +23,7 @@ final class ServiceProvider: NSObject {
         }
         
         var url : URL = URL(string: "nil")!
-        url = URL(string: "\(Statics.sandboxDomain)\(endpoint)")!
+        url = URL(string: "\(Statics.productionDomain)\(endpoint)")!
         //        print("ENDPOINT URL - ", url)
         
         let session = URLSession.shared

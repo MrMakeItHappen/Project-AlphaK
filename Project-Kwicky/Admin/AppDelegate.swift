@@ -17,7 +17,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate, UITabBarControllerDelegat
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
-        print("🟢 DEVICE HEIGHT: \(_globalDeviceHeight)")
+        print("🟢 DEVICE HEIGHT WATCHER: \(_globalDeviceHeight)")
         
         //setting here and in decision controller
         _globalDeviceWidth = UIScreen.main.bounds.width//requires scene window now when you update

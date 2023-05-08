@@ -196,7 +196,7 @@ extension SelectUsernameController {
                 }
                 
             } else {
-                Printer().print(message: "🔴 Data missing - 1")
+                Printer().print(message: "🔴 Data missing - 11")
                 self.mainLoadingScreen.cancelMainLoadingScreen()
             }
         } else {

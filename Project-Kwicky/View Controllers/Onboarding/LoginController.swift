@@ -6,9 +6,12 @@
 //
 
 import UIKit
+import KwiksSystemsPopups
 
-final class LoginController: UIViewController {
+final class LoginController: BaseViewController {
     var isPathFromSignUpDetails = false
+    var kwiksPopUp = KwiksSystemPopups()
+
     
     private let background: UIView = {
         let view = UIView(frame: .zero)
@@ -25,7 +28,7 @@ final class LoginController: UIViewController {
         imageView.layer.masksToBounds = true
         imageView.height(344)
         imageView.width(226)
-        
+        imageView.clipsToBounds = true
         let image = UIImage(named: "SignUpBackgroundArrow")
         imageView.image = image
         return imageView
@@ -248,60 +251,6 @@ final class LoginController: UIViewController {
         return button
     }()
     
-    private lazy var appleLoginButton: UIButton = {
-        let buttonHeight: CGFloat = 50
-        var configuaration = UIButton.Configuration.plain()
-        configuaration.image = UIImage(named: "AppleOnboardIcon")?.resized(to: CGSize(width: 20, height: 20))
-        
-        let button = UIButton(configuration: configuaration, primaryAction: UIAction(handler: { _ in
-            self.didTapAppleLogin()
-        }))
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.layer.cornerRadius = 0
-        button.layer.masksToBounds = true
-        button.backgroundColor = #colorLiteral(red: 0.8941176471, green: 0.8941176471, blue: 0.8941176471, alpha: 1)
-        button.height(buttonHeight)
-        button.width(buttonHeight)
-        button.layer.cornerRadius = buttonHeight / 2
-        return button
-    }()
-    
-    private lazy var facebookLoginButton: UIButton = {
-        let buttonHeight: CGFloat = 50
-        var configuaration = UIButton.Configuration.plain()
-        configuaration.image = UIImage(named: "FacebookOnboardIcon")?.resized(to: CGSize(width: 20, height: 20))
-        
-        let button = UIButton(configuration: configuaration, primaryAction: UIAction(handler: { _ in
-            self.didTapFacebookLogin()
-        }))
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.layer.cornerRadius = 0
-        button.layer.masksToBounds = true
-        button.backgroundColor = #colorLiteral(red: 0.8941176471, green: 0.8941176471, blue: 0.8941176471, alpha: 1)
-        button.height(buttonHeight)
-        button.width(buttonHeight)
-        button.layer.cornerRadius = buttonHeight / 2
-        return button
-    }()
-    
-    private lazy var googleLoginButton: UIButton = {
-        let buttonHeight: CGFloat = 50
-        var configuaration = UIButton.Configuration.plain()
-        configuaration.image = UIImage(named: "GoogleOnboardIcon")?.resized(to: CGSize(width: 20, height: 20))
-        
-        let button = UIButton(configuration: configuaration, primaryAction: UIAction(handler: { _ in
-            self.didTapGoogleLogin()
-        }))
-        button.translatesAutoresizingMaskIntoConstraints = false
-        button.layer.cornerRadius = 0
-        button.layer.masksToBounds = true
-        button.backgroundColor = #colorLiteral(red: 0.8941176471, green: 0.8941176471, blue: 0.8941176471, alpha: 1)
-        button.height(buttonHeight)
-        button.width(buttonHeight)
-        button.layer.cornerRadius = buttonHeight / 2
-        return button
-    }()
-    
     private let bottomLabel: UILabel = {
         let label = UILabel()
         label.text = "Need to create an account?"
@@ -445,18 +394,6 @@ extension LoginController {
         self.logInButton.left(to: self.emailTextField)
         self.logInButton.right(to: self.emailTextField)
         
-        self.loginContainerView.addSubview(self.appleLoginButton)
-        self.appleLoginButton.topToBottom(of: self.logInButton, offset: 50)
-        self.appleLoginButton.centerXToSuperview()
-        
-        self.loginContainerView.addSubview(self.facebookLoginButton)
-        self.facebookLoginButton.top(to: self.appleLoginButton)
-        self.facebookLoginButton.rightToLeft(of: self.appleLoginButton, offset: -15)
-        
-        self.loginContainerView.addSubview(self.googleLoginButton)
-        self.googleLoginButton.top(to: self.appleLoginButton)
-        self.googleLoginButton.leftToRight(of: self.appleLoginButton, offset: 15)
-        
         self.loginContainerView.addSubview(self.bottomLabel)
         self.bottomLabel.bottomToSuperview(usingSafeArea: true)
         self.bottomLabel.centerXToSuperview(offset: -45)
@@ -484,13 +421,8 @@ extension LoginController {
     }
     
     @objc func didTapLogin() {
-        //Capture email address and password.
-        //Submit to backend for verification.
-        //If valid, present next screen.
-        //If invalid, present pop-up with error description.
-        print(#function)
-        
-        guard let emailText = self.emailTextField.text, let passwordText = self.passwordTextField.text else { return }
+       
+        guard let emailText = self.emailTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines), let passwordText = self.passwordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) else { return }
         
         if emailText.isEmpty {
             self.emailTextField.layer.borderColor = UIColor.systemRed.cgColor
@@ -500,6 +432,35 @@ extension LoginController {
         if passwordText.isEmpty {
             self.passwordTextField.layer.borderColor = UIColor.systemRed.cgColor
             self.passwordErrorLabel.isHidden = false
+        }
+        self.mainLoadingScreen.callMainLoadingScreen(lottiAnimationName: Statics.mainLoadingScreen, isCentered: true)
+        
+        //clear
+        self.emailTextField.resignFirstResponder()
+        self.passwordTextField.resignFirstResponder()
+        
+        //sign in
+        //get pin
+        //pin controller
+        //store jwt
+        //tabview
+        
+        //email: charliearcodia@gmail.com
+        let values = ["email":emailText]
+        ServerKit().onLogin(values: values) { onSuccess, object in
+            if onSuccess {
+                self.mainLoadingScreen.cancelMainLoadingScreen()
+                DispatchQueue.main.async {
+                    _loginTrajectory = .fromEmail//dummy set for now
+                    let pinVC = PinNumberController()
+                    pinVC.passedAuthValue = emailText //this could be a phone number also - needs area code
+                    self.navigationController?.pushViewController(pinVC, animated: true)
+                }
+            } else {
+                self.mainLoadingScreen.cancelMainLoadingScreen()
+                self.kwiksPopUp = KwiksSystemPopups(presentingViewController: self, popupType: .unknownError)
+                self.kwiksPopUp.engagePopup()
+            }
         }
     }
     
@@ -555,7 +516,7 @@ extension LoginController: UITextFieldDelegate {
         
         if let text = textField.text, let emailText = self.emailTextField.text, let passwordText = self.passwordTextField.text {
             
-            let maxLength = 20
+            let maxLength = 30
             let currentString: NSString = textField.text! as NSString
             let newString: NSString = currentString.replacingCharacters(in: range, with: string) as NSString
             
@@ -586,3 +547,75 @@ extension LoginController: UITextFieldDelegate {
         }
     }
 }
+
+
+
+
+
+
+//graveyard
+//        self.loginContainerView.addSubview(self.appleLoginButton)
+//        self.appleLoginButton.topToBottom(of: self.logInButton, offset: 50)
+//        self.appleLoginButton.centerXToSuperview()
+//
+//        self.loginContainerView.addSubview(self.facebookLoginButton)
+//        self.facebookLoginButton.top(to: self.appleLoginButton)
+//        self.facebookLoginButton.rightToLeft(of: self.appleLoginButton, offset: -15)
+//
+//        self.loginContainerView.addSubview(self.googleLoginButton)
+//        self.googleLoginButton.top(to: self.appleLoginButton)
+//        self.googleLoginButton.leftToRight(of: self.appleLoginButton, offset: 15)
+
+//    private lazy var appleLoginButton: UIButton = {
+//        let buttonHeight: CGFloat = 50
+//        var configuaration = UIButton.Configuration.plain()
+//        configuaration.image = UIImage(named: "AppleOnboardIcon")?.resized(to: CGSize(width: 20, height: 20))
+//
+//        let button = UIButton(configuration: configuaration, primaryAction: UIAction(handler: { _ in
+//            self.didTapAppleLogin()
+//        }))
+//        button.translatesAutoresizingMaskIntoConstraints = false
+//        button.layer.cornerRadius = 0
+//        button.layer.masksToBounds = true
+//        button.backgroundColor = #colorLiteral(red: 0.8941176471, green: 0.8941176471, blue: 0.8941176471, alpha: 1)
+//        button.height(buttonHeight)
+//        button.width(buttonHeight)
+//        button.layer.cornerRadius = buttonHeight / 2
+//        return button
+//    }()
+
+//    private lazy var facebookLoginButton: UIButton = {
+//        let buttonHeight: CGFloat = 50
+//        var configuaration = UIButton.Configuration.plain()
+//        configuaration.image = UIImage(named: "FacebookOnboardIcon")?.resized(to: CGSize(width: 20, height: 20))
+//
+//        let button = UIButton(configuration: configuaration, primaryAction: UIAction(handler: { _ in
+//            self.didTapFacebookLogin()
+//        }))
+//        button.translatesAutoresizingMaskIntoConstraints = false
+//        button.layer.cornerRadius = 0
+//        button.layer.masksToBounds = true
+//        button.backgroundColor = #colorLiteral(red: 0.8941176471, green: 0.8941176471, blue: 0.8941176471, alpha: 1)
+//        button.height(buttonHeight)
+//        button.width(buttonHeight)
+//        button.layer.cornerRadius = buttonHeight / 2
+//        return button
+//    }()
+//
+//    private lazy var googleLoginButton: UIButton = {
+//        let buttonHeight: CGFloat = 50
+//        var configuaration = UIButton.Configuration.plain()
+//        configuaration.image = UIImage(named: "GoogleOnboardIcon")?.resized(to: CGSize(width: 20, height: 20))
+//
+//        let button = UIButton(configuration: configuaration, primaryAction: UIAction(handler: { _ in
+//            self.didTapGoogleLogin()
+//        }))
+//        button.translatesAutoresizingMaskIntoConstraints = false
+//        button.layer.cornerRadius = 0
+//        button.layer.masksToBounds = true
+//        button.backgroundColor = #colorLiteral(red: 0.8941176471, green: 0.8941176471, blue: 0.8941176471, alpha: 1)
+//        button.height(buttonHeight)
+//        button.width(buttonHeight)
+//        button.layer.cornerRadius = buttonHeight / 2
+//        return button
+//    }()

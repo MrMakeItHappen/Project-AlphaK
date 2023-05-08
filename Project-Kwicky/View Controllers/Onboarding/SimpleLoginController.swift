@@ -213,18 +213,21 @@ extension SimpleLoginController {
         let loginVC = LoginController()
         let navVC = UINavigationController(rootViewController: loginVC)
         navVC.modalPresentationStyle = .popover
+        _onboardingTrajectory = .fromLogin
         self.navigationController?.present(navVC, animated: true)
     }
     
     @objc func didTapPhone() {
         let signUpVC = SignUpDetailController()
         _loginTrajectory = .fromPhone
+        _onboardingTrajectory = .fromRegistration
         self.navigationController?.pushViewController(signUpVC, animated: true)
     }
     
     @objc func didTapEmail() {
         let signUpVC = SignUpDetailController()
         _loginTrajectory = .fromEmail
+        _onboardingTrajectory = .fromRegistration
         self.navigationController?.pushViewController(signUpVC, animated: true)
     }
 }

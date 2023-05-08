@@ -2,7 +2,7 @@
 //  ServerKit.swift
 //  Project-Kwicky
 //
-//  Created by Charlie Arcodia on 5/5/23.
+//  Created by Charlie Arcodia on 5/3/23.
 //
 
 import Foundation
@@ -12,26 +12,14 @@ import UIKit
 final class ServerKit {
     
     static let shared = ServerKit() //one instance only
-    
-    //server connect
-    func connect() { //server boot
-        
-        
-    }
-    
-    //server close
-    func disconect() { //server close
-        
-        
-    }
-    
+  
+    //removes the JWT token and presents decision controller on completion
     func logout(completion:@escaping(_ isComplete:Bool)->()) {
         //remove token and present decision
         let key = UserPrefStatics.USER_HAS_AUTHENTICATION
         Preferences.shared.removeKey(key: key)
         completion(true)
     }
-    
     
     //key is set in checkIfTokenExists
     func onAuth(completion:@escaping(_ hasAuth:Bool)->()) { //check JWT tokjen match and store on frontend
@@ -53,6 +41,37 @@ final class ServerKit {
     func onRegister(values:[String:Any], completion : @escaping(_ onSuccess : Bool, _ object : [String : Any])->()) { //server register user
         
         ServiceProvider.shared.serviceRequest(typeOfRequest: .POST, passedParameters: values, endpoint: Statics.signUpEndpoint, requiresAuth: false) { JSON, error in
+            
+            if error != nil {
+                if let error = error {
+                    print("🔴 -1 \(error.localizedDescription as Any)")
+                    completion(false, [:])
+                }
+                return
+            }
+            
+            if let JSON = JSON {
+                let errors = JSON["errors"] as? [String] ?? ["nil"]
+                
+                if errors != [] {
+                    guard let _ = errors.first else {
+                        print("🔴 -2 \(errors)")
+                        completion(false, [:])
+                        return
+                    }
+                }
+                //success below
+                completion(true, JSON)
+            } else {
+                completion(false, [:])
+            }
+        }
+    }
+    
+    //registration
+    func onLogin(values:[String:Any], completion : @escaping(_ onSuccess : Bool, _ object : [String : Any])->()) { //server register user
+        
+        ServiceProvider.shared.serviceRequest(typeOfRequest: .POST, passedParameters: values, endpoint: Statics.signInEndpoint, requiresAuth: false) { JSON, error in
             
             if error != nil {
                 if let error = error {
@@ -143,7 +162,6 @@ final class ServerKit {
         }
     }
     
-    
     //registration
     func onUserObjectUpdate(values:[String:Any], completion : @escaping(_ onSuccess : Bool, _ object : [String : Any])->()) { //requires auth
         
@@ -174,5 +192,4 @@ final class ServerKit {
             }
         }
     }
-    
 }

@@ -231,19 +231,6 @@ final class PinNumberController: BaseViewController {
         return stackView
     }()
     
-//    var tempPinNumberDisplay: UILabel = {
-//        let label = UILabel()
-//        label.text = "0000"
-//        label.translatesAutoresizingMaskIntoConstraints = false
-//        label.backgroundColor = .clear
-//        label.font = UIFont.interRegular(size: 18)
-//        label.numberOfLines = 1
-//        label.adjustsFontSizeToFitWidth = true
-//        label.textAlignment = .center
-//        label.textColor = UIColor.kwiksTextBlack
-//        return label
-//    }()
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         self.configure()
@@ -281,12 +268,7 @@ extension PinNumberController {
         self.view.addSubview(self.pinStackView)
         self.pinStackView.topToBottom(of: self.subTitleLabel, offset: 49)
         self.pinStackView.centerXToSuperview()
-        
-//        self.view.addSubview(self.tempPinNumberDisplay)
-//        self.tempPinNumberDisplay.topToBottom(of: self.pinStackView, offset: 20)
-//        self.tempPinNumberDisplay.left(to: self.pinStackView)
-//        self.tempPinNumberDisplay.right(to: self.pinStackView)
-        
+       
         self.view.addSubview(self.confirmButton)
         self.confirmButton.topToBottom(of: self.pinStackView, offset: 114)
         self.confirmButton.left(to: self.mainTitleLabel)
@@ -394,14 +376,56 @@ extension PinNumberController: UITextFieldDelegate {
     }
     
     func firePin(pin:String) {
+        
+        if _onboardingTrajectory == .fromRegistration {
+            
+            var key = ""
+            
+            self.mainLoadingScreen.callMainLoadingScreen(lottiAnimationName: Statics.mainLoadingScreen, isCentered: true)
+            if _loginTrajectory == .fromEmail {
+                key = "email"
+            } else if _loginTrajectory == .fromPhone {
+                key = "phone"
+            }
+            if self.passedAuthValue != nil {
+                let values : [String:Any] = ["\(key)": self.passedAuthValue!, "code":pin]
+                ServerKit().onVerify(values: values) { onSuccess, object in
+                    if onSuccess == false {
+                        self.mainLoadingScreen.cancelMainLoadingScreen()
+                        Printer().print(message: "Error - wrong pin || pin timed out")
+                        self.kwiksPopUp.copyDecision(popupType: .unknownError)
+                    } else {
+                        self.mainLoadingScreen.cancelMainLoadingScreen()
+                        Printer().print(message: "🟢 SUCCESS VERIFY")
+                        //next to username, store their info in a model then blast it all with the username to save up top then into the application
+                        
+                        let jwtToken = object["data"] as? String ?? "nil"
+                        
+                        //grab the token and store it
+                        if jwtToken != "nil" {
+                            _jwtToken = jwtToken
+                            Printer().print(message: "🟢 JWT Fetch success: \(jwtToken)")
+                            Preferences().addJwtToken(jwtToken: jwtToken, key: UserPrefStatics.USER_HAS_AUTHENTICATION)
+                            self.handleUserNameController()
+                        } else {
+                            Printer().print(message: "🔴 JWT Token received is nil")
+                        }
+                    }
+                }
+            }
+            
+        } else if _onboardingTrajectory == .fromLogin {
+            self.verifyThroughLogin(pin:pin)
+        }
+    }
+    
+    func verifyThroughLogin(pin:String) {
+        
         var key = ""
+        key = "email"
 
         self.mainLoadingScreen.callMainLoadingScreen(lottiAnimationName: Statics.mainLoadingScreen, isCentered: true)
-        if _loginTrajectory == .fromEmail {
-            key = "email"
-        } else if _loginTrajectory == .fromPhone {
-            key = "phone"
-        }
+    
         if self.passedAuthValue != nil {
             let values : [String:Any] = ["\(key)": self.passedAuthValue!, "code":pin]
             ServerKit().onVerify(values: values) { onSuccess, object in
@@ -415,18 +439,31 @@ extension PinNumberController: UITextFieldDelegate {
                     //next to username, store their info in a model then blast it all with the username to save up top then into the application
                     
                     let jwtToken = object["data"] as? String ?? "nil"
-
+                    
                     //grab the token and store it
                     if jwtToken != "nil" {
                         _jwtToken = jwtToken
                         Printer().print(message: "🟢 JWT Fetch success: \(jwtToken)")
                         Preferences().addJwtToken(jwtToken: jwtToken, key: UserPrefStatics.USER_HAS_AUTHENTICATION)
-                        self.handleUserNameController()
+                        self.handleHomeController()
                     } else {
                         Printer().print(message: "🔴 JWT Token received is nil")
                     }
                 }
             }
+        } else {
+            self.mainLoadingScreen.cancelMainLoadingScreen()
+        }
+    }
+    
+    //straight to the tab bar view now because we have authentication and a stored token
+    func handleHomeController() {
+        DispatchQueue.main.async {
+            UIDevice.vibrateLight()//small haptic vibe
+            let tabViewController = TabViewController()
+            let nav = UINavigationController(rootViewController: tabViewController)
+            nav.modalPresentationStyle = .fullScreen
+            self.present(nav, animated: true)
         }
     }
     

@@ -695,6 +695,7 @@ extension SignUpDetailController {
     @objc func didTapSignIn() {
         let loginVC = LoginController()
         loginVC.isPathFromSignUpDetails = true
+        _onboardingTrajectory = .fromLogin
         self.navigationController?.pushViewController(loginVC, animated: true)
     }
     

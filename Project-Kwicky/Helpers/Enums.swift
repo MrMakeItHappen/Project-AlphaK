@@ -62,3 +62,7 @@ enum LoginTrajectory {
     case fromPhone
     case fromEmail
 }
+enum OnboardingTrajectory {
+    case fromLogin
+    case fromRegistration
+}

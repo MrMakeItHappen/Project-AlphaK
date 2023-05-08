@@ -59,7 +59,11 @@ class CashOutMain : BaseViewController {
         self.triggerRefs()
         
     }
-    
+    override func viewWillLayoutSubviews() {
+        super.viewWillLayoutSubviews()
+        self.navigationController?.setNavigationBarHidden(true, animated: true)
+    }
+ 
     func triggerRefs() {
         self.cashOutMainHeader.cashOutMain = self
         self.cashOutTextContainer.cashOutMain = self
@@ -73,7 +77,7 @@ class CashOutMain : BaseViewController {
         self.view.addSubview(self.nextButton)
         self.view.addSubview(self.cashOutBodyBank)
 
-        self.cashOutMainHeader.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 50).isActive = true
+        self.cashOutMainHeader.topAnchor.constraint(equalTo: self.view.safeAreaLayoutGuide.topAnchor, constant: 0).isActive = true
         self.cashOutMainHeader.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
         self.cashOutMainHeader.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
         self.cashOutMainHeader.heightAnchor.constraint(equalToConstant: 50).isActive = true
@@ -139,7 +143,7 @@ extension CashOutMain {
     
     //passed from cashoutmainheader
     @objc func handleDismiss() {
-        self.navigationController?.popViewController(animated: true)
+        self.dismiss(animated: true)
     }
     
     //passed from cashout confirmation popup

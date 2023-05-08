@@ -47,8 +47,8 @@ class MainLoadingScreen : NSObject {
             self.loadingAnimation.centerYAnchor.constraint(equalTo: self.smokeView.centerYAnchor).isActive = true
         }
         self.loadingAnimation.centerXAnchor.constraint(equalTo: self.smokeView.centerXAnchor, constant: 0).isActive = true
-        self.loadingAnimation.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.width / 4.5).isActive = true
-        self.loadingAnimation.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width / 4.5).isActive = true
+        self.loadingAnimation.heightAnchor.constraint(equalToConstant: UIScreen.main.bounds.width / 1.5).isActive = true
+        self.loadingAnimation.widthAnchor.constraint(equalToConstant: UIScreen.main.bounds.width / 1.5).isActive = true
         
         self.loadingAnimation.play()
         

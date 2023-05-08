@@ -8,7 +8,7 @@
 import UIKit
 import AVFoundation
 
-final class KwiksVideoPlayerController: UIViewController {
+final class KwiksVideoPlayerController: BaseViewController {
     var kwiksVideo: KwiksVideo!
     private var player: AVPlayer?
     private var playerDidFinishObserver: NSObjectProtocol?
@@ -428,6 +428,7 @@ final class KwiksVideoPlayerController: UIViewController {
         self.configureVideo()
         self.layoutTopUI()
         self.layoutBottomUI()
+        Printer().print(message: "HAS TO BE IN HERE NOW")
         
 //        self.view.addSubview(self.verticalScrollView)
 //        self.verticalScrollView.edgesToSuperview()

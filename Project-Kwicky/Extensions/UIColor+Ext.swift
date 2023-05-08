@@ -33,7 +33,7 @@ extension UIColor {
     static let settingsContainer = #colorLiteral(red: 0.9450980392, green: 0.9450980392, blue: 0.9450980392, alpha: 1)
     
     /// #514F4F
-    static let kwiksPopupTint = UIColor(hexString: "514F4F") //no idea how to use a image literal
+    static let kwiksPopupTint = UIColor(hexString: "514F4F").withAlphaComponent(0.75) //no idea how to use a image literal
     
     /// #F9F9F9
     static let backgroundWhiteishGrey = UIColor(hexString: "F9F9F9")

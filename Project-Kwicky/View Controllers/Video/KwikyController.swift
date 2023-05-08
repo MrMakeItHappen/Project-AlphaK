@@ -488,6 +488,7 @@ final class KwikyController: UIViewController {
         self.configureVideo()
         self.layoutTopUI()
         self.layoutBottomUI()
+        print("JPWWWWW")
     }
     
     override func viewDidAppear(_ animated: Bool) {

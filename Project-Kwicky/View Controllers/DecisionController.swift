@@ -40,11 +40,9 @@ final class DecisionController: BaseViewController {//final - no outside access
             
             if hasAuth {//user has auth - show animation and load user model then tabbarview
                 self.logoAnimationTwo { isComplete in
-                    DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                        self.logoAnimationTwo { isComplete in
+                        ServerKit().onUserModelInitialFill { isComplete in
                             DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                                self.handleTabView()//first load the main user model then handle tabbarview
-                            }
+                                self.perform(#selector(self.handleTabView), with: nil, afterDelay: 0.1)
                         }
                     }
                 }
@@ -75,13 +73,14 @@ extension DecisionController {
       
     }
     
+    //TODO: - basic anim as a filler, needs something better
     @objc func logoAnimationTwo(completion : @escaping ( _ isComplete : Bool)->()) {
         UIView.animate(withDuration: self.animationSpeed, delay: 0, options: .curveEaseIn) {
             UIDevice.vibrateLight()
-            self.logo.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
+            self.logo.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
         } completion: { complete in
             UIView.animate(withDuration: self.animationSpeed, delay: 0, options: .curveEaseIn) {
-                self.logo.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
+                self.logo.transform = CGAffineTransform(scaleX: 1.5, y: 1.5)
             } completion: { complete in
                 UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseIn) {
                     ///delay
@@ -89,19 +88,9 @@ extension DecisionController {
                     ///vibrate here now
                     UIView.animate(withDuration: self.animationSpeed, delay: 0, options: .curveEaseIn) {
                         UIDevice.vibrateLight()
-                        self.logo.transform = CGAffineTransform(scaleX: 1.1, y: 1.1)
+                        self.logo.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
                     } completion: { complete in
-                        UIView.animate(withDuration: self.animationSpeed, delay: 0, options: .curveEaseIn) {
-                            self.logo.transform = CGAffineTransform(scaleX: 1.0, y: 1.0)
-                        } completion: { complete in
-                            UIView.animate(withDuration: 0.25, delay: 0, options: .curveEaseIn) {
-                                self.logo.alpha = 1.0
-                            } completion: { complete in
-                                DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
-                                    completion(true)
-                                }
-                            }
-                        }
+                        completion(true)
                     }
                 }
             }
@@ -114,18 +103,23 @@ extension DecisionController {
     
     //handle simple login if auth is nil (jwt is nil || null from server)
     @objc func handleSimpleLoginController() {
-        let simpleLoginController = SimpleLoginController()
-        let nav = UINavigationController(rootViewController: simpleLoginController)
-        nav.modalPresentationStyle = .fullScreen
-        self.present(nav, animated: true)
+        DispatchQueue.main.async {
+            let simpleLoginController = SimpleLoginController()
+            let nav = UINavigationController(rootViewController: simpleLoginController)
+            nav.modalPresentationStyle = .fullScreen
+            self.navigationController?.present(nav, animated: true)
+        }
     }
     
     //this is the tab bar
     @objc func handleTabView() {
-        let tabViewController = TabViewController()
-        let nav = UINavigationController(rootViewController: tabViewController)
-        nav.modalPresentationStyle = .fullScreen
-        self.present(nav, animated: true)
+        DispatchQueue.main.async {
+            let tabViewController = TabViewController()
+            let nav = UINavigationController(rootViewController: tabViewController)
+            nav.navigationBar.isHidden = true
+            nav.modalPresentationStyle = .fullScreen
+            self.navigationController?.present(nav, animated: true)
+        }
     }
 }
 

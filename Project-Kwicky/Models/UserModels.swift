@@ -18,16 +18,36 @@ struct UserOnboardingStruct {
         user_name:String?
 }
 
-
 //general user model, fill on login, registration or return through decision controller
 struct UserProfileStruct {
     
-    var full_name:String?,
-        dob:String?,
+    //normal user object
+    var phone:String?,
         email:String?,
-        phone:String?,
-        date:String?,
-        password:String?,
-        user_name:String?,
-        sign_up_method : String?
+        username:String?,
+        uid:String?,
+        avatar:String?,
+        name:String?,
+        bio:String?,
+        link : String?,
+        signUpMethod : String?,
+
+        pronouns : String?,
+        location : String?,
+        languages : [String]?,
+        birthdate : String?,
+        accountType : String?,
+        notifications : [String:Bool]?,
+    
+        //for settings notifications
+        profileViews : Bool?,
+        reposts : Bool?,
+        newFollowers : Bool?,
+        comments : Bool?,
+        directMessages : Bool?,
+        directMessagesPreview : Bool?,
+        mentionsTags : Bool?,
+        likes : Bool?
+
 }
+

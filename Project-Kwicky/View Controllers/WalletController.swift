@@ -10,6 +10,10 @@ import UIKit
 
 class WalletController : BaseViewController, UIScrollViewDelegate {
     
+    var contentHeight : CGFloat = _globalDeviceHeight,
+        isKeyboardShowing : Bool = false,
+        lastKeyboardHeight : CGFloat = 0.0
+    
     //subclass
     let walletHeader : WalletMainHeader = {
         let wh = WalletMainHeader(frame: .zero)
@@ -47,6 +51,16 @@ class WalletController : BaseViewController, UIScrollViewDelegate {
         return sv
         
     }()
+    
+    let contentView : UIView = {
+        
+        let cv = UIView()
+        cv.translatesAutoresizingMaskIntoConstraints = false
+        cv.backgroundColor = .clear
+        cv.isUserInteractionEnabled = true
+        return cv
+        
+    }()
    
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -66,16 +80,25 @@ class WalletController : BaseViewController, UIScrollViewDelegate {
     func addViews() {
         
         self.view.addSubview(self.scrollView)
-        self.scrollView.addSubview(self.walletHeader)
-        self.scrollView.addSubview(self.walletBalancePagination)
-        self.scrollView.addSubview(self.walletTable)
-        
-        self.scrollView.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
-        self.scrollView.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
-        self.scrollView.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
-        self.scrollView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor).isActive = true
+        self.scrollView.addSubview(self.contentView)
 
-        self.walletHeader.topAnchor.constraint(equalTo: self.scrollView.topAnchor).isActive = true
+        self.contentView.addSubview(self.walletHeader)
+        self.contentView.addSubview(self.walletBalancePagination)
+        self.contentView.addSubview(self.walletTable)
+        
+        self.scrollView.topAnchor.constraint(equalTo: self.view.topAnchor, constant: 0).isActive = true
+        self.scrollView.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 0).isActive = true
+        self.scrollView.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 0).isActive = true
+        self.scrollView.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: 0).isActive = true
+
+        self.contentView.topAnchor.constraint(equalTo: self.scrollView.topAnchor, constant: 0).isActive = true
+        self.contentView.bottomAnchor.constraint(equalTo: self.scrollView.bottomAnchor, constant: 0).isActive = true
+        self.contentView.leftAnchor.constraint(equalTo: self.scrollView.leftAnchor, constant: 0).isActive = true
+        self.contentView.rightAnchor.constraint(equalTo: self.scrollView.rightAnchor, constant: 0).isActive = true
+        self.contentView.widthAnchor.constraint(equalToConstant: self.view.frame.width).isActive = true
+        self.contentView.heightAnchor.constraint(equalToConstant: self.contentHeight - 10.0).isActive = true
+
+        self.walletHeader.topAnchor.constraint(equalTo: self.contentView.topAnchor, constant: 5).isActive = true
         self.walletHeader.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
         self.walletHeader.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
         self.walletHeader.heightAnchor.constraint(equalToConstant: 60).isActive = true
@@ -88,22 +111,22 @@ class WalletController : BaseViewController, UIScrollViewDelegate {
         self.walletTable.topAnchor.constraint(equalTo: self.walletBalancePagination.bottomAnchor, constant: 0).isActive = true
         self.walletTable.leftAnchor.constraint(equalTo: self.view.leftAnchor, constant: 0).isActive = true
         self.walletTable.rightAnchor.constraint(equalTo: self.view.rightAnchor, constant: 0).isActive = true
-        self.walletTable.bottomAnchor.constraint(equalTo: self.view.bottomAnchor, constant: 0).isActive = true
+        self.walletTable.bottomAnchor.constraint(equalTo: self.contentView.bottomAnchor, constant: 0).isActive = true
         
         let offSet : CGFloat = 60.0 + 200.0 //taken from main header, the actual heights - leave a little room at the top to swipe down and take off tabbar
-        self.scrollView.contentSize = CGSize(width: _globalDeviceWidth, height: UIScreen.main.bounds.height + offSet)
-        
+        self.scrollView.contentSize = CGSize(width: self.view.frame.width, height: self.contentHeight + offSet)
+
     }
     
     func fillValues() {
         let image = UIImage(named: "FemalePlaceholder")?.withRenderingMode(.alwaysOriginal)
         self.walletHeader.profileButton.setImage(image, for: .normal)
-        self.walletHeader.nameLabel.text = "Charlie"
-        self.walletBalancePagination.balanceLabel.text = "113.67"
-        self.walletBalancePagination.priceContainerLabel.text = "47.26 This Week"
+        self.walletHeader.nameLabel.text = userProfileStruct.name ?? "Private"
+        self.walletBalancePagination.balanceLabel.text = "0.0"
+        self.walletBalancePagination.priceContainerLabel.text = "0.0 This Week"
         
         //set the default font style above, then change the bold text here or vice versa works also
-        self.walletBalancePagination.priceContainerLabel.colorFontString(text: "47.26  This Week", coloredText: "47.26", color: UIColor.kwiksTextBlack, fontName: UIFont.segoeBold, fontSize: 15)
+        self.walletBalancePagination.priceContainerLabel.colorFontString(text: "0.0  This Week", coloredText: "0.0", color: UIColor.kwiksTextBlack, fontName: UIFont.segoeBold, fontSize: 15)
         //control progree '0.0-> 1.0 and use the percentage here'
     }
     
@@ -162,7 +185,10 @@ extension WalletController {
             
         default: print("🔴 prepare for other buttons")
         }
-       
-        self.navigationController?.pushViewController(cashOutMain, animated: true)
+        let nav = UINavigationController(rootViewController: cashOutMain)
+        nav.modalPresentationStyle = .fullScreen
+        self.navigationController?.present(nav, animated: true)
+        
+//        self.navigationController?.pushViewController(cashOutMain, animated: true)
     }
 }

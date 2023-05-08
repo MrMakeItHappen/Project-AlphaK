@@ -427,6 +427,7 @@ extension PinNumberController: UITextFieldDelegate {
         self.mainLoadingScreen.callMainLoadingScreen(lottiAnimationName: Statics.mainLoadingScreen, isCentered: true)
     
         if self.passedAuthValue != nil {
+            
             let values : [String:Any] = ["\(key)": self.passedAuthValue!, "code":pin]
             ServerKit().onVerify(values: values) { onSuccess, object in
                 if onSuccess == false {
@@ -442,10 +443,11 @@ extension PinNumberController: UITextFieldDelegate {
                     
                     //grab the token and store it
                     if jwtToken != "nil" {
-                        _jwtToken = jwtToken
                         Printer().print(message: "🟢 JWT Fetch success: \(jwtToken)")
                         Preferences().addJwtToken(jwtToken: jwtToken, key: UserPrefStatics.USER_HAS_AUTHENTICATION)
-                        self.handleHomeController()
+                        ServerKit().onUserModelInitialFill { isComplete in
+                            self.handleHomeController()
+                        }
                     } else {
                         Printer().print(message: "🔴 JWT Token received is nil")
                     }

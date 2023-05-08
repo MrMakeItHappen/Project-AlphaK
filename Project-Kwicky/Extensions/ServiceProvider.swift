@@ -17,8 +17,9 @@ final class ServiceProvider: NSObject {
         
         if passedParameters != nil {
             parameters = passedParameters!
+            Printer().print(message: "🔵 POST REQUEST")
         } else {
-            print("🔵 Get request")
+            Printer().print(message: "🔵 GET REQUEST")
         }
         
         var url : URL = URL(string: "nil")!

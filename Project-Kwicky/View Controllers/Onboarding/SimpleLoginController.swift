@@ -7,7 +7,7 @@
 
 import UIKit
 
-final class SimpleLoginController: UIViewController {
+final class SimpleLoginController: BaseViewController {
     private let backgroundImageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -195,10 +195,12 @@ extension SimpleLoginController {
         self.titleLabel.leftToSuperview(offset: 38)
         self.titleLabel.rightToSuperview(offset: -38)
         
-        self.view.addSubview(self.headerImageView)
-        self.headerImageView.bottomToTop(of: self.titleLabel)
-        self.headerImageView.leftToSuperview()
-        self.headerImageView.rightToSuperview()
+        self.view.addSubview(self.headerImageView)//this image was cutoff at the top on some retinas
+        self.headerImageView.topAnchor.constraint(equalTo: self.view.topAnchor).isActive = true
+        self.headerImageView.leftAnchor.constraint(equalTo: self.view.leftAnchor).isActive = true
+        self.headerImageView.rightAnchor.constraint(equalTo: self.view.rightAnchor).isActive = true
+        self.headerImageView.bottomAnchor.constraint(equalTo: self.titleLabel.topAnchor, constant: 0).isActive = true
+
     }
 }
 

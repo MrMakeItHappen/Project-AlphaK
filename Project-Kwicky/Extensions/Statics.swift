@@ -41,7 +41,7 @@ struct Statics {
     static let invalidParameters = "Check the parameters. Something is incorrect!"
 
     static let mixpanelAuthToken = "c0ef9a6d40f11836eed4e8f27fbe678f"
-    static let mainLoadingScreen = "kwiks_main_loading_screen"
+    static let mainLoadingScreen = "Rocket-Morphing"
     
     static let approved_username_characters = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789_" //for usernames
 

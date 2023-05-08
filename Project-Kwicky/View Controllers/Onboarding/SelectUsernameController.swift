@@ -174,20 +174,17 @@ extension SelectUsernameController {
                     "\(type)":email,//this could be phone or email in the email node which has both :)
                     "birthdate":birthdate,
                     "username":userName,
-                    "sign_up_method":type
+                    "signUpMethod":type
                 ]
                 
                 ServerKit().onUserObjectUpdate(values: values) { onSuccess, object in
                     
                     if onSuccess {//we are now fully finished, update the users real model and go to the tab bar view
                         self.mainLoadingScreen.cancelMainLoadingScreen()
-                        
-                        userProfileStruct.full_name = full_name
-                        userProfileStruct.dob = birthdate
-                        userProfileStruct.sign_up_method = type
-                        userProfileStruct.user_name = userName
-                        //model is filled manually since we are right here
-                        self.handleHomeController()//tabbarview
+                       
+                        ServerKit().onUserModelInitialFill { isComplete in
+                            self.handleHomeController()//tabbarview
+                        }
                     } else {
                         self.mainLoadingScreen.cancelMainLoadingScreen()
                         Printer().print(message: "🔴 Server call failed to update user object after registration")

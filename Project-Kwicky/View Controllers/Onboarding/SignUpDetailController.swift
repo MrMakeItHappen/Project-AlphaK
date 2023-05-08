@@ -11,7 +11,7 @@ import KwiksSystemsPopups
 
 final class SignUpDetailController: BaseViewController {
     var isPathFromLogin = false
-    let kwiksPopUp = KwiksSystemPopups()
+    var kwiksPopUp = KwiksSystemPopups()
     
     private let backgroundImageView: UIImageView = {
         let imageView = UIImageView()
@@ -678,7 +678,9 @@ extension SignUpDetailController {
                         self.lottieAnimation.stop()
                     
                         //throw kiwks error flag
-                        self.kwiksPopUp.copyDecision(popupType: .unknownError)
+                        self.kwiksPopUp = KwiksSystemPopups(presentingViewController: self, popupType: .unknownError)
+                        self.kwiksPopUp.engagePopup()
+                    
                 }
             } else {
                 self.mainLoadingScreen.cancelMainLoadingScreen()

@@ -418,6 +418,7 @@ extension PinNumberController: UITextFieldDelegate {
 
                     //grab the token and store it
                     if jwtToken != "nil" {
+                        _jwtToken = jwtToken
                         Printer().print(message: "🟢 JWT Fetch success: \(jwtToken)")
                         Preferences().addJwtToken(jwtToken: jwtToken, key: UserPrefStatics.USER_HAS_AUTHENTICATION)
                         self.handleUserNameController()
@@ -431,9 +432,11 @@ extension PinNumberController: UITextFieldDelegate {
     
     //once pin is confirmed, set username and the remaining user object info such as name
     func handleUserNameController() {
-        let selectUsernameVC = SelectUsernameController()
-        selectUsernameVC.modalPresentationStyle = .fullScreen
-        selectUsernameVC.navigationController?.navigationBar.isHidden = true
-        self.present(selectUsernameVC, animated: true)
+        DispatchQueue.main.async {
+            let selectUsernameVC = SelectUsernameController()
+            selectUsernameVC.modalPresentationStyle = .fullScreen
+            selectUsernameVC.navigationController?.navigationBar.isHidden = true
+            self.present(selectUsernameVC, animated: true)
+        }
     }
 }

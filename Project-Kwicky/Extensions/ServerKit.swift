@@ -24,6 +24,15 @@ final class ServerKit {
         
         
     }
+    
+    func logout(completion:@escaping(_ isComplete:Bool)->()) {
+        //remove token and present decision
+        let key = UserPrefStatics.USER_HAS_AUTHENTICATION
+        Preferences.shared.removeKey(key: key)
+        completion(true)
+    }
+    
+    
     //key is set in checkIfTokenExists
     func onAuth(completion:@escaping(_ hasAuth:Bool)->()) { //check JWT tokjen match and store on frontend
         
@@ -39,7 +48,6 @@ final class ServerKit {
             }
         }
     }
-    
     
     //registration
     func onRegister(values:[String:Any], completion : @escaping(_ onSuccess : Bool, _ object : [String : Any])->()) { //server register user
@@ -105,7 +113,8 @@ final class ServerKit {
     
     //verify pin number - takes email/phone and code parameters
     func onUsernameVerify(passedUserName:String, completion : @escaping(_ onSuccess : Bool, _ object : [String : Any])->()) { //server register user
-        
+        let url = "\(Statics.userNameAvailability)\(passedUserName)"
+        print("URL: \(url)")
         ServiceProvider.shared.serviceRequest(typeOfRequest: .GET, passedParameters: nil, endpoint: "\(Statics.userNameAvailability)\(passedUserName)", requiresAuth: true) { JSON, error in
             
             if error != nil {

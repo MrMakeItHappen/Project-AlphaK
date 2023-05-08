@@ -151,7 +151,7 @@ extension SelectUsernameController {
             
             let full_name = userOnboardingStruct.full_name ?? "nil"
             let birthdate = userOnboardingStruct.birthdate ?? "nil"
-            var email = userOnboardingStruct.email ?? "nil"
+            let email = userOnboardingStruct.email ?? "nil"
             let userName = userOnboardingStruct.user_name ?? "nil"
             
             var type:String = ""
@@ -169,7 +169,7 @@ extension SelectUsernameController {
                     userProfileStruct.phone = email
                 }
                 
-                var values : [String:String] = [
+                let values : [String:String] = [
                     "name":full_name,
                     "\(type)":email,//this could be phone or email in the email node which has both :)
                     "birthdate":birthdate,
@@ -207,13 +207,17 @@ extension SelectUsernameController {
     
     //straight to the tab bar view now because we have authentication
     func handleHomeController() {
-        UIDevice.vibrateLight()//small haptic vibe
-        let tabViewController = TabViewController()
-        tabViewController.modalPresentationStyle = .fullScreen
-        let nav = UINavigationController(rootViewController: tabViewController)
-        self.navigationController?.present(tabViewController, animated: true)
+        print("trying to go to the home controller")
+        DispatchQueue.main.async {
+            UIDevice.vibrateLight()//small haptic vibe
+            let tabViewController = TabViewController()
+            let nav = UINavigationController(rootViewController: tabViewController)
+            nav.modalPresentationStyle = .fullScreen
+            self.present(nav, animated: true)
+        }
     }
 }
+
 //MARK: - UITextField Delegates
 //TODO: User tapping Done should dismiss keyboard and prsent next screen
 extension SelectUsernameController: UITextFieldDelegate {
@@ -275,34 +279,43 @@ extension SelectUsernameController: UITextFieldDelegate {
     
     //toggle for confirmation button
     func enableConfirmButton(should:Bool) {
-        if should {
-            self.confirmButton.isEnabled = true
-            self.confirmButton.backgroundColor = .kwiksGreen
-        } else {
-            self.confirmButton.backgroundColor = #colorLiteral(red: 0.7764705882, green: 0.7764705882, blue: 0.7764705882, alpha: 1)
-            self.confirmButton.tintColor = .black
-            self.confirmButton.isEnabled = false
-        }
-    }
-    func userNameFailed() {
-        self.isApproved = false
-        self.checkmarkImageView.image = self.unavailableIcon
-        self.confirmButton.isEnabled = false
-        self.confirmButton.backgroundColor = #colorLiteral(red: 0.7764705882, green: 0.7764705882, blue: 0.7764705882, alpha: 1)
-    }
-    func userNameSuccess() {
-        self.isApproved = true
-        UIView.animate(withDuration: 0.15, delay: 0.1, options: .curveLinear, animations: {
-            self.checkmarkImageView.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
-
-        }) { (success) in
-            UIView.animate(withDuration: 0.15, delay: 0, options: .curveLinear, animations: {
-                self.checkmarkImageView.transform = .identity
-                self.checkmarkImageView.image = self.availableIcon
-
+    DispatchQueue.main.async {
+            if should {
                 self.confirmButton.isEnabled = true
                 self.confirmButton.backgroundColor = .kwiksGreen
-            })
+            } else {
+                self.confirmButton.backgroundColor = #colorLiteral(red: 0.7764705882, green: 0.7764705882, blue: 0.7764705882, alpha: 1)
+                self.confirmButton.tintColor = .black
+                self.confirmButton.isEnabled = false
+            }
+        }
+    }
+    
+    func userNameFailed() {
+        DispatchQueue.main.async {
+            self.isApproved = false
+            self.checkmarkImageView.image = self.unavailableIcon
+            self.confirmButton.isEnabled = false
+            self.confirmButton.backgroundColor = #colorLiteral(red: 0.7764705882, green: 0.7764705882, blue: 0.7764705882, alpha: 1)
+        }
+    }
+    func userNameSuccess() {
+        DispatchQueue.main.async {
+            
+            self.isApproved = true
+            UIView.animate(withDuration: 0.15, delay: 0.1, options: .curveLinear, animations: {
+                self.checkmarkImageView.transform = CGAffineTransform(scaleX: 0.1, y: 0.1)
+                
+            }) { (success) in
+                UIView.animate(withDuration: 0.15, delay: 0, options: .curveLinear, animations: {
+                    self.checkmarkImageView.transform = .identity
+                    self.checkmarkImageView.image = self.availableIcon
+                    
+                    self.confirmButton.isEnabled = true
+                    self.confirmButton.backgroundColor = .kwiksGreen
+                    
+                })
+            }
         }
     }
 }

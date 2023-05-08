@@ -17,7 +17,12 @@ class Preferences : NSObject {
     
     ////add the key if nil
     func addJwtToken(jwtToken:String, key : String) {
+        _jwtToken = jwtToken
         UserDefaults.standard.setValue(jwtToken, forKey: key)
+    }
+    
+    func removeKey(key : String) {
+        UserDefaults.standard.removeObject(forKey: key)
     }
     
     ///check if the key exists and set the token to be user in request headers

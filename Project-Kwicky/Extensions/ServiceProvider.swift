@@ -18,8 +18,7 @@ final class ServiceProvider: NSObject {
         if passedParameters != nil {
             parameters = passedParameters!
         } else {
-            print(Statics.invalidParameters)
-            return
+            print("🔵 Get request")
         }
         
         var url : URL = URL(string: "nil")!
@@ -38,9 +37,7 @@ final class ServiceProvider: NSObject {
         if typeOfRequest == .POST {
             do {
                 request.httpBody = try JSONSerialization.data(withJSONObject: parameters, options: .prettyPrinted)
-                
             } catch let error {
-                print(error.localizedDescription)
                 completion(nil, error)
             }
         }

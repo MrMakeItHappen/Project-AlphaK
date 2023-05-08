@@ -138,6 +138,7 @@ final class SettingsController: UIViewController {
         label.adjustsFontSizeToFitWidth = false
         label.textAlignment = .left
         label.textColor = UIColor.kwiksTextBlack
+        label.isUserInteractionEnabled = true
         return label
     }()
 
@@ -145,8 +146,26 @@ final class SettingsController: UIViewController {
         super.viewDidLoad()
         self.configure()
         self.layoutUI()
+        self.triggerRefs()
+    }
+
+    func triggerRefs() {
+        self.versionLabel.addGestureRecognizer(UITapGestureRecognizer(target: self, action: #selector(self.handleLogOut)))
+    }
+
+    @objc func handleLogOut() {
+        Printer().print(message: "🟡 Logging out...")
+        ServerKit().logout { isComplete in
+            Printer().print(message: "🟡 Logged out, presenting decision controller")
+            let decisionController = DecisionController()
+            let nav = UINavigationController(rootViewController: decisionController)
+            nav.modalPresentationStyle = .fullScreen
+            nav.navigationBar.isHidden = true
+            self.navigationController?.present(nav, animated: true, completion: nil)
+        }
     }
 }
+
 //MARK: - Configure
 extension SettingsController {
     private func configure() {

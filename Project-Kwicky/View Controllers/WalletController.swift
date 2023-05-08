@@ -118,7 +118,7 @@ class WalletController : BaseViewController, UIScrollViewDelegate {
 
     }
     
-    func fillValues() {
+    func fillValues() {//update me on each showing of this contoller
         let image = UIImage(named: "FemalePlaceholder")?.withRenderingMode(.alwaysOriginal)
         self.walletHeader.profileButton.setImage(image, for: .normal)
         self.walletHeader.nameLabel.text = userProfileStruct.name ?? "Private"

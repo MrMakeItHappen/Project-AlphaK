@@ -317,7 +317,6 @@ extension PinNumberController {
         self.firePin(pin: pin)
         
     }
-    
    
     @objc func didTapResend() {
         print(#function)
@@ -395,7 +394,7 @@ extension PinNumberController: UITextFieldDelegate {
     }
     
     func firePin(pin:String) {
-        var key = "email"
+        var key = ""
 
         self.mainLoadingScreen.callMainLoadingScreen(lottiAnimationName: Statics.mainLoadingScreen, isCentered: true)
         if _loginTrajectory == .fromEmail {
@@ -423,7 +422,7 @@ extension PinNumberController: UITextFieldDelegate {
                         Preferences().addJwtToken(jwtToken: jwtToken, key: UserPrefStatics.USER_HAS_AUTHENTICATION)
                         self.handleUserNameController()
                     } else {
-                        Printer().print(message: "🔴 Token received is nil")
+                        Printer().print(message: "🔴 JWT Token received is nil")
                     }
                 }
             }

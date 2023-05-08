@@ -6,13 +6,14 @@
 //
 
 import UIKit
+import KwiksSystemsPopups
 
-final class SelectUsernameController: UIViewController {
+final class SelectUsernameController: BaseViewController {
     private let availableIcon = UIImage(named: "CheckmarkSelected")
     private let unavailableIcon = UIImage(systemName: "x.circle.fill")?.withTintColor(.systemRed, renderingMode: .alwaysOriginal)
     var isApproved:Bool = false
-    let mainLoadingScreen = MainLoadingScreen()
-    
+    let kwiksPopUp = KwiksSystemPopups()
+
     private let titleLabel: UILabel = {
         let label = UILabel()
         label.text = "Create username"
@@ -149,40 +150,48 @@ extension SelectUsernameController {
             self.mainLoadingScreen.callMainLoadingScreen(lottiAnimationName: Statics.mainLoadingScreen, isCentered: true)
             
             let full_name = userOnboardingStruct.full_name ?? "nil"
-            let dateText = userOnboardingStruct.date ?? "nil"
+            let birthdate = userOnboardingStruct.birthdate ?? "nil"
             var email = userOnboardingStruct.email ?? "nil"
             let userName = userOnboardingStruct.user_name ?? "nil"
             
             var type:String = ""
             
             if full_name != "nil" &&
-                dateText != "nil" &&
+                birthdate != "nil" &&
                 email != "nil" &&
                 userName != "nil" {
                 
                 if _loginTrajectory == .fromEmail {
                     type="email"
+                    userProfileStruct.email = email
                 } else {
                     type="phone"
+                    userProfileStruct.phone = email
                 }
                 
                 var values : [String:String] = [
                     "name":full_name,
                     "\(type)":email,//this could be phone or email in the email node which has both :)
-                    "birthdate":dateText,
-                    "username":userName
+                    "birthdate":birthdate,
+                    "username":userName,
+                    "sign_up_method":type
                 ]
                 
                 ServerKit().onUserObjectUpdate(values: values) { onSuccess, object in
                     
                     if onSuccess {//we are now fully finished, update the users real model and go to the tab bar view
                         self.mainLoadingScreen.cancelMainLoadingScreen()
-
                         
+                        userProfileStruct.full_name = full_name
+                        userProfileStruct.dob = birthdate
+                        userProfileStruct.sign_up_method = type
+                        userProfileStruct.user_name = userName
+                        //model is filled manually since we are right here
+                        self.handleHomeController()//tabbarview
                     } else {
                         self.mainLoadingScreen.cancelMainLoadingScreen()
-                        
-                        
+                        Printer().print(message: "🔴 Server call failed to update user object after registration")
+                        self.kwiksPopUp.copyDecision(popupType: .unknownError)
                     }
                 }
                 
@@ -194,6 +203,15 @@ extension SelectUsernameController {
             Printer().print(message: "🔴 Data missing - 2")
             self.mainLoadingScreen.cancelMainLoadingScreen()
         }
+    }
+    
+    //straight to the tab bar view now because we have authentication
+    func handleHomeController() {
+        UIDevice.vibrateLight()//small haptic vibe
+        let tabViewController = TabViewController()
+        tabViewController.modalPresentationStyle = .fullScreen
+        let nav = UINavigationController(rootViewController: tabViewController)
+        self.navigationController?.present(tabViewController, animated: true)
     }
 }
 //MARK: - UITextField Delegates

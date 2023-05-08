@@ -638,7 +638,7 @@ extension SignUpDetailController {
         if dateText.isEmpty {
             self.birthdateTextField.layer.borderColor = UIColor.systemRed.cgColor
             self.birthdateErrorLabel.isHidden = false
-            Printer().print(message: "🔴 dateText is missing - onboarding")
+            Printer().print(message: "🔴 Birthdate text is missing - onboarding")
             self.removeTextFieldErrors(withDelay: true)
 
             return
@@ -659,7 +659,7 @@ extension SignUpDetailController {
         
         //this model is only for onboarding - should be nil after
         userOnboardingStruct.full_name = fullNameText
-        userOnboardingStruct.date = dateText
+        userOnboardingStruct.birthdate = dateText
         userOnboardingStruct.email = emailText
 
         //serverkit can manage all https calls so if a backend changes, one file changes

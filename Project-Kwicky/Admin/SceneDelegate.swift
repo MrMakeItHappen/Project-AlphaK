@@ -24,8 +24,8 @@ class SceneDelegate: UIResponder, UIWindowSceneDelegate {
 //        let decisionController = SettingsController()
 //        let decisionController = SimpleLoginController()
 //        let decisionController = TabViewController()
-        let decisionController = SelectUsernameController()
-//        let decisionController = DecisionController()
+//        let decisionController = SelectUsernameController()
+        let decisionController = DecisionController()
         
 
         let navigationController = UINavigationController(rootViewController: decisionController)

@@ -632,12 +632,12 @@
 		CABAA31029A2C92000C5EBC6 /* Onboarding */ = {
 			isa = PBXGroup;
 			children = (
-				CABAA2FA299805F600C5EBC6 /* LoginController.swift */,
+				CAE3957129F97D3D00ECB758 /* SimpleLoginController.swift */,
+				CABAA2FE2998340800C5EBC6 /* SignUpDetailController.swift */,
 				CABAA306299D34A900C5EBC6 /* PinNumberController.swift */,
 				CABAA30C29A2AED600C5EBC6 /* SelectUsernameController.swift */,
+				CABAA2FA299805F600C5EBC6 /* LoginController.swift */,
 				CABAA2F42994493200C5EBC6 /* SignUpController.swift */,
-				CABAA2FE2998340800C5EBC6 /* SignUpDetailController.swift */,
-				CAE3957129F97D3D00ECB758 /* SimpleLoginController.swift */,
 				CABAA30829A1941600C5EBC6 /* TermsController.swift */,
 			);
 			path = Onboarding;

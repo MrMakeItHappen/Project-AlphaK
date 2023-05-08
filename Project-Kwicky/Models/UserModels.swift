@@ -12,9 +12,8 @@ import UIKit
 struct UserOnboardingStruct {
     
     var full_name:String?,
-        dob:String?,
         email:String?,
-        date:String?,
+        birthdate:String?,
         password:String?,
         user_name:String?
 }
@@ -26,7 +25,9 @@ struct UserProfileStruct {
     var full_name:String?,
         dob:String?,
         email:String?,
+        phone:String?,
         date:String?,
         password:String?,
-        user_name:String?
+        user_name:String?,
+        sign_up_method : String?
 }
